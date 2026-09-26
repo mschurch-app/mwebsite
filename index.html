@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>M+大雅教會 ｜ M+！就是你屬靈的家！</title>
   
   <!-- Google Fonts: Noto Sans TC & Plus Jakarta Sans -->
@@ -896,6 +896,42 @@
       .weekly-sunday-copy p{font-size:.92rem;line-height:1.72}
     }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.weekly-sunday-image,.weekly-sunday-image img{transition:none!important;transform:none!important}}
+
+    /* Mobile polish: compact, readable and free from embedded-page whitespace. */
+    @media(max-width:540px){
+      html{font-size:16px;background:#fffaf0}
+      body{padding-bottom:calc(70px + env(safe-area-inset-bottom));background:#fffaf0;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+      .container{padding-inline:18px}
+      .header{background:rgba(255,252,245,.94);box-shadow:0 8px 28px rgba(23,63,56,.06)}
+      .nav{height:66px;gap:10px}
+      .logo{font-size:1.05rem;letter-spacing:-.02em}.logo svg{width:21px;height:21px}
+      .nav-btn{min-height:42px;padding:9px 14px;font-size:.82rem;box-shadow:0 8px 20px rgba(255,122,48,.2)}
+      .menu-toggle{width:42px;height:42px;font-size:19px}
+      .mobile-nav{padding:10px 18px 20px;border-radius:0 0 22px 22px}
+      .mobile-nav a{min-height:46px;display:flex;align-items:center;padding:10px 8px!important;border-bottom:1px solid rgba(40,95,84,.08);font-size:.93rem}
+      .mobile-nav a:last-child{border-bottom:0}
+      .hero{padding:42px 0 66px}
+      .hero-grid{gap:30px}.badge{padding:6px 12px;font-size:.78rem;margin-bottom:14px}
+      .hero-h1{font-size:clamp(2.42rem,12.6vw,3.08rem);line-height:1.09;letter-spacing:-.055em}
+      .hero-p{font-size:.96rem;line-height:1.85}.hero-p br{display:none}
+      .hero-btns{gap:10px}.btn-main,.btn-secondary{min-height:50px;border-radius:16px}
+      .hero-stats{padding-top:22px;margin-top:22px;border-top:1px solid rgba(40,95,84,.12)}
+      .hero-img-box{height:276px;border-radius:25px}.hero-floating-card{left:10px;right:10px;bottom:-30px;border-radius:18px}
+      .weekly-sunday{padding:54px 0 58px}.weekly-sunday-inner{gap:24px}
+      .weekly-sunday-copy .eyebrow{font-size:.7rem;letter-spacing:.13em}
+      .weekly-sunday-copy h2{margin:13px 0 10px;font-size:1.78rem;letter-spacing:-.035em}
+      .weekly-sunday-copy p{margin-bottom:18px}.weekly-sunday-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+      .weekly-sunday-actions a{min-width:0;min-height:46px;padding:10px 8px;font-size:.82rem;white-space:nowrap}
+      .weekly-sunday-image{order:-1;border-radius:20px;box-shadow:0 17px 38px rgba(24,62,55,.18)}
+      .quick-resources{padding:54px 0 60px}.quick-resources-head{margin-bottom:22px}
+      .resource-cards{gap:11px}.resource-card{min-height:174px;padding:17px 15px;border-radius:21px;box-shadow:0 10px 28px rgba(31,71,59,.08)}
+      .resource-icon{width:44px;height:44px;border-radius:15px;margin-bottom:21px}.resource-card h3,.resource-card.primary h3{font-size:1rem;line-height:1.35}
+      .resource-card p{font-size:.78rem;line-height:1.55}.resource-arrow{top:14px;right:14px}
+      .onboarding,.life-nav,.location{padding:58px 0}.section-title{font-size:1.62rem}.section-desc{font-size:.92rem;line-height:1.72}
+      .cards-grid{gap:13px}.qa-card{padding:22px 20px;border-radius:21px}.qa-card h3{font-size:1.08rem}.qa-card p{font-size:.9rem;line-height:1.72}
+      .tab-content{padding:22px 19px;border-radius:22px}.loc-grid{padding:20px 18px;border-radius:23px}.map-box{height:220px;border-radius:18px}
+      .footer{padding:34px 0 calc(92px + env(safe-area-inset-bottom))}.footer-content{gap:14px}.footer p{font-size:.85rem;line-height:1.7}
+    }
 </style>
 </head>
 <body>
