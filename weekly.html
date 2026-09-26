@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#173f38"><meta name="description" content="M+大雅教會本週週報、主日程序、服事安排與家人消息。">
+  <title>本週週報｜M+大雅教會</title><link rel="stylesheet" href="mplus-public-pages.css">
+  <style>
+    .bulletin-loading,.bulletin-empty{padding:clamp(28px,6vw,64px);border:1px solid var(--line);border-radius:26px;background:#fff;text-align:center;color:var(--muted)}
+    .bulletin-loading{min-height:180px;display:grid;place-items:center}.bulletin-status{display:inline-flex;align-items:center;gap:10px}.bulletin-status:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 6px #fff0dc}
+    .bulletin-hero-image{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:26px;border:1px solid rgba(255,255,255,.5);box-shadow:0 18px 45px rgba(0,0,0,.14)}
+    .bulletin-hero-placeholder{display:grid;place-items:center;width:100%;aspect-ratio:16/9;border:1px solid rgba(255,255,255,.18);border-radius:26px;background:radial-gradient(circle at 70% 26%,rgba(255,226,181,.45),transparent 28%),linear-gradient(135deg,#173f38,#367565 62%,#829b76);color:#fff;font-weight:900;letter-spacing:.18em}
+    .bulletin-meta{display:block;margin-top:16px;color:#e4f0e9;font-size:1rem;font-weight:700}
+    .bulletin-section[hidden]{display:none}.bulletin-copy{white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink)}
+    .bulletin-entry-card{padding:18px 20px;border-radius:18px;background:#f4f8f5}.bulletin-entry-card+.bulletin-entry-card{margin-top:12px}.bulletin-entry-card h3{margin:0 0 7px;color:var(--forest);font-size:1.02rem}.bulletin-entry-card p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+    .schedule-empty{padding:16px;border-radius:16px;background:#fff1df;color:#6d5a46}.bulletin-source-note{margin-top:18px;color:var(--muted);font-size:.88rem}
+    @media(max-width:720px){.bulletin-hero-image,.bulletin-hero-placeholder{border-radius:18px}.bulletin-meta{font-size:.92rem}.bulletin-entry-card{padding:16px}}
+  </style>
+</head>
+<body>
+<header class="topbar"><div class="shell topbar-inner"><a class="brand" href="index.html"><b>M+</b>大雅教會</a><nav class="nav" aria-label="週報導覽"><a href="#program">主日程序</a><a href="#news">家人消息</a><a href="#prayer">一起禱告</a><a href="#schedule">本週／下週服事</a><a href="#offering">奉獻徵信</a></nav><a class="home-btn" href="index.html">回到首頁</a></div></header>
+<section class="hero"><div class="shell hero-grid"><div><span class="eyebrow">M+ CHURCH · WEEKLY</span><h1 id="bulletin-title">本週週報</h1><p id="bulletin-subtitle">每週聚會的消息、主日流程與共同代禱，都整理在這裡。讓我們一起預備心，歡迎回家。</p><span class="bulletin-meta" id="bulletin-meta"></span></div><div id="bulletin-image"></div></div></section>
+<main class="shell main" id="bulletin-content"><div class="bulletin-loading" role="status"><span class="bulletin-status">正在載入最新週報…</span></div></main>
+<footer class="footer"><div class="shell footer-inner"><b>M+大雅教會 · 就是你屬靈的家</b><small>台中市大雅區神林南路 513 巷 13 號</small></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script><script type="module" src="weekly.mjs"></script>
+</body></html>

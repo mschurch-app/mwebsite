@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M+大雅教會 ｜ M+！就是你屬靈的家！</title>
+  
+  <!-- Google Fonts: Noto Sans TC & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ============================================================
+       1. CSS Variables & Design Tokens
+       ============================================================ */
+    :root {
+      --primary: #FF7A30;
+      --primary-hover: #E96522;
+      --primary-soft: #FFF0DC;
+      --forest: #285F54;
+      --forest-deep: #173F38;
+      --sage: #AEBCA4;
+      --cream: #FFF8E9;
+      --dark: #183F38;
+      --dark-card: #1E5148;
+      --gray-text: #5B6D66;
+      --gray-light: #F3F7F2;
+      --gray-border: #DCE8E1;
+      --white: #FFFFFF;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 14px 38px rgba(23, 63, 56, 0.10);
+      --shadow-lg: 0 20px 44px rgba(255, 122, 48, 0.22);
+      --font-main: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Noto Sans TC', 'Plus Jakarta Sans', sans-serif;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ============================================================
+       2. Global Reset & Base
+       ============================================================ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-bottom: 70px; /* 給手機端底部常駐條預留空間 */
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding-bottom: 0;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-radius: var(--radius-pill);
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--gray-text);
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+
+    .text-center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ============================================================
+       3. Header & Navigation
+       ============================================================ */
+    .header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 248, 233, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(40, 95, 84, 0.10);
+      transition: var(--transition);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 76px;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--dark);
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: none;
+      gap: clamp(16px, 2vw, 28px);
+      align-items: center;
+      margin-left: auto;
+    }
+
+    @media (min-width: 1080px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dark);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-btn {
+      padding: 10px 22px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      box-shadow: 0 7px 20px rgba(255, 122, 48, 0.28);
+      border: none;
+      cursor: pointer;
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      color: var(--dark);
+      font-size: 22px;
+    }
+
+    .mobile-nav { display: none; }
+
+    /* ============================================================
+       4. Hero Section
+       ============================================================ */
+    .hero {
+      position: relative;
+      padding: 80px 0 100px;
+      background:
+        radial-gradient(circle at 88% 18%, rgba(174,188,164,.42), transparent 30%),
+        radial-gradient(circle at 7% 80%, rgba(255,122,48,.10), transparent 28%),
+        linear-gradient(180deg, #FFFDF5 0%, #F3F7F1 100%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+    }
+
+    .hero-h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-h1 {
+        font-size: 3.8rem;
+      }
+    }
+
+    .hero-h1 mark {
+      background: transparent;
+      color: var(--primary);
+    }
+
+    .hero-p {
+      font-size: 1.15rem;
+      color: var(--gray-text);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .btn-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-main:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 28px;
+      background: var(--white);
+      color: var(--dark);
+      border: 1px solid var(--gray-border);
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: var(--gray-light);
+      border-color: #D1D5DB;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(40, 95, 84, 0.16);
+    }
+
+    .stat-item h4 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .stat-item p {
+      font-size: 0.85rem;
+      color: var(--gray-text);
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-img-box {
+      width: 100%;
+      height: 440px;
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 78% 34%, rgba(255,248,206,.95) 0%, rgba(201,213,183,.56) 22%, transparent 46%),
+        linear-gradient(145deg, #1D5148 0%, #2B6659 53%, #A98D69 100%);
+      box-shadow: 0 30px 72px rgba(23, 63, 56, .28);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .hero-img-box::before {
+      content: "";
+      position: absolute;
+      inset: 12% 12% 17%;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 48% 48% 28px 28px;
+      box-shadow: 0 0 100px rgba(255, 232, 184, .24), inset 0 0 70px rgba(255,255,255,.045);
+      z-index: -1;
+    }
+
+    .hero-img-box::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 190, 118, .18);
+      filter: blur(60px);
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+
+    .hero-mark {
+      display: block;
+      width: min(72%, 440px);
+      max-height: 74%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 24px rgba(255,255,255,.11));
+    }
+
+    .hero-brandline {
+      position: absolute;
+      bottom: 24px;
+      left: 20px;
+      right: 20px;
+      text-align: center;
+      color: rgba(255,255,255,.76);
+      font-size: .78rem;
+      letter-spacing: .2em;
+      font-weight: 700;
+    }
+
+    .hero-floating-card {
+      position: absolute;
+      bottom: -24px;
+      left: -20px;
+      background: #FFFCF4;
+      padding: 18px 24px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid var(--gray-border);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ============================================================
+       5. Section: New Visitors Onboarding
+       ============================================================ */
+    .onboarding {
+      padding: 90px 0;
+      background: var(--cream);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+       .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .qa-card {
+      background: linear-gradient(145deg, #FFFFFF 0%, #F2F7F2 100%);
+      border-radius: var(--radius-md);
+      padding: 36px 28px;
+      border: 1px solid transparent;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .qa-card:hover {
+      background: var(--white);
+      border-color: var(--primary-soft);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .qa-icon-wrap {
+      width: 52px;
+      height: 52px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .qa-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+
+    .qa-card p {
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       6. Section: Life Navigation (Tabs)
+       ============================================================ */
+    .life-nav {
+      padding: 90px 0;
+      background: linear-gradient(180deg, #EDF4EF 0%, #FFF8E9 100%);
+      border-top: 1px solid var(--gray-border);
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .tabs-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 12px 24px;
+      background: #FFFCF4;
+      border: 1px solid var(--gray-border);
+      border-radius: var(--radius-pill);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--dark);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+    }
+
+    .tab-content {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      max-width: 900px;
+      margin: 0 auto;
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tab-content.active {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .tab-content.active {
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tab-content h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+
+    .tab-content p {
+      font-size: 1rem;
+      color: var(--gray-text);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .tab-img {
+      width: 100%;
+      height: 240px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+    }
+
+    /* Situational artwork is intentionally CSS/inline-SVG based: no stock portraits. */
+    .scene-art { width: 100%; height: 240px; display: block; border-radius: var(--radius-md); overflow: hidden; }
+    .scene-art svg { display: block; width: 100%; height: 100%; }
+
+    /* ============================================================
+       7. Section: Gathering Info & Map
+       ============================================================ */
+    .location {
+      padding: 90px 0;
+      background: var(--white);
+    }
+
+    .loc-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      background: var(--gray-light);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      border: 1px solid var(--gray-border);
+    }
+
+    @media (min-width: 800px) {
+      .loc-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .loc-info h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .info-item i {
+      color: var(--primary);
+      margin-top: 3px;
+    }
+
+    .map-box {
+      width: 100%;
+      height: 320px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      background: #E5E7EB;
+    }
+
+    .map-box iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ============================================================
+       8. Footer
+       ============================================================ */
+    .footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 60px 0 40px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer p {
+      color: #9CA3AF;
+      font-size: 0.9rem;
+    }
+
+    /* ============================================================
+       9. Floating Dialog & Sticky Bottom Bar
+       ============================================================ */
+    .desktop-dock {
+      display: none;
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 99;
+    }
+
+    @media (min-width: 768px) {
+      .desktop-dock {
+        display: block;
+      }
+    }
+
+    .dock-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      background: var(--dark);
+      color: var(--white);
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .dock-btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Bottom Sticky Bar */
+    .mobile-bar {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--white);
+      border-top: 1px solid var(--gray-border);
+      z-index: 1000;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+    }
+
+    @media (min-width: 768px) {
+      .mobile-bar {
+        display: none;
+      }
+    }
+
+    .mobile-bar-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--dark);
+      gap: 4px;
+    }
+
+    .mobile-bar-btn.primary-action {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--white);
+      width: 100%;
+      max-width: 480px;
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: modalPop 0.3s ease;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--gray-text);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--gray-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-soft);
+    }
+    @media (max-width: 1079px) {
+      .nav { position: relative; }
+      .menu-toggle { display: inline-grid; place-items: center; cursor: pointer; }
+      .nav-btn { margin-left: auto; padding: 10px 15px; font-size: .83rem; }
+      .mobile-nav { display: none; position: absolute; top: calc(100% - 1px); left: 0; right: 0; padding: 10px 24px 18px; background: rgba(255,255,255,.97); border-bottom: 1px solid var(--gray-border); box-shadow: var(--shadow-md); }
+      .mobile-nav.active { display: grid; gap: 3px; }
+      .mobile-nav a { padding: 12px 4px; font-weight: 650; }
+    }
+    @media (max-width: 540px) {
+      .container { padding: 0 18px; }
+      .nav { height: 68px; gap: 8px; }
+      .logo { font-size: 1.05rem; gap: 4px; }
+      .nav-btn { max-width: 122px; line-height: 1.25; }
+      .hero { padding: 50px 0 75px; }
+      .hero-grid { gap: 37px; }
+      .hero-h1 { font-size: clamp(2.5rem, 12vw, 3.2rem); }
+      .hero-p { font-size: 1rem; }
+      .hero-btns { display: grid; }
+      .btn-main, .btn-secondary { justify-content: center; padding: 14px 17px; font-size: .95rem; }
+      .hero-stats { gap: 12px; justify-content: space-between; }
+      .stat-item h4 { font-size: .96rem; }
+      .stat-item p { font-size: .72rem; }
+      .hero-img-box { height: 330px; }
+      .hero-floating-card { left: 8px; bottom: -27px; padding: 13px 15px; gap: 10px; }
+      .onboarding, .life-nav, .location { padding: 68px 0; }
+      .section-title { font-size: 1.85rem; }
+      .section-desc { font-size: .96rem; margin-bottom: 28px; }
+      .qa-card { padding: 25px 23px; }
+      .tabs-wrapper { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; overflow: visible; padding-bottom: 0; }
+      .tab-btn { width: 100%; min-height: 62px; padding: 10px 8px; white-space: normal; line-height: 1.35; font-size: .82rem; text-align: center; }
+      .tab-content { padding: 24px; }
+      .loc-grid { padding: 23px; }
+      .map-box { height: 250px; }
+      .modal-card { padding: 28px 22px; max-height: 88vh; overflow-y: auto; }
+    }
+  
+    /* 本週主日預告：圖片始終維持 16:9 */
+    .weekly-sunday{position:relative;padding:92px 0;background:linear-gradient(135deg,#EAF3ED 0%,#FFF6E5 100%);overflow:hidden}
+    .weekly-sunday::before{content:"";position:absolute;width:470px;height:470px;border-radius:50%;right:-180px;top:-230px;background:radial-gradient(circle,rgba(255,186,112,.32),rgba(255,186,112,0) 68%)}
+    .weekly-sunday::after{content:"";position:absolute;left:-9%;bottom:-155px;width:58%;height:245px;border-radius:50%;background:rgba(40,95,84,.08);transform:rotate(8deg)}
+    .weekly-sunday-inner{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:44px;align-items:center}
+    .weekly-sunday-copy{position:relative;z-index:1}
+    .weekly-sunday-copy .eyebrow{display:inline-flex;padding:7px 13px;border-radius:999px;background:rgba(255,122,48,.12);font-size:.8rem;font-weight:850;letter-spacing:.16em;color:#D65E23}
+    .weekly-sunday-copy h2{font-size:clamp(2.15rem,3.5vw,3.45rem);line-height:1.14;margin:18px 0;color:#173F38;letter-spacing:-.035em}
+    .weekly-sunday-copy p{font-size:1.06rem;line-height:1.85;color:#526A62;margin:0 0 28px;font-weight:520}
+    .weekly-sunday-image{position:relative;z-index:1;display:block;aspect-ratio:16/9;width:100%;overflow:hidden;border-radius:30px;box-shadow:0 28px 66px rgba(24,62,55,.22);transform:translateZ(0);transition:transform .55s cubic-bezier(.16,1,.3,1),box-shadow .55s ease;border:1px solid rgba(255,255,255,.62)}
+    .weekly-sunday-image:hover{transform:translateY(-6px);box-shadow:0 34px 76px rgba(24,62,55,.25)}
+    .weekly-sunday-image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+    .weekly-sunday-image:hover img{transform:scale(1.025)}
+    .weekly-sunday-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .weekly-sunday-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 20px;border-radius:999px;text-decoration:none;font-weight:800}
+    .weekly-sunday-actions a:first-child{background:#FF7A30;color:#fff;box-shadow:0 10px 24px rgba(255,122,48,.24)}
+    .weekly-sunday-actions a:last-child{border:1px solid #AEC5BB;color:#1F554B;background:rgba(255,255,255,.78)}
+    .quick-resources{padding:88px 0;background:#FFFCF4}
+    .quick-resources-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:30px}
+    .quick-resources-head .eyebrow{display:inline-flex;color:#E2692B;font-size:.8rem;font-weight:850;letter-spacing:.15em}
+    .quick-resources-head h2{margin:11px 0 0;font-size:clamp(2rem,3.5vw,3.1rem);line-height:1.16;color:#173F38;letter-spacing:-.035em}
+    .quick-resources-head p{max-width:430px;margin:0;color:#5F726B;line-height:1.8;font-weight:520}
+    .resource-cards{display:grid;grid-template-columns:1.35fr repeat(3,1fr);gap:16px}
+    .resource-card{position:relative;min-height:230px;padding:27px;border:1px solid rgba(40,88,74,.13);border-radius:26px;background:linear-gradient(145deg,#FFFFFF,#F1F7F2);box-shadow:0 16px 42px rgba(31,71,59,.09);overflow:hidden;text-decoration:none;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s ease,border-color .45s ease}
+    .resource-card::after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-40px;bottom:-48px;background:var(--resource-tint,#e7f2ed);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+    .resource-card:hover{transform:translateY(-7px);box-shadow:0 26px 58px rgba(31,71,59,.15);border-color:rgba(40,88,74,.25)}
+    .resource-card:hover::after{transform:scale(1.18)}
+    .resource-card.primary{background:linear-gradient(145deg,#173F38,#347465 70%,#79927E);color:#fff;--resource-tint:rgba(255,188,113,.25)}
+    .resource-card:nth-child(2){background:linear-gradient(145deg,#FFF6E6,#FFFFFF);--resource-tint:#FFE2C2}
+    .resource-card:nth-child(3){background:linear-gradient(145deg,#EEF6F0,#FFFFFF);--resource-tint:#D3E7DB}
+    .resource-card:nth-child(4){background:linear-gradient(145deg,#F8F2E8,#FFFFFF);--resource-tint:#E8D8BD}
+    .resource-icon{display:grid;place-items:center;width:50px;height:50px;border-radius:17px;background:#E0F0E8;color:#285F54;margin-bottom:34px;box-shadow:inset 0 0 0 1px rgba(40,95,84,.06)}
+    .resource-card.primary .resource-icon{background:rgba(255,255,255,.14);color:#ffd2a1}
+    .resource-card h3{position:relative;z-index:1;margin:0 0 8px;font-size:1.18rem;color:#173F38;font-weight:850}
+    .resource-card.primary h3{font-size:1.45rem;color:#fff}
+    .resource-card p{position:relative;z-index:1;margin:0;color:#62746D;font-size:.92rem;line-height:1.68;font-weight:500}
+    .resource-card.primary p{color:rgba(255,255,255,.78)}
+    .resource-arrow{position:absolute;z-index:2;right:20px;top:20px;font-size:1.2rem;font-weight:900;color:#E36B2C}
+    .resource-card.primary .resource-arrow{color:#ffd2a1}
+    .reveal{transition:opacity .75s ease,transform .75s cubic-bezier(.16,1,.3,1)}
+    .reveal-ready .reveal{opacity:0;transform:translateY(24px)}
+    .reveal-ready .reveal.is-visible{opacity:1;transform:none}
+    @media(max-width:1040px){.resource-cards{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:760px){.weekly-sunday{padding:52px 0}.weekly-sunday-inner{grid-template-columns:1fr;gap:26px}.weekly-sunday-image{border-radius:18px}.weekly-sunday-copy p{margin-bottom:20px}.weekly-sunday-actions a{flex:1 1 auto}.quick-resources{padding:58px 0}.quick-resources-head{display:block}.quick-resources-head p{margin-top:12px}.resource-cards{grid-template-columns:1fr 1fr;gap:12px}.resource-card{min-height:190px;padding:20px;border-radius:20px}.resource-icon{margin-bottom:24px}.resource-card.primary h3{font-size:1.25rem}}
+    @media(max-width:420px){.resource-card{min-height:180px;padding:17px}.resource-icon{width:43px;height:43px;margin-bottom:20px}.resource-card h3{font-size:1rem}.resource-card.primary h3{font-size:1.12rem}.resource-card p{font-size:.8rem}.resource-arrow{right:15px;top:14px}}
+    @media(max-width:540px){
+      .section-title{font-size:1.55rem;line-height:1.28;letter-spacing:-.025em}
+      .quick-resources-head h2{font-size:1.72rem;line-height:1.25;letter-spacing:-.02em}
+      .quick-resources-head p{font-size:.9rem;line-height:1.7}
+      .tabs-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:9px;overflow:visible;padding-bottom:0}
+      .tab-btn{width:100%;white-space:normal;padding:11px 9px;font-size:.82rem;line-height:1.35;text-align:center}
+      .loc-info h3{font-size:1.48rem;line-height:1.38}
+      .weekly-sunday-copy h2{font-size:1.78rem;line-height:1.25}
+      .weekly-sunday-copy p{font-size:.92rem;line-height:1.72}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.weekly-sunday-image,.weekly-sunday-image img{transition:none!important;transform:none!important}}
+</style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="logo">
+        <i data-lucide="home" style="color: var(--primary);"></i>
+        M+<span>大雅教會</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#welcome">我是新朋友</a></li>
+        <li><a href="https://james8308.wixsite.com/website-3/?view=about" target="_top">關於我們</a></li>
+        <li><a href="#resources">本週週報</a></li>
+        <li><a href="#life-navigation">心靈充電站</a></li>
+      </ul>
+      <button class="nav-btn" onclick="openModal('預約本週主日')">預約本週主日</button>
+      <button class="menu-toggle" aria-label="開啟導覽選單" aria-expanded="false" onclick="toggleMenu()">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobileNav"><a href="#welcome" onclick="toggleMenu(true)">我是新朋友</a><a href="https://james8308.wixsite.com/website-3/?view=about" target="_top">關於我們</a><a href="#resources" onclick="toggleMenu(true)">本週週報</a><a href="#life-navigation" onclick="toggleMenu(true)">心靈充電站</a><a href="#weekly-sunday" onclick="toggleMenu(true)">本週主日預告</a><a href="#gathering" onclick="toggleMenu(true)">聚會時間與交通</a></div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <div class="badge">
+          <i data-lucide="sparkles" size="16"></i> 城市心靈驛站
+        </div>
+        <h1 class="hero-h1">
+          M+！就是你<br><mark>屬靈的家！</mark>
+        </h1>
+        <p class="hero-p">
+          生活很累，但這裡隨時為你留了一盞燈。<br>
+          放下所有防備與疲憊，在這裡找到真實的接納、平安與力量。
+        </p>
+        <div class="hero-btns">
+          <a href="#welcome" class="btn-main">
+            第一次回家？帶你逛逛 <i data-lucide="arrow-right" size="18"></i>
+          </a>
+          <button class="btn-secondary" onclick="openModal('為我代禱')">
+            <i data-lucide="heart" size="18" style="color: var(--primary);"></i> 需要為你禱告嗎？
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <h4>每週日 10:00</h4>
+            <p>主日崇拜生活圈</p>
+          </div>
+          <div class="stat-item">
+            <h4>0 距離</h4>
+            <p>免費咖啡 溫暖接待</p>
+          </div>
+          <div class="stat-item">
+            <h4>100% 自由</h4>
+            <p>不點名・放鬆融入</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-img-box"><img class="hero-mark" src="data:image/png;base64,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" alt="M+大雅教會白色標誌"><div class="hero-brandline">M+ DA-YA CHURCH · YOU ARE HOME</div></div>
+        <div class="hero-floating-card">
+          <i data-lucide="coffee" size="30" style="color: var(--primary);"></i>
+          <div>
+            <h4 style="font-weight: 800; font-size: 1rem;">為你預備一杯熱咖啡</h4>
+            <p style="font-size: 0.85rem; color: var(--gray-text);">專屬家人暖心微笑接待</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="weekly-sunday" class="weekly-sunday" aria-labelledby="weekly-sunday-title">
+    <div class="container weekly-sunday-inner">
+      <div class="weekly-sunday-copy">
+        <span class="eyebrow">THIS SUNDAY · M+ CHURCH</span>
+        <h2 id="weekly-sunday-title">本週主日預告</h2>
+        <p>這個週日，一起回家。留一段時間敬拜、分享，也與家人相聚。</p>
+        <div class="weekly-sunday-actions"><a href="#gathering">聚會時間與地點</a><a href="#welcome">第一次來看看</a></div>
+      </div>
+      <picture class="weekly-sunday-image"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221600%22%20height%3D%22900%22%20viewBox%3D%220%200%201600%20900%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%231e4b47%22/%3E%3Cstop%20offset%3D%22.56%22%20stop-color%3D%22%23376b5d%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d0925f%22/%3E%3C/linearGradient%3E%3CradialGradient%20id%3D%22sun%22%3E%3Cstop%20stop-color%3D%22%23fff9d3%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffd99a%22%20stop-opacity%3D%220%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20width%3D%221600%22%20height%3D%22900%22%20fill%3D%22url%28%23bg%29%22/%3E%3Ccircle%20cx%3D%221240%22%20cy%3D%22345%22%20r%3D%22360%22%20fill%3D%22url%28%23sun%29%22/%3E%3Cpath%20d%3D%22M0%20750%20Q370%20520%20720%20700%20T1600%20550V900H0Z%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.08%22/%3E%3Cpath%20d%3D%22M0%20850%20Q390%20610%20790%20780%20T1600%20690V900H0Z%22%20fill%3D%22%23e4ae7a%22%20opacity%3D%22.22%22/%3E%3Cpath%20d%3D%22M1110%20765h270V530l-135-112-135%20112Z%22%20fill%3D%22none%22%20stroke%3D%22%23fff8e7%22%20stroke-width%3D%2213%22%20opacity%3D%22.6%22/%3E%3Cpath%20d%3D%22M1245%20452v-95m-40%2040h80%22%20stroke%3D%22%23fff8e7%22%20stroke-width%3D%2214%22%20stroke-linecap%3D%22round%22%20opacity%3D%22.8%22/%3E%3Ctext%20x%3D%22110%22%20y%3D%22175%22%20fill%3D%22%23ffe5bb%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2229%22%20font-weight%3D%22bold%22%20letter-spacing%3D%228%22%3EM%2B%20CHURCH%20%C2%B7%20SUNDAY%3C/text%3E%3Ctext%20x%3D%22110%22%20y%3D%22438%22%20fill%3D%22%23fffdf6%22%20font-family%3D%22Arial%2C%27Noto%20Sans%20TC%27%2Csans-serif%22%20font-size%3D%22124%22%20font-weight%3D%22bold%22%3E%E6%9C%AC%E9%80%B1%E4%B8%BB%E6%97%A5%E9%A0%90%E5%91%8A%3C/text%3E%3Ctext%20x%3D%22115%22%20y%3D%22542%22%20fill%3D%22%23fff5e5%22%20font-family%3D%22Arial%2C%27Noto%20Sans%20TC%27%2Csans-serif%22%20font-size%3D%2250%22%3E%E7%82%BA%E4%BD%A0%E7%95%99%E4%B8%80%E5%80%8B%E4%BD%8D%E5%AD%90%EF%BC%8C%E6%AD%A1%E8%BF%8E%E5%9B%9E%E5%AE%B6%E3%80%82%3C/text%3E%3Cpath%20d%3D%22M115%20620h215%22%20stroke%3D%22%23ffad65%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" alt="M+大雅教會本週主日預告，歡迎回家" width="1600" height="900" loading="lazy"></picture>
+    </div>
+  </section>
+
+  <section id="resources" class="quick-resources" aria-labelledby="resources-title">
+    <div class="container">
+      <div class="quick-resources-head">
+        <div><span class="eyebrow">M+ FAMILY RESOURCES</span><h2 id="resources-title">這週需要的，都在這裡</h2></div>
+        <p>週報、奉獻、聚會資源與社區服務，用圖卡快速進入，不必在選單裡尋找。</p>
+      </div>
+      <div class="resource-cards">
+        <a class="resource-card primary" href="weekly.html?church=M%2B">
+          <span class="resource-arrow">↗</span><span class="resource-icon"><i data-lucide="newspaper" size="24"></i></span>
+          <h3>本週週報</h3><p>本週消息、聚會資訊與家人共同關心的事。</p>
+        </a>
+        <a class="resource-card" href="https://tcsc.eoffering.org.tw/contents/project_ct?page=2&amp;p_id=3" target="_blank" rel="noopener">
+          <span class="resource-arrow">↗</span><span class="resource-icon"><i data-lucide="heart-handshake" size="24"></i></span>
+          <h3>線上奉獻</h3><p>以便利、安全的方式參與教會事工。</p>
+        </a>
+        <a class="resource-card" href="https://james8308.wixsite.com/website-3/group-resources" target="_top">
+          <span class="resource-arrow">↗</span><span class="resource-icon"><i data-lucide="users-round" size="24"></i></span>
+          <h3>小組聚會資源</h3><p>小組生活與每週聚會需要的內容。</p>
+        </a>
+        <a class="resource-card" href="https://daya.mchurch.online/tcsc" target="_top">
+          <span class="resource-arrow">↗</span><span class="resource-icon"><i data-lucide="hand-heart" size="24"></i></span>
+          <h3>服務社區</h3><p>看見在地需要，讓愛成為具體的行動。</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ONBOARDING: ELIMINATE ANXIETY ==================== -->
+  <section id="welcome" class="onboarding">
+    <div class="container">
+      <div class="text-center">
+        <div class="badge"><i data-lucide="smile" size="16"></i> 消除未知與尷尬</div>
+        <h2 class="section-title">第一次回家，不用緊張</h2>
+        <p class="section-desc">我們知道走進一個陌生的環境需要勇氣。這裡解答大家最常問的 3 個問題：</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="qa-card">
+          <div class="qa-icon-wrap">
+            <i data-lucide="shirt" size="26"></i>
+          </div>
+          <h3>穿什麼來最自在？</h3>
+          <p>就像回到家一樣！T-shirt、牛仔褲、休閒穿搭最受歡迎。這裡沒有嚴肅的服裝規定，穿你覺得最放鬆舒適的衣服來就行。</p>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-icon-wrap">
+            <i data-lucide="smile-plus" size="26"></i>
+          </div>
+          <h3>會被強迫點名或發言嗎？</h3>
+          <p>絕對不會！我們尊重每一位新朋友。你可以安靜地坐在台下喝杯咖啡、聽音樂，用最輕鬆的節奏享受整個過程。</p>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-icon-wrap">
+            <i data-lucide="clock" size="26"></i>
+          </div>
+          <h3>聚會大約多久？有什麼內容？</h3>
+          <p>約 75–90 分鐘。包含熱情具感染力的現代樂團敬拜、貼近生活的智慧分享，以及會後像家人一樣的彼此問候與點心時間。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LIFE NAVIGATION (TABS) ==================== -->
+  <section id="life-navigation" class="life-nav">
+    <div class="container">
+      <div class="text-center">
+        <div class="badge"><i data-lucide="compass" size="16"></i> 按你的狀態尋找答案</div>
+        <h2 class="section-title">此時此刻，你最需要什麼？</h2>
+        <p class="section-desc">無論你身處人生的哪一個季節，M+ 都有專屬於你的家人與力量。</p>
+      </div>
+
+      <div class="tabs-wrapper">
+        <button class="tab-btn active" onclick="switchTab(0)">職場壓力大 / 心累</button>
+        <button class="tab-btn" onclick="switchTab(1)">育兒家長 / 尋找週末去處</button>
+        <button class="tab-btn" onclick="switchTab(2)">熱血青年 / 尋找方向</button>
+        <button class="tab-btn" onclick="switchTab(3)">剛搬到大雅 / 想交朋友</button>
+      </div>
+
+      <!-- Tab 1 -->
+      <div class="tab-content active" id="tab-0">
+        <div>
+          <h3>在這裡，重新找回心靈的安息與韌性</h3>
+          <p>週一到週五的疲憊與KPI壓得你喘不過氣嗎？週日早上來 M+，在音樂與充滿正向的信息中給靈魂做個深度 SPA，找回前行的力量。</p>
+          <button class="btn-main" onclick="openModal('索取職場得勝信息精華')">索取每週心靈維他命</button>
+        </div>
+        <div class="scene-art" role="img" aria-label="午後陽光落在安靜的工作桌上">
+          <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="workSky" x2="0" y2="1"><stop stop-color="#f7c58f"/><stop offset="1" stop-color="#fff0da"/></linearGradient><linearGradient id="workDesk" x2="0" y2="1"><stop stop-color="#b88762"/><stop offset="1" stop-color="#795743"/></linearGradient></defs><rect width="600" height="320" fill="url(#workSky)"/><circle cx="460" cy="78" r="42" fill="#fff9df" opacity=".9"/><path d="M0 213h600v107H0z" fill="url(#workDesk)"/><path d="M80 211V98h242v113" fill="#fffaf0" opacity=".58"/><path d="M93 105h216v100H93z" fill="#c7d9d0"/><path d="M202 105v100M93 155h216" stroke="#fffaf0" stroke-width="8"/><path d="M243 229h188l-18 14H261z" fill="#f2dfc7"/><path d="M275 194h117l27 35H248z" fill="#fff9ef"/><rect x="300" y="206" width="62" height="6" rx="3" fill="#b7c9c0"/><path d="M502 213v-67h5v67m-24-49q24-35 48 0" fill="none" stroke="#4d7667" stroke-width="7" stroke-linecap="round"/><circle cx="505" cy="142" r="17" fill="#73957c"/><path d="M0 215h600" stroke="#fff6e8" stroke-width="5" opacity=".75"/></svg>
+        </div>
+      </div>
+
+      <!-- Tab 2 -->
+      <div class="tab-content" id="tab-1">
+        <div>
+          <h3>讓孩子開心放電，爸媽安心放鬆</h3>
+          <p>專為孩子打造的歡樂品格營地！充滿愛心的同工團隊帶領手作、音樂與品格故事，讓孩子在愛中成長，爸媽能安心享受主日充電時光。</p>
+          <button class="btn-main" onclick="openModal('了解兒童營地')">預約兒童主日參訪</button>
+        </div>
+        <div class="scene-art" role="img" aria-label="明亮溫暖的親子遊戲角落">
+          <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="kidBg" x2="0" y2="1"><stop stop-color="#d8eee6"/><stop offset="1" stop-color="#fff4dd"/></linearGradient></defs><rect width="600" height="320" fill="url(#kidBg)"/><circle cx="105" cy="77" r="38" fill="#fff" opacity=".62"/><path d="M0 245q130-55 255 0t345-6v81H0z" fill="#c6d9a3"/><rect x="97" y="150" width="118" height="95" rx="14" fill="#f29a6e"/><path d="M97 178h118M155 150v95" stroke="#fff1d7" stroke-width="7"/><path d="M278 243v-73l68-42 69 42v73" fill="#fffaf0" stroke="#df9865" stroke-width="7" stroke-linejoin="round"/><path d="M264 174l82-55 84 55" fill="none" stroke="#df7657" stroke-width="13" stroke-linecap="round"/><rect x="327" y="192" width="38" height="51" rx="18" fill="#b8d3c4"/><circle cx="472" cy="212" r="39" fill="#f5c86e"/><circle cx="472" cy="212" r="15" fill="#fff4d7"/><path d="M473 165v-21m0 136v-21m47-47h21m-136 0h21m80-33 15-15m-97 97 15-15m67 0 15 15m-97-97 15 15" stroke="#f5c86e" stroke-width="6" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+
+      <!-- Tab 3 -->
+      <div class="tab-content" id="tab-2">
+        <div>
+          <h3>熱血運動、音樂舞台、真實夥伴！</h3>
+          <p>拒絕無聊！從熱血籃球營、街舞、現場 Live Band 到青年培力，這裡有一群陪你一起追逐夢想、真實陪伴的年輕夥伴。</p>
+          <button class="btn-main" onclick="openModal('加入青年社群')">加入 M+ 青年生活圈</button>
+        </div>
+        <div class="scene-art" role="img" aria-label="傍晚球場與籃球">
+          <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="courtSky" x2="0" y2="1"><stop stop-color="#9ab9c6"/><stop offset="1" stop-color="#f5c79a"/></linearGradient></defs><rect width="600" height="320" fill="url(#courtSky)"/><circle cx="445" cy="86" r="39" fill="#ffe6aa"/><path d="M0 214h600v106H0z" fill="#557c79"/><path d="M0 271h600M300 214v106M160 214v106m280-106v106" stroke="#dce9dc" stroke-width="4" opacity=".75"/><path d="M75 215v-94h9v94m-22-95h55v7H62zm31 8v32" fill="none" stroke="#fff6e7" stroke-width="6" stroke-linecap="round"/><path d="M70 159q23 22 46 0" fill="none" stroke="#fff6e7" stroke-width="4"/><circle cx="348" cy="206" r="35" fill="#eb7e39"/><path d="M313 206h70m-35-35v70m-24-60q25 25 48 50m0-50q-25 25-48 50" fill="none" stroke="#8f482b" stroke-width="4"/><path d="M0 214h600" stroke="#fff3d8" stroke-width="4"/></svg>
+        </div>
+      </div>
+
+      <!-- Tab 4 -->
+      <div class="tab-content" id="tab-3">
+        <div>
+          <h3>在大雅，遇見像家人一般的在地社群</h3>
+          <p>剛搬來大雅人生地不熟？我們在社區各個角落有溫馨的小組聚會，一起做菜、吃飯、聊生活，讓你迅速融入大雅的在地生活。</p>
+          <button class="btn-main" onclick="openModal('尋找在地小組')">認識在地家庭小組</button>
+        </div>
+        <div class="scene-art" role="img" aria-label="大雅街區的家與綠意">
+          <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="homeBg" x2="0" y2="1"><stop stop-color="#d7e8df"/><stop offset="1" stop-color="#fbefd9"/></linearGradient></defs><rect width="600" height="320" fill="url(#homeBg)"/><circle cx="492" cy="67" r="35" fill="#ffe3a4"/><path d="M0 235q92-50 194 0t203-2q99-48 203 5v82H0z" fill="#a9c29e"/><path d="M165 237V142l107-72 108 72v95" fill="#fff9ef" stroke="#a87652" stroke-width="7" stroke-linejoin="round"/><path d="M143 151 272 58l130 93" fill="none" stroke="#c47d59" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><rect x="246" y="171" width="45" height="66" rx="21" fill="#e9b987"/><rect x="186" y="158" width="39" height="38" rx="6" fill="#c6d9d1"/><rect x="316" y="158" width="39" height="38" rx="6" fill="#c6d9d1"/><path d="M74 237v-71m-23 23q23-43 46 0m-39 18q16-29 32 0m395 30v-87m-29 33q29-52 58 0m-48 23q19-35 38 0" fill="none" stroke="#5f896c" stroke-width="9" stroke-linecap="round"/><path d="M0 238h600" stroke="#f9f0dc" stroke-width="5" opacity=".8"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GATHERING & MAP ==================== -->
+  <section id="gathering" class="location">
+    <div class="container">
+      <div class="loc-grid">
+        <div class="loc-info">
+          <div class="badge"><i data-lucide="map-pin" size="16"></i> 交通與聚會導航</div>
+          <h3>歡迎回家！我們在這裡等你</h3>
+          
+          <div class="info-list">
+            <div class="info-item">
+              <i data-lucide="clock"></i>
+              <div>
+                <strong>主日聚會時間</strong>
+                <p>每週日 上午 10:00–11:30</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i data-lucide="map-pin"></i>
+              <div>
+                <strong>教會地點</strong>
+                <p>台中市大雅區神林南路 513 巷 13 號</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i data-lucide="car"></i>
+              <div>
+                <strong>周邊停車友善</strong>
+                <p>門口機車位充足，周邊備有特約/公共汽車停車空間</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://www.google.com/maps/search/?api=1&query=台中市大雅區神林南路513巷13號" target="_blank" class="btn-main">
+              <i data-lucide="navigation" size="18"></i> 立即 Google 導航
+            </a>
+            <button class="btn-secondary" onclick="openModal('預約專人接待')">
+              週日專人門口迎接
+            </button>
+          </div>
+        </div>
+
+        <div class="map-box">
+          <iframe 
+            src="https://maps.google.com/maps?q=%E5%8F%B0%E4%B8%AD%E5%B8%82%E5%A4%A7%E9%9B%85%E5%8D%80%E7%A5%9E%E6%9E%97%E5%8D%97%E8%B7%AF513%E5%B7%B713%E8%99%9F&output=embed" 
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="logo" style="color: var(--white);">
+        <i data-lucide="home" style="color: var(--primary);"></i>
+        M+<span>大雅教會</span>
+      </div>
+      <p>生活很累，但這裡有光。M+ 就是你屬靈的家！</p>
+      <p style="font-size: 0.8rem; opacity: 0.6;">© 2026 M+大雅教會. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== DESKTOP FLOATING DOCK ==================== -->
+  <div class="desktop-dock">
+    <button class="dock-btn" onclick="openModal('家人在線代禱')">
+      <i data-lucide="message-circle-heart" size="20" style="color: var(--primary);"></i>
+      <span>家人在線｜需要為你禱告嗎？</span>
+    </button>
+  </div>
+
+  <!-- ==================== MOBILE BOTTOM STICKY BAR ==================== -->
+  <div class="mobile-bar">
+    <a href="https://www.google.com/maps/search/?api=1&query=台中市大雅區神林南路513巷13號" target="_blank" class="mobile-bar-btn">
+      <i data-lucide="navigation" size="20"></i>
+      <span>地圖導航</span>
+    </a>
+    <a href="#gathering" class="mobile-bar-btn">
+      <i data-lucide="calendar" size="20"></i>
+      <span>聚會時間</span>
+    </a>
+    <button class="mobile-bar-btn primary-action" onclick="openModal('新朋友回家登記')">
+      <i data-lucide="coffee" size="20"></i>
+      <span>預約接待</span>
+    </button>
+  </div>
+
+  <!-- ==================== POPUP MODAL ==================== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModalForce()"><i data-lucide="x" size="24"></i></button>
+      <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px;" id="modalTitle">預約本週主日</h3>
+      <p style="color: var(--gray-text); font-size: 0.95rem; margin-bottom: 24px;">留下你的聯絡方式，我們會為你預備專屬座位與溫暖咖啡！</p>
+      
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label>怎麼稱呼你？</label>
+          <input type="text" class="form-control" placeholder="例如：林先生 / 小陳" required>
+        </div>
+        <div class="form-group">
+          <label>LINE ID 或 手機號碼</label>
+          <input type="text" class="form-control" placeholder="讓我們能聯繫到你" required>
+        </div>
+        <div class="form-group">
+          <label>有什麼想讓我們先知道的嗎？（選填）</label>
+          <textarea class="form-control" rows="3" placeholder="例如：帶兩個小朋友同行、需要代禱事項..."></textarea>
+        </div>
+        <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">
+          送出・期待與你見面
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // 初始化 Lucide 圖標
+    lucide.createIcons();
+
+    function toggleMenu(close = false) {
+      const menu = document.getElementById('mobileNav');
+      const button = document.querySelector('.menu-toggle');
+      const shouldOpen = close ? false : !menu.classList.contains('active');
+      menu.classList.toggle('active', shouldOpen);
+      button.setAttribute('aria-expanded', String(shouldOpen));
+      button.setAttribute('aria-label', shouldOpen ? '關閉導覽選單' : '開啟導覽選單');
+    }
+
+    // 輕量進場動畫：保留流暢感，也尊重系統的減少動態設定。
+    const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!motionReduced && 'IntersectionObserver' in window) {
+      const revealTargets = document.querySelectorAll('section > .container, .weekly-sunday-image');
+      revealTargets.forEach((element) => element.classList.add('reveal'));
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.14, rootMargin: '0px 0px -36px' });
+      revealTargets.forEach((element) => revealObserver.observe(element));
+    }
+
+    // 生活狀態 Tab 切換
+    function switchTab(index) {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+      });
+
+      contents.forEach((content, i) => {
+        content.classList.toggle('active', i === index);
+      });
+    }
+
+    // Modal 控制
+    function openModal(title) {
+      if (title) {
+        document.getElementById('modalTitle').innerText = title;
+      }
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'modalOverlay') {
+        document.getElementById('modalOverlay').classList.remove('active');
+      }
+    }
+
+    function closeModalForce() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('這是網站預覽，表單尚未連接實際收件系統；目前不會傳送或保存資料。');
+      closeModalForce();
+    }
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script><script type="module" src="website-home.mjs"></script></body>
+</html>
