@@ -9,7 +9,7 @@ const esc=value=>String(value||'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&
 let posts=[];
 function setStatus(message,error=false){list.innerHTML=`<p class="empty${error?' error':''}">${esc(message)}</p>`;}
 function plainText(html){const box=document.createElement('div');box.innerHTML=DOMPurify.sanitize(html||'');return(box.textContent||'').replace(/\s+/g,' ').trim();}
-function excerpt(post){const stored=String(post.excerpt||'').trim();if(stored&&stored!=='歷史電子週報'&&stored!=='每週小組教材與討論內容')return stored;let text=plainText(post.content_html);if(post.content_type==='group_resource'){const topic=text.match(/【主題】\s*[：:]\s*(.*?)(?=【日期】|【本週讀經進度】|【本週核心經文】|$)/);if(topic?.[1])return topic[1].trim().slice(0,156);}text=text.replace(/【日期】[^【】]*/g,' ').replace(/【本週讀經進度】[^【】]*/g,' ').replace(/【本週核心經文】[^【】]*/g,' ').replace(/\s+/g,' ').trim();return text.slice(0,156)||'完整內容已整理收錄。';}
+function excerpt(post){const stored=String(post.excerpt||'').trim();if(stored&&stored!=='歷史電子週報'&&stored!=='每週小組教材與討論內容')return stored;let text=plainText(post.content_html);if(type==='group_resource'){const topic=text.match(/【主題】\s*[：:]\s*(.*?)(?=【日期】|【本週讀經進度】|【本週核心經文】|$)/);if(topic?.[1])return topic[1].trim().slice(0,156);}text=text.replace(/【日期】[^【】]*/g,' ').replace(/【本週讀經進度】[^【】]*/g,' ').replace(/【本週核心經文】[^【】]*/g,' ').replace(/\s+/g,' ').trim();return text.slice(0,156)||'完整內容已整理收錄。';}
 function addStructuredContent(target,raw){
  const safe=document.createElement('div');safe.innerHTML=DOMPurify.sanitize(raw||'',{ALLOWED_TAGS:['p','h1','h2','h3','h4','ul','ol','li','blockquote','table','thead','tbody','tr','td','th','strong','b','em','i','a','img','br','hr'],ALLOWED_ATTR:['href','src','alt','title','target','rel','colspan','rowspan']});
  let section=document.createElement('section');section.className='content-section';target.append(section);
@@ -24,7 +24,7 @@ function addStructuredContent(target,raw){
    flush();const figure=document.createElement('figure');figure.className='content-image';node.loading='lazy';node.decoding='async';node.removeAttribute('width');node.removeAttribute('height');figure.append(node);section.append(figure);continue;
   }
   if(node.nodeType===Node.ELEMENT_NODE&&['P','BLOCKQUOTE','UL','OL','TABLE','HR'].includes(node.tagName)){
-   flush();const block=document.createElement('div');block.className=node.tagName==='BLOCKQUOTE'?'content-card quote-card':node.tagName==='TABLE'?'content-card table-card':'content-card';if(node.tagName==='TABLE'){const scroller=document.createElement('div');scroller.className='table-scroll';scroller.append(node);block.append(scroller)}else block.append(node);section.append(block);continue;
+   flush();const text=(node.textContent||'').trim();const meta=/^【(主題|日期|本週讀經進度|本週核心經文)】/.test(text);const heading=node.tagName==='P'&&text.length<150&&(/^(🏠|🎵|📖|📝|📜|C\.|D\.|[1-4]\.)/.test(text));const quote=node.tagName==='BLOCKQUOTE'||/^【本週核心經文】/.test(text);const block=document.createElement('div');block.className=heading?'content-heading':quote?'content-card quote-card':meta?'content-card meta-card':node.tagName==='TABLE'?'content-card table-card':'content-card';if(node.tagName==='TABLE'){const scroller=document.createElement('div');scroller.className='table-scroll';scroller.append(node);block.append(scroller)}else block.append(node);section.append(block);continue;
   }
   flush();const block=document.createElement('div');block.className='content-card';block.append(node);section.append(block);
  }
