@@ -30,6 +30,30 @@ function addStructuredContent(target,raw){
  }
  if(!section.childNodes.length)section.remove();
 }
+function appendGroupNode(container,node){
+ if(node.nodeType===Node.TEXT_NODE&&!node.textContent.trim())return;
+ if(node.nodeType!==Node.ELEMENT_NODE){container.append(node);return;}
+ if(node.tagName==='IMG'){const figure=document.createElement('figure');figure.className='content-image';node.loading='lazy';node.decoding='async';node.removeAttribute('width');node.removeAttribute('height');figure.append(node);container.append(figure);return;}
+ if(/^H[1-4]$/.test(node.tagName)){const heading=document.createElement('h4');heading.className='group-subheading';heading.textContent=node.textContent.trim();container.append(heading);return;}
+ if(node.tagName==='TABLE'){const scroller=document.createElement('div');scroller.className='table-scroll';scroller.append(node);container.append(scroller);return;}
+ container.append(node);
+}
+function addGroupResourceContent(target,raw){
+ const safe=document.createElement('div');safe.innerHTML=DOMPurify.sanitize(raw||'',{ALLOWED_TAGS:['p','h1','h2','h3','h4','ul','ol','li','blockquote','table','thead','tbody','tr','td','th','strong','b','em','i','a','img','br','hr'],ALLOWED_ATTR:['href','src','alt','title','target','rel','colspan','rowspan']});
+ let intro=null,current=null;
+ for(const node of [...safe.childNodes]){
+  if(node.nodeType===Node.TEXT_NODE&&!node.textContent.trim())continue;
+  const text=(node.textContent||'').replace(/\s+/g,' ').trim();
+  const headingMatch=text.match(/^(?:(?:🏠|🎵|📖)\s*)?([1-4][.、]\s*(?:Welcome|Worship|Word|Work|破冰|敬拜|神的話|神的工)[^]*)$/i);
+  if(headingMatch){
+   const section=document.createElement('section');section.className='group-main-section';
+   const heading=document.createElement('h3');heading.className='group-main-title';heading.textContent=headingMatch[1].trim();
+   const content=document.createElement('div');content.className='group-main-body';section.append(heading,content);target.append(section);current=content;continue;
+  }
+  if(!current){if(!intro){intro=document.createElement('div');intro.className='group-overview';target.append(intro);}appendGroupNode(intro,node);}
+  else appendGroupNode(current,node);
+ }
+}
 function render(){
  const needle=(search?.value||'').trim().toLocaleLowerCase();const year=yearSelect?.value||'';
  const visible=posts.filter(post=>(!year||String(post.published_on||'').slice(0,4)===year)&&(!needle||`${post.title} ${post.excerpt} ${plainText(post.content_html)}`.toLocaleLowerCase().includes(needle)));
@@ -45,7 +69,7 @@ function render(){
   if(post.hero_image_url){const figure=document.createElement('figure');figure.className='archive-cover';const img=document.createElement('img');img.src=post.hero_image_url;img.alt=`${post.title}圖片`;img.loading='lazy';img.decoding='async';figure.append(img);card.append(figure);}
   const details=document.createElement('details');details.className='archive-details';const summaryLine=document.createElement('summary');summaryLine.innerHTML='<span>閱讀完整內容</span><span aria-hidden="true">＋</span>';details.append(summaryLine);
   const body=document.createElement('div');body.className='archive-content';details.append(body);
-  details.addEventListener('toggle',()=>{if(details.open){if(!body.dataset.loaded){addStructuredContent(body,post.content_html);body.dataset.loaded='true';}summaryLine.lastElementChild.textContent='−';document.querySelectorAll('.archive-details[open]').forEach(other=>{if(other!==details){other.open=false;const sign=other.querySelector('summary span:last-child');if(sign)sign.textContent='＋';}})}else summaryLine.lastElementChild.textContent='＋';});
+  details.addEventListener('toggle',()=>{if(details.open){if(!body.dataset.loaded){if(type==='group_resource')addGroupResourceContent(body,post.content_html);else addStructuredContent(body,post.content_html);body.dataset.loaded='true';}summaryLine.lastElementChild.textContent='−';document.querySelectorAll('.archive-details[open]').forEach(other=>{if(other!==details){other.open=false;const sign=other.querySelector('summary span:last-child');if(sign)sign.textContent='＋';}})}else summaryLine.lastElementChild.textContent='＋';});
   if(post.source_url){const link=document.createElement('a');link.className='source-link';link.href=post.source_url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='查看舊站原始資料 ↗';card.append(link);}
   card.append(details);list.append(card);
  }
