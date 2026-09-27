@@ -11,7 +11,7 @@
   .main{padding:24px 0 64px}.section{margin-top:16px;padding:20px 17px;border-radius:22px;box-shadow:0 12px 32px rgba(23,63,56,.09)}
   .section-head{align-items:flex-start;gap:12px;margin-bottom:18px}.section-icon{flex-basis:43px;height:43px;border-radius:14px;font-size:1.15rem}
   .section h2{font-size:1.32rem;letter-spacing:-.02em}.section-sub{font-size:.84rem;line-height:1.55}
-  .duty{padding:19px;border-radius:18px}.duty dl{grid-template-columns:60px minmax(0,1fr);gap:8px 10px;font-size:.9rem}.duty dd{overflow-wrap:anywhere}
+  .duty{padding:19px;border-radius:18px}.duty dl{grid-template-columns:104px minmax(0,1fr);gap:8px 10px;font-size:.9rem}.duty dt{white-space:nowrap}.duty dd{min-width:0;overflow-wrap:anywhere}
   .offering-period{padding:15px;border-radius:17px}.summary-card{padding:19px;border-radius:18px}.offering-panel{padding:18px 16px;border-radius:18px}
   .amount-list>div{align-items:flex-start}.amount-list b{text-align:right}.credit-list>div{grid-template-columns:58px minmax(0,1fr);gap:9px}.credit-list p{overflow-wrap:anywhere}
   .footer{padding:28px 0 calc(32px + env(safe-area-inset-bottom))}.footer-inner{font-size:.92rem}
