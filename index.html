@@ -716,6 +716,7 @@
       border-top: 1px solid var(--gray-border);
       z-index: 1000;
       box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+      padding-bottom: env(safe-area-inset-bottom);
     }
 
     @media (min-width: 768px) {
@@ -1012,7 +1013,10 @@
     .location { background: #FBF8F1; }
     .footer { background: #173F38; }
     a:focus-visible, button:focus-visible { outline: 3px solid #F1A46C; outline-offset: 4px; }
+    .loc-info .info-item a { color: var(--forest); text-decoration: underline; text-decoration-color: rgba(40,95,84,.35); text-underline-offset: 3px; }
+    .modal-card { max-height: min(90vh, 760px); overflow-y: auto; overscroll-behavior: contain; }
     @media (max-width: 767px) {
+      body { padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
       .hero { padding: 48px 0 62px; }
       .hero-grid { gap: 30px; }
       .hero-h1 { font-size: clamp(2.6rem, 11vw, 3.45rem); }
@@ -1021,6 +1025,7 @@
       .hero-floating-card { left: 8px; bottom: -22px; padding: 14px 18px; }
       .onboarding, .life-nav { padding: 66px 0; }
       .qa-card { padding: 26px; }
+      .modal-card { width: min(100% - 28px, 520px); max-height: calc(100vh - 32px - env(safe-area-inset-top)); }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -1032,18 +1037,18 @@
   <!-- ==================== HEADER ==================== -->
   <header class="header">
     <div class="container nav">
-      <a href="#" class="logo">
+      <a href="index.html" class="logo" aria-label="M+大雅教會首頁">
         <i data-lucide="home" style="color: var(--primary);"></i>
         M+<span>大雅教會</span>
       </a>
-      <ul class="nav-links">
+      <ul class="nav-links" aria-label="主要導覽">
         <li><a href="#welcome">我是新朋友</a></li>
         <li><a href="about.html?page=about" target="_top">關於我們</a></li>
         <li><a href="#resources">本週週報</a></li>
         <li><a href="#life-navigation">心靈充電站</a></li>
       </ul>
       <button class="nav-btn" onclick="openModal('預約本週主日')">預約本週主日</button>
-      <button class="menu-toggle" aria-label="開啟導覽選單" aria-expanded="false" onclick="toggleMenu()">☰</button>
+      <button class="menu-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="mobileNav" onclick="toggleMenu()">☰</button>
     </div>
     <div class="mobile-nav" id="mobileNav"><a href="#welcome" onclick="toggleMenu(true)">我是新朋友</a><a href="about.html?page=about" target="_top">關於我們</a><a href="#resources" onclick="toggleMenu(true)">本週週報</a><a href="#life-navigation" onclick="toggleMenu(true)">心靈充電站</a><a href="#weekly-sunday" onclick="toggleMenu(true)">本週主日預告</a><a href="#gathering" onclick="toggleMenu(true)">聚會時間與交通</a></div>
   </header>
@@ -1162,9 +1167,10 @@
         <a class="resource-card" href="https://tcsc.eoffering.org.tw/contents/project_ct?page=2&amp;p_id=3" target="_blank" rel="noopener">
           <span class="resource-arrow">↗</span><span class="resource-icon"><i data-lucide="heart-handshake" size="24"></i></span>
           <h3>線上奉獻</h3><p>以便利、安全的方式參與教會事工。</p>
-        </a>        <a class="resource-card" href="group-resources.html">          <span class="resource-arrow">↗</span><span class="resource-icon"><i data-lucide="users-round" size="24"></i></span>
-                    <h3>小組聚會資源</h3><p>小組生活與每週聚會需要的內容。</p></p></h3>
-          
+        </a>
+        <a class="resource-card" href="group-resources.html">
+          <span class="resource-arrow">↗</span><span class="resource-icon"><i data-lucide="users-round" size="24"></i></span>
+          <h3>小組聚會資源</h3><p>小組生活與每週聚會需要的內容。</p>
         </a>
         <a class="resource-card" href="https://www.tcsc.org.tw/" target="_top">
           <span class="resource-arrow">↗</span><span class="resource-icon"><i data-lucide="hand-heart" size="24"></i></span>
@@ -1301,6 +1307,13 @@
               </div>
             </div>
             <div class="info-item">
+              <i data-lucide="phone"></i>
+              <div>
+                <strong>想先詢問？</strong>
+                <p><a href="tel:0425658977">04 2565 8977</a><span aria-hidden="true"> · </span><a href="mailto:church@tcsc.org.tw">寄信給教會</a></p>
+              </div>
+            </div>
+            <div class="info-item">
               <i data-lucide="car"></i>
               <div>
                 <strong>周邊停車友善</strong>
@@ -1310,7 +1323,7 @@
           </div>
 
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <a href="https://www.google.com/maps/search/?api=1&query=台中市大雅區神林南路513巷13號" target="_blank" class="btn-main">
+            <a href="https://www.google.com/maps/search/?api=1&query=台中市大雅區神林南路513巷13號" target="_blank" rel="noopener noreferrer" class="btn-main">
               <i data-lucide="navigation" size="18"></i> 立即 Google 導航
             </a>
             <button class="btn-secondary" onclick="openModal('預約專人接待')">
@@ -1320,9 +1333,9 @@
         </div>
 
         <div class="map-box">
-          <iframe 
+          <iframe title="M+大雅教會位置地圖" 
             src="https://maps.google.com/maps?q=%E5%8F%B0%E4%B8%AD%E5%B8%82%E5%A4%A7%E9%9B%85%E5%8D%80%E7%A5%9E%E6%9E%97%E5%8D%97%E8%B7%AF513%E5%B7%B713%E8%99%9F&output=embed" 
-            allowfullscreen="" 
+            allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" 
             loading="lazy">
           </iframe>
         </div>
@@ -1352,7 +1365,7 @@
 
   <!-- ==================== MOBILE BOTTOM STICKY BAR ==================== -->
   <div class="mobile-bar">
-    <a href="https://www.google.com/maps/search/?api=1&query=台中市大雅區神林南路513巷13號" target="_blank" class="mobile-bar-btn">
+    <a href="https://www.google.com/maps/search/?api=1&query=台中市大雅區神林南路513巷13號" target="_blank" rel="noopener noreferrer" class="mobile-bar-btn">
       <i data-lucide="navigation" size="20"></i>
       <span>地圖導航</span>
     </a>
@@ -1368,26 +1381,26 @@
 
   <!-- ==================== POPUP MODAL ==================== -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModalForce()"><i data-lucide="x" size="24"></i></button>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription" tabindex="-1">
+      <button class="modal-close" type="button" aria-label="關閉視窗" onclick="closeModalForce()"><i data-lucide="x" size="24" aria-hidden="true"></i></button>
       <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px;" id="modalTitle">預約本週主日</h3>
-      <p style="color: var(--gray-text); font-size: 0.95rem; margin-bottom: 24px;">留下你的聯絡方式，我們會為你預備專屬座位與溫暖咖啡！</p>
+      <p id="modalDescription" style="color: var(--gray-text); font-size: 0.95rem; margin-bottom: 24px;">填寫後會開啟你的郵件程式，確認寄出後我們就能為你預備接待。資料不會儲存在這個網站。</p>
       
       <form onsubmit="handleFormSubmit(event)">
         <div class="form-group">
-          <label>怎麼稱呼你？</label>
-          <input type="text" class="form-control" placeholder="例如：林先生 / 小陳" required>
+          <label for="visitorName">怎麼稱呼你？</label>
+          <input id="visitorName" name="name" type="text" autocomplete="name" class="form-control" placeholder="例如：林先生 / 小陳" required>
         </div>
         <div class="form-group">
-          <label>LINE ID 或 手機號碼</label>
-          <input type="text" class="form-control" placeholder="讓我們能聯繫到你" required>
+          <label for="visitorContact">LINE ID 或手機號碼</label>
+          <input id="visitorContact" name="contact" type="text" class="form-control" placeholder="讓我們能聯繫到你" required>
         </div>
         <div class="form-group">
-          <label>有什麼想讓我們先知道的嗎？（選填）</label>
-          <textarea class="form-control" rows="3" placeholder="例如：帶兩個小朋友同行、需要代禱事項..."></textarea>
+          <label for="visitorNote">有什麼想讓我們先知道的嗎？（選填）</label>
+          <textarea id="visitorNote" name="note" class="form-control" rows="3" placeholder="例如：帶兩個小朋友同行、需要代禱事項..."></textarea>
         </div>
         <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">
-          送出・期待與你見面
+          開啟郵件・期待與你見面
         </button>
       </form>
     </div>
@@ -1467,27 +1480,60 @@
     window.setInterval(updateLifeTreeCountdown, 1000);
 
     // Modal 控制
+    let modalReturnFocus = null;
+
     function openModal(title) {
+      modalReturnFocus = document.activeElement;
       if (title) {
         document.getElementById('modalTitle').innerText = title;
       }
       document.getElementById('modalOverlay').classList.add('active');
+      document.querySelector('.modal-close').focus();
     }
 
     function closeModal(e) {
       if (e.target.id === 'modalOverlay') {
-        document.getElementById('modalOverlay').classList.remove('active');
+        closeModalForce();
       }
     }
 
     function closeModalForce() {
       document.getElementById('modalOverlay').classList.remove('active');
+      if (modalReturnFocus && typeof modalReturnFocus.focus === 'function') modalReturnFocus.focus();
     }
+
+    document.addEventListener('keydown', (event) => {
+      const overlay = document.getElementById('modalOverlay');
+      if (!overlay.classList.contains('active')) return;
+      if (event.key === 'Escape') {
+        closeModalForce();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const controls = [...overlay.querySelectorAll('button, input, textarea, a[href], [tabindex]:not([tabindex="-1"])')]
+        .filter((element) => !element.disabled && element.getClientRects().length);
+      if (!controls.length) return;
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
 
     function handleFormSubmit(e) {
       e.preventDefault();
-      alert('這是網站預覽，表單尚未連接實際收件系統；目前不會傳送或保存資料。');
-      closeModalForce();
+      const data = new FormData(e.currentTarget);
+      const subject = `M+大雅教會｜${document.getElementById('modalTitle').textContent}`;
+      const body = [
+        `稱呼：${data.get('name')}`,
+        `聯絡方式：${data.get('contact')}`,
+        `補充：${data.get('note') || '無'}`
+      ].join('\n');
+      window.location.href = `mailto:church@tcsc.org.tw?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
   </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script><script type="module" src="website-home.mjs"></script></body>
