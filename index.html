@@ -1036,6 +1036,18 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
+    /* Mobile typography: keep Chinese headings balanced and controls readable. */
+    @media(max-width:540px){
+      html{line-break:strict}
+      .hero-h1{font-size:clamp(2.3rem,11.2vw,2.8rem);line-height:1.16;text-wrap:balance}
+      .weekly-sunday-copy h2,.quick-resources-head h2,.section-title,.qa-card h3,.resource-card h3{ text-wrap:balance }
+      .hero-p,.section-desc,.qa-card p,.resource-card p{ text-wrap:pretty }
+      .weekly-sunday-actions a{white-space:normal;line-height:1.4;text-align:center;font-size:.88rem;padding-inline:6px}
+      .resource-card{padding:17px 13px;min-width:0}
+      .resource-card h3,.resource-card.primary h3{font-size:1.02rem;line-height:1.4}
+      .resource-card p{font-size:.86rem;line-height:1.65}
+      .section-title{font-size:1.72rem;line-height:1.35}
+    }
   </style>
 </head>
 <body>

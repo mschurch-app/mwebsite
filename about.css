@@ -7,5 +7,6 @@
 
 .portrait>img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center 32%}.portrait-2>img{object-position:center 30%}.portrait-3>img{object-position:center 31%}
 @media(max-width:760px){.portrait-2>img{object-position:center 28%}.portrait-3>img{object-position:center 29%}}
+@media(max-width:760px){html{line-break:strict}.hero h1,.intro-feature h2,.section-heading h2,.callout h2,.myc-hero h2,.contact-card h2{ text-wrap:balance }.hero-copy,.intro-feature>p,.timeline p,.callout p,.belief-card p,.myc-hero p{ text-wrap:pretty }}
 
 .portrait:before,.portrait:after{z-index:0}

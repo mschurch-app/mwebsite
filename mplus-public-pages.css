@@ -16,3 +16,10 @@
   .amount-list>div{align-items:flex-start}.amount-list b{text-align:right}.credit-list>div{grid-template-columns:58px minmax(0,1fr);gap:9px}.credit-list p{overflow-wrap:anywhere}
   .footer{padding:28px 0 calc(32px + env(safe-area-inset-bottom))}.footer-inner{font-size:.92rem}
 }
+@media(max-width:720px){
+  html{line-break:strict}
+  .hero h1,.section h2,.week-card h2,.notice h3{ text-wrap:balance }
+  .hero p,.section-sub,.notice p,.prayer,.week-meta,.verse,.duty dd,.offering-note p{ text-wrap:pretty }
+  .hero h1{font-size:clamp(2.25rem,9.5vw,3.2rem);line-height:1.15}
+  .section h2{line-height:1.35}
+}

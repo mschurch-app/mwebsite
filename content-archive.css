@@ -5,6 +5,7 @@
 body[data-type="weekly_archive"] .archive-cover{width:min(100%,320px)}
 body[data-type="weekly_archive"] .content-image{width:min(100%,320px);max-width:100%;padding:6px}
 body[data-type="weekly_archive"] .content-image img{max-height:220px}
+@media(max-width:640px){html{line-break:strict}.hero h1,.archive-head h2,.content-heading,.group-main-title,.group-subheading{ text-wrap:balance }.hero p,.archive-excerpt,.content-card,.group-overview,.group-main-body,.quote-card blockquote{ text-wrap:pretty }}
 @media(max-width:640px){
   body[data-type="weekly_archive"] .archive-cover{width:min(100%,250px)}
   body[data-type="weekly_archive"] .content-image{width:min(100%,260px)}
