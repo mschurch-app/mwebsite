@@ -1014,6 +1014,9 @@
     .footer { background: #173F38; }
     a:focus-visible, button:focus-visible { outline: 3px solid #F1A46C; outline-offset: 4px; }
     .loc-info .info-item a { color: var(--forest); text-decoration: underline; text-decoration-color: rgba(40,95,84,.35); text-underline-offset: 3px; }
+    .consent-group label { display:flex; align-items:flex-start; gap:10px; font-size:.82rem; line-height:1.55; font-weight:550; }
+    .consent-group input { flex:0 0 auto; width:18px; height:18px; margin:2px 0 0; accent-color:var(--forest); }
+    #reservationFormStatus { margin:0 0 14px; color:#a53b36; font-size:.88rem; line-height:1.5; }
     .modal-card { max-height: min(90vh, 760px); overflow-y: auto; overscroll-behavior: contain; }
     @media (max-width: 767px) {
       body { padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
@@ -1384,7 +1387,7 @@
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription" tabindex="-1">
       <button class="modal-close" type="button" aria-label="關閉視窗" onclick="closeModalForce()"><i data-lucide="x" size="24" aria-hidden="true"></i></button>
       <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px;" id="modalTitle">預約本週主日</h3>
-      <p id="modalDescription" style="color: var(--gray-text); font-size: 0.95rem; margin-bottom: 24px;">填寫後會開啟你的郵件程式，確認寄出後我們就能為你預備接待。資料不會儲存在這個網站。</p>
+      <p id="modalDescription" style="color: var(--gray-text); font-size: 0.95rem; margin-bottom: 24px;">你提交的姓名、電話與備註會存入教會新朋友關懷系統，並通知青年教會 LINE 接待群組；請勿填寫身分證或病歷等敏感資料。</p>
       
       <form onsubmit="handleFormSubmit(event)">
         <div class="form-group">
@@ -1392,15 +1395,19 @@
           <input id="visitorName" name="name" type="text" autocomplete="name" class="form-control" placeholder="例如：林先生 / 小陳" required>
         </div>
         <div class="form-group">
-          <label for="visitorContact">LINE ID 或手機號碼</label>
-          <input id="visitorContact" name="contact" type="text" class="form-control" placeholder="讓我們能聯繫到你" required>
+          <label for="visitorContact">聯絡電話</label>
+          <input id="visitorContact" name="contact" type="tel" autocomplete="tel" class="form-control" placeholder="讓我們能聯繫到你" required>
         </div>
         <div class="form-group">
-          <label for="visitorNote">有什麼想讓我們先知道的嗎？（選填）</label>
-          <textarea id="visitorNote" name="note" class="form-control" rows="3" placeholder="例如：帶兩個小朋友同行、需要代禱事項..."></textarea>
+          <label for="visitorNote">接待需求或同行人數（選填）</label>
+          <textarea id="visitorNote" name="note" class="form-control" rows="3" placeholder="例如：有孩子同行、需要無障礙座位..."></textarea>
         </div>
+        <div class="form-group consent-group">
+          <label><input name="consent" type="checkbox" required> 我同意將以上資料提供給 M+ 教會，並通知青年教會接待同工聯絡我。</label>
+        </div>
+        <p id="reservationFormStatus" role="status" aria-live="polite" hidden></p>
         <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">
-          開啟郵件・期待與你見面
+          送出預約・期待與你見面
         </button>
       </form>
     </div>
@@ -1524,16 +1531,40 @@
       }
     });
 
-    function handleFormSubmit(e) {
+    async function handleFormSubmit(e) {
       e.preventDefault();
       const data = new FormData(e.currentTarget);
-      const subject = `M+大雅教會｜${document.getElementById('modalTitle').textContent}`;
-      const body = [
-        `稱呼：${data.get('name')}`,
-        `聯絡方式：${data.get('contact')}`,
-        `補充：${data.get('note') || '無'}`
-      ].join('\n');
-      window.location.href = `mailto:church@tcsc.org.tw?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const form = e.currentTarget;
+      const button = form.querySelector('[type="submit"]');
+      const status = document.getElementById('reservationFormStatus');
+      button.disabled = true;
+      button.textContent = '正在送出…';
+      status.hidden = true;
+      try {
+        const response = await fetch('https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/newcomer-register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            kind: 'newcomer',
+            church: 'M+',
+            request_id: form.dataset.requestId || (form.dataset.requestId = crypto.randomUUID()),
+            name: String(data.get('name') || '').trim(),
+            phone: String(data.get('contact') || '').trim(),
+            note: String(data.get('note') || '').trim()
+          })
+        });
+        if (!response.ok) throw new Error('reservation_unavailable');
+        form.reset();
+        delete form.dataset.requestId;
+        closeModalForce();
+        window.alert('預約資料已送達青年教會接待群組，期待與你見面！');
+      } catch {
+        status.textContent = '目前無法送出，請稍後重試；也可以直接撥打 04 2565 8977 聯絡教會。';
+        status.hidden = false;
+      } finally {
+        button.disabled = false;
+        button.textContent = '送出預約・期待與你見面';
+      }
     }
   </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script><script type="module" src="website-home.mjs"></script></body>
