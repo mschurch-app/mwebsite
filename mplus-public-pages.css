@@ -23,3 +23,14 @@
   .hero h1{font-size:clamp(2.25rem,9.5vw,3.2rem);line-height:1.15}
   .section h2{line-height:1.35}
 }
+
+/* Weekly service roster: keep each role label intact and align names consistently. */
+.duty dl{grid-template-columns:minmax(118px,max-content) minmax(0,1fr);column-gap:18px;row-gap:10px;align-items:start}
+.duty dt{white-space:nowrap;word-break:keep-all;line-height:1.55}
+.duty dd{min-width:0;line-height:1.55;overflow-wrap:anywhere}
+@media(max-width:720px){
+  .duty dl{grid-template-columns:minmax(108px,max-content) minmax(0,1fr);column-gap:12px;row-gap:9px}
+}
+@media(max-width:390px){
+  .duty dl{grid-template-columns:minmax(100px,max-content) minmax(0,1fr);font-size:.86rem}
+}
