@@ -5,6 +5,13 @@ const pages={
  myc:{title:'青年教會 MYC',intro:'在信仰、友情與生活中一起成長，讓年輕世代活出有盼望的生命。'},
  contact:{title:'歡迎來到 M+',intro:'每個主日都為你留了一個位置。期待有機會認識你，陪你一起走一段。'}
 };
+const pageDescriptions={
+ about:'認識 M+大雅教會的異象、故事與服事方向，一起在台中大雅建立彼此陪伴的屬靈家庭。',
+ faith:'了解 M+大雅教會以聖經為根基的信仰宣告，以及我們對上帝、耶穌、教會與永恆盼望的相信。',
+ team:'認識 M+大雅教會的牧者與同工團隊，一起陪伴教會、家庭、青年與下一代成長。',
+ myc:'MYC M+青年教會陪伴年輕人在敬拜、友情與生活中成長，探索信仰、生命方向與呼召。',
+ contact:'M+大雅教會主日聚會與聯絡資訊：每週日上午10:00至11:30，台中市大雅區神林南路513巷13號。'
+};
 const faith=[
  ['聖經','我們相信新舊約聖經都是神所默示的，是基督徒信仰與生活的最高權威。'],
  ['上帝','我們相信聖父、聖子、聖靈，三位一體的獨一真神；祂創造、護理並掌管天地萬有。'],
@@ -31,6 +38,12 @@ const content=document.querySelector('#page-content');
 const params=new URLSearchParams(location.search);
 const page=pages[params.get('page')]?params.get('page'):'about';
 document.title=`${pages[page].title}｜M+大雅教會`;
+document.querySelector('meta[name="description"]').content=pageDescriptions[page];
+const canonical=`https://mchurch.online/about.html?page=${page}`;
+document.querySelector('#canonical-url').href=canonical;
+document.querySelector('#og-title').content=document.title;
+document.querySelector('#og-description').content=pageDescriptions[page];
+document.querySelector('#og-url').content=canonical;
 document.querySelector('#page-title').textContent=pages[page].title;
 document.querySelector('#page-intro').textContent=pages[page].intro;
 document.querySelectorAll('.section-nav a').forEach(link=>{if(link.dataset.page===page){link.classList.add('active');link.setAttribute('aria-current','page');}});
