@@ -1014,6 +1014,8 @@
     .footer { background: #173F38; }
     a:focus-visible, button:focus-visible { outline: 3px solid #F1A46C; outline-offset: 4px; }
     .loc-info .info-item a { color: var(--forest); text-decoration: underline; text-decoration-color: rgba(40,95,84,.35); text-underline-offset: 3px; }
+    .welcome-gift { display:flex; align-items:center; gap:9px; margin:-20px 0 28px; color:#77543d; font-size:.9rem; font-weight:750; }
+    .welcome-gift span { display:grid; place-items:center; width:25px; height:25px; flex:0 0 25px; border-radius:50%; background:#fff0df; color:#d9672d; }
     .consent-group label { display:flex; align-items:flex-start; gap:10px; font-size:.82rem; line-height:1.55; font-weight:550; }
     .consent-group input { flex:0 0 auto; width:18px; height:18px; margin:2px 0 0; accent-color:var(--forest); }
     #reservationFormStatus { margin:0 0 14px; color:#a53b36; font-size:.88rem; line-height:1.5; }
@@ -1024,6 +1026,7 @@
       .hero-grid { gap: 30px; }
       .hero-h1 { font-size: clamp(2.6rem, 11vw, 3.45rem); }
       .hero-p { font-size: 1rem; }
+      .welcome-gift { margin:-10px 0 22px; align-items:flex-start; font-size:.82rem; line-height:1.6; }
       .hero-img-box { height: 320px; border-width: 5px; border-radius: 25px; }
       .hero-floating-card { left: 8px; bottom: -22px; padding: 14px 18px; }
       .onboarding, .life-nav { padding: 66px 0; }
@@ -1046,6 +1049,7 @@
       </a>
       <ul class="nav-links" aria-label="主要導覽">
         <li><a href="#welcome">我是新朋友</a></li>
+        <li><a href="gospel.html">認識信仰</a></li>
         <li><a href="about.html?page=about" target="_top">關於我們</a></li>
         <li><a href="#resources">本週週報</a></li>
         <li><a href="#life-navigation">心靈充電站</a></li>
@@ -1053,7 +1057,7 @@
       <button class="nav-btn" onclick="openModal('預約本週主日')">預約本週主日</button>
       <button class="menu-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="mobileNav" onclick="toggleMenu()">☰</button>
     </div>
-    <div class="mobile-nav" id="mobileNav"><a href="#welcome" onclick="toggleMenu(true)">我是新朋友</a><a href="about.html?page=about" target="_top">關於我們</a><a href="#resources" onclick="toggleMenu(true)">本週週報</a><a href="#life-navigation" onclick="toggleMenu(true)">心靈充電站</a><a href="#weekly-sunday" onclick="toggleMenu(true)">本週主日預告</a><a href="#gathering" onclick="toggleMenu(true)">聚會時間與交通</a></div>
+    <div class="mobile-nav" id="mobileNav"><a href="#welcome" onclick="toggleMenu(true)">我是新朋友</a><a href="gospel.html">認識信仰</a><a href="about.html?page=about" target="_top">關於我們</a><a href="#resources" onclick="toggleMenu(true)">本週週報</a><a href="#life-navigation" onclick="toggleMenu(true)">心靈充電站</a><a href="#weekly-sunday" onclick="toggleMenu(true)">本週主日預告</a><a href="#gathering" onclick="toggleMenu(true)">聚會時間與交通</a></div>
   </header>
 
   <!-- ==================== HERO SECTION ==================== -->
@@ -1064,20 +1068,21 @@
           <i data-lucide="sparkles" size="16"></i> 城市心靈驛站
         </div>
         <h1 class="hero-h1">
-          M+！就是你<br><mark>屬靈的家！</mark>
+          帶著你的問題，<br><mark>自在來看看。</mark>
         </h1>
         <p class="hero-p">
-          生活很累，但這裡隨時為你留了一盞燈。<br>
-          放下所有防備與疲憊，在這裡找到真實的接納、平安與力量。
+          生活很累，或心裡正有很多問題，都歡迎你停下來。<br>
+          無論你熟悉信仰，還是第一次認識基督信仰，都可以帶著真實的自己來。
         </p>
         <div class="hero-btns">
           <a href="#welcome" class="btn-main">
-            第一次回家？帶你逛逛 <i data-lucide="arrow-right" size="18"></i>
+            第一次來教會？看看會發生什麼 <i data-lucide="arrow-right" size="18"></i>
           </a>
-          <button class="btn-secondary" onclick="openModal('為我代禱')">
-            <i data-lucide="heart" size="18" style="color: var(--primary);"></i> 需要為你禱告嗎？
-          </button>
+          <a href="gospel.html" class="btn-secondary">
+            <i data-lucide="messages-square" size="18" style="color: var(--primary);"></i> 我想認識基督信仰
+          </a>
         </div>
+        <p class="welcome-gift"><span aria-hidden="true">✦</span> 第一次來訪的新朋友與福音朋友，都有一份精美小禮物。</p>
         <div class="hero-stats">
           <div class="stat-item">
             <h4>每週日 10:00</h4>
