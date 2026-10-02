@@ -295,7 +295,14 @@ body{background-color:#fffaf6}
 .hero :is(h1,h2,p,.eyebrow){color:#352823!important}
 .home-page .hero{background:radial-gradient(circle at 87% 12%,rgba(255,211,90,.15),transparent 26%),linear-gradient(145deg,#fff,#fffaf6)!important}
 .home-page .hero-h1 mark{color:#c94b35!important}
-.home-page .hero-img-box{background:linear-gradient(145deg,#fff0e6,#fff4cd)!important}
+.home-page .hero-img-box{
+  background:linear-gradient(145deg,#b8402d,#c94b35)!important;
+  box-shadow:0 20px 48px rgba(173,60,42,.18)!important;
+}
+.home-page .hero-img-box::before{box-shadow:none;background:none;border-color:rgba(255,255,255,.14)}
+.home-page .hero-img-box::after{display:none}
+.home-page .hero-mark{opacity:1;filter:none}
+.home-page .hero-brandline{color:#fff}
 .home-page .resource-card.primary{background:#fff!important;color:#352823!important;border:1px solid #efdfd3}
 .home-page .resource-card.primary :is(h3,p,.resource-arrow){color:#352823!important}
 .home-page .resource-card.primary .resource-icon{background:#fff0e6!important;color:#ad3c2a!important}
