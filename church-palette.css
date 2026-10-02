@@ -1,0 +1,65 @@
+:root{
+  --church-green-950:#123630;
+  --church-green-900:#173f39;
+  --church-green-800:#24554d;
+  --church-green-700:#286659;
+  --church-green-600:#2f7668;
+  --church-green-300:#9fc4ba;
+  --church-green-100:#e7f2ee;
+  --church-green-050:#f3f8f6;
+  --church-canvas:#eef3f1;
+  --church-ink:#203b39;
+  --church-muted:#6f817d;
+  --church-line:#d9e6e1;
+  --orange:var(--church-green-600)!important;
+  --orange-dark:var(--church-green-800)!important;
+  --orange-deep:var(--church-green-800)!important;
+  --green:var(--church-green-900)!important;
+  --green-2:var(--church-green-800)!important;
+  --forest:var(--church-green-800)!important;
+  --forest-deep:var(--church-green-950)!important;
+  --forest-soft:var(--church-green-100)!important;
+  --cream:#f7faf8!important;
+  --paper:#fff!important;
+  --soft:var(--church-green-050)!important;
+  --ink:var(--church-ink)!important;
+  --muted:var(--church-muted)!important;
+  --line:var(--church-line)!important;
+  --accent:var(--church-green-600)!important;
+  accent-color:var(--church-green-600);
+}
+
+body{
+  color:var(--church-ink);
+  background-color:var(--church-green-050);
+}
+.site-header,.topbar,.top{
+  border-bottom-color:var(--church-line)!important;
+  background:rgba(249,251,250,.94)!important;
+}
+.hero{
+  background:linear-gradient(125deg,var(--church-green-950),var(--church-green-800) 62%,var(--church-green-600))!important;
+}
+.home-btn,.header-cta,.back,.button.primary,.button:not(.secondary):not(.glass):not(.light){
+  color:#fff!important;
+  background:linear-gradient(135deg,var(--church-green-700),var(--church-green-600))!important;
+  box-shadow:0 9px 22px rgba(40,102,89,.20)!important;
+}
+.section-icon,.card-index,.notice-number,.gift-icon,.card-icon{
+  color:var(--church-green-700)!important;
+  background:var(--church-green-100)!important;
+  box-shadow:none!important;
+}
+.summary-card.warm,.duty,.week-card.featured,.visit-card,.contact-primary,.callout{
+  background:linear-gradient(135deg,var(--church-green-900),var(--church-green-600))!important;
+}
+.summary-card.pale,.gift-callout,.closing,.verse-card{
+  border-color:var(--church-line)!important;
+  background:linear-gradient(145deg,#fff,var(--church-green-100))!important;
+}
+.week-pill,.credit-type,.content-heading,.group-main-title{
+  color:var(--church-green-700)!important;
+  background:var(--church-green-100)!important;
+}
+.verse,.content-heading,.group-main-title{border-left-color:var(--church-green-600)!important}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:var(--church-green-300)!important}
