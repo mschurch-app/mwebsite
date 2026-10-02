@@ -309,3 +309,27 @@ body{background-color:#fffaf6}
 .home-page .weekly-sunday-actions .live-button{background:#fff!important;border-color:#c94b35;color:#ad3c2a;box-shadow:none}
 .home-page .weekly-sunday-actions .live-button:hover{background:#fff0e6;color:#ad3c2a}
 .home-page .resource-card:not(.primary):nth-child(even) .resource-icon{background:#fff4cd!important;color:#75520c!important}
+
+/* Public subpages: match the bright coral palette and preserve light-button text. */
+.site-footer,.footer{background:#352823!important;color:#fff0e6!important}
+.site-footer :is(.brand,.brand-name,.brand-mark,.footer-links a,p,p a),.footer :is(b,a){color:#fff0e6!important}
+.site-footer small,.footer small{color:#e2cfc3!important}
+.history-block,.intro-feature,.myc-hero,.gospel-section,.questions,.first-visit,.location{background:linear-gradient(135deg,#fff,#fff6ed)!important;border-color:#efdfd3!important}
+.timeline p,.belief-card p,.team-role,.note,.contact-method span{color:#6b5850!important}
+.timeline:before,.question-list,.question-list details{border-color:#efdfd3!important}
+.timeline:before{background:#efdfd3!important}
+.callout{background:#fff0e6!important;color:#352823!important;border:1px solid #f1c9b8}
+.callout :is(h2,p,span){color:#352823!important}
+.callout .eyebrow{color:#ad3c2a!important}
+.callout .button.light,.callout .button.light span,
+.contact-primary .button.light,.contact-primary .button.light span,
+.visit-card .button.light,.visit-card .button.light span,
+.summary-card.warm .button.light,.summary-card.warm .button.light span,
+.week-card.featured .button.light,.week-card.featured .button.light span{
+  color:#ad3c2a!important;background:#fff!important;
+}
+.callout .button.light{border:1px solid #c94b35;box-shadow:none!important}
+.button.glass{color:#ad3c2a!important;background:#fff!important;border-color:#e8cdbd!important}
+.hero .breadcrumb,.hero .breadcrumb a,.hero .hero-note p,.hero .hero-note strong{color:#63382b!important}
+.hero .hero-note{background:#fff!important;border-color:#efdfd3!important}
+.myc-mark{background:#c94b35!important}
