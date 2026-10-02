@@ -8,7 +8,7 @@ const weeklyAnchor=location.pathname.split('/').pop()==='index.html'||location.p
 if(weeklyAnchor){
  const image=document.querySelector('.weekly-sunday-image img');
  const section=document.querySelector('#weekly-sunday');
- const cta=section?.querySelector('.weekly-sunday-actions a');
+ const cta=section?.querySelector('.weekly-sunday-actions .weekly-link');
  if(cta){cta.href=weeklyUrl;cta.textContent='閱讀本週週報';}
  document.querySelectorAll('.mobile-nav a[href="#resources"]').forEach(link=>link.href=weeklyUrl);
  document.querySelectorAll('.nav-links a[href="#resources"]').forEach(link=>link.href=weeklyUrl);
