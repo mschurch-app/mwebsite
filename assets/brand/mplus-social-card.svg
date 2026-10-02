@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">M+大雅教會</title>
+  <desc id="desc">台中大雅的屬靈家庭，歡迎回家</desc>
+  <defs>
+    <linearGradient id="bg" x1="90" y1="40" x2="1110" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123630"/>
+      <stop offset=".64" stop-color="#24554d"/>
+      <stop offset="1" stop-color="#2f7668"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(985 105) rotate(130) scale(470 430)">
+      <stop stop-color="#d8eee7" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#d8eee7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" rx="44" fill="url(#bg)"/>
+  <rect width="1200" height="630" rx="44" fill="url(#glow)"/>
+  <circle cx="1025" cy="500" r="230" fill="#fff" opacity=".035"/>
+  <circle cx="1025" cy="500" r="160" fill="#fff" opacity=".035"/>
+  <text x="92" y="118" fill="#b8d9cf" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="7">M+ DA-YA CHURCH</text>
+  <text x="86" y="348" fill="#ffffff" font-family="Arial, 'PingFang TC', sans-serif" font-size="150" font-weight="800" letter-spacing="-6">M+ 大雅教會</text>
+  <text x="94" y="450" fill="#edf7f3" font-family="Arial, 'PingFang TC', sans-serif" font-size="48" font-weight="600">台中大雅的屬靈家庭</text>
+  <rect x="94" y="506" width="178" height="8" rx="4" fill="#8fc7b8"/>
+  <text x="94" y="565" fill="#cfe5de" font-family="Arial, 'PingFang TC', sans-serif" font-size="28">歡迎帶著真實的自己回家</text>
+</svg>

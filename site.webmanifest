@@ -1,0 +1,22 @@
+{
+  "name": "M+大雅教會",
+  "short_name": "M+教會",
+  "description": "台中大雅的屬靈家庭",
+  "lang": "zh-TW",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f8f6",
+  "theme_color": "#173f39",
+  "icons": [
+    {
+      "src": "/assets/brand/mplus-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/brand/mplus-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

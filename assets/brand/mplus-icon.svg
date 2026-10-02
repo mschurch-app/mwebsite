@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">M+大雅教會</title>
+  <desc id="desc">深綠色圓角底上的白色 M+ 標誌</desc>
+  <defs>
+    <linearGradient id="bg" x1="56" y1="42" x2="456" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2f7668"/>
+      <stop offset="1" stop-color="#123630"/>
+    </linearGradient>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientTransform="translate(145 110) rotate(52) scale(365)">
+      <stop stop-color="#ffffff" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="20" y="20" width="472" height="472" rx="122" fill="url(#bg)"/>
+  <rect x="20" y="20" width="472" height="472" rx="122" fill="url(#light)"/>
+  <path d="M111 346V164h45l69 101 69-101h45v182h-48V239l-66 94-66-94v107h-48Z" fill="#fff"/>
+  <path d="M380 184v52h52v38h-52v52h-38v-52h-52v-38h52v-52h38Z" fill="#d8eee7"/>
+</svg>
