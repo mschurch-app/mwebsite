@@ -232,3 +232,55 @@ label,fieldset,.grid>*,.program>*,.cards>*,.duty-grid>*,.offering-layout>*,.offe
   .home-page .weekly-sunday-actions .live-button{grid-column:1/-1}
   .home-page .footer-links{gap:10px 16px}
 }
+
+/* Mist blue + butter theme — selected 2026-10-03 */
+:root{
+  --church-green-950:#25324a;--church-green-900:#2e3f5f;--church-green-800:#3a5483;
+  --church-green-700:#4667a8;--church-green-600:#5d7dbc;--church-green-300:#b7c9e7;
+  --church-green-100:#e9f1fb;--church-green-050:#f7f8fc;--church-coral:#4667a8;
+  --church-coral-deep:#38578f;--church-apricot:#fff7d6;--church-cream:#f7f8fc;
+  --church-canvas:#f1f4fa;--church-ink:#25324a;--church-muted:#68748a;--church-line:#dce4f1;
+  --church-yellow:#f5d785;--church-yellow-deep:#805a14;
+  --orange:var(--church-green-700)!important;--orange-dark:var(--church-green-800)!important;
+  --orange-deep:var(--church-green-800)!important;--accent:var(--church-green-700)!important;
+  accent-color:var(--church-green-700);
+}
+body{background:#f7f8fc;color:#25324a}
+.site-header,.topbar,.top{background:rgba(250,252,255,.95)!important;border-bottom-color:#dce4f1!important}
+.hero{background:linear-gradient(125deg,#25324a,#4667a8 72%,#6f82ae)!important}
+.home-btn,.header-cta,.back,.button.primary,.button:not(.secondary):not(.glass):not(.light),.home-page .btn-main,.home-page .nav-btn{
+  color:#fff!important;background:linear-gradient(135deg,#5577b9,#3f609f)!important;box-shadow:0 10px 24px rgba(70,103,168,.22)!important;
+}
+.home-btn:hover,.header-cta:hover,.back:hover,.button.primary:hover,.home-page .btn-main:hover,.home-page .nav-btn:hover{background:linear-gradient(135deg,#4667a8,#304d83)!important}
+.section-icon,.card-index,.notice-number,.gift-icon,.card-icon{color:#38578f!important;background:#e9f1fb!important}
+.summary-card.warm,.week-card.featured,.visit-card,.contact-primary,.callout{color:#fff!important;background:linear-gradient(135deg,#2e3f5f,#4667a8)!important}
+.summary-card.warm :is(h1,h2,h3,h4,p,a,span),.week-card.featured :is(h1,h2,h3,h4,p,a,span),.visit-card :is(h1,h2,h3,h4,p,a,span),.contact-primary :is(h1,h2,h3,h4,p,a,span),.callout :is(h1,h2,h3,h4,p,a,span){color:#fff!important}
+.duty{color:#25324a!important;background:linear-gradient(145deg,#fff,#edf3fb)!important;box-shadow:0 10px 25px rgba(37,50,74,.07)}
+.duty.next{border-color:#ead58d!important;background:linear-gradient(145deg,#fff,#fff7d6)!important}
+.duty h3{color:#2e3f5f!important}.duty.next h3,.duty.next dt{color:#805a14!important}.duty dt{color:#4667a8!important}.duty dd{color:#25324a!important}
+.summary-card.pale,.gift-callout,.closing,.verse-card{color:#25324a!important;background:linear-gradient(145deg,#fff,#edf3fb)!important}
+.week-pill,.credit-type,.content-heading,.group-main-title{color:#38578f!important;background:#e9f1fb!important}
+.verse,.content-heading,.group-main-title{border-left-color:#4667a8!important}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:#7f9aca!important}
+::selection{background:#f5d785;color:#25324a}
+.home-page{background:#f7f8fc}
+.home-page .header{background:rgba(250,252,255,.9)!important;border-bottom-color:rgba(70,103,168,.12);box-shadow:0 8px 30px rgba(37,50,74,.06)!important}
+.home-page .hero{background:radial-gradient(circle at 84% 17%,rgba(245,215,133,.42),transparent 27%),radial-gradient(circle at 8% 92%,rgba(183,201,231,.55),transparent 28%),linear-gradient(145deg,#fff 0%,#f6f8fc 60%,#edf2fa 100%)!important}
+.home-page .hero::after{background:linear-gradient(90deg,transparent,rgba(70,103,168,.22),transparent)}
+.home-page .hero-h1{color:#25324a}.home-page .hero-h1 mark{color:#4667a8}.home-page .hero-p{color:#68748a}
+.home-page .badge{color:#735116;border-color:rgba(168,116,22,.22);background:rgba(255,247,214,.9);box-shadow:0 8px 24px rgba(168,116,22,.07)}
+.home-page .btn-secondary{border-color:rgba(70,103,168,.18);background:rgba(255,255,255,.9);color:#2e3f5f}
+.home-page .hero-img-box{border-color:rgba(255,255,255,.9);background:radial-gradient(circle at 77% 26%,rgba(245,215,133,.5),transparent 30%),linear-gradient(145deg,#25324a,#4667a8 68%,#7388b6)}
+.home-page .stat-item{border-color:rgba(70,103,168,.11);background:rgba(255,255,255,.78)}
+.home-page .stat-item h4{color:#2e3f5f}.home-page .stat-item p{color:#68748a}
+.home-page .weekly-sunday-actions .live-button{border-color:#4667a8;background:#4667a8;color:#fff;box-shadow:0 10px 24px rgba(70,103,168,.2)}
+.home-page .weekly-sunday-actions .live-button:hover{background:#38578f}
+.home-page .resource-card,.home-page .qa-card,.home-page .info-item{color:#25324a;border-color:rgba(70,103,168,.11);box-shadow:0 12px 34px rgba(37,50,74,.055)}
+.home-page .resource-card:hover,.home-page .qa-card:hover{border-color:rgba(70,103,168,.32);box-shadow:0 18px 42px rgba(37,50,74,.1)}
+.home-page .resource-card:not(.primary):nth-child(even) .resource-icon{color:#805a14!important;background:#fff7d6!important}
+.home-page .footer{background:#25324a!important}.home-page .footer-links a,.home-page .footer-contact a{color:#e9f1fb}.home-page .footer-contact{color:#b7c9e7}
+@media(max-width:720px){
+  .home-page .mobile-bar{border-color:rgba(70,103,168,.15);box-shadow:0 12px 36px rgba(37,50,74,.18)}
+  .home-page .mobile-bar-btn{color:#25324a}
+  .home-page .mobile-bar-btn.primary-action{background:linear-gradient(135deg,#5577b9,#3f609f);color:#fff}
+}
