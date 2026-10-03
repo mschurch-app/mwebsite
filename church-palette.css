@@ -333,7 +333,7 @@ body{background-color:#fffaf6}
 .hero .breadcrumb,.hero .breadcrumb a,.hero .hero-note p,.hero .hero-note strong{color:#63382b!important}
 .hero .hero-note{background:#fff!important;border-color:#efdfd3!important}
 .hero .bulletin-meta,.hero .hero-note span{color:#63382b!important}
-.archive-link-button{color:#63382b!important;background:#fff!important;border-color:#e8cdbd!important}
+.footer .archive-link-button{color:#63382b!important;background:#fff!important;border-color:#d7aa94!important;box-shadow:0 8px 20px rgba(0,0,0,.16)!important}
 .archive-link-button span{color:#ad3c2a!important}
 .myc-mark{background:#c94b35!important}
 
