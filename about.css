@@ -10,3 +10,16 @@
 @media(max-width:760px){html{line-break:strict}.hero h1,.intro-feature h2,.section-heading h2,.callout h2,.myc-hero h2,.contact-card h2{ text-wrap:balance }.hero-copy,.intro-feature>p,.timeline p,.callout p,.belief-card p,.myc-hero p{ text-wrap:pretty }}
 
 .portrait:before,.portrait:after{z-index:0}
+
+/* Keep year labels clear of the timeline rail and marker. */
+.timeline{padding-left:0}
+.timeline:before{left:92px}
+.timeline li{grid-template-columns:112px minmax(0,1fr);gap:20px}
+.timeline li:before{left:84px}
+.timeline li>span{padding-right:32px;text-align:right;line-height:1.35;overflow-wrap:normal}
+@media(max-width:760px){
+  .timeline:before{left:72px}
+  .timeline li{grid-template-columns:90px minmax(0,1fr);gap:12px}
+  .timeline li:before{left:65px}
+  .timeline li>span{padding-right:26px;font-size:13px}
+}
