@@ -144,7 +144,6 @@ function render(){
   const details=document.createElement('details');details.className='archive-details';const summaryLine=document.createElement('summary');summaryLine.innerHTML='<span>閱讀完整內容</span><span aria-hidden="true">＋</span>';details.append(summaryLine);
   const body=document.createElement('div');body.className='archive-content';details.append(body);
   details.addEventListener('toggle',()=>{if(details.open){if(!body.dataset.loaded){if(type==='group_resource')addGroupResourceContent(body,post.content_html);else addStructuredContent(body,post.content_html);body.dataset.loaded='true';}summaryLine.lastElementChild.textContent='−';document.querySelectorAll('.archive-details[open]').forEach(other=>{if(other!==details){other.open=false;const sign=other.querySelector('summary span:last-child');if(sign)sign.textContent='＋';}})}else summaryLine.lastElementChild.textContent='＋';});
-  if(post.source_url){const link=document.createElement('a');link.className='source-link';link.href=post.source_url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='查看舊站原始資料 ↗';card.append(link);}
   card.append(details);list.append(card);
  }
  const count=document.querySelector('#result-count');if(count)count.textContent=`共 ${visible.length} 筆`;
