@@ -286,3 +286,11 @@ h1,h2,h3{overflow-wrap:break-word}
   .home-page .tree-svg{width:110px;height:142px}
   .home-page .tree-teaser-copy h2{max-width:calc(100% - 86px);font-size:1.7rem!important}
 }
+/* Rounded, leafy reading tree with an open Bible at its roots. */
+.cute-life-tree{overflow:visible!important}
+.home-page .cute-life-tree .leaf,.home-page .cute-life-tree .fruit{animation:none!important}
+@media(max-width:720px){
+  .home-page .tree-art{top:-2px;width:136px;height:188px}
+  .home-page .cute-life-tree{width:136px;height:168px;opacity:1;filter:none}
+}
+@media(max-width:380px){.home-page .cute-life-tree{width:118px;height:154px}}
