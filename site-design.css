@@ -266,3 +266,23 @@ h1,h2,h3{overflow-wrap:break-word}
 .home-page .life-tree-teaser{background:#faf8f5!important;border-top:1px solid var(--editorial-rule);border-bottom:1px solid var(--editorial-rule)}
 .home-page .location{background:#fff!important}
 @media(max-width:720px){.home-page .hero{background:linear-gradient(180deg,#fff 0%,#fff7f1 100%)!important}.home-page .hero:after{display:none!important}.home-page .weekly-sunday-copy{padding-left:16px}.home-page .newcomer-preview .qa-card{min-height:0}}
+/* Mobile life tree: keep a small living symbol in the open space beside the invitation. */
+@media(max-width:720px){
+  .home-page .life-tree-teaser{position:relative;overflow:hidden}
+  .home-page .tree-teaser-grid{position:relative;display:block}
+  .home-page .tree-art{display:grid!important;position:absolute;z-index:0;right:4px;top:8px;width:126px;height:176px;min-height:0;margin:0;place-items:center;pointer-events:none}
+  .home-page .tree-svg{display:block;width:126px;height:154px;max-height:none;opacity:.92}
+  .home-page .tree-teaser-copy{position:relative;z-index:1;text-align:left}
+  .home-page .tree-kicker{justify-content:flex-start;margin-bottom:14px}
+  .home-page .tree-teaser-copy h2{max-width:calc(100% - 102px);font-size:clamp(1.78rem,8.2vw,2.15rem)!important;line-height:1.48!important}
+  .home-page .tree-name,.home-page .tree-date{max-width:calc(100% - 92px)}
+  .home-page .tree-countdown-label{margin-top:28px}
+  .home-page .tree-countdown{margin-left:0;max-width:100%}
+  .home-page .tree-svg .leaf{fill:#84916c}
+  .home-page .tree-svg .fruit{fill:#c94b35}
+}
+@media(max-width:380px){
+  .home-page .tree-art{right:-10px;width:110px}
+  .home-page .tree-svg{width:110px;height:142px}
+  .home-page .tree-teaser-copy h2{max-width:calc(100% - 86px);font-size:1.7rem!important}
+}
