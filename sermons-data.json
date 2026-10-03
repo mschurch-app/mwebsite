@@ -2,10 +2,59 @@
   "updated_at": "2026-10-03T08:00:00+08:00",
   "channel_url": "https://www.youtube.com/@m-church",
   "items": [
-    {"id":"6awK0TaZEDo","title":"耶穌教你降維打擊：原來這才是偉大","speaker":"吳俊璋牧師","scripture":"約翰福音 13:1–15","published":"2026-09-27","url":"https://www.youtube.com/watch?v=6awK0TaZEDo","thumbnail":"https://i.ytimg.com/vi/6awK0TaZEDo/hqdefault.jpg"},
-    {"id":"LTpmo8PDeSo","title":"治標還是治本","speaker":"江建平長老","scripture":"希伯來書 4:14–5:10","published":"2026-09-13","url":"https://www.youtube.com/watch?v=LTpmo8PDeSo","thumbnail":"https://i.ytimg.com/vi/LTpmo8PDeSo/hqdefault.jpg"},
-    {"id":"GNh4bxcsirA","title":"當耶穌走進你的狂風巨浪","speaker":"吳俊璋牧師","scripture":"馬太福音 14:22–33","published":"2026-09-06","url":"https://www.youtube.com/watch?v=GNh4bxcsirA","thumbnail":"https://i.ytimg.com/vi/GNh4bxcsirA/hqdefault.jpg"},
-    {"id":"qxwKFzL3BIw","title":"把我所有的給你","speaker":"王乃純院長","scripture":"使徒行傳 3:1–10","published":"2026-08-30","url":"https://www.youtube.com/watch?v=qxwKFzL3BIw","thumbnail":"https://i.ytimg.com/vi/qxwKFzL3BIw/hqdefault.jpg"},
-    {"id":"Pga5MXMX5hM","title":"離上帝最近的兩個人","speaker":"吳俊璋牧師","scripture":"使徒行傳 3:1–8","published":"2026-08-23","url":"https://www.youtube.com/watch?v=Pga5MXMX5hM","thumbnail":"https://i.ytimg.com/vi/Pga5MXMX5hM/hqdefault.jpg"}
+    {
+      "id": "6awK0TaZEDo",
+      "title": "耶穌教你降維打擊：原來這才是偉大",
+      "speaker": "吳俊璋牧師",
+      "scripture": "約翰福音 13:1–15",
+      "published": "2026-09-27",
+      "url": "https://www.youtube.com/watch?v=6awK0TaZEDo",
+      "thumbnail": "https://i.ytimg.com/vi/6awK0TaZEDo/hqdefault.jpg"
+    },
+    {
+      "id": "LTpmo8PDeSo",
+      "title": "治標還是治本",
+      "speaker": "江建平長老",
+      "scripture": "希伯來書 4:14–5:10",
+      "published": "2026-09-13",
+      "url": "https://www.youtube.com/watch?v=LTpmo8PDeSo",
+      "thumbnail": "https://i.ytimg.com/vi/LTpmo8PDeSo/hqdefault.jpg"
+    },
+    {
+      "id": "GNh4bxcsirA",
+      "title": "當耶穌走進你的狂風巨浪",
+      "speaker": "吳俊璋牧師",
+      "scripture": "馬太福音 14:22–33",
+      "published": "2026-09-06",
+      "url": "https://www.youtube.com/watch?v=GNh4bxcsirA",
+      "thumbnail": "https://i.ytimg.com/vi/GNh4bxcsirA/hqdefault.jpg"
+    },
+    {
+      "id": "qxwKFzL3BIw",
+      "title": "把我所有的給你",
+      "speaker": "王乃純院長",
+      "scripture": "使徒行傳 3:1–10",
+      "published": "2026-08-30",
+      "url": "https://www.youtube.com/watch?v=qxwKFzL3BIw",
+      "thumbnail": "https://i.ytimg.com/vi/qxwKFzL3BIw/hqdefault.jpg"
+    },
+    {
+      "id": "Pga5MXMX5hM",
+      "title": "離上帝最近的兩個人",
+      "speaker": "吳俊璋牧師",
+      "scripture": "使徒行傳 3:1–8",
+      "published": "2026-08-23",
+      "url": "https://www.youtube.com/watch?v=Pga5MXMX5hM",
+      "thumbnail": "https://i.ytimg.com/vi/Pga5MXMX5hM/hqdefault.jpg"
+    },
+    {
+      "id": "O_HiTTjmrD4",
+      "title": "蒙福的內功心法：搞定你的心情與事情",
+      "speaker": "吳俊璋牧師",
+      "scripture": "詩歌智慧書",
+      "published": "2026-02-01",
+      "url": "https://www.youtube.com/watch?v=O_HiTTjmrD4",
+      "thumbnail": "https://i.ytimg.com/vi/O_HiTTjmrD4/hqdefault.jpg"
+    }
   ]
 }
