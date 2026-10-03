@@ -16,7 +16,7 @@
   <link rel="icon" href="/assets/brand/mplus-icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Church","@id":"https://mchurch.online/#church","name":"M+大雅教會","alternateName":"M+ Church","url":"https://mchurch.online/","description":"位於台中大雅、以耶穌為中心並彼此陪伴的屬靈家庭。","logo":{"@type":"ImageObject","url":"https://mchurch.online/assets/brand/mplus-icon-512.png","width":512,"height":512},"image":"https://mchurch.online/assets/brand/mplus-social-card.png","email":"church@tcsc.org.tw","telephone":"+886-4-2565-8977","address":{"@type":"PostalAddress","streetAddress":"神林南路513巷13號","addressLocality":"大雅區","addressRegion":"台中市","addressCountry":"TW"},"sameAs":["https://www.youtube.com/@m-church","https://www.instagram.com/m_plus_young_/","https://line.me/R/ti/p/@505reyot"]},{"@type":"WebSite","@id":"https://mchurch.online/#website","url":"https://mchurch.online/","name":"M+大雅教會","alternateName":"M+ Church","inLanguage":"zh-TW","publisher":{"@id":"https://mchurch.online/#church"}},{"@type":"WebPage","@id":"https://mchurch.online/#webpage","url":"https://mchurch.online/","name":"M+大雅教會｜台中大雅的屬靈家庭","isPartOf":{"@id":"https://mchurch.online/#website"},"about":{"@id":"https://mchurch.online/#church"},"inLanguage":"zh-TW"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Church","@id":"https://mchurch.online/#church","name":"M+大雅教會","alternateName":"M+ Church","url":"https://mchurch.online/","description":"位於台中大雅、以耶穌為中心並彼此陪伴的屬靈家庭。","logo":{"@type":"ImageObject","url":"https://mchurch.online/assets/brand/mplus-icon-512.png","width":512,"height":512},"image":"https://mchurch.online/assets/brand/mplus-social-card.png","email":"church@tcsc.org.tw","telephone":"+886-4-2565-8977","address":{"@type":"PostalAddress","streetAddress":"神林南路513巷13號","addressLocality":"大雅區","addressRegion":"台中市","addressCountry":"TW"},"sameAs":["https://www.youtube.com/@m-church","https://www.instagram.com/m_plus.church/","https://www.facebook.com/shangfengchurch/","https://line.me/R/ti/p/@505reyot"]},{"@type":"WebSite","@id":"https://mchurch.online/#website","url":"https://mchurch.online/","name":"M+大雅教會","alternateName":"M+ Church","inLanguage":"zh-TW","publisher":{"@id":"https://mchurch.online/#church"}},{"@type":"WebPage","@id":"https://mchurch.online/#webpage","url":"https://mchurch.online/","name":"M+大雅教會｜台中大雅的屬靈家庭","isPartOf":{"@id":"https://mchurch.online/#website"},"about":{"@id":"https://mchurch.online/#church"},"inLanguage":"zh-TW"}]}</script>
   
   <!-- Google Fonts: Noto Sans TC & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -672,6 +672,34 @@
     .footer p {
       color: #9CA3AF;
       font-size: 0.9rem;
+    }
+
+    .footer-social {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 42px;
+      padding: 9px 15px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,.08);
+      color: var(--white);
+      font-size: .86rem;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .footer-social a:hover {
+      border-color: rgba(255,255,255,.42);
+      background: rgba(255,255,255,.14);
+      transform: translateY(-2px);
     }
 
     /* ============================================================
@@ -1335,6 +1363,11 @@
         M+<span>大雅教會</span>
       </div>
       <p>生活很累，但這裡有光。M+ 就是你屬靈的家！</p>
+      <nav class="footer-social" aria-label="教會官方社群">
+        <a href="https://www.instagram.com/m_plus.church/" target="_blank" rel="noopener noreferrer" aria-label="前往 M+ 大雅教會 Instagram"><i data-lucide="instagram" size="17" aria-hidden="true"></i>Instagram</a>
+        <a href="https://www.facebook.com/shangfengchurch/" target="_blank" rel="noopener noreferrer" aria-label="前往 M+ 大雅教會 Facebook"><i data-lucide="facebook" size="17" aria-hidden="true"></i>Facebook</a>
+        <a href="https://line.me/R/ti/p/@505reyot" target="_blank" rel="noopener noreferrer" aria-label="加入 M+ 大雅教會 LINE 官方帳號"><i data-lucide="message-circle" size="17" aria-hidden="true"></i>LINE 官方帳號</a>
+      </nav>
       <nav class="footer-links" aria-label="頁尾導覽"><a href="about.html?page=about">認識教會</a><a href="newcomers.html">第一次來</a><a href="weekly.html?church=M%2B">本週週報</a><a href="sermons.html">主日信息</a><a href="gospel.html">認識信仰</a><a href="https://www.youtube.com/@m-church/live" target="_blank" rel="noopener noreferrer">YouTube 直播</a></nav>
       <address class="footer-contact">台中市大雅區神林南路 513 巷 13 號<br><a href="tel:+886425658977">04-2565-8977</a>・<a href="mailto:church@tcsc.org.tw">church@tcsc.org.tw</a></address>
       <p style="font-size: 0.8rem; opacity: 0.6;">© 2026 M+大雅教會. All rights reserved.</p>
