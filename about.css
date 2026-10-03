@@ -6,7 +6,8 @@
 @media(max-width:760px){.about-photo-story{grid-template-columns:1fr;gap:20px;margin-top:15px;padding:12px;border-radius:25px}.photo-frame{min-height:260px;border-radius:18px}.photo-story-copy{padding:5px 12px 32px}.photo-index{margin:17px 0 10px}.photo-story-copy h2{font-size:35px}.photo-story-copy>p:not(.photo-index){margin:12px 0 17px;font-size:14px}.photo-credit{right:18px;bottom:12px;font-size:9px}.team-heading{padding-right:0;padding-bottom:92px}.team-heading-mark{top:auto;left:0;right:auto;bottom:2px;width:74px;height:74px;font-size:23px}.team-heading-mark:after{inset:6px}.team-heading-mark small{font-size:7px}.portrait>span{width:70px;height:70px;font-size:34px}.portrait i{right:calc(50% - 46px);bottom:27px;padding:4px 6px;border-radius:8px;font-size:9px}.portrait-label{top:12px;left:12px;font-size:8px}}
 
 .portrait>img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center 32%}.portrait-2>img{object-position:center 30%}.portrait-3>img{object-position:center 31%}
-@media(max-width:760px){.portrait-2>img{object-position:center 28%}.portrait-3>img{object-position:center 29%}}
+.portrait-1>img{object-position:center 38%}
+@media(max-width:760px){.portrait-1>img{object-position:center 36%}.portrait-2>img{object-position:center 28%}.portrait-3>img{object-position:center 29%}}
 @media(max-width:760px){html{line-break:strict}.hero h1,.intro-feature h2,.section-heading h2,.callout h2,.myc-hero h2,.contact-card h2{ text-wrap:balance }.hero-copy,.intro-feature>p,.timeline p,.callout p,.belief-card p,.myc-hero p{ text-wrap:pretty }}
 
 .portrait:before,.portrait:after{z-index:0}

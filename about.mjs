@@ -21,7 +21,7 @@ const faith=[
  ['盼望','我們相信耶穌基督將要再來，審判活人與死人；屬主的人將永遠與主同在，在新天新地中敬拜、相交，享受神的喜樂與榮耀。']
 ];
 const team=[
- {name:'吳俊璋牧師、謝碧鳳師母',role:'主任牧師 · 師母',note:'陪伴教會家庭在信仰中扎根，在生活裡彼此扶持。',initial:'吳'},
+ {name:'吳俊璋牧師、謝碧鳳師母',role:'主任牧師 · 師母',note:'陪伴教會家庭在信仰中扎根，在生活裡彼此扶持。',initial:'吳',photo:'assets/team/wu-pastor-couple.jpg'},
  {name:'邵鈺庭姐妹',role:'青年教會輔導 · 牧師辦公室',note:'陪伴青年與教會日常服事，一起探索呼召與方向。',initial:'邵',photo:'assets/team/shao-yuting.png'},
  {name:'曾恩茹姐妹',role:'青年教會輔導 · 小太陽課輔',note:'關心青年與孩子的成長，陪伴每個家庭建立盼望。',initial:'曾',photo:'assets/team/zeng-enru.png'}
 ];
