@@ -38,13 +38,87 @@ function appendGroupNode(container,node){
  if(node.tagName==='TABLE'){const scroller=document.createElement('div');scroller.className='table-scroll';scroller.append(node);container.append(scroller);return;}
  container.append(node);
 }
+function groupText(root){
+ let value='';
+ const blocks=new Set(['P','DIV','SECTION','ARTICLE','H1','H2','H3','H4','LI','BLOCKQUOTE','TR']);
+ const walk=node=>{
+  if(node.nodeType===Node.TEXT_NODE){value+=node.textContent;return;}
+  if(node.nodeType!==Node.ELEMENT_NODE)return;
+  if(node.tagName==='BR'){value+='\n';return;}
+  const block=blocks.has(node.tagName);
+  if(block&&value&&!value.endsWith('\n'))value+='\n';
+  for(const child of node.childNodes)walk(child);
+  if(block&&!value.endsWith('\n'))value+='\n';
+ };
+ for(const node of root.childNodes)walk(node);
+ return value.replace(/\u00a0/g,' ').replace(/[ \t]+/g,' ').replace(/\s*\n\s*/g,'\n').replace(/\n{2,}/g,'\n').trim();
+}
+function appendLinkedText(target,value){
+ const content=String(value||''),urlPattern=/https?:\/\/[^\s）)]+/g;let index=0;
+ for(const match of content.matchAll(urlPattern)){
+  target.append(document.createTextNode(content.slice(index,match.index)));
+  const link=document.createElement('a');link.href=match[0];link.target='_blank';link.rel='noopener noreferrer';link.textContent=match[0];target.append(link);
+  index=(match.index||0)+match[0].length;
+ }
+ target.append(document.createTextNode(content.slice(index)));
+}
+function appendAutoItem(list,label,value){
+ const item=document.createElement('li');
+ if(label){const title=document.createElement('strong');title.textContent=`${label}：`;item.append(title);}
+ const songStart=label==='建議詩歌'?value.search(/《[^》]+》/):-1;
+ if(songStart>=0){
+  appendLinkedText(item,value.slice(0,songStart).trim());
+  const songs=document.createElement('ul');
+  for(const song of value.slice(songStart).split(/\s+(?=(?:（[^）]+）\s*)?《)/).filter(Boolean)){const line=document.createElement('li');appendLinkedText(line,song.trim());songs.append(line);}
+  item.append(songs);
+ }else appendLinkedText(item,value.trim());
+ list.append(item);
+}
+function addAutoGroupResourceContent(target,text,sections){
+ const intro=text.slice(0,sections[0].index).trim();
+ if(intro){
+  const overview=document.createElement('div');overview.className='group-overview group-meta';
+  const meta=[...intro.matchAll(/【([^】]+)】\s*[：:]\s*/g)];
+  if(meta.length){
+   const before=intro.slice(0,meta[0].index).trim();
+   if(before){const paragraph=document.createElement('p');paragraph.textContent=before;overview.append(paragraph);}
+   for(let index=0;index<meta.length;index+=1){
+    const row=document.createElement('p'),label=document.createElement('strong'),value=document.createElement('span');
+    const valueStart=(meta[index].index||0)+meta[index][0].length,valueEnd=meta[index+1]?.index??intro.length;
+    label.textContent=meta[index][1];value.textContent=intro.slice(valueStart,valueEnd).trim();row.append(label,value);overview.append(row);
+   }
+  }else{const paragraph=document.createElement('p');paragraph.textContent=intro;overview.append(paragraph);}
+  target.append(overview);
+ }
+ const labelPattern=/(活動方式|小組長引導|建議詩歌|禱告方向|主題經文|核心經文|信息分享|信息重點|討論問題|本週行動|生活應用|禱告)\s*[：:]\s*/g;
+ for(let index=0;index<sections.length;index+=1){
+  const start=sections[index].index||0,end=sections[index+1]?.index??text.length,chunk=text.slice(start,end).trim();
+  const labels=[...chunk.matchAll(labelPattern)],bodyStart=labels[0]?.index??-1;
+  const section=document.createElement('section'),heading=document.createElement('h3'),body=document.createElement('div'),list=document.createElement('ul');
+  section.className='group-main-section';heading.className='group-main-title';body.className='group-main-body';list.className='group-auto-list';
+  if(bodyStart>=0){
+   heading.textContent=chunk.slice(0,bodyStart).replace(/^(?:🏠|🎵|📖|📝|📜)\s*/,'').trim();
+   for(let itemIndex=0;itemIndex<labels.length;itemIndex+=1){
+    const valueStart=(labels[itemIndex].index||0)+labels[itemIndex][0].length,valueEnd=labels[itemIndex+1]?.index??chunk.length;
+    appendAutoItem(list,labels[itemIndex][1],chunk.slice(valueStart,valueEnd));
+   }
+   body.append(list);
+  }else{
+   heading.textContent=sections[index][0].replace(/^(?:🏠|🎵|📖|📝|📜)\s*/,'').trim();
+   const paragraph=document.createElement('p');appendLinkedText(paragraph,chunk.slice(sections[index][0].length).trim());body.append(paragraph);
+  }
+  section.append(heading,body);target.append(section);
+ }
+}
 function addGroupResourceContent(target,raw){
  const safe=document.createElement('div');safe.innerHTML=DOMPurify.sanitize(raw||'',{ALLOWED_TAGS:['p','h1','h2','h3','h4','ul','ol','li','blockquote','table','thead','tbody','tr','td','th','strong','b','em','i','a','img','br','hr'],ALLOWED_ATTR:['href','src','alt','title','target','rel','colspan','rowspan']});
+ const text=groupText(safe),sectionPattern=/(?:🏠|🎵|📖|📝|📜)?\s*[1-4][.、]\s*(?:Welcome|Worship|Word|Work|破冰|敬拜|神的話|神的工)/gi,sections=[...text.matchAll(sectionPattern)];
+ if(sections.length&&!safe.querySelector('img,table')){addAutoGroupResourceContent(target,text,sections);return;}
  let intro=null,current=null;
  for(const node of [...safe.childNodes]){
   if(node.nodeType===Node.TEXT_NODE&&!node.textContent.trim())continue;
-  const text=(node.textContent||'').replace(/\s+/g,' ').trim();
-  const headingMatch=text.match(/^(?:(?:🏠|🎵|📖)\s*)?([1-4][.、]\s*(?:Welcome|Worship|Word|Work|破冰|敬拜|神的話|神的工)[^]*)$/i);
+  const nodeText=(node.textContent||'').replace(/\s+/g,' ').trim();
+  const headingMatch=nodeText.match(/^(?:(?:🏠|🎵|📖)\s*)?([1-4][.、]\s*(?:Welcome|Worship|Word|Work|破冰|敬拜|神的話|神的工)[^]*)$/i);
   if(headingMatch){
    const section=document.createElement('section');section.className='group-main-section';
    const heading=document.createElement('h3');heading.className='group-main-title';heading.textContent=headingMatch[1].trim();
