@@ -1,0 +1,26 @@
+name: 更新主日信息
+on:
+  schedule:
+    - cron: "30 4,6,10 * * 0"
+    - cron: "20 1 * * 1-6"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 讀取 YouTube 並更新網站資料
+        run: python scripts/update-sermons.py
+      - name: 發布新的主日信息
+        run: |
+          if git diff --quiet -- sermons-data.json; then exit 0; fi
+          git config user.name "mchurch-website-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add sermons-data.json
+          git commit -m "content: 自動更新主日信息"
+          git push

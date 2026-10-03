@@ -236,3 +236,33 @@ h1,h2,h3{overflow-wrap:break-word}
   .duty dl{grid-template-columns:108px minmax(0,1fr);gap:10px;font-size:14px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* Clear visitor journey: weekly bulletin stays prominent, followed by newcomer guidance and sermons. */
+.home-page .newcomer-preview{background:#fff;border-bottom:1px solid var(--editorial-rule)}
+.section-more{display:flex;justify-content:flex-start;margin-top:30px}
+.latest-sermons{padding:82px 0;background:#faf8f5;border-bottom:1px solid var(--editorial-rule)}
+.home-sermon-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}
+.home-sermon-card{display:block;border-top:1px solid var(--editorial-rule);padding-top:18px;color:#302823}
+.home-sermon-card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:18px;background:#eee8e3}
+.home-sermon-card span{display:block;color:#ad3c2a;font-size:12px;font-weight:650;letter-spacing:.02em}
+.home-sermon-card h3{margin:7px 0 8px;font-family:var(--editorial-heading);font-size:22px;line-height:1.5}
+.home-sermon-card p{margin:0;color:#685d57;font-size:13px}
+@media(max-width:720px){.latest-sermons{padding:58px 0}.home-sermon-grid{grid-template-columns:1fr;gap:34px}.home-sermon-card h3{font-size:20px}.section-more .btn-main,.section-more .btn-secondary{width:100%;justify-content:center}.home-page .newcomer-preview{padding-top:58px;padding-bottom:58px}}
+/* 2026 visitor focused refresh: warmer editorial rhythm and stronger invitations. */
+.home-page .hero{background:linear-gradient(118deg,#fff 0%,#fff 57%,#fff4ed 100%)!important;position:relative}
+.home-page .hero:after{display:block!important;content:"";position:absolute;inset:auto -8% -180px 42%;height:330px;border-radius:50%;background:rgba(201,75,53,.055);transform:rotate(-8deg);pointer-events:none}
+.home-page .hero-grid{position:relative;z-index:1}
+.home-page .hero-img-box{background:linear-gradient(145deg,#d8583f 0%,#bd3f2c 58%,#8f3024 100%)!important;box-shadow:0 26px 70px rgba(100,43,31,.17)!important}
+.home-page .hero-floating-card{margin-top:20px!important;padding-top:16px!important;border-top:1px solid var(--editorial-rule)!important}
+.home-page .weekly-sunday{background:#f7f1ec!important}
+.home-page .weekly-sunday-copy{position:relative;padding-left:25px;border-left:3px solid #c94b35}
+.home-page .newcomer-preview .qa-card{min-height:210px}
+.home-page .newcomer-preview .qa-icon-wrap{color:#c94b35}
+.latest-sermons .quick-resources-head{margin-bottom:36px}
+.home-sermon-card{transition:transform .2s ease,color .2s ease}
+.home-sermon-card:hover{transform:translateY(-4px);color:#a73524}
+.home-sermon-card img{transition:filter .2s ease;filter:saturate(.92) contrast(1.02)}
+.home-sermon-card:hover img{filter:saturate(1.05) contrast(1.02)}
+.home-page .quick-resources{background:#fff!important}
+.home-page .life-tree-teaser{background:#faf8f5!important;border-top:1px solid var(--editorial-rule);border-bottom:1px solid var(--editorial-rule)}
+.home-page .location{background:#fff!important}
+@media(max-width:720px){.home-page .hero{background:linear-gradient(180deg,#fff 0%,#fff7f1 100%)!important}.home-page .hero:after{display:none!important}.home-page .weekly-sunday-copy{padding-left:16px}.home-page .newcomer-preview .qa-card{min-height:0}}

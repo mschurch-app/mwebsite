@@ -1055,7 +1055,7 @@
       .section-title{font-size:1.72rem;line-height:1.35}
     }
   </style>
-<link rel="stylesheet" href="church-palette.css?v=20261003-brand1"><link rel="stylesheet" href="site-design.css?v=20261003-editorial1"></head>
+<link rel="stylesheet" href="church-palette.css?v=20261003-brand1"><link rel="stylesheet" href="site-design.css?v=20261003-visitor2"></head>
 <body class="home-page">
 
   <!-- ==================== HEADER ==================== -->
@@ -1063,16 +1063,15 @@
     <div class="container nav">
       <a class="brand public-header-brand" href="index.html" aria-label="M+大雅教會首頁"><svg class="public-brand-home" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-8h6v8"/></svg><span class="public-brand-m">M+</span><span class="public-brand-name">大雅教會</span></a>
       <ul class="nav-links" aria-label="主要導覽">
-        <li><a href="#welcome">我是新朋友</a></li>
-        <li><a href="gospel.html">認識信仰</a></li>
+        <li><a href="newcomers.html">第一次來</a></li>
+        <li><a href="sermons.html">主日信息</a></li><li><a href="gospel.html">認識信仰</a></li>
         <li><a href="about.html?page=about" target="_top">關於我們</a></li>
-        <li><a href="#resources">本週週報</a></li>
-        <li><a href="#life-navigation">心靈充電站</a></li>
+        <li><a href="weekly.html?church=M%2B">本週週報</a></li>
       </ul>
       <button class="nav-btn" onclick="openModal('預約本週主日')">預約本週主日</button>
       <button class="menu-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="mobileNav" onclick="toggleMenu()">☰</button>
     </div>
-    <div class="mobile-nav" id="mobileNav"><a href="#welcome" onclick="toggleMenu(true)">我是新朋友</a><a href="gospel.html">認識信仰</a><a href="about.html?page=about" target="_top">關於我們</a><a href="#resources" onclick="toggleMenu(true)">本週週報</a><a href="#life-navigation" onclick="toggleMenu(true)">心靈充電站</a><a href="#weekly-sunday" onclick="toggleMenu(true)">本週主日預告</a><a href="#gathering" onclick="toggleMenu(true)">聚會時間與交通</a></div>
+    <div class="mobile-nav" id="mobileNav"><a href="newcomers.html">第一次來</a><a href="weekly.html?church=M%2B">本週週報</a><a href="sermons.html">主日信息</a><a href="gospel.html">認識信仰</a><a href="about.html?page=about" target="_top">關於我們</a><a href="#gathering" onclick="toggleMenu(true)">時間與交通</a></div>
   </header>
 
   <!-- ==================== HERO SECTION ==================== -->
@@ -1090,7 +1089,7 @@
           無論你熟悉信仰，或只是想來看看，都歡迎你。
         </p>
         <div class="hero-btns">
-          <a href="#welcome" class="btn-main">
+          <a href="newcomers.html" class="btn-main">
             第一次來訪 <i data-lucide="arrow-right" size="18"></i>
           </a>
           <a href="gospel.html" class="btn-secondary">
@@ -1136,6 +1135,60 @@
         <div class="weekly-sunday-actions"><a class="live-button" href="https://www.youtube.com/@m-church/live" target="_blank" rel="noopener noreferrer"><i data-lucide="radio" size="18" aria-hidden="true"></i>觀看直播</a><a class="weekly-link" href="weekly.html?church=M%2B">閱讀本週週報</a><a href="#gathering">時間與地點</a></div>
       </div>
       <picture class="weekly-sunday-image"><img src="assets/brand/sunday-placeholder.svg" alt="M+大雅教會本週主日預告，歡迎回家" width="1600" height="900" loading="lazy"></picture>
+    </div>
+  </section>
+
+  <!-- ==================== ONBOARDING: ELIMINATE ANXIETY ==================== -->
+  <section id="welcome" class="onboarding newcomer-preview">
+    <div class="container">
+      <div class="text-center">
+        <div class="badge">給第一次來的你</div>
+        <h2 class="section-title">先認識一下，再來坐坐。</h2>
+        <p class="section-desc">聚會內容、穿著、交通與接待方式，都先為你整理好了。</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="qa-card">
+          <div class="qa-icon-wrap">
+            <i data-lucide="shirt" size="26"></i>
+          </div>
+          <h3>穿什麼來最自在？</h3>
+          <p>穿平常覺得舒服的衣服就好。T-shirt、牛仔褲都可以，沒有特別的服裝規定。</p>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-icon-wrap">
+            <i data-lucide="smile-plus" size="26"></i>
+          </div>
+          <h3>會被強迫點名或發言嗎？</h3>
+          <p>不會。你可以先安靜聆聽，照自己的步調參與，不需要公開自我介紹。</p>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-icon-wrap">
+            <i data-lucide="clock" size="26"></i>
+          </div>
+          <h3>聚會大約多久？有什麼內容？</h3>
+          <p>約 75–90 分鐘，包含詩歌敬拜、聖經信息與禱告。聚會後也歡迎留下來認識大家。</p>
+        </div>
+      </div>
+      <div class="section-more"><a class="btn-main" href="newcomers.html">查看完整第一次來訪指南 <i data-lucide="arrow-right" size="18"></i></a></div>
+    </div>
+  </section>
+
+
+  <section class="latest-sermons" aria-labelledby="latest-sermons-title">
+    <div class="container">
+      <div class="quick-resources-head">
+        <div><span class="eyebrow">LATEST MESSAGES</span><h2 id="latest-sermons-title">最近的主日信息</h2></div>
+        <p>從一篇信息開始，把星期日聽見的帶進每一天。</p>
+      </div>
+      <div class="home-sermon-grid">
+        <a class="home-sermon-card featured" href="https://www.youtube.com/watch?v=6awK0TaZEDo" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/6awK0TaZEDo/hqdefault.jpg" alt="耶穌教你降維打擊主日信息封面" loading="lazy"><span>2026.09.27・吳俊璋牧師</span><h3>耶穌教你降維打擊：原來這才是偉大</h3><p>約翰福音 13:1–15</p></a>
+        <a class="home-sermon-card" href="https://www.youtube.com/watch?v=LTpmo8PDeSo" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/LTpmo8PDeSo/hqdefault.jpg" alt="治標還是治本主日信息封面" loading="lazy"><span>2026.09.13・江建平長老</span><h3>治標還是治本</h3><p>希伯來書 4:14–5:10</p></a>
+        <a class="home-sermon-card" href="https://www.youtube.com/watch?v=GNh4bxcsirA" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/GNh4bxcsirA/hqdefault.jpg" alt="當耶穌走進你的狂風巨浪主日信息封面" loading="lazy"><span>2026.09.06・吳俊璋牧師</span><h3>當耶穌走進你的狂風巨浪</h3><p>馬太福音 14:22–33</p></a>
+      </div>
+      <div class="section-more"><a class="btn-secondary" href="sermons.html">查看全部主日信息 <i data-lucide="arrow-right" size="18"></i></a></div>
     </div>
   </section>
 
@@ -1199,109 +1252,6 @@
           <span class="resource-arrow">↗</span><span class="resource-icon"><i data-lucide="hand-heart" size="24"></i></span>
           <h3>服務社區</h3><p>看見在地需要，讓愛成為具體的行動。</p>
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== ONBOARDING: ELIMINATE ANXIETY ==================== -->
-  <section id="welcome" class="onboarding">
-    <div class="container">
-      <div class="text-center">
-        <div class="badge">給第一次來的你</div>
-        <h2 class="section-title">先認識一下，再來坐坐。</h2>
-        <p class="section-desc">你可能想先知道的幾件事。</p>
-      </div>
-
-      <div class="cards-grid">
-        <div class="qa-card">
-          <div class="qa-icon-wrap">
-            <i data-lucide="shirt" size="26"></i>
-          </div>
-          <h3>穿什麼來最自在？</h3>
-          <p>穿平常覺得舒服的衣服就好。T-shirt、牛仔褲都可以，沒有特別的服裝規定。</p>
-        </div>
-
-        <div class="qa-card">
-          <div class="qa-icon-wrap">
-            <i data-lucide="smile-plus" size="26"></i>
-          </div>
-          <h3>會被強迫點名或發言嗎？</h3>
-          <p>不會。你可以先安靜聆聽，照自己的步調參與，不需要公開自我介紹。</p>
-        </div>
-
-        <div class="qa-card">
-          <div class="qa-icon-wrap">
-            <i data-lucide="clock" size="26"></i>
-          </div>
-          <h3>聚會大約多久？有什麼內容？</h3>
-          <p>約 75–90 分鐘，包含詩歌敬拜、聖經信息與禱告。聚會後也歡迎留下來認識大家。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== LIFE NAVIGATION (TABS) ==================== -->
-  <section id="life-navigation" class="life-nav">
-    <div class="container">
-      <div class="text-center">
-        <div class="badge"><i data-lucide="compass" size="16"></i> 按你的狀態尋找答案</div>
-        <h2 class="section-title">此時此刻，你最需要什麼？</h2>
-        <p class="section-desc">無論你身處人生的哪一個季節，M+ 都有專屬於你的家人與力量。</p>
-      </div>
-
-      <div class="tabs-wrapper">
-        <button class="tab-btn active" onclick="switchTab(0)">職場壓力大 / 心累</button>
-        <button class="tab-btn" onclick="switchTab(1)">育兒家長 / 尋找週末去處</button>
-        <button class="tab-btn" onclick="switchTab(2)">熱血青年 / 尋找方向</button>
-        <button class="tab-btn" onclick="switchTab(3)">剛搬到大雅 / 想交朋友</button>
-      </div>
-
-      <!-- Tab 1 -->
-      <div class="tab-content active" id="tab-0">
-        <div>
-          <h3>忙了一週，留一點時間給自己。</h3>
-          <p>工作或生活讓你感到疲憊時，歡迎來聽聽詩歌與聖經信息。如果你想找人聊聊，我們也願意聽。</p>
-          <button class="btn-main" onclick="openModal('索取職場得勝信息精華')">索取本週信息</button>
-        </div>
-        <div class="scene-art" role="img" aria-label="午後陽光落在安靜的工作桌上">
-          <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="workSky" x2="0" y2="1"><stop stop-color="#f7c58f"/><stop offset="1" stop-color="#fff0da"/></linearGradient><linearGradient id="workDesk" x2="0" y2="1"><stop stop-color="#b88762"/><stop offset="1" stop-color="#795743"/></linearGradient></defs><rect width="600" height="320" fill="url(#workSky)"/><circle cx="460" cy="78" r="42" fill="#fff9df" opacity=".9"/><path d="M0 213h600v107H0z" fill="url(#workDesk)"/><path d="M80 211V98h242v113" fill="#fffaf0" opacity=".58"/><path d="M93 105h216v100H93z" fill="#c7d9d0"/><path d="M202 105v100M93 155h216" stroke="#fffaf0" stroke-width="8"/><path d="M243 229h188l-18 14H261z" fill="#f2dfc7"/><path d="M275 194h117l27 35H248z" fill="#fff9ef"/><rect x="300" y="206" width="62" height="6" rx="3" fill="#b7c9c0"/><path d="M502 213v-67h5v67m-24-49q24-35 48 0" fill="none" stroke="#4d7667" stroke-width="7" stroke-linecap="round"/><circle cx="505" cy="142" r="17" fill="#73957c"/><path d="M0 215h600" stroke="#fff6e8" stroke-width="5" opacity=".75"/></svg>
-        </div>
-      </div>
-
-      <!-- Tab 2 -->
-      <div class="tab-content" id="tab-1">
-        <div>
-          <h3>讓孩子開心放電，爸媽安心放鬆</h3>
-          <p>想帶孩子一起來，可以先和我們聊聊兒童主日的安排，了解活動內容與接待方式。</p>
-          <button class="btn-main" onclick="openModal('了解兒童營地')">預約兒童主日參訪</button>
-        </div>
-        <div class="scene-art" role="img" aria-label="明亮溫暖的親子遊戲角落">
-          <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="kidBg" x2="0" y2="1"><stop stop-color="#d8eee6"/><stop offset="1" stop-color="#fff4dd"/></linearGradient></defs><rect width="600" height="320" fill="url(#kidBg)"/><circle cx="105" cy="77" r="38" fill="#fff" opacity=".62"/><path d="M0 245q130-55 255 0t345-6v81H0z" fill="#c6d9a3"/><rect x="97" y="150" width="118" height="95" rx="14" fill="#f29a6e"/><path d="M97 178h118M155 150v95" stroke="#fff1d7" stroke-width="7"/><path d="M278 243v-73l68-42 69 42v73" fill="#fffaf0" stroke="#df9865" stroke-width="7" stroke-linejoin="round"/><path d="M264 174l82-55 84 55" fill="none" stroke="#df7657" stroke-width="13" stroke-linecap="round"/><rect x="327" y="192" width="38" height="51" rx="18" fill="#b8d3c4"/><circle cx="472" cy="212" r="39" fill="#f5c86e"/><circle cx="472" cy="212" r="15" fill="#fff4d7"/><path d="M473 165v-21m0 136v-21m47-47h21m-136 0h21m80-33 15-15m-97 97 15-15m67 0 15 15m-97-97 15 15" stroke="#f5c86e" stroke-width="6" stroke-linecap="round"/></svg>
-        </div>
-      </div>
-
-      <!-- Tab 3 -->
-      <div class="tab-content" id="tab-2">
-        <div>
-          <h3>一起運動，也一起聊聊未來。</h3>
-          <p>透過青年聚會、音樂與籃球，認識可以分享生活的朋友。歡迎先了解最近的活動。</p>
-          <button class="btn-main" onclick="openModal('加入青年社群')">加入 M+ 青年生活圈</button>
-        </div>
-        <div class="scene-art" role="img" aria-label="傍晚球場與籃球">
-          <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="courtSky" x2="0" y2="1"><stop stop-color="#9ab9c6"/><stop offset="1" stop-color="#f5c79a"/></linearGradient></defs><rect width="600" height="320" fill="url(#courtSky)"/><circle cx="445" cy="86" r="39" fill="#ffe6aa"/><path d="M0 214h600v106H0z" fill="#557c79"/><path d="M0 271h600M300 214v106M160 214v106m280-106v106" stroke="#dce9dc" stroke-width="4" opacity=".75"/><path d="M75 215v-94h9v94m-22-95h55v7H62zm31 8v32" fill="none" stroke="#fff6e7" stroke-width="6" stroke-linecap="round"/><path d="M70 159q23 22 46 0" fill="none" stroke="#fff6e7" stroke-width="4"/><circle cx="348" cy="206" r="35" fill="#eb7e39"/><path d="M313 206h70m-35-35v70m-24-60q25 25 48 50m0-50q-25 25-48 50" fill="none" stroke="#8f482b" stroke-width="4"/><path d="M0 214h600" stroke="#fff3d8" stroke-width="4"/></svg>
-        </div>
-      </div>
-
-      <!-- Tab 4 -->
-      <div class="tab-content" id="tab-3">
-        <div>
-          <h3>在大雅，遇見像家人一般的在地社群</h3>
-          <p>剛搬到大雅，或想多認識一些朋友？歡迎來了解小組聚會，從一次見面、一次聊天開始。</p>
-          <button class="btn-main" onclick="openModal('尋找在地小組')">認識在地家庭小組</button>
-        </div>
-        <div class="scene-art" role="img" aria-label="大雅街區的家與綠意">
-          <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="homeBg" x2="0" y2="1"><stop stop-color="#d7e8df"/><stop offset="1" stop-color="#fbefd9"/></linearGradient></defs><rect width="600" height="320" fill="url(#homeBg)"/><circle cx="492" cy="67" r="35" fill="#ffe3a4"/><path d="M0 235q92-50 194 0t203-2q99-48 203 5v82H0z" fill="#a9c29e"/><path d="M165 237V142l107-72 108 72v95" fill="#fff9ef" stroke="#a87652" stroke-width="7" stroke-linejoin="round"/><path d="M143 151 272 58l130 93" fill="none" stroke="#c47d59" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><rect x="246" y="171" width="45" height="66" rx="21" fill="#e9b987"/><rect x="186" y="158" width="39" height="38" rx="6" fill="#c6d9d1"/><rect x="316" y="158" width="39" height="38" rx="6" fill="#c6d9d1"/><path d="M74 237v-71m-23 23q23-43 46 0m-39 18q16-29 32 0m395 30v-87m-29 33q29-52 58 0m-48 23q19-35 38 0" fill="none" stroke="#5f896c" stroke-width="9" stroke-linecap="round"/><path d="M0 238h600" stroke="#f9f0dc" stroke-width="5" opacity=".8"/></svg>
-        </div>
       </div>
     </div>
   </section>
@@ -1374,7 +1324,7 @@
         M+<span>大雅教會</span>
       </div>
       <p>生活很累，但這裡有光。M+ 就是你屬靈的家！</p>
-      <nav class="footer-links" aria-label="頁尾導覽"><a href="about.html?page=about">認識教會</a><a href="weekly.html">本週週報</a><a href="gospel.html">認識信仰</a><a href="https://www.youtube.com/@m-church/live" target="_blank" rel="noopener noreferrer">YouTube 直播</a></nav>
+      <nav class="footer-links" aria-label="頁尾導覽"><a href="about.html?page=about">認識教會</a><a href="newcomers.html">第一次來</a><a href="weekly.html?church=M%2B">本週週報</a><a href="sermons.html">主日信息</a><a href="gospel.html">認識信仰</a><a href="https://www.youtube.com/@m-church/live" target="_blank" rel="noopener noreferrer">YouTube 直播</a></nav>
       <address class="footer-contact">台中市大雅區神林南路 513 巷 13 號<br><a href="tel:+886425658977">04-2565-8977</a>・<a href="mailto:church@tcsc.org.tw">church@tcsc.org.tw</a></address>
       <p style="font-size: 0.8rem; opacity: 0.6;">© 2026 M+大雅教會. All rights reserved.</p>
     </div>
@@ -1438,7 +1388,7 @@
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
     // 初始化 Lucide 圖標
-    window.addEventListener('DOMContentLoaded', () => window.lucide?.createIcons());
+    window.addEventListener('DOMContentLoaded', () => { window.lucide?.createIcons(); if (new URLSearchParams(location.search).get('visit') === '1') openModal('預約本週主日'); });
 
     function toggleMenu(close = false) {
       const menu = document.getElementById('mobileNav');
@@ -1589,5 +1539,5 @@
       }
     }
   </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script><script type="module" src="website-home.mjs?v=20261003-editorial1"></script></body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script><script type="module" src="website-home.mjs?v=20261003-visitor2"></script></body>
 </html>

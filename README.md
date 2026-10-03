@@ -25,3 +25,10 @@
 ## 資料庫
 
 需要先套用 `mschurch-app/church-management-staging` 專案中的 `supabase/migrations/20260926160000_weekly_bulletin_cms.sql` 到 `church-management-staging`。此 migration 為新增週報資料表、圖片 bucket、RLS policies 與唯讀 RPC，不會搬動或修改現有會友/排班資料。
+
+## 主日信息自動更新
+
+- `sermons.html` 與首頁的最新信息讀取 `sermons-data.json`。
+- GitHub Actions 會在每週日中午及傍晚多次讀取 M+ 公開 YouTube 頻道，週間每日補查一次。
+- 新影片公開後會依講題中的講員或聖經資訊辨識主日信息，自動更新資料並由 GitHub Pages 發布。
+- 若影片尚未公開、設為不公開，或 YouTube 尚未完成處理，網站會保留上一筆內容，下一次排程再補抓。
