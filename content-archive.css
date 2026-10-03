@@ -58,6 +58,7 @@ body[data-type="group_resource"] .group-auto-list {
 }
 body[data-type="group_resource"] .group-auto-list > li {
   padding-left: 4px;
+  white-space: pre-line;
 }
 body[data-type="group_resource"] .group-auto-list strong {
   color: #294f47;
@@ -232,3 +233,6 @@ body[data-type="weekly_archive"] .table-scroll th {
     object-fit: contain !important;
   }
 }
+
+/* Keep plain-text group resources readable after CMS imports. */
+.group-main-body a,.group-overview a{color:#176a91;text-decoration-thickness:1px;text-underline-offset:3px;overflow-wrap:anywhere}.group-lead strong{color:#234f47}.group-subheading+.group-subheading{margin-top:10px}

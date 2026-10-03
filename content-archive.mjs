@@ -90,7 +90,7 @@ function addAutoGroupResourceContent(target,text,sections){
   }else{const paragraph=document.createElement('p');paragraph.textContent=intro;overview.append(paragraph);}
   target.append(overview);
  }
- const labelPattern=/(活動方式|小組長引導|建議詩歌|禱告方向|主題經文|核心經文|信息分享|信息重點|討論問題|本週行動|生活應用|禱告)\s*[：:]\s*/g;
+ const labelPattern=/(A[.、]\s*經文朗讀|B[.、]\s*經文解析|C[.、]\s*小組討論|📝\s*信息綱要|📜\s*完整分享內容(?:\s*\([^\n）)]*[）)])?|[一二三四五六七八九十]+、[^：:\n]{1,40}|結語|活動方式|小組長引導|建議詩歌|禱告方向|主題經文|核心經文|信息分享|信息重點|討論問題|本週行動|生活應用|生活同理|聖經亮光|彼此激勵|關鍵行動|具體實踐|彼此宣告|禱告)\s*[：:]?\s*/g;
  for(let index=0;index<sections.length;index+=1){
   const start=sections[index].index||0,end=sections[index+1]?.index??text.length,chunk=text.slice(start,end).trim();
   const labels=[...chunk.matchAll(labelPattern)],bodyStart=labels[0]?.index??-1;
