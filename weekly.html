@@ -14,11 +14,13 @@
     .bulletin-meta{display:block;margin-top:16px;color:#e4f0e9;font-size:1rem;font-weight:700}
     .bulletin-section[hidden]{display:none}.bulletin-copy{white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink)}
     .bulletin-entry-card{padding:18px 20px;border-radius:18px;background:#f4f8f5}.bulletin-entry-card+.bulletin-entry-card{margin-top:12px}.bulletin-entry-card h3{margin:0 0 7px;color:var(--forest);font-size:1.02rem}.bulletin-entry-card p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+    .bulletin-section[data-section="program"] .bulletin-entry-card{display:grid;grid-template-columns:minmax(76px,.28fr) minmax(0,1fr);gap:14px;align-items:start}.bulletin-section[data-section="program"] .bulletin-entry-card h3{margin:0}.bulletin-section[data-section="program"] .bulletin-entry-card p{line-height:1.65}
     .schedule-empty{padding:16px;border-radius:16px;background:#fff1df;color:#6d5a46}.bulletin-source-note{margin-top:18px;color:var(--muted);font-size:.88rem}
     @media(max-width:720px){
       .bulletin-hero-image,.bulletin-hero-placeholder{border-radius:18px;box-shadow:0 14px 34px rgba(17,59,50,.17)}
       .bulletin-meta{font-size:.86rem;line-height:1.55}.bulletin-entry-card{padding:16px;border-radius:16px}
       .bulletin-entry-card h3{font-size:.98rem}.bulletin-copy{font-size:.92rem;line-height:1.72}
+      .bulletin-section[data-section="program"] .bulletin-entry-card{grid-template-columns:64px minmax(0,1fr);gap:10px;padding:15px 16px}
     }
   </style>
 <link rel="stylesheet" href="church-palette.css?v=20261003-contrast1"><link rel="stylesheet" href="site-design.css?v=20261003-editorial1"></head>
