@@ -1,12 +1,21 @@
 {
-  "updated_at": "2026-10-03T08:00:00+08:00",
+  "updated_at": "2026-10-04T10:51:01+00:00",
   "channel_url": "https://www.youtube.com/@m-church",
   "items": [
     {
-      "id": "6awK0TaZEDo",
-      "title": "耶穌教你降維打擊：原來這才是偉大",
+      "id": "q_6Sjk6WlFs",
+      "title": "不是擁有太少 是你算得太多",
       "speaker": "吳俊璋牧師",
-      "scripture": "約翰福音 13:1–15",
+      "scripture": "馬可福音6:30-44",
+      "published": "2026-10-04",
+      "url": "https://www.youtube.com/watch?v=q_6Sjk6WlFs",
+      "thumbnail": "https://i.ytimg.com/vi/q_6Sjk6WlFs/hqdefault.jpg"
+    },
+    {
+      "id": "6awK0TaZEDo",
+      "title": "耶穌教你降維打擊",
+      "speaker": "吳俊璋牧師",
+      "scripture": "約翰福音13:1-15",
       "published": "2026-09-27",
       "url": "https://www.youtube.com/watch?v=6awK0TaZEDo",
       "thumbnail": "https://i.ytimg.com/vi/6awK0TaZEDo/hqdefault.jpg"
@@ -15,7 +24,7 @@
       "id": "LTpmo8PDeSo",
       "title": "治標還是治本",
       "speaker": "江建平長老",
-      "scripture": "希伯來書 4:14–5:10",
+      "scripture": "希伯來書4:14-5:10",
       "published": "2026-09-13",
       "url": "https://www.youtube.com/watch?v=LTpmo8PDeSo",
       "thumbnail": "https://i.ytimg.com/vi/LTpmo8PDeSo/hqdefault.jpg"
@@ -24,7 +33,7 @@
       "id": "GNh4bxcsirA",
       "title": "當耶穌走進你的狂風巨浪",
       "speaker": "吳俊璋牧師",
-      "scripture": "馬太福音 14:22–33",
+      "scripture": "馬太福音14:22-33",
       "published": "2026-09-06",
       "url": "https://www.youtube.com/watch?v=GNh4bxcsirA",
       "thumbnail": "https://i.ytimg.com/vi/GNh4bxcsirA/hqdefault.jpg"
@@ -33,7 +42,7 @@
       "id": "qxwKFzL3BIw",
       "title": "把我所有的給你",
       "speaker": "王乃純院長",
-      "scripture": "使徒行傳 3:1–10",
+      "scripture": "使徒行傳 3:1-10",
       "published": "2026-08-30",
       "url": "https://www.youtube.com/watch?v=qxwKFzL3BIw",
       "thumbnail": "https://i.ytimg.com/vi/qxwKFzL3BIw/hqdefault.jpg"
@@ -42,19 +51,55 @@
       "id": "Pga5MXMX5hM",
       "title": "離上帝最近的兩個人",
       "speaker": "吳俊璋牧師",
-      "scripture": "使徒行傳 3:1–8",
+      "scripture": "使徒行傳 3:1-8",
       "published": "2026-08-23",
       "url": "https://www.youtube.com/watch?v=Pga5MXMX5hM",
       "thumbnail": "https://i.ytimg.com/vi/Pga5MXMX5hM/hqdefault.jpg"
     },
     {
-      "id": "O_HiTTjmrD4",
-      "title": "蒙福的內功心法：搞定你的心情與事情",
+      "id": "BPm7XZVD2y0",
+      "title": "攪亂天下的危險份子",
       "speaker": "吳俊璋牧師",
-      "scripture": "詩歌智慧書",
-      "published": "2026-02-01",
-      "url": "https://www.youtube.com/watch?v=O_HiTTjmrD4",
-      "thumbnail": "https://i.ytimg.com/vi/O_HiTTjmrD4/hqdefault.jpg"
+      "scripture": "使徒行傳17:1-7",
+      "published": "2026-08-16",
+      "url": "https://www.youtube.com/watch?v=BPm7XZVD2y0",
+      "thumbnail": "https://i.ytimg.com/vi/BPm7XZVD2y0/hqdefault.jpg"
+    },
+    {
+      "id": "VYKjvOEfTiU",
+      "title": "如何把水變酒",
+      "speaker": "",
+      "scripture": "約翰福音 2:1-12",
+      "published": "2026-08-09",
+      "url": "https://www.youtube.com/watch?v=VYKjvOEfTiU",
+      "thumbnail": "https://i.ytimg.com/vi/VYKjvOEfTiU/hqdefault.jpg"
+    },
+    {
+      "id": "Y6iPiiuDXmA",
+      "title": "在最黑的夜、唱最亮的歌",
+      "speaker": "吳俊璋牧師",
+      "scripture": "使徒行傳16:22-26",
+      "published": "2026-08-02",
+      "url": "https://www.youtube.com/watch?v=Y6iPiiuDXmA",
+      "thumbnail": "https://i.ytimg.com/vi/Y6iPiiuDXmA/hqdefault.jpg"
+    },
+    {
+      "id": "FjpwND2J42Q",
+      "title": "人生到底要跟誰走？",
+      "speaker": "iM 陳淑芬傳道",
+      "scripture": "馬太福音16:13-28",
+      "published": "2026-07-26",
+      "url": "https://www.youtube.com/watch?v=FjpwND2J42Q",
+      "thumbnail": "https://i.ytimg.com/vi/FjpwND2J42Q/hqdefault.jpg"
+    },
+    {
+      "id": "JDRD1lpKH0s",
+      "title": "當禱告震動天地",
+      "speaker": "吳俊璋牧師",
+      "scripture": "使徒行傳4:23-31",
+      "published": "2026-07-19",
+      "url": "https://www.youtube.com/watch?v=JDRD1lpKH0s",
+      "thumbnail": "https://i.ytimg.com/vi/JDRD1lpKH0s/hqdefault.jpg"
     }
   ]
 }
