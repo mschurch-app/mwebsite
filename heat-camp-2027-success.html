@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <title>報名成功｜2027 熱火籃球營</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="heat-camp-2027.css?v=20261006-form2">
+</head>
+<body class="success-page">
+  <main class="success-shell">
+    <section class="success-card">
+      <div class="success-mark" aria-hidden="true">✓</div>
+      <p class="section-kicker">REGISTRATION COMPLETE</p>
+      <h1>恭喜，報名成功！</h1>
+      <p class="success-lead">我們已收到 2027 熱火籃球營的報名與付款資料，球場見！</p>
+      <div class="success-facts">
+        <div><small>活動日期</small><strong>2027/7/12–7/15</strong></div>
+        <div><small>活動地點</small><strong>台中東海大學</strong></div>
+      </div>
+      <div class="line-invite">
+        <span>LINE</span>
+        <div><h2>加入熱火籃球營官方群組</h2><p>最新行前通知、攜帶物品與營會消息，都會在這裡發布。</p></div>
+        <a href="https://line.me/R/ti/p/@953uqupb" target="_blank" rel="noopener">立即加入 <b>→</b></a>
+      </div>
+      <p class="success-wait">接下來敬請期待，我們會在活動前陸續公布行前資訊。</p>
+      <p class="success-number" id="registration-number" hidden></p>
+    </section>
+  </main>
+  <script>
+    const registration=new URLSearchParams(location.search).get('registration');
+    if(registration&&/^HC27-[A-Z0-9]+$/.test(registration)){
+      const node=document.querySelector('#registration-number');
+      node.textContent=`報名編號：${registration}`;
+      node.hidden=false;
+    }
+  </script>
+</body>
+</html>

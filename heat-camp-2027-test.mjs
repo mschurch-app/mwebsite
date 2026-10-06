@@ -9,9 +9,9 @@ const exceptionReason=$('#exception-reason');
 const dialog=$('#preview-dialog');
 const jerseySelect=$('#jersey-number');
 const JERSEY_AVAILABILITY_URL='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-registration';
-const boolFields=['eligibility_exception','tax_upload_consent','public_credit','insurance_consent','privacy_consent','receipt_consent','truth_consent'];
+const boolFields=['eligibility_exception','tax_upload_consent','public_credit','no_receipt','insurance_consent','privacy_consent','receipt_consent','truth_consent'];
 let submitting=false;
-const FIELD_LABELS={player_name:'球員姓名',guardian_name:'家長／監護人姓名',guardian_phone:'家長手機',email:'家長 Email',line_id:'LINE ID',national_id:'球員身分證字號',postal_code:'郵遞區號',receipt_address:'收據寄送地址',birthday:'出生日期',school_stage:'營會時就讀階段',school_name:'學校名稱',height_cm:'身高',weight_kg:'體重',basketball_years:'球齡',primary_position:'主要位置',dominant_hand:'慣用手',competition_level:'比賽經驗',jersey_size:'球衣尺寸',jersey_number:'希望背號',jersey_name:'球衣姓名',emergency_name:'緊急聯絡人',emergency_phone:'緊急聯絡電話',dietary_need:'飲食需求',special_identity:'特殊身分類別',medical_notes:'身體特殊狀況',donor_name:'捐款人姓名',receipt_title:'收據抬頭',receipt_id:'收據 ID',payment_method:'付款方式',insurance_consent:'保險個資同意',truth_consent:'資料正確確認',privacy_consent:'個資與活動規範同意',receipt_consent:'收據資料傳送同意',exception_reason:'例外原因'};
+const FIELD_LABELS={player_name:'球員姓名',guardian_name:'家長／監護人姓名',guardian_phone:'家長手機',email:'家長 Email',line_id:'LINE ID',national_id:'球員身分證字號',postal_code:'郵遞區號',receipt_address:'收據寄送地址',birthday:'出生日期',school_stage:'營會時就讀階段',school_name:'學校名稱',height_cm:'身高',weight_kg:'體重',basketball_years:'球齡',primary_position:'主要位置',dominant_hand:'慣用手',competition_level:'比賽經驗',jersey_size:'球衣尺寸',jersey_number:'希望背號',jersey_name:'球衣姓名',emergency_name:'緊急聯絡人',emergency_phone:'緊急聯絡電話',dietary_need:'飲食需求',special_identity:'特殊身分類別',medical_status:'身體特殊狀況有無',medical_notes:'特殊狀況說明',donor_name:'捐款人姓名',receipt_title:'收據抬頭',receipt_id:'收據 ID',payment_method:'付款方式',insurance_consent:'保險個資同意',truth_consent:'資料正確確認',privacy_consent:'個資與活動規範同意',receipt_consent:'收據資料傳送同意',exception_reason:'例外原因'};
 
 function taipeiDate(){
   const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
@@ -92,7 +92,28 @@ async function loadJerseyAvailability(){
 }
 
 function renderReceipt(){
-  form.elements.receipt_id.required=form.elements.tax_upload_consent.checked;
+  const noReceipt=form.elements.no_receipt.checked;
+  const fields=$('#receipt-fields'),consentRow=$('#receipt-consent-row');
+  fields.hidden=noReceipt;
+  consentRow.hidden=noReceipt;
+  $$('input,select,textarea',fields).forEach(control=>control.disabled=noReceipt);
+  for(const name of ['donor_name','receipt_title','receipt_address'])form.elements[name].required=!noReceipt;
+  form.elements.receipt_consent.disabled=noReceipt;
+  form.elements.receipt_consent.required=!noReceipt;
+  if(noReceipt){
+    form.elements.receipt_consent.checked=false;
+    form.elements.tax_upload_consent.checked=false;
+    form.elements.public_credit.checked=false;
+  }
+  form.elements.receipt_id.required=!noReceipt&&form.elements.tax_upload_consent.checked;
+}
+
+function renderMedical(){
+  const has=form.elements.medical_status.value==='has';
+  $('#medical-details').hidden=!has;
+  form.elements.medical_notes.required=has;
+  if(!has)form.elements.medical_notes.value='';
+  $$('#medical-status-choice .choice').forEach(label=>label.classList.toggle('selected',Boolean($('input',label)?.checked)));
 }
 
 function renderPaymentChoice(){
@@ -119,6 +140,8 @@ form.elements.eligibility_exception.addEventListener('change',renderException);
 form.elements.national_id.addEventListener('input',event=>{event.target.value=event.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10);});
 form.elements.receipt_id.addEventListener('input',event=>{event.target.value=event.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10);});
 form.elements.tax_upload_consent.addEventListener('change',renderReceipt);
+form.elements.no_receipt.addEventListener('change',renderReceipt);
+form.elements.medical_status.forEach(input=>input.addEventListener('change',renderMedical));
 form.elements.payment_method.forEach(input=>input.addEventListener('change',renderPaymentChoice));
 form.elements.guardian_name.addEventListener('blur',()=>{
   if(!form.elements.donor_name.value)form.elements.donor_name.value=form.elements.guardian_name.value;
@@ -150,7 +173,7 @@ function showMessage(text,success=false){
 
 function finishForm(label){
   form.reset();
-  renderPricing();renderFriendCode();renderEligibility();renderException();renderReceipt();renderPaymentChoice();
+  renderPricing();renderFriendCode();renderEligibility();renderException();renderMedical();renderReceipt();renderPaymentChoice();
   const submit=$('.submit');
   submit.disabled=true;
   submit.classList.add('completed');
@@ -212,7 +235,7 @@ async function createCheckout(){
     if(data.status!=='checkout'||!data.gateway||!data.fields)throw new Error('checkout_unavailable');
     postToGateway(data.gateway,data.fields);
   }catch(error){
-    const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',consent_required:'請完成所有必要同意項目。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選其他付款方式。'};
+    const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',medical_status_required:'請選擇身體特殊狀況「有」或「無」；選擇「有」時請補充說明。',consent_required:'請完成所有必要同意項目。',receipt_preference_failed:'目前無法儲存收據選擇，請稍後再試。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選其他付款方式。'};
     dialog.close();
     showMessage(labels[error.message]||'目前無法建立付款，資料尚未重複送出，請稍後再試。');
   }finally{
@@ -252,6 +275,7 @@ dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();
 renderPricing();
 renderFriendCode();
 renderEligibility();
+renderMedical();
 loadJerseyAvailability();
 loadPaymentConfiguration();
 applyJerseyDeadline();
