@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="heat-camp-2027.css">
-  <script type="module" src="heat-camp-2027-test.mjs?v=20261006-signature3"></script>
+  <link rel="stylesheet" href="heat-camp-2027.css?v=20261006-payment1">
+  <script type="module" src="heat-camp-2027-test.mjs?v=20261006-payment1"></script>
 </head>
 <body>
   <header class="topbar">
@@ -171,8 +171,17 @@
           <p class="field-note">匯入思遠平台的備註只包含報名編號與球員姓名，不會傳送球員保險用身分證字號、健康資料或球衣資料。</p>
         </fieldset>
 
+        <fieldset id="payment-section">
+          <legend><span>08</span>付款方式</legend>
+          <p class="fieldset-note">請選擇這次要使用的付款方式。每筆報名都會建立獨立付款訂單。</p>
+          <div class="choice-grid" id="payment-choice-grid">
+            <label class="choice"><input type="radio" name="payment_method" value="atm" required><b>ATM 虛擬帳號</b><small>取得專屬帳號後，於期限內轉帳</small></label>
+            <label class="choice unavailable" id="credit-choice"><input type="radio" name="payment_method" value="credit" disabled><b>信用卡</b><small id="credit-status">商店尚未啟用，暫時無法選擇</small></label>
+          </div>
+        </fieldset>
+
         <fieldset>
-          <legend><span>08</span>確認與同意</legend>
+          <legend><span>09</span>確認與同意</legend>
           <div class="agreements">
             <label class="check"><input type="checkbox" name="insurance_consent" required>我同意主辦單位將必要個人資料提供給保險公司辦理旅遊平安保險。</label>
             <label class="check"><input type="checkbox" name="truth_consent" required>我確認以上資料正確，並已完整告知球員健康與運動限制。</label>

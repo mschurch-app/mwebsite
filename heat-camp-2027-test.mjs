@@ -11,6 +11,7 @@ const jerseySelect=$('#jersey-number');
 const JERSEY_AVAILABILITY_URL='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-registration';
 const boolFields=['eligibility_exception','tax_upload_consent','public_credit','insurance_consent','privacy_consent','receipt_consent','truth_consent'];
 let submitting=false;
+const FIELD_LABELS={player_name:'球員姓名',guardian_name:'家長／監護人姓名',guardian_phone:'家長手機',email:'家長 Email',line_id:'LINE ID',national_id:'球員身分證字號',postal_code:'郵遞區號',receipt_address:'收據寄送地址',birthday:'出生日期',school_stage:'營會時就讀階段',school_name:'學校名稱',height_cm:'身高',weight_kg:'體重',basketball_years:'球齡',primary_position:'主要位置',dominant_hand:'慣用手',competition_level:'比賽經驗',jersey_size:'球衣尺寸',jersey_number:'希望背號',jersey_name:'球衣姓名',emergency_name:'緊急聯絡人',emergency_phone:'緊急聯絡電話',dietary_need:'飲食需求',special_identity:'特殊身分類別',medical_notes:'身體特殊狀況',donor_name:'捐款人姓名',receipt_title:'收據抬頭',receipt_id:'收據 ID',payment_method:'付款方式',insurance_consent:'保險個資同意',truth_consent:'資料正確確認',privacy_consent:'個資與活動規範同意',receipt_consent:'收據資料傳送同意',exception_reason:'例外原因'};
 
 function taipeiDate(){
   const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
@@ -94,6 +95,21 @@ function renderReceipt(){
   form.elements.receipt_id.required=form.elements.tax_upload_consent.checked;
 }
 
+function renderPaymentChoice(){
+  $$('#payment-choice-grid .choice').forEach(label=>label.classList.toggle('selected',Boolean($('input',label)?.checked)));
+}
+
+async function loadPaymentConfiguration(){
+  try{
+    const response=await fetch(JERSEY_AVAILABILITY_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'configuration_status'})});
+    const data=await response.json();
+    const enabled=Boolean(response.ok&&data.ok&&data.payment_methods?.credit);
+    form.elements.payment_method.forEach(input=>{if(input.value==='credit')input.disabled=!enabled;});
+    $('#credit-choice').classList.toggle('unavailable',!enabled);
+    $('#credit-status').textContent=enabled?'即時完成線上付款':'商店尚未啟用，暫時無法選擇';
+  }catch{}
+}
+
 $$('input[name="pricing_mode"]').forEach(input=>input.addEventListener('change',renderPricing));
 form.elements.friend_action.addEventListener('change',renderFriendCode);
 form.elements.school_stage.addEventListener('change',renderEligibility);
@@ -101,6 +117,7 @@ form.elements.eligibility_exception.addEventListener('change',renderException);
 form.elements.national_id.addEventListener('input',event=>{event.target.value=event.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10);});
 form.elements.receipt_id.addEventListener('input',event=>{event.target.value=event.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10);});
 form.elements.tax_upload_consent.addEventListener('change',renderReceipt);
+form.elements.payment_method.forEach(input=>input.addEventListener('change',renderPaymentChoice));
 form.elements.guardian_name.addEventListener('blur',()=>{
   if(!form.elements.donor_name.value)form.elements.donor_name.value=form.elements.guardian_name.value;
   if(!form.elements.receipt_title.value)form.elements.receipt_title.value=form.elements.guardian_name.value;
@@ -127,6 +144,23 @@ function showMessage(text,success=false){
   message.hidden=false;
   message.dataset.success=success?'true':'false';
   message.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function showValidationErrors(){
+  form.querySelectorAll('.field-error').forEach(node=>node.classList.remove('field-error'));
+  form.querySelectorAll('[aria-invalid="true"]').forEach(node=>node.removeAttribute('aria-invalid'));
+  const invalid=[...form.querySelectorAll('[required]')].filter(control=>!control.disabled&&!control.checkValidity());
+  const items=[],seen=new Set();
+  for(const control of invalid){
+    if(seen.has(control.name))continue;seen.add(control.name);
+    const empty=['checkbox','radio'].includes(control.type)?!control.checked:!String(control.value||'').trim();
+    items.push(`${FIELD_LABELS[control.name]||control.name}${empty?'':'（格式不正確）'}`);
+    control.setAttribute('aria-invalid','true');
+    control.closest('.choice,.check,label')?.classList.add('field-error');
+  }
+  const message=$('#form-message');message.replaceChildren(document.createTextNode('請完成以下欄位：'));
+  const list=document.createElement('ul');list.className='missing-list';for(const item of items){const li=document.createElement('li');li.textContent=item;list.append(li);}message.append(list);message.hidden=false;message.dataset.success='false';
+  const first=invalid[0];first?.closest('label,fieldset')?.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>first?.focus({preventScroll:true}),350);
 }
 
 function postToGateway(gateway,fields){
@@ -166,7 +200,7 @@ async function createCheckout(){
     if(data.status!=='checkout'||!data.gateway||!data.fields)throw new Error('checkout_unavailable');
     postToGateway(data.gateway,data.fields);
   }catch(error){
-    const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',consent_required:'請完成所有必要同意項目。',payment_config_invalid:'付款服務設定尚未完成。'};
+    const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',consent_required:'請完成所有必要同意項目。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選 ATM 虛擬帳號。'};
     dialog.close();
     showMessage(labels[error.message]||'目前無法建立付款，資料尚未重複送出，請稍後再試。');
   }finally{
@@ -182,9 +216,7 @@ form.addEventListener('submit',event=>{
   const message=$('#form-message');
   message.hidden=true;
   if(!form.checkValidity()){
-    form.reportValidity();
-    message.textContent='還有必填資料尚未完成，請依欄位提示補齊。';
-    message.hidden=false;
+    showValidationErrors();
     return;
   }
   if(form.elements.school_stage.value==='elementary_6_or_below'&&!form.elements.eligibility_exception.checked){
@@ -209,8 +241,10 @@ renderPricing();
 renderFriendCode();
 renderEligibility();
 loadJerseyAvailability();
+loadPaymentConfiguration();
 applyJerseyDeadline();
 renderReceipt();
+renderPaymentChoice();
 
 const paymentParams=new URLSearchParams(location.search),paymentState=paymentParams.get('payment'),paymentCode=paymentParams.get('code')||'',paymentMessage=paymentParams.get('message')||'';
 if(paymentState==='paid'){
