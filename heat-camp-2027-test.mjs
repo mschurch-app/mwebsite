@@ -211,11 +211,11 @@ loadJerseyAvailability();
 applyJerseyDeadline();
 renderReceipt();
 
-const paymentState=new URLSearchParams(location.search).get('payment');
+const paymentParams=new URLSearchParams(location.search),paymentState=paymentParams.get('payment'),paymentCode=paymentParams.get('code')||'',paymentMessage=paymentParams.get('message')||'';
 if(paymentState==='paid'){
   sessionStorage.removeItem('heat-camp-request-id');
   showMessage('付款成功，報名已完成。付款入帳後將依填寫資料開立收據。',true);
 }else if(paymentState==='account-issued'){
   sessionStorage.removeItem('heat-camp-request-id');
   showMessage('ATM 虛擬帳號已建立，請依藍新顯示的期限完成轉帳。入帳後才會正式保留名額。',true);
-}else if(paymentState==='failed')showMessage('付款尚未完成，請確認付款資料後重新操作。');
+}else if(paymentState==='failed')showMessage(`付款尚未完成。${paymentCode?` 錯誤代碼：${paymentCode}。`:''}${paymentMessage?` ${paymentMessage}`:' 請確認付款資料後重新操作。'}`);
