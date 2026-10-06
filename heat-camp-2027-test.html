@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="heat-camp-2027.css?v=20261006-payment1">
-  <script type="module" src="heat-camp-2027-test.mjs?v=20261006-payment1"></script>
+  <link rel="stylesheet" href="heat-camp-2027.css?v=20261006-payment2">
+  <script type="module" src="heat-camp-2027-test.mjs?v=20261006-payment2"></script>
 </head>
 <body>
   <header class="topbar">
@@ -175,8 +175,11 @@
           <legend><span>08</span>付款方式</legend>
           <p class="fieldset-note">請選擇這次要使用的付款方式。每筆報名都會建立獨立付款訂單。</p>
           <div class="choice-grid" id="payment-choice-grid">
-            <label class="choice"><input type="radio" name="payment_method" value="atm" required><b>ATM 虛擬帳號</b><small>取得專屬帳號後，於期限內轉帳</small></label>
-            <label class="choice unavailable" id="credit-choice"><input type="radio" name="payment_method" value="credit" disabled><b>信用卡</b><small id="credit-status">商店尚未啟用，暫時無法選擇</small></label>
+            <label class="choice payment-choice" data-payment="card"><input type="radio" name="payment_method" value="card" required><b>信用卡／行動支付</b><small>信用卡、Apple Pay、Google Pay、Samsung Pay</small></label>
+            <label class="choice payment-choice" data-payment="webatm"><input type="radio" name="payment_method" value="webatm"><b>WebATM</b><small>使用晶片金融卡線上轉帳</small></label>
+            <label class="choice payment-choice" data-payment="atm"><input type="radio" name="payment_method" value="atm"><b>ATM 虛擬帳號</b><small>取得專屬帳號後，於期限內轉帳</small></label>
+            <label class="choice payment-choice" data-payment="cvs"><input type="radio" name="payment_method" value="cvs"><b>超商代碼</b><small>取得代碼後至超商機台或櫃檯繳費</small></label>
+            <label class="choice payment-choice" data-payment="barcode"><input type="radio" name="payment_method" value="barcode"><b>超商條碼</b><small>取得繳費條碼後至超商櫃檯付款</small></label>
           </div>
         </fieldset>
 
@@ -233,7 +236,7 @@
       <p><span>方案</span><strong id="confirm-plan">—</strong></p>
       <p><span>應付金額</span><strong id="confirm-price">—</strong></p>
     </div>
-    <p>確認後會安全送出報名資料，並前往藍新金流選擇信用卡或 ATM 虛擬帳號付款。</p>
+    <p>確認後會安全送出報名資料，並前往藍新金流完成所選付款方式。</p>
     <button class="dialog-confirm" type="button">確認並前往付款</button>
   </dialog>
 </body>

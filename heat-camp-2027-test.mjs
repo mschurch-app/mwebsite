@@ -103,10 +103,12 @@ async function loadPaymentConfiguration(){
   try{
     const response=await fetch(JERSEY_AVAILABILITY_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'configuration_status'})});
     const data=await response.json();
-    const enabled=Boolean(response.ok&&data.ok&&data.payment_methods?.credit);
-    form.elements.payment_method.forEach(input=>{if(input.value==='credit')input.disabled=!enabled;});
-    $('#credit-choice').classList.toggle('unavailable',!enabled);
-    $('#credit-status').textContent=enabled?'即時完成線上付款':'商店尚未啟用，暫時無法選擇';
+    if(!response.ok||!data.ok)throw new Error('unavailable');
+    form.elements.payment_method.forEach(input=>{
+      const enabled=Boolean(data.payment_methods?.[input.value]);
+      input.disabled=!enabled;
+      input.closest('.payment-choice')?.classList.toggle('unavailable',!enabled);
+    });
   }catch{}
 }
 
@@ -200,7 +202,7 @@ async function createCheckout(){
     if(data.status!=='checkout'||!data.gateway||!data.fields)throw new Error('checkout_unavailable');
     postToGateway(data.gateway,data.fields);
   }catch(error){
-    const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',consent_required:'請完成所有必要同意項目。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選 ATM 虛擬帳號。'};
+    const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',consent_required:'請完成所有必要同意項目。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選其他付款方式。'};
     dialog.close();
     showMessage(labels[error.message]||'目前無法建立付款，資料尚未重複送出，請稍後再試。');
   }finally{
@@ -252,5 +254,5 @@ if(paymentState==='paid'){
   showMessage('付款成功，報名已完成。付款入帳後將依填寫資料開立收據。',true);
 }else if(paymentState==='account-issued'){
   localStorage.removeItem('heat-camp-request-id');sessionStorage.removeItem('heat-camp-request-id');
-  showMessage('ATM 虛擬帳號已建立，請依藍新顯示的期限完成轉帳。入帳後才會正式保留名額。',true);
+  showMessage('繳費帳號、代碼或條碼已建立，請依藍新顯示的期限完成付款。入帳後才會正式保留名額。',true);
 }else if(paymentState==='failed')showMessage(`付款尚未完成。${paymentCode?` 錯誤代碼：${paymentCode}。`:''}${paymentMessage?` ${paymentMessage}`:' 請確認付款資料後重新操作。'}`);
