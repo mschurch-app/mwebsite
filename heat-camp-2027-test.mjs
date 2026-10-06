@@ -115,8 +115,8 @@ function registrationPayload(){
 }
 
 function requestId(){
-  let value=sessionStorage.getItem('heat-camp-request-id');
-  if(!value){value=crypto.randomUUID();sessionStorage.setItem('heat-camp-request-id',value);}
+  let value=localStorage.getItem('heat-camp-request-id');
+  if(!value){value=crypto.randomUUID();localStorage.setItem('heat-camp-request-id',value);}
   return value;
 }
 
@@ -155,7 +155,7 @@ async function createCheckout(){
     const data=await response.json().catch(()=>({}));
     if(!response.ok||!data.ok)throw new Error(data.error||'registration_failed');
     if(data.status==='exception_review'){
-      sessionStorage.removeItem('heat-camp-request-id');
+      localStorage.removeItem('heat-camp-request-id');
       dialog.close();
       showMessage(`已收到例外資格申請，報名編號 ${data.registration_no}。審核通過後才會通知付款。`,true);
       form.reset();
@@ -213,9 +213,9 @@ renderReceipt();
 
 const paymentParams=new URLSearchParams(location.search),paymentState=paymentParams.get('payment'),paymentCode=paymentParams.get('code')||'',paymentMessage=paymentParams.get('message')||'';
 if(paymentState==='paid'){
-  sessionStorage.removeItem('heat-camp-request-id');
+  localStorage.removeItem('heat-camp-request-id');
   showMessage('付款成功，報名已完成。付款入帳後將依填寫資料開立收據。',true);
 }else if(paymentState==='account-issued'){
-  sessionStorage.removeItem('heat-camp-request-id');
+  localStorage.removeItem('heat-camp-request-id');
   showMessage('ATM 虛擬帳號已建立，請依藍新顯示的期限完成轉帳。入帳後才會正式保留名額。',true);
 }else if(paymentState==='failed')showMessage(`付款尚未完成。${paymentCode?` 錯誤代碼：${paymentCode}。`:''}${paymentMessage?` ${paymentMessage}`:' 請確認付款資料後重新操作。'}`);
