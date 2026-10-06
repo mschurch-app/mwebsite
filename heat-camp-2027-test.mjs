@@ -148,6 +148,16 @@ function showMessage(text,success=false){
   message.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
+function finishForm(label){
+  form.reset();
+  renderPricing();renderFriendCode();renderEligibility();renderException();renderReceipt();renderPaymentChoice();
+  const submit=$('.submit');
+  submit.disabled=true;
+  submit.classList.add('completed');
+  $('span',submit).textContent=label;
+  $('b',submit).textContent='✓';
+}
+
 function showValidationErrors(){
   form.querySelectorAll('.field-error').forEach(node=>node.classList.remove('field-error'));
   form.querySelectorAll('[aria-invalid="true"]').forEach(node=>node.removeAttribute('aria-invalid'));
@@ -251,8 +261,10 @@ renderPaymentChoice();
 const paymentParams=new URLSearchParams(location.search),paymentState=paymentParams.get('payment'),paymentCode=paymentParams.get('code')||'',paymentMessage=paymentParams.get('message')||'';
 if(paymentState==='paid'){
   localStorage.removeItem('heat-camp-request-id');sessionStorage.removeItem('heat-camp-request-id');
+  finishForm('報名與付款已完成');
   showMessage('付款成功，報名已完成。付款入帳後將依填寫資料開立收據。',true);
 }else if(paymentState==='account-issued'){
   localStorage.removeItem('heat-camp-request-id');sessionStorage.removeItem('heat-camp-request-id');
+  finishForm('付款資料已建立');
   showMessage('繳費帳號、代碼或條碼已建立，請依藍新顯示的期限完成付款。入帳後才會正式保留名額。',true);
 }else if(paymentState==='failed')showMessage(`付款尚未完成。${paymentCode?` 錯誤代碼：${paymentCode}。`:''}${paymentMessage?` ${paymentMessage}`:' 請確認付款資料後重新操作。'}`);
