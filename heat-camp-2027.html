@@ -216,10 +216,16 @@
 
   <dialog id="preview-dialog">
     <button class="dialog-close" type="button" aria-label="關閉">×</button>
-    <p class="section-kicker">PREVIEW</p>
-    <h2>報名頁設計預覽</h2>
-    <p>目前已完成表單、資格判斷與價格介面。藍新測試商店金鑰設定完成後，才會正式建立付款帳號並儲存資料。</p>
-    <button class="dialog-confirm" type="button">返回繼續檢視</button>
+    <p class="section-kicker">CONFIRM</p>
+    <h2>確認報名資料</h2>
+    <div class="checkout-review">
+      <p><span>球員</span><strong id="confirm-player">—</strong></p>
+      <p><span>家長</span><strong id="confirm-guardian">—</strong></p>
+      <p><span>方案</span><strong id="confirm-plan">—</strong></p>
+      <p><span>應付金額</span><strong id="confirm-price">—</strong></p>
+    </div>
+    <p>確認後會安全送出報名資料，並前往藍新金流選擇信用卡或 ATM 虛擬帳號付款。</p>
+    <button class="dialog-confirm" type="button">確認並前往付款</button>
   </dialog>
 </body>
 </html>

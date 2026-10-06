@@ -9,6 +9,8 @@ const exceptionReason=$('#exception-reason');
 const dialog=$('#preview-dialog');
 const jerseySelect=$('#jersey-number');
 const JERSEY_AVAILABILITY_URL='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-registration';
+const boolFields=['eligibility_exception','tax_upload_consent','public_credit','insurance_consent','privacy_consent','receipt_consent','truth_consent'];
+let submitting=false;
 
 function taipeiDate(){
   const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
@@ -104,6 +106,76 @@ form.elements.guardian_name.addEventListener('blur',()=>{
   if(!form.elements.receipt_title.value)form.elements.receipt_title.value=form.elements.guardian_name.value;
 });
 
+function registrationPayload(){
+  const formData=new FormData(form);
+  const data=Object.fromEntries(formData);
+  data.training_goals=formData.getAll('training_goals');
+  for(const name of boolFields)data[name]=form.elements[name].checked;
+  return data;
+}
+
+function requestId(){
+  let value=sessionStorage.getItem('heat-camp-request-id');
+  if(!value){value=crypto.randomUUID();sessionStorage.setItem('heat-camp-request-id',value);}
+  return value;
+}
+
+function showMessage(text,success=false){
+  const message=$('#form-message');
+  message.textContent=text;
+  message.hidden=false;
+  message.dataset.success=success?'true':'false';
+  message.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function postToGateway(gateway,fields){
+  const payment=document.createElement('form');
+  payment.method='POST';
+  payment.action=gateway;
+  payment.hidden=true;
+  for(const [name,value] of Object.entries(fields)){
+    const input=document.createElement('input');
+    input.name=name;
+    input.value=String(value);
+    payment.append(input);
+  }
+  document.body.append(payment);
+  payment.submit();
+}
+
+async function createCheckout(){
+  if(submitting)return;
+  submitting=true;
+  const confirm=$('.dialog-confirm'),submit=$('.submit');
+  confirm.disabled=true;
+  submit.disabled=true;
+  confirm.textContent='正在建立安全付款…';
+  try{
+    const response=await fetch(JERSEY_AVAILABILITY_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'create_checkout',request_id:requestId(),registration:registrationPayload()})});
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok||!data.ok)throw new Error(data.error||'registration_failed');
+    if(data.status==='exception_review'){
+      sessionStorage.removeItem('heat-camp-request-id');
+      dialog.close();
+      showMessage(`已收到例外資格申請，報名編號 ${data.registration_no}。審核通過後才會通知付款。`,true);
+      form.reset();
+      renderPricing();renderFriendCode();renderEligibility();
+      return;
+    }
+    if(data.status!=='checkout'||!data.gateway||!data.fields)throw new Error('checkout_unavailable');
+    postToGateway(data.gateway,data.fields);
+  }catch(error){
+    const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',consent_required:'請完成所有必要同意項目。',payment_config_invalid:'付款服務設定尚未完成。'};
+    dialog.close();
+    showMessage(labels[error.message]||'目前無法建立付款，資料尚未重複送出，請稍後再試。');
+  }finally{
+    submitting=false;
+    confirm.disabled=false;
+    submit.disabled=false;
+    confirm.textContent='確認並前往付款';
+  }
+}
+
 form.addEventListener('submit',event=>{
   event.preventDefault();
   const message=$('#form-message');
@@ -120,11 +192,16 @@ form.addEventListener('submit',event=>{
     eligibilityAlert.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
+  const plan=currentPlan();
+  $('#confirm-player').textContent=form.elements.player_name.value;
+  $('#confirm-guardian').textContent=form.elements.guardian_name.value;
+  $('#confirm-plan').textContent=plan.label;
+  $('#confirm-price').textContent=`NT$ ${plan.price.toLocaleString('zh-TW')}`;
   dialog.showModal();
 });
 
 $('.dialog-close').addEventListener('click',()=>dialog.close());
-$('.dialog-confirm').addEventListener('click',()=>dialog.close());
+$('.dialog-confirm').addEventListener('click',createCheckout);
 dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});
 
 renderPricing();
@@ -133,3 +210,12 @@ renderEligibility();
 loadJerseyAvailability();
 applyJerseyDeadline();
 renderReceipt();
+
+const paymentState=new URLSearchParams(location.search).get('payment');
+if(paymentState==='paid'){
+  sessionStorage.removeItem('heat-camp-request-id');
+  showMessage('付款成功，報名已完成。付款入帳後將依填寫資料開立收據。',true);
+}else if(paymentState==='account-issued'){
+  sessionStorage.removeItem('heat-camp-request-id');
+  showMessage('ATM 虛擬帳號已建立，請依藍新顯示的期限完成轉帳。入帳後才會正式保留名額。',true);
+}else if(paymentState==='failed')showMessage('付款尚未完成，請確認付款資料後重新操作。');
