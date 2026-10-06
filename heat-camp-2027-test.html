@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#101716">
   <meta name="robots" content="noindex,nofollow">
-  <title>不只要變強，還要成為更有價值的 MVP｜2027 熱火籃球營</title>
+  <title>付款串接測試｜2027 熱火籃球營</title>
   <meta name="description" content="2027 熱火籃球營「不只要變強，還要成為更有價值的 MVP」：7 月 12 日至 15 日，台中東海大學，限量 100 名。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="heat-camp-2027.css">
-  <script type="module" src="heat-camp-2027.mjs"></script>
+  <script type="module" src="heat-camp-2027-test.mjs"></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="index.html" aria-label="回到 M+ 大雅教會首頁"><span class="brand-mark">M+</span><span>熱火籃球營</span></a>
-    <span class="capacity-pill"><b>100</b> 名限定</span>
+    <span class="capacity-pill"><b>TEST</b> 測試環境・不會扣款</span>
   </header>
 
   <main>
@@ -216,10 +216,16 @@
 
   <dialog id="preview-dialog">
     <button class="dialog-close" type="button" aria-label="關閉">×</button>
-    <p class="section-kicker">PREVIEW</p>
-    <h2>報名頁設計預覽</h2>
-    <p>目前已完成表單、資格判斷與價格介面。藍新測試商店金鑰設定完成後，才會正式建立付款帳號並儲存資料。</p>
-    <button class="dialog-confirm" type="button">返回繼續檢視</button>
+    <p class="section-kicker">CONFIRM</p>
+    <h2>確認報名資料</h2>
+    <div class="checkout-review">
+      <p><span>球員</span><strong id="confirm-player">—</strong></p>
+      <p><span>家長</span><strong id="confirm-guardian">—</strong></p>
+      <p><span>方案</span><strong id="confirm-plan">—</strong></p>
+      <p><span>應付金額</span><strong id="confirm-price">—</strong></p>
+    </div>
+    <p>確認後會安全送出報名資料，並前往藍新金流選擇信用卡或 ATM 虛擬帳號付款。</p>
+    <button class="dialog-confirm" type="button">確認並前往付款</button>
   </dialog>
 </body>
 </html>
