@@ -7,6 +7,8 @@ const friendCodeField=$('#friend-code-field');
 const eligibilityAlert=$('#eligibility-alert');
 const exceptionReason=$('#exception-reason');
 const dialog=$('#preview-dialog');
+const jerseySelect=$('#jersey-number');
+const JERSEY_AVAILABILITY_URL='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-registration';
 
 function taipeiDate(){
   const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
@@ -60,6 +62,32 @@ function applyJerseyDeadline(){
   ['jersey_size','jersey_number','jersey_name'].forEach(name=>{form.elements[name].disabled=true;form.elements[name].required=false;});
 }
 
+function renderJerseyNumbers(unavailable=[]){
+  const blocked=new Set(unavailable.map(Number));
+  const current=jerseySelect.value;
+  jerseySelect.replaceChildren(new Option('請選擇背號',''));
+  for(let number=0;number<=99;number++){
+    if(blocked.has(number))continue;
+    jerseySelect.append(new Option(String(number).padStart(2,'0'),String(number)));
+  }
+  if(current&&!blocked.has(Number(current)))jerseySelect.value=current;
+  const remaining=100-blocked.size;
+  $('#jersey-availability-note').textContent=`目前還有 ${remaining} 個背號可選。送出時會再次檢查；取得付款帳號後保留 72 小時，逾期未付款會釋出。`;
+}
+
+async function loadJerseyAvailability(){
+  try{
+    const response=await fetch(JERSEY_AVAILABILITY_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'jersey_availability'})});
+    const data=await response.json();
+    if(!response.ok||!data.ok||!Array.isArray(data.numbers))throw new Error('unavailable');
+    const available=new Set(data.numbers.map(Number));
+    renderJerseyNumbers(Array.from({length:100},(_,number)=>number).filter(number=>!available.has(number)));
+  }catch{
+    renderJerseyNumbers();
+    $('#jersey-availability-note').textContent='目前為報名頁預覽；正式開放後，已被選走的背號不會出現在清單中。球衣尺寸仍須選擇。';
+  }
+}
+
 function renderReceipt(){
   form.elements.receipt_id.required=form.elements.tax_upload_consent.checked;
 }
@@ -102,5 +130,6 @@ dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();
 renderPricing();
 renderFriendCode();
 renderEligibility();
+loadJerseyAvailability();
 applyJerseyDeadline();
 renderReceipt();

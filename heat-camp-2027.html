@@ -139,11 +139,11 @@
           <legend><span>05</span>專屬球衣</legend>
           <p class="fieldset-note">2027/6/30 前完成報名，可選球衣尺寸、背號與印製姓名；逾期由主辦單位統一安排。</p>
           <div class="fields three">
-            <label>球衣尺寸<select name="jersey_size" required><option value="">請選擇</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option></select></label>
-            <label>希望背號<input name="jersey_number" type="number" inputmode="numeric" min="0" max="99" required placeholder="0–99"></label>
+            <label>球衣尺寸（必選）<select name="jersey_size" required><option value="">請選擇尺寸</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option></select></label>
+            <label>希望背號<select name="jersey_number" id="jersey-number" required><option value="">載入目前可選背號…</option></select></label>
             <label>球衣姓名<input name="jersey_name" maxlength="12" required placeholder="英文或中文，最多 12 字"></label>
           </div>
-          <p class="field-note">背號若重複，將依完成付款順序協調；印製送出後無法修改。</p>
+          <p class="field-note" id="jersey-availability-note">請先選尺寸；背號清單只顯示目前可選的號碼。送出時會再次檢查，取得付款帳號後保留 72 小時。</p>
         </fieldset>
 
         <fieldset>
