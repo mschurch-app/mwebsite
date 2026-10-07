@@ -40,8 +40,10 @@
 
 ## 每日 Email 開發報告現況與建議
 
-- 本次沒有在 repository 找到 SMTP、Email provider、寄信 Edge Function 或 GitHub Actions 郵件服務。
+- 原本沒有寄信服務；本次新增 `.github/workflows/daily-codex-report.yml` 與 `scripts/send_codex_daily_report.py` 作為每日報告流程。
 - 已決定排程為台灣時間每日 21:00（GitHub Actions cron 對應 `0 13 * * *` UTC）。
-- 建議採 GitHub Actions + 已驗證寄件網域的 Email API（例如 Resend），透過 repository/environment secret 儲存 `RESEND_API_KEY`，以受控設定提供已驗證的寄件地址，收件地址為 `james@tcsc.org.tw`。報告資料只取 Codex 日誌、commit、workflow 結果及明確紀錄的 DB 異動，不附帶 secrets 或業務資料。
+- 寄信使用 Resend API；GitHub Actions 需設定 secret `RESEND_API_KEY`，及 variable `REPORT_FROM_EMAIL`（Resend 已驗證的寄件地址），收件地址固定為 `james@tcsc.org.tw`。API key 僅在寄信步驟以環境變數提供，程式不輸出 key 或 API 回應內容。
+- 報告由 `docs/codex-log/YYYY-MM-DD.md` 產生，保留 Build/Test/Lint/Typecheck、Git、Database、風險、未完成與下一步等狀態；對未同步的日誌會明確表示無法確認，不推定系統正常或資料庫無異動。Resend request 使用日期作為 idempotency key；Resend 目前提供 24 小時去重，降低短時間 workflow 重跑造成的重複寄送。
+- `workflow_dispatch` 預設為 dry-run，只在 Actions log 顯示預覽；手動執行時取消 dry-run 才會寄信。每日排程會正常寄送。
 - Gmail 連線可由目前對話手動寄信，但沒有提供可供 GitHub Actions 定時執行的授權方式，故不視為現成自動寄信機制。
-- GitHub Actions 只看得到已 push 的內容；報告會以當日已同步紀錄為準。啟用前需核准 Email API 服務並完成寄件網域驗證、加入 API key secret，以及將 workflow 推送至 repository。尚未建立寄信流程，也沒有寄送任何郵件。
+- GitHub Actions 的排程工作只會在預設分支執行，且排程可能因平台負載稍晚；報告只涵蓋已同步到 GitHub 預設分支的當日紀錄。本次 workflow 尚未推送/合併，Resend secret 與寄件地址也尚未設定，因此尚未啟用、沒有寄送郵件。

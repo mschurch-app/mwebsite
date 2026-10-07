@@ -35,6 +35,7 @@
 - GitHub Pages：靜態網站託管，正式自訂網域由根目錄 `CNAME` 指向 `mchurch.online`。
 - Supabase：資料庫、RPC、Storage/Edge Functions。
 - YouTube：公開影片 feed；GitHub Actions 定期更新講道資料。
+- Resend：每日 Codex 開發報告 Email API；透過 GitHub Actions secret 與 variable 設定，不把憑證存入 repository。
 - LINE：新朋友接待通知。
 - Google Analytics 4：頁面中可見追蹤代碼。
 - 籃球營程式碼包含藍新金流串接方向；尚未提交的測試頁需先審查，不能由本次盤點推定正式金流已核准或啟用。
@@ -42,8 +43,9 @@
 ## GitHub / deployment 關係
 
 - Remote：`git@github.com:mschurch-app/mwebsite.git`。
-- 可見 workflow：`.github/workflows/update-sermons.yml`，排程執行 `scripts/update-sermons.py`；若 `sermons-data.json` 改變，workflow 會 commit 並 push。
+- 可見 workflows：`.github/workflows/update-sermons.yml` 定期更新 YouTube 主日信息資料；`.github/workflows/daily-codex-report.yml` 預計台灣時間每日 21:00 讀取預設分支的當日工作紀錄並透過 Resend 寄送日報。
 - README 表示網站部署於 GitHub Pages，且 repository 有 `CNAME`。未取得 GitHub Pages 設定頁資訊，因此實際發布 branch、資料夾與部署狀態仍須在 GitHub 核實。
+- 日報 workflow 僅在 `main` 執行；需要合併到預設分支並設定 Resend secret/寄件地址後才會啟用。它不會修改 repository 或網站內容。
 - 沒看到一般網站 build/deploy workflow；GitHub Pages 可能直接發佈靜態來源。
 
 ## 重要目錄與模組

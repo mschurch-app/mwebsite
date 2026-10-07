@@ -21,8 +21,8 @@ M+ 大雅教會網站是已上線使用的靜態網站，正式網域為 `mchurc
 
 - 籃球營測試頁、成功頁及付款流程仍有未提交檔案；尚未確認這些修改是否已完成測試或可部署。
 - 講道字幕／本機處理及網站佈景輔助腳本有未提交的新檔案；尚未確認是否正式採用。
-- 本分支目前比遠端追蹤分支多 6 個 commit（含先前 5 個籃球營金流相關 commit 與 1 個治理文件 commit）；推送前須確認 Pages 發布來源及變更範圍。
-- 每日開發 Email 報告尚未建立；已確認期望為台灣時間每日 21:00，寄信服務與安全憑證尚未設定。
+- 本分支目前比遠端追蹤分支多 7 個 commit（含先前 5 個籃球營金流相關 commit、治理文件與日報實作）；推送前須確認 Pages 發布來源及變更範圍。
+- 每日開發 Email 報告已完成本機實作（GitHub Actions + Resend），時間為台灣時間每日 21:00；尚未推送/合併至預設分支，也未設定 `RESEND_API_KEY` 或已驗證的寄件地址，因此尚未啟用。
 
 ## 已知問題
 
@@ -36,14 +36,14 @@ M+ 大雅教會網站是已上線使用的靜態網站，正式網域為 `mchurc
 - 靜態頁面以多個 HTML、CSS、ES module 檔案組成，缺少一致的建置與自動檢查流程。
 - Supabase migration 的正式來源與網站程式碼分屬不同 repository，容易造成前後端版本落差。
 - 正式／測試籃球營頁面並存，需要明確標示環境並避免測試端點或內容誤部署。
-- 缺少 daily report、部署後 smoke check、可操作的回復說明及定期 secret 掃描。
+- 缺少部署後 smoke check、可操作的回復說明及定期 secret 掃描；每日開發報告流程尚待 GitHub 設定並合併啟用。
 
 ## 下一步建議
 
 1. 先審查目前分支領先的 5 個 commits 與既有未提交變更，確認發布範圍，再同步遠端分支。
 2. 與 Church OS repository 對齊 Supabase migration 的唯一來源、套用流程與回復程序，並建立可追蹤的跨 repository 連結。
 3. 加入不接觸正式資料的基本靜態檢查與部署後 smoke check，再逐步補測試。
-4. 決定每日開發報告寄送時機及寄信服務後，再建立安全的 GitHub Actions secrets 與流程。
+4. 驗證 `mchurch.online` 寄件網域並在 GitHub Actions 設定寄件地址與 Resend API secret，再合併每日報告 workflow 至 `main`。
 
 ## 重要風險
 
