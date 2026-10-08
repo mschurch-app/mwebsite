@@ -944,6 +944,11 @@
     .resource-card:nth-child(2){background:linear-gradient(145deg,#FFF6E6,#FFFFFF);--resource-tint:#FFE2C2}
     .resource-card:nth-child(3){background:linear-gradient(145deg,#EEF6F0,#FFFFFF);--resource-tint:#D3E7DB}
     .resource-card:nth-child(4){background:linear-gradient(145deg,#F8F2E8,#FFFFFF);--resource-tint:#E8D8BD}
+    .resource-card.service-card{grid-column:1/-1;min-height:168px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;background:linear-gradient(120deg,#FFF3E2,#FFFDF8 52%,#EAF4EE);--resource-tint:#FFD5A8}
+    .resource-card.service-card .resource-icon{margin:0;width:62px;height:62px;border-radius:20px;background:#FF7A30;color:#fff;box-shadow:0 13px 28px rgba(255,122,48,.22)}
+    .resource-card.service-card .resource-copy{position:relative;z-index:1}
+    .resource-card.service-card h3{font-size:1.35rem}
+    .resource-card.service-card .resource-cta{position:relative;z-index:1;display:inline-flex;align-items:center;gap:7px;padding:11px 17px;border-radius:999px;background:#285F54;color:#fff;font-size:.86rem;font-weight:800;white-space:nowrap}
     .resource-icon{display:grid;place-items:center;width:50px;height:50px;border-radius:17px;background:#E0F0E8;color:#285F54;margin-bottom:34px;box-shadow:inset 0 0 0 1px rgba(40,95,84,.06)}
     .resource-card.primary .resource-icon{background:rgba(255,255,255,.14);color:#ffd2a1}
     .resource-card h3{position:relative;z-index:1;margin:0 0 8px;font-size:1.18rem;color:#173F38;font-weight:850}
@@ -956,7 +961,7 @@
     .reveal-ready .reveal{opacity:0;transform:translateY(24px)}
     .reveal-ready .reveal.is-visible{opacity:1;transform:none}
     @media(max-width:1040px){.resource-cards{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:760px){.weekly-sunday{padding:52px 0}.weekly-sunday-inner{grid-template-columns:1fr;gap:26px}.weekly-sunday-image{border-radius:18px}.weekly-sunday-copy p{margin-bottom:20px}.weekly-sunday-actions a{flex:1 1 auto}.quick-resources{padding:58px 0}.quick-resources-head{display:block}.quick-resources-head p{margin-top:12px}.resource-cards{grid-template-columns:1fr 1fr;gap:12px}.resource-card{min-height:190px;padding:20px;border-radius:20px}.resource-icon{margin-bottom:24px}.resource-card.primary h3{font-size:1.25rem}}
+    @media(max-width:760px){.weekly-sunday{padding:52px 0}.weekly-sunday-inner{grid-template-columns:1fr;gap:26px}.weekly-sunday-image{border-radius:18px}.weekly-sunday-copy p{margin-bottom:20px}.weekly-sunday-actions a{flex:1 1 auto}.quick-resources{padding:58px 0}.quick-resources-head{display:block}.quick-resources-head p{margin-top:12px}.resource-cards{grid-template-columns:1fr 1fr;gap:12px}.resource-card{min-height:190px;padding:20px;border-radius:20px}.resource-icon{margin-bottom:24px}.resource-card.primary h3{font-size:1.25rem}.resource-card.service-card{min-height:188px;grid-template-columns:auto 1fr;gap:15px}.resource-card.service-card .resource-icon{width:52px;height:52px}.resource-card.service-card .resource-cta{grid-column:1/-1;justify-content:center}}
     @media(max-width:840px){.life-tree-teaser{padding:74px 0 82px}.tree-teaser-grid{grid-template-columns:1fr;gap:12px;min-height:auto}.tree-teaser-copy{text-align:center}.tree-kicker{justify-content:center;margin-bottom:22px}.tree-teaser-copy h2{font-size:clamp(2.45rem,11vw,4.2rem);line-height:1.16}.tree-name{margin-top:27px}.tree-countdown-label{margin-top:35px}.tree-countdown{margin:0 auto}.tree-art{grid-row:1;min-height:350px}.tree-svg{width:min(96%,450px)}.tree-orbit{width:78%}}
     @media(max-width:480px){.life-tree-teaser{padding:56px 0 68px}.tree-art{min-height:290px;margin-bottom:8px}.tree-teaser-copy h2{font-size:2.4rem;letter-spacing:-.045em}.tree-kicker{font-size:.65rem;letter-spacing:.2em}.tree-name{font-size:.72rem;letter-spacing:.17em}.tree-date{font-size:.9rem}.tree-countdown{gap:7px}.countdown-cell{min-width:0;padding:14px 5px 12px;border-radius:14px}.countdown-cell strong{font-size:1.55rem}.countdown-cell small{font-size:.62rem;margin-top:6px}}
     @media(max-width:420px){.resource-card{min-height:180px;padding:17px}.resource-icon{width:43px;height:43px;margin-bottom:20px}.resource-card h3{font-size:1rem}.resource-card.primary h3{font-size:1.12rem}.resource-card p{font-size:.8rem}.resource-arrow{right:15px;top:14px}}
@@ -1290,6 +1295,11 @@
         <a class="resource-card" href="https://www.tcsc.org.tw/" target="_top">
           <span class="resource-arrow">↗</span><span class="resource-icon"><i data-lucide="hand-heart" size="24"></i></span>
           <h3>服務社區</h3><p>看見在地需要，讓愛成為具體的行動。</p>
+        </a>
+        <a class="resource-card service-card" href="https://mscos.mchurch.online/service-signup.html">
+          <span class="resource-icon"><i data-lucide="calendar-heart" size="28"></i></span>
+          <span class="resource-copy"><h3>主日服事意願登記</h3><p>選擇願意參與的服事與日期，一起預備美好的主日。</p></span>
+          <span class="resource-cta">前往登記 <i data-lucide="arrow-right" size="17"></i></span>
         </a>
       </div>
     </div>
