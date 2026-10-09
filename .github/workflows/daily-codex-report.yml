@@ -1,0 +1,50 @@
+name: 每日 Codex 開發日報
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 只產生預覽，不寄出 Email
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-codex-report
+  cancel-in-progress: false
+
+jobs:
+  send-report:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 取得 GitHub 上的專案與工作紀錄
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 預覽每日開發報告
+        if: inputs.dry_run
+        env:
+          REPORT_FROM_EMAIL: ${{ vars.REPORT_FROM_EMAIL }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: python scripts/send_codex_daily_report.py --date "$(TZ=Asia/Taipei date +%F)" --dry-run
+
+      - name: 寄送每日開發報告
+        if: ${{ !inputs.dry_run }}
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          REPORT_FROM_EMAIL: ${{ vars.REPORT_FROM_EMAIL }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: python scripts/send_codex_daily_report.py --date "$(TZ=Asia/Taipei date +%F)"
