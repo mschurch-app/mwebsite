@@ -32,3 +32,13 @@
 - GitHub Actions 會在每週日中午及傍晚多次讀取 M+ 公開 YouTube 頻道，週間每日補查一次。
 - 新影片公開後會依講題中的講員或聖經資訊辨識主日信息，自動更新資料並由 GitHub Pages 發布。
 - 若影片尚未公開、設為不公開，或 YouTube 尚未完成處理，網站會保留上一筆內容，下一次排程再補抓。
+
+## SEO 與 Google 收錄
+
+- Google Search Console 使用 `https://mchurch.online/` 網址前置字元資源；首頁保留教會帳號提供的 HTML 驗證標記。標記存在不代表已在 Google 完成驗證或收錄。
+- 驗證成功後提交 `https://mchurch.online/sitemap.xml`，使用「網址審查」檢查首頁並要求建立索引；收錄與排名仍由 Google 決定。
+- 關於教會內容統一維護於 `about-content.mjs`，外框在 `scripts/templates/about.html`。執行 `node scripts/build-seo.mjs` 產生五個含完整內容與獨立 metadata 的 HTML 分頁；舊 `about.html?page=…` 仍可使用。
+- 講道卡片由 `sermon-content.mjs` 共用產生，首頁三篇、信息頁六篇；建置時直接寫入 HTML，瀏覽器也能繼續讀取最新 `sermons-data.json`。資料讀取失敗時保留已發布內容。
+- YouTube 自動更新工作會同步建置 HTML 與 sitemap。修改內容模組或模板後亦須執行建置並提交產出；`node scripts/check-seo.mjs` 與 SEO workflow 會檢查 metadata、canonical、公開連結及同步狀況。
+- sitemap 僅列 12 個正式公開網址；付款測試、報名成功及視覺預覽頁維持 noindex。CMS 內容更新日期與 Git 日期不同，因此 sitemap 不填不可靠的 lastmod。
+- Search Console 的索引、成效、體驗報告須由具權限的教會 Google 帳號查閱；不要將 Google 密碼或私人 API token 放入網站或 Git。
