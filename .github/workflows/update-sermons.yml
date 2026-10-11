@@ -16,11 +16,16 @@ jobs:
           python-version: "3.12"
       - name: 讀取 YouTube 並更新網站資料
         run: python scripts/update-sermons.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: 同步可供搜尋的 HTML 與 sitemap
+        run: node scripts/build-seo.mjs
       - name: 發布新的主日信息
         run: |
-          if git diff --quiet -- sermons-data.json; then exit 0; fi
+          if git diff --quiet -- sermons-data.json index.html sermons.html sitemap.xml about*.html; then exit 0; fi
           git config user.name "mchurch-website-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add sermons-data.json
+          git add sermons-data.json index.html sermons.html sitemap.xml about*.html
           git commit -m "content: 自動更新主日信息"
           git push

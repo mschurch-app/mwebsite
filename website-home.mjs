@@ -1,3 +1,4 @@
+import {visibleItems,renderHome} from './sermon-content.mjs?v=20261011-seo1';
 const PROJECT_URL='https://aqanuwilmvdtlzuqlrau.supabase.co';
 const PUBLISHABLE_KEY='sb_publishable_-on9uPxVvSaERBEpkoc_xg_CYuANexJ';
 const BUCKET='church-website-public-media';
@@ -23,11 +24,9 @@ if(weeklyAnchor){
 // Keep the homepage sermon cards aligned with the automatically refreshed YouTube index.
 const sermonGrid=document.querySelector('.home-sermon-grid');
 if(sermonGrid){
- const esc=value=>String(value??'').replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
- const dateLabel=value=>{const m=String(value||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?`${m[1]}.${m[2]}.${m[3]}`:'';};
  fetch(`sermons-data.json?v=${Date.now()}`).then(response=>response.ok?response.json():Promise.reject()).then(data=>{
-  const items=Array.isArray(data?.items)?data.items.slice(0,3):[];
+  const items=visibleItems(data?.items);
   if(!items.length)return;
-  sermonGrid.innerHTML=items.map((item,index)=>`<a class="home-sermon-card${index===0?' featured':''}" href="${esc(item.url)}" target="_blank" rel="noopener"><img src="${esc(item.thumbnail)}" alt="${esc(item.title)}主日信息封面" loading="lazy"><span>${dateLabel(item.published)}${item.speaker?`・${esc(item.speaker)}`:''}</span><h3>${esc(item.title)}</h3><p>${esc(item.scripture||'M+大雅教會主日信息')}</p></a>`).join('');
+  sermonGrid.innerHTML=renderHome(items);
  }).catch(()=>{});
 }
