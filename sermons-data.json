@@ -1,34 +1,7 @@
 {
-  "updated_at": "2026-10-11T10:46:13+00:00",
+  "updated_at": "2026-10-11T12:45:57+00:00",
   "channel_url": "https://www.youtube.com/@m-church",
   "items": [
-    {
-      "id": "CbugBAARnsc",
-      "title": "祂要保護你",
-      "speaker": "陳佳平傳道",
-      "scripture": "2026/10/11",
-      "published": "2026-10-11",
-      "url": "https://www.youtube.com/watch?v=CbugBAARnsc",
-      "thumbnail": "https://i.ytimg.com/vi/CbugBAARnsc/hqdefault.jpg"
-    },
-    {
-      "id": "K_kEY4WDBsU",
-      "title": "祂要保護你",
-      "speaker": "陳佳平傳道",
-      "scripture": "2026/10/11",
-      "published": "2026-10-11",
-      "url": "https://www.youtube.com/watch?v=K_kEY4WDBsU",
-      "thumbnail": "https://i.ytimg.com/vi/K_kEY4WDBsU/hqdefault.jpg"
-    },
-    {
-      "id": "sqwzRdK1u6E",
-      "title": "祂要保護你",
-      "speaker": "陳佳平傳道",
-      "scripture": "2026/10/11",
-      "published": "2026-10-11",
-      "url": "https://www.youtube.com/watch?v=sqwzRdK1u6E",
-      "thumbnail": "https://i.ytimg.com/vi/sqwzRdK1u6E/hqdefault.jpg"
-    },
     {
       "id": "q_6Sjk6WlFs",
       "title": "不是擁有太少 是你算得太多",
@@ -40,7 +13,7 @@
     },
     {
       "id": "6awK0TaZEDo",
-      "title": "耶穌教你降維打擊",
+      "title": "耶穌教你降維打擊：原來這才是偉大",
       "speaker": "吳俊璋牧師",
       "scripture": "約翰福音13:1-15",
       "published": "2026-09-27",
@@ -85,7 +58,7 @@
     },
     {
       "id": "BPm7XZVD2y0",
-      "title": "攪亂天下的危險份子",
+      "title": "攪亂天下的危險份子：另有一位王的主權爭奪戰",
       "speaker": "吳俊璋牧師",
       "scripture": "使徒行傳17:1-7",
       "published": "2026-08-16",
@@ -95,7 +68,7 @@
     {
       "id": "VYKjvOEfTiU",
       "title": "如何把水變酒",
-      "speaker": "",
+      "speaker": "張永龍執事",
       "scripture": "約翰福音 2:1-12",
       "published": "2026-08-09",
       "url": "https://www.youtube.com/watch?v=VYKjvOEfTiU",
@@ -121,7 +94,7 @@
     },
     {
       "id": "JDRD1lpKH0s",
-      "title": "當禱告震動天地",
+      "title": "當禱告震動天地：突破困境最強武器",
       "speaker": "吳俊璋牧師",
       "scripture": "使徒行傳4:23-31",
       "published": "2026-07-19",

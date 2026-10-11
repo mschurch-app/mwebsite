@@ -13,10 +13,12 @@ MARKERS=("牧師","長老","傳道","院長","福音","使徒","約翰","馬太"
 def clean(value): return re.sub(r"\s+"," ",value or "").strip()
 def parts(raw):
     values=[clean(x) for x in re.split(r"[｜|]",raw) if clean(x)]
-    title=values[0] if values else clean(raw)
-    scripture=next((x for x in values[1:] if re.search(r"\d",x) and not re.search(r"牧師|長老|傳道|院長",x)),"")
-    speaker=next((x for x in reversed(values[1:]) if re.search(r"牧師|長老|傳道|院長",x)),"")
-    if len(values)>1 and not scripture and not speaker: title="：".join(values[:2])
+    is_date=lambda x: bool(re.fullmatch(r"\d{4}\s*[-/.年]\s*\d{1,2}\s*[-/.月]\s*\d{1,2}\s*日?",x))
+    is_speaker=lambda x: bool(re.search(r"牧師|長老|傳道|院長|執事",x))
+    scripture=next((x for x in values[1:] if re.search(r"\d",x) and not is_date(x) and not is_speaker(x)),"")
+    speaker=next((x for x in reversed(values[1:]) if is_speaker(x)),"")
+    titles=[x for i,x in enumerate(values) if i==0 or (x!=scripture and x!=speaker and not is_date(x))]
+    title="：".join(titles) if titles else clean(raw)
     return title,speaker,scripture
 
 url=f"https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}"
