@@ -38,8 +38,9 @@ form .camp-refund{margin-bottom:20px}
 .form-intro>.camp-service-link{display:flex;width:fit-content}
 .camp-service-link:focus-visible,.camp-refund-help a:focus-visible,footer a:focus-visible{outline:3px solid currentColor;outline-offset:4px;border-radius:4px}
 footer small a{display:inline-flex;align-items:center;min-height:44px;color:#fff;text-decoration:underline;text-underline-offset:4px}
-footer .camp-footer-logos{grid-column:2;display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:18px}
+footer .camp-footer-logos{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:24px}
 .camp-footer-logo{display:grid;place-items:center;overflow:hidden;background:#fff}
+.camp-footer-logo.mplus{width:142px;height:72px;border-radius:12px;background:#c94530}
 .camp-footer-logo.shine{width:170px;height:68px;padding:8px;border-radius:12px}
 .camp-footer-logo.mac{width:76px;height:76px;border-radius:50%}
 .camp-footer-logo img{display:block;width:100%;height:100%;object-fit:contain}
