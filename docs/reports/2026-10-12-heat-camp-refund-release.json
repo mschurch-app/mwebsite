@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-12",
+  "purpose": "依使用者核定揭露熱火籃球營退款政策、活動團隊及客服資訊",
+  "base_commit": "ddc548e02d9373cac468d280a1fe2f23c9c2ea6e",
+  "pages": [
+    "heat-camp-2027.html",
+    "heat-camp-2027-test.html"
+  ],
+  "shared_asset": "heat-camp-2027.css",
+  "asset_version": "20261012-refund1",
+  "refund_rules": {
+    "full_refund_through": "2027-05-12",
+    "jersey_deduction_from": "2027-05-13",
+    "jersey_deduction_twd": 1500,
+    "jersey_delivery": "學員指定地址",
+    "after_start_or_absent": "不予退費；依法應退費者依相關法令辦理"
+  },
+  "scope": "僅新增公開說明與錨點連結，沿用既有表單欄位及付款程式",
+  "travel_agency_disclosure": "待使用者提供實際合作資訊，未填入虛構資料",
+  "acceptance": {
+    "test_suites": "未執行；本次授權為發布內容",
+    "mac_safari": "待實機驗收",
+    "iphone_17": "待實機驗收",
+    "quality_99_percent": "未宣稱達成"
+  },
+  "rollback": "以 base_commit 的版本還原上述三個網站檔案"
+}

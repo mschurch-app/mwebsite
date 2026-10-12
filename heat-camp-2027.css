@@ -9,3 +9,37 @@
 .submit.completed,.submit.completed:hover{background:var(--green);cursor:default;box-shadow:none;opacity:1}
 .field-label{display:block;margin-bottom:9px;font-weight:700;font-size:14px}.compact-choice{grid-template-columns:1fr 1fr}.receipt-opt-out{width:max-content;margin:0 0 20px;padding:13px 16px;border:1px solid #cbd4cf;border-radius:12px;background:#fff}#receipt-fields[hidden],#medical-details[hidden],#receipt-consent-row[hidden]{display:none}
 .success-page{min-height:100vh;background:#101716}.success-shell{min-height:100vh;display:grid;place-items:center;padding:40px 20px}.success-card{width:min(760px,100%);padding:clamp(34px,7vw,70px);background:var(--cream);border-radius:32px;box-shadow:0 35px 100px rgba(0,0,0,.32);text-align:center}.success-mark{width:78px;height:78px;margin:0 auto 25px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--green);font-size:38px;font-weight:900}.success-card h1{margin:0;font-size:clamp(38px,7vw,64px);line-height:1.08;letter-spacing:-.05em}.success-lead{max-width:550px;margin:22px auto 30px;color:var(--muted);font-size:18px}.success-facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px;text-align:left}.success-facts div{padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:16px}.success-facts small,.success-facts strong{display:block}.success-facts small{color:var(--muted);font-size:12px}.line-invite{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:24px;background:var(--green);color:#fff;border-radius:20px;text-align:left}.line-invite>span{width:50px;height:50px;display:grid;place-items:center;border-radius:14px;background:#06c755;font:900 12px 'Plus Jakarta Sans'}.line-invite h2{margin:0;font-size:20px}.line-invite p{margin:4px 0 0;color:#bdd0ca;font-size:13px}.line-invite a{display:flex;align-items:center;gap:14px;padding:13px 16px;background:#06c755;border-radius:12px;font-weight:900;white-space:nowrap}.success-wait{margin:25px 0 5px;color:var(--muted)}.success-number{margin:8px 0 0;font-weight:800;color:var(--green)}@media(max-width:620px){.success-shell{padding:18px}.success-card{padding:34px 20px;border-radius:24px}.success-facts{grid-template-columns:1fr}.line-invite{grid-template-columns:auto 1fr}.line-invite a{grid-column:1/-1;justify-content:space-between}.compact-choice{grid-template-columns:1fr}}
+
+/* Camp service disclosures: registration and payment preview share this section. */
+.camp-service{padding-top:80px;scroll-margin-top:24px}
+.camp-service-heading{max-width:640px;margin-bottom:28px}
+.camp-service-heading h2{margin:0;font-size:clamp(28px,4vw,40px);line-height:1.2;letter-spacing:-.025em}
+.camp-service-heading>p:last-child{color:var(--muted);margin:16px 0 0}
+.camp-service-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+.camp-service-card{min-width:0;padding:28px;background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow-wrap:anywhere}
+.camp-service-card h3{margin:0 0 20px;font-size:21px}
+.camp-team{margin:0;display:grid;gap:18px}
+.camp-team>div{display:grid;grid-template-columns:80px minmax(0,1fr);gap:14px}
+.camp-team dt{color:var(--muted)}
+.camp-team dd{margin:0;font-weight:600}
+.camp-contact{scroll-margin-top:24px}
+.camp-contact p{margin:12px 0 0;color:var(--muted);font-size:14px}
+.camp-contact .camp-contact-person{color:var(--ink);font-size:17px;font-weight:600}
+.camp-contact-phone{display:inline-flex;align-items:center;min-height:44px;margin-top:6px;font-size:clamp(24px,4vw,30px);font-weight:800;color:var(--green);text-decoration:underline;text-underline-offset:6px}
+.camp-service-link{display:inline-flex;align-items:center;min-height:44px;color:var(--green);font-weight:700;text-decoration:underline;text-underline-offset:4px}
+/* Refund terms stay visible before checkout, with stacked rows on narrow screens. */
+.camp-refund{grid-column:1/-1;scroll-margin-top:24px}
+.camp-refund-intro{margin:0 0 20px;color:var(--muted)}
+.camp-refund-rules{margin:0}
+.camp-refund-rules>div{display:grid;grid-template-columns:minmax(150px,.7fr) minmax(0,2fr);gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.camp-refund-rules dt{font-weight:700;color:var(--green)}
+.camp-refund-rules dd{margin:0;color:var(--ink)}
+.camp-refund-rules strong{display:block;margin-bottom:4px}
+.camp-refund-help{margin:4px 0 0;padding:18px;background:var(--cream);border-radius:14px;color:var(--ink)}
+.camp-refund-help a{display:inline-flex;align-items:center;min-height:44px;color:var(--green);font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.camp-refund-note{margin:16px 0 0;color:var(--muted);font-size:14px}
+.form-intro>.camp-service-link{display:flex;width:fit-content}
+.camp-contact-phone:focus-visible,.camp-service-link:focus-visible,.camp-refund-help a:focus-visible,footer a:focus-visible{outline:3px solid currentColor;outline-offset:4px;border-radius:4px}
+footer small a{display:inline-flex;align-items:center;min-height:44px;color:#fff;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:620px){.camp-service{padding-top:56px}.camp-service-grid{grid-template-columns:1fr;gap:14px}.camp-service-card{padding:22px}.camp-team>div{grid-template-columns:1fr;gap:4px}.camp-refund-rules>div{grid-template-columns:1fr;gap:8px}}
+
