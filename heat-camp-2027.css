@@ -15,17 +15,13 @@
 .camp-service-heading{max-width:640px;margin-bottom:28px}
 .camp-service-heading h2{margin:0;font-size:clamp(28px,4vw,40px);line-height:1.2;letter-spacing:-.025em}
 .camp-service-heading>p:last-child{color:var(--muted);margin:16px 0 0}
-.camp-service-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+.camp-service-grid{display:grid;grid-template-columns:1fr;gap:20px}
 .camp-service-card{min-width:0;padding:28px;background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow-wrap:anywhere}
 .camp-service-card h3{margin:0 0 20px;font-size:21px}
-.camp-team{margin:0;display:grid;gap:18px}
+.camp-team{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .camp-team>div{display:grid;grid-template-columns:80px minmax(0,1fr);gap:14px}
 .camp-team dt{color:var(--muted)}
 .camp-team dd{margin:0;font-weight:600}
-.camp-contact{scroll-margin-top:24px}
-.camp-contact p{margin:12px 0 0;color:var(--muted);font-size:14px}
-.camp-contact .camp-contact-person{color:var(--ink);font-size:17px;font-weight:600}
-.camp-contact-phone{display:inline-flex;align-items:center;min-height:44px;margin-top:6px;font-size:clamp(24px,4vw,30px);font-weight:800;color:var(--green);text-decoration:underline;text-underline-offset:6px}
 .camp-service-link{display:inline-flex;align-items:center;min-height:44px;color:var(--green);font-weight:700;text-decoration:underline;text-underline-offset:4px}
 /* Refund terms stay visible before checkout, with stacked rows on narrow screens. */
 .camp-refund{grid-column:1/-1;scroll-margin-top:24px}
@@ -39,7 +35,6 @@
 .camp-refund-help a{display:inline-flex;align-items:center;min-height:44px;color:var(--green);font-weight:700;text-decoration:underline;text-underline-offset:4px}
 .camp-refund-note{margin:16px 0 0;color:var(--muted);font-size:14px}
 .form-intro>.camp-service-link{display:flex;width:fit-content}
-.camp-contact-phone:focus-visible,.camp-service-link:focus-visible,.camp-refund-help a:focus-visible,footer a:focus-visible{outline:3px solid currentColor;outline-offset:4px;border-radius:4px}
+.camp-service-link:focus-visible,.camp-refund-help a:focus-visible,footer a:focus-visible{outline:3px solid currentColor;outline-offset:4px;border-radius:4px}
 footer small a{display:inline-flex;align-items:center;min-height:44px;color:#fff;text-decoration:underline;text-underline-offset:4px}
-@media(max-width:620px){.camp-service{padding-top:56px}.camp-service-grid{grid-template-columns:1fr;gap:14px}.camp-service-card{padding:22px}.camp-team>div{grid-template-columns:1fr;gap:4px}.camp-refund-rules>div{grid-template-columns:1fr;gap:8px}}
-
+@media(max-width:620px){.camp-service{padding-top:56px}.camp-service-grid{grid-template-columns:1fr;gap:14px}.camp-service-card{padding:22px}.camp-team{grid-template-columns:1fr}.camp-team>div{grid-template-columns:1fr;gap:4px}.camp-refund-rules>div{grid-template-columns:1fr;gap:8px}}
