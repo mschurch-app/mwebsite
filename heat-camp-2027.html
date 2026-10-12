@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="heat-camp-2027.css?v=20261013-footer1">
+  <link rel="stylesheet" href="heat-camp-2027.css?v=20261013-refund1">
   <script type="module" src="heat-camp-2027.mjs"></script>
 </head>
 <body>
@@ -62,34 +62,13 @@
       </div>
     </section>
 
-    <section class="camp-service wrap" id="camp-service" aria-labelledby="camp-service-title">
-      <div class="camp-service-heading">
-        <p class="section-kicker">活動與聯絡資訊</p>
-        <h2 id="camp-service-title">一起預備，安心參加。</h2>
-        <p>報名、付款或取消報名有疑問，歡迎聯絡營會客服。</p>
-      </div>
-      <div class="camp-service-grid">
-        <article class="camp-service-card camp-refund" id="refund-policy" aria-labelledby="refund-policy-title" tabindex="-1">
-          <h3 id="refund-policy-title">退款政策</h3>
-          <p class="camp-refund-intro">本活動於 2027 年 7 月 12 日開始。學員因個人因素取消報名或退出活動，依下列規則辦理：</p>
-          <dl class="camp-refund-rules">
-            <div><dt>活動兩個月前退出</dt><dd><strong>全額退費。</strong>於 2027 年 5 月 12 日（含）以前提出取消報名申請，退還已繳報名費全額。</dd></div>
-            <div><dt>活動前兩個月內退出</dt><dd><strong>扣除客製球衣費用 NT$ 1,500，餘款退費。</strong>自 2027 年 5 月 13 日起至活動開始前提出取消報名申請，客製球衣將寄送至學員指定地址。</dd></div>
-            <div><dt>活動開始後退出或缺席報到</dt><dd><strong>不予退費。</strong>活動開始後中途退出，或未依規定報到而缺席者，無法辦理退費。</dd></div>
-          </dl>
-          <p class="camp-refund-help">申請取消報名與退費，請至頁尾<a href="#camp-contact">聯絡客服</a>，提供球員姓名及報名編號（如已取得）；需寄送球衣者，請一併提供指定收件地址。</p>
-          <p class="camp-refund-note">本政策不限制消費者依法享有的權利；依法應辦理退費的情形，仍依相關法令辦理。</p>
-        </article>
-      </div>
-    </section>
-
     <section class="registration wrap" id="register">
       <div class="form-intro">
         <p class="section-kicker">REGISTRATION</p>
         <h2>開始報名</h2>
         <p>約 5–8 分鐘。可先填資料，取得繳費帳號後再完成轉帳。</p>
         <a class="camp-service-link" href="#camp-contact">報名有疑問？前往客服資訊</a>
-        <a class="camp-service-link" href="#refund-policy">報名前查看退款政策</a>
+        <a class="camp-service-link" href="#refund-policy">查看表單末段退款政策</a>
         <ol class="steps" aria-label="報名步驟">
           <li class="current"><i>1</i><span><b>填寫資料</b><small>球員與聯絡資訊</small></span></li>
           <li><i>2</i><span><b>確認資格</b><small>價格、年級與球衣</small></span></li>
@@ -196,13 +175,24 @@
 
         <fieldset>
           <legend><span>08</span>確認與同意</legend>
+          <article class="camp-service-card camp-refund" id="refund-policy" aria-labelledby="refund-policy-title" tabindex="-1">
+            <h3 id="refund-policy-title">退款政策</h3>
+            <p class="camp-refund-intro">本活動於 2027 年 7 月 12 日開始。學員因個人因素取消報名或退出活動，依下列規則辦理：</p>
+            <dl class="camp-refund-rules">
+              <div><dt>活動兩個月前退出</dt><dd><strong>全額退費。</strong>於 2027 年 5 月 12 日（含）以前提出取消報名申請，退還已繳報名費全額。</dd></div>
+              <div><dt>活動前兩個月內退出</dt><dd><strong>扣除客製球衣費用 NT$ 1,500，餘款退費。</strong>自 2027 年 5 月 13 日起至活動開始前提出取消報名申請，客製球衣將寄送至學員指定地址。</dd></div>
+              <div><dt>活動開始後退出或缺席報到</dt><dd><strong>不予退費。</strong>活動開始後中途退出，或未依規定報到而缺席者，無法辦理退費。</dd></div>
+            </dl>
+            <p class="camp-refund-help">申請取消報名與退費，請至頁尾<a href="#camp-contact">聯絡客服</a>，提供球員姓名及報名編號（如已取得）；需寄送球衣者，請一併提供指定收件地址。</p>
+            <p class="camp-refund-note">本政策不限制消費者依法享有的權利；依法應辦理退費的情形，仍依相關法令辦理。</p>
+          </article>
           <div class="agreements">
             <label class="check"><input type="checkbox" name="insurance_consent" required>我同意主辦單位將必要個人資料提供給保險公司辦理旅遊平安保險。</label>
             <label class="check"><input type="checkbox" name="truth_consent" required>我確認以上資料正確，並已完整告知球員健康與運動限制。</label>
-            <label class="check"><input type="checkbox" name="privacy_consent" required>我已閱讀並同意報名個資告知事項、退款政策與活動規範。</label>
+            <label class="check"><input type="checkbox" name="privacy_consent" required>我已閱讀並同意報名個資告知事項與活動規範。</label>
+            <label class="check"><input type="checkbox" name="refund_consent" required>我已閱讀並同意上述退款政策。</label>
             <label class="check"><input type="checkbox" name="receipt_consent" required>我同意付款成功後，將開立收據所需資料傳送至思遠捐款平台的「2027 年籃球營」項目。</label>
           </div>
-          <a class="camp-service-link" href="#refund-policy">查看退款政策與球衣寄送說明</a>
         </fieldset>
 
         <section class="summary" aria-live="polite">

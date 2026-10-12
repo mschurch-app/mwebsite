@@ -25,6 +25,7 @@
 .camp-service-link{display:inline-flex;align-items:center;min-height:44px;color:var(--green);font-weight:700;text-decoration:underline;text-underline-offset:4px}
 /* Refund terms stay visible before checkout, with stacked rows on narrow screens. */
 .camp-refund{grid-column:1/-1;scroll-margin-top:24px}
+form .camp-refund{margin-bottom:20px}
 .camp-refund-intro{margin:0 0 20px;color:var(--muted)}
 .camp-refund-rules{margin:0}
 .camp-refund-rules>div{display:grid;grid-template-columns:minmax(150px,.7fr) minmax(0,2fr);gap:20px;padding:20px 0;border-top:1px solid var(--line)}

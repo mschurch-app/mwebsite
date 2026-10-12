@@ -9,9 +9,9 @@ const exceptionReason=$('#exception-reason');
 const dialog=$('#preview-dialog');
 const jerseySelect=$('#jersey-number');
 const JERSEY_AVAILABILITY_URL='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-registration';
-const boolFields=['eligibility_exception','tax_upload_consent','public_credit','no_receipt','insurance_consent','privacy_consent','receipt_consent','truth_consent'];
+const boolFields=['eligibility_exception','tax_upload_consent','public_credit','no_receipt','insurance_consent','privacy_consent','refund_consent','receipt_consent','truth_consent'];
 let submitting=false;
-const FIELD_LABELS={player_name:'球員姓名',guardian_name:'家長／監護人姓名',guardian_phone:'家長手機',email:'家長 Email',line_id:'LINE ID',national_id:'球員身分證字號',postal_code:'郵遞區號',receipt_address:'收據寄送地址',birthday:'出生日期',school_stage:'營會時就讀階段',school_name:'學校名稱',height_cm:'身高',weight_kg:'體重',basketball_years:'球齡',primary_position:'主要位置',dominant_hand:'慣用手',competition_level:'比賽經驗',jersey_size:'球衣尺寸',jersey_number:'希望背號',jersey_name:'球衣姓名',emergency_name:'緊急聯絡人',emergency_phone:'緊急聯絡電話',dietary_need:'飲食需求',special_identity:'特殊身分類別',medical_status:'身體特殊狀況有無',medical_notes:'特殊狀況說明',donor_name:'捐款人姓名',receipt_title:'收據抬頭',receipt_id:'收據 ID',payment_method:'付款方式',insurance_consent:'保險個資同意',truth_consent:'資料正確確認',privacy_consent:'個資與活動規範同意',receipt_consent:'收據資料傳送同意',exception_reason:'例外原因'};
+const FIELD_LABELS={player_name:'球員姓名',guardian_name:'家長／監護人姓名',guardian_phone:'家長手機',email:'家長 Email',line_id:'LINE ID',national_id:'球員身分證字號',postal_code:'郵遞區號',receipt_address:'收據寄送地址',birthday:'出生日期',school_stage:'營會時就讀階段',school_name:'學校名稱',height_cm:'身高',weight_kg:'體重',basketball_years:'球齡',primary_position:'主要位置',dominant_hand:'慣用手',competition_level:'比賽經驗',jersey_size:'球衣尺寸',jersey_number:'希望背號',jersey_name:'球衣姓名',emergency_name:'緊急聯絡人',emergency_phone:'緊急聯絡電話',dietary_need:'飲食需求',special_identity:'特殊身分類別',medical_status:'身體特殊狀況有無',medical_notes:'特殊狀況說明',donor_name:'捐款人姓名',receipt_title:'收據抬頭',receipt_id:'收據 ID',payment_method:'付款方式',insurance_consent:'保險個資同意',truth_consent:'資料正確確認',privacy_consent:'個資與活動規範同意',refund_consent:'退款政策同意',receipt_consent:'收據資料傳送同意',exception_reason:'例外原因'};
 
 function taipeiDate(){
   const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
