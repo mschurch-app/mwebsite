@@ -101,3 +101,10 @@ footer .camp-footer-logos{grid-column:1/-1;display:flex;justify-content:center;a
 .camp-health-confirm .check{align-items:center;min-height:48px}
 .camp-health-confirm:has(input:checked){border-color:var(--green);background:#edf5ee}
 @media(max-width:620px){.camp-line-invite{align-items:stretch;flex-direction:column;gap:16px;padding:20px}.camp-line-invite a{width:100%}}
+
+.payment-configuration{margin:0 0 18px;padding:16px 18px;border:1px solid #d7dfd8;border-radius:14px;background:#edf5ee;color:var(--green)}
+.payment-configuration p{margin:0}
+.payment-configuration a{text-decoration:underline;text-underline-offset:3px}
+.payment-config-retry{min-height:44px;margin-top:12px;padding:9px 16px;border:1px solid #a7b9ac;border-radius:10px;background:#fff;color:var(--green);font-weight:800;cursor:pointer}
+.payment-configuration[hidden],.payment-config-retry[hidden],.payment-choice[hidden]{display:none}
+.choice input{width:20px;height:20px;inset:12px auto auto 12px;margin:0;padding:0}
