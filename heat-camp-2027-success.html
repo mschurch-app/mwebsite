@@ -33,6 +33,8 @@
   <script>
     const registration=new URLSearchParams(location.search).get('registration');
     if(registration&&/^HC27-[A-Z0-9]+$/.test(registration)){
+      localStorage.removeItem('heat-camp-request-id');
+      sessionStorage.removeItem('heat-camp-request-id');
       const node=document.querySelector('#registration-number');
       node.textContent=`報名編號：${registration}`;
       node.hidden=false;
