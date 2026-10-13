@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="heat-camp-2027.css?v=20261013-wizard1">
-  <script type="module" src="heat-camp-2027-test.mjs?v=20261013-wizard1"></script>
+  <link rel="stylesheet" href="heat-camp-2027.css?v=20261013-wizard2">
+  <script type="module" src="heat-camp-2027-test.mjs?v=20261013-wizard2"></script>
 </head>
 <body>
   <header class="topbar">
@@ -86,8 +86,8 @@
           <li class="current"><i>1</i><span><b>報名與聯絡</b><small>優惠、家長資料</small></span></li>
           <li><i>2</i><span><b>球員資料</b><small>資格、籃球經驗</small></span></li>
           <li><i>3</i><span><b>球衣與照顧</b><small>尺寸、健康需求</small></span></li>
-          <li><i>4</i><span><b>收據與付款</b><small>收據、付款方式</small></span></li>
-          <li><i>5</i><span><b>確認送出</b><small>核對、同意事項</small></span></li>
+          <li><i>4</i><span><b>收據與確認</b><small>收據、同意事項</small></span></li>
+          <li><i>5</i><span><b>最後付款</b><small>選擇付款方式</small></span></li>
         </ol>
         <aside><b>資料安全</b><p>身分證字號僅供保險使用；頁面不會顯示完整字號，工作人員後台也只看得到遮罩資料。</p></aside>
       </div>
@@ -207,22 +207,8 @@
           <p class="field-note">匯入思遠平台的備註只包含報名編號與球員姓名，不會傳送球員保險用身分證字號、健康資料或球衣資料。</p>
         </fieldset>
 
-        <fieldset id="payment-section">
-          <legend><span>08</span>付款方式</legend>
-          <p class="fieldset-note">請選擇這次要使用的付款方式。每筆報名都會建立獨立付款訂單。</p>
-          <div class="choice-grid" id="payment-choice-grid">
-            <label class="choice payment-choice" data-payment="card"><input type="radio" name="payment_method" value="card" required><b>信用卡／行動支付</b><small>信用卡、Apple Pay、Google Pay、Samsung Pay</small></label>
-            <label class="choice payment-choice" data-payment="webatm"><input type="radio" name="payment_method" value="webatm"><b>WebATM</b><small>使用晶片金融卡線上轉帳</small></label>
-            <label class="choice payment-choice" data-payment="atm"><input type="radio" name="payment_method" value="atm"><b>ATM 虛擬帳號</b><small>取得專屬帳號後，於期限內轉帳</small></label>
-            <label class="choice payment-choice" data-payment="cvs"><input type="radio" name="payment_method" value="cvs"><b>超商代碼</b><small>取得代碼後至超商機台或櫃檯繳費</small></label>
-            <label class="choice payment-choice" data-payment="barcode"><input type="radio" name="payment_method" value="barcode"><b>超商條碼</b><small>取得繳費條碼後至超商櫃檯付款</small></label>
-          </div>
-        </fieldset>
-        </div>
-
-        <div class="wizard-step" data-wizard-step="4">
         <fieldset>
-          <legend><span>09</span>確認與同意</legend>
+          <legend><span>08</span>確認與同意</legend>
           <article class="camp-service-card camp-refund" id="refund-policy" aria-labelledby="refund-policy-title" tabindex="-1">
             <h3 id="refund-policy-title">退款政策</h3>
             <p class="camp-refund-intro">本活動於 2027 年 7 月 12 日開始。學員因個人因素取消報名或退出活動，依下列規則辦理：</p>
@@ -242,11 +228,32 @@
             <label class="check" id="receipt-consent-row"><input type="checkbox" name="receipt_consent" required>我同意付款成功後，將開立收據所需資料傳送至思遠捐款平台的「2027 年籃球營」項目。</label>
           </div>
         </fieldset>
+        </div>
+
+        <div class="wizard-step" data-wizard-step="4">
+        <fieldset id="payment-section">
+          <legend><span>09</span>最後選擇付款方式</legend>
+          <p class="fieldset-note">前面的資料已填妥。請選擇付款方式，確認後才會前往藍新付款頁。</p>
+          <div class="choice-grid" id="payment-choice-grid">
+            <label class="choice payment-choice" data-payment="card"><input type="radio" name="payment_method" value="card" required><b>信用卡／行動支付</b><small>信用卡、Apple Pay、Google Pay、Samsung Pay</small></label>
+            <label class="choice payment-choice" data-payment="webatm"><input type="radio" name="payment_method" value="webatm"><b>WebATM</b><small>使用晶片金融卡線上轉帳</small></label>
+            <label class="choice payment-choice" data-payment="atm"><input type="radio" name="payment_method" value="atm"><b>ATM 虛擬帳號</b><small>取得專屬帳號後，於期限內轉帳</small></label>
+            <label class="choice payment-choice" data-payment="cvs"><input type="radio" name="payment_method" value="cvs"><b>超商代碼</b><small>取得代碼後至超商機台或櫃檯繳費</small></label>
+            <label class="choice payment-choice" data-payment="barcode"><input type="radio" name="payment_method" value="barcode"><b>超商條碼</b><small>取得繳費條碼後至超商櫃檯付款</small></label>
+          </div>
+        </fieldset>
 
         <section class="summary" aria-live="polite">
           <div><small>預估方案</small><strong id="summary-plan">跨年早鳥</strong></div>
           <div><small>每人費用</small><strong id="summary-price">NT$ 7,000</strong></div>
           <p id="summary-note">送出後將再次由伺服器核對價格與名額。</p>
+        </section>
+        <section class="payment-retry" id="payment-retry" aria-live="polite" hidden>
+          <h3>接續原報名付款</h3>
+          <p id="retry-detail">正在確認原付款狀態，請稍候。</p>
+          <button class="retry-submit" id="retry-submit" type="button" disabled>確認狀態後再付款</button>
+          <button class="retry-refresh" id="retry-refresh" type="button">重新查詢付款狀態</button>
+          <p class="field-note">請勿重複建立報名。若銀行已顯示扣款、此頁仍未更新，請先<a href="#camp-contact">聯絡客服</a>確認。</p>
         </section>
         <div id="form-message" class="form-message" role="alert" hidden></div>
         <button class="submit" type="submit"><span>檢查資料並前往確認</span><b>→</b></button>
