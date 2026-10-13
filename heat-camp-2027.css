@@ -91,3 +91,13 @@ footer .camp-footer-logos{grid-column:1/-1;display:flex;justify-content:center;a
 .retry-refresh{margin-left:8px;border:1px solid #b9c8c0;background:#fff;color:var(--green)}
 .payment-retry[hidden],.summary[hidden],.submit[hidden],.submit-note[hidden]{display:none}
 @media(max-width:620px){.retry-submit,.retry-refresh{width:100%}.retry-refresh{margin:10px 0 0}}
+
+.camp-line-invite{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 36px;padding:22px;border:1px solid #c7d9ce;border-radius:18px;background:#edf5ee}
+.camp-line-invite strong{display:block;color:var(--green);font-size:17px}
+.camp-line-invite p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.camp-line-invite a{display:inline-flex;align-items:center;justify-content:space-between;gap:16px;min-height:48px;flex-shrink:0;padding:10px 16px;border-radius:12px;background:var(--green);color:#fff;font-weight:800}
+.camp-line-invite a:focus-visible{outline:3px solid var(--fire);outline-offset:3px}
+.camp-health-confirm{padding:20px;border:1px solid #cad3ce;border-radius:16px;background:#fff}
+.camp-health-confirm .check{align-items:center;min-height:48px}
+.camp-health-confirm:has(input:checked){border-color:var(--green);background:#edf5ee}
+@media(max-width:620px){.camp-line-invite{align-items:stretch;flex-direction:column;gap:16px;padding:20px}.camp-line-invite a{width:100%}}
