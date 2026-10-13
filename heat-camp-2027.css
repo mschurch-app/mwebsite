@@ -41,9 +41,9 @@ footer small a{display:inline-flex;align-items:center;min-height:44px;color:#fff
 footer .camp-footer-logos{grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:12px;margin-top:22px}
 .camp-footer-logo{width:112px;height:70px;flex:0 0 112px;display:grid;place-items:center;overflow:hidden;padding:5px;background:#fff}
 .camp-footer-logo.mplus{border-radius:10px;background:#c94530}
-.camp-footer-logo.shine{border-radius:10px;padding:0}
+.camp-footer-logo.shine{border-radius:10px;padding:0;background:#ffe44d}
 .camp-footer-logo.mac{width:70px;flex-basis:70px;border-radius:50%;padding:0}
 .camp-footer-logo img{display:block;width:100%;height:100%;object-fit:contain}
-.camp-footer-logo.shine img{transform:translateX(7px) scale(1.75)}
+.camp-footer-logo.shine img{transform:translateX(7px) scale(1.75);mix-blend-mode:multiply}
 .camp-footer-logo.mac img{object-fit:cover;clip-path:circle(47% at 50% 50%)}
 @media(max-width:620px){.camp-service{padding-top:56px}.camp-service-grid{grid-template-columns:1fr;gap:14px}.camp-service-card{padding:22px}.camp-team{grid-template-columns:1fr}.camp-team>div{grid-template-columns:1fr;gap:4px}.camp-refund-rules>div{grid-template-columns:1fr;gap:8px}}
