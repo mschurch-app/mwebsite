@@ -100,10 +100,11 @@ export function initCampWizard(form){
   },true);
   form.addEventListener('input',clearError);
   form.addEventListener('change',clearError);
-  document.querySelector('[data-wizard-refund]')?.addEventListener('click',()=>showStep(steps.length-1,{scroll:false}));
+  const refundStep=Number(document.querySelector('#refund-policy')?.closest('[data-wizard-step]')?.dataset.wizardStep??steps.length-1);
+  document.querySelector('[data-wizard-refund]')?.addEventListener('click',()=>showStep(refundStep,{scroll:false}));
 
   status.hidden=false;
   actions.hidden=false;
-  showStep(location.hash==='#refund-policy'?steps.length-1:0,{scroll:false});
+  showStep(location.hash==='#refund-policy'?refundStep:0,{scroll:false});
   return {showStep,goToFirstInvalid};
 }
