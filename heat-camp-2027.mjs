@@ -1,4 +1,4 @@
-import {initCampWizard} from './heat-camp-wizard.mjs';
+import {initCampWizard} from './heat-camp-wizard.mjs?v=20261013-wizard2';
 
 const $=(selector,root=document)=>root.querySelector(selector);
 const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
