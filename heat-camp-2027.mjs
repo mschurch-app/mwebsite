@@ -97,6 +97,14 @@ function renderReceipt(){
   form.elements.receipt_id.required=form.elements.tax_upload_consent.checked;
 }
 
+function renderMedical(){
+  const none=form.elements.medical_none_confirm.checked;
+  form.elements.medical_status.value=none?'none':'has';
+  $('#medical-details').hidden=none;
+  form.elements.medical_notes.required=!none;
+  form.elements.medical_notes.disabled=none;
+}
+
 $$('input[name="pricing_mode"]').forEach(input=>input.addEventListener('change',renderPricing));
 form.elements.friend_action.addEventListener('change',renderFriendCode);
 form.elements.school_stage.addEventListener('change',renderEligibility);
@@ -104,6 +112,7 @@ form.elements.eligibility_exception.addEventListener('change',renderException);
 form.elements.national_id.addEventListener('input',event=>{event.target.value=event.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10);});
 form.elements.receipt_id.addEventListener('input',event=>{event.target.value=event.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10);});
 form.elements.tax_upload_consent.addEventListener('change',renderReceipt);
+form.elements.medical_none_confirm.addEventListener('change',renderMedical);
 form.elements.guardian_name.addEventListener('blur',()=>{
   if(!form.elements.donor_name.value)form.elements.donor_name.value=form.elements.guardian_name.value;
   if(!form.elements.receipt_title.value)form.elements.receipt_title.value=form.elements.guardian_name.value;
@@ -139,4 +148,5 @@ renderEligibility();
 loadJerseyAvailability();
 applyJerseyDeadline();
 renderReceipt();
+renderMedical();
 const wizard=initCampWizard(form);
