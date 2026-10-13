@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="heat-camp-2027.css?v=20261013-production1">
-  <script type="module" src="heat-camp-2027.mjs?v=20261013-production1"></script>
+  <link rel="stylesheet" href="heat-camp-2027.css?v=20261013-onsite1">
+  <script type="module" src="heat-camp-2027.mjs?v=20261013-onsite1"></script>
 </head>
 <body>
   <header class="topbar">
@@ -67,7 +67,7 @@
         <p>送出資料時，以台灣時間及符合的優惠資格計價。</p>
       </div>
       <div class="price-grid">
-        <article class="price-card expired"><span>現場優惠</span><strong>$6,000</strong><p>2026 營會現場已登記者，需輸入現場驗證碼補資料。</p></article>
+        <article class="price-card expired"><span>現場優惠</span><strong>$6,000</strong><p>2026 營會現場已繳費者，核對後補填資料，無需再次付款。</p></article>
         <article class="price-card active"><span>跨年早鳥</span><strong>$7,000</strong><p>2026/10/01–12/31</p><em>目前價格</em></article>
         <article class="price-card"><span>新年優惠</span><strong>$8,000</strong><p>2027/01/01–03/31</p></article>
         <article class="price-card"><span>晚鳥優惠</span><strong>$9,000</strong><p>2027/04/01–05/31</p></article>
@@ -104,7 +104,7 @@
           <legend><span>01</span>優惠資格</legend>
           <div class="choice-grid" id="pricing-choice">
             <label class="choice selected"><input type="radio" name="pricing_mode" value="standard" checked><b>一般報名</b><small>自動套用當期價格</small></label>
-            <label class="choice"><input type="radio" name="pricing_mode" value="onsite"><b>2026 現場已登記</b><small>補填資料・每人 $6,000</small></label>
+            <label class="choice"><input type="radio" name="pricing_mode" value="onsite"><b>2026 現場已登記</b><small>已繳費・只需補填資料</small></label>
             <label class="choice"><input type="radio" name="pricing_mode" value="friend"><b>兩人同行</b><small>2027/1–6・每人 $8,000</small></label>
           </div>
           <div class="conditional" id="onsite-fields" hidden><label>現場登記驗證碼<input name="onsite_code" autocomplete="off" maxlength="20" placeholder="由工作人員提供"></label></div>
@@ -244,6 +244,8 @@
           </div>
         </fieldset>
 
+        <div id="registration-final">
+        <p class="fieldset-note" id="onsite-completion-note" hidden>現場已繳費者只需確認並送出資料，不會再次付款。</p>
         <section class="summary" aria-live="polite">
           <div><small>預估方案</small><strong id="summary-plan">跨年早鳥</strong></div>
           <div><small>每人費用</small><strong id="summary-price">NT$ 7,000</strong></div>
@@ -259,6 +261,7 @@
         <div id="form-message" class="form-message" role="alert" hidden></div>
         <button class="submit" type="submit" disabled><span>檢查資料並前往確認</span><b>→</b></button>
         <p class="submit-note">確認頁不會顯示完整身分證字號。付款帳號由藍新金流產生，每筆報名專用。</p>
+        </div>
         </div>
         <div class="wizard-actions" hidden>
           <button class="wizard-back" type="button">← 上一步</button>
@@ -308,7 +311,7 @@
       <p><span>方案</span><strong id="confirm-plan">—</strong></p>
       <p><span>應付金額</span><strong id="confirm-price">—</strong></p>
     </div>
-    <p>確認後會安全送出報名資料，並前往藍新金流完成所選付款方式。</p>
+    <p id="confirmation-note">確認後會安全送出報名資料，並前往藍新金流完成所選付款方式。</p>
     <button class="dialog-confirm" type="button">確認並前往付款</button>
   </dialog>
 </body>
