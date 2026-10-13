@@ -116,11 +116,11 @@ function renderReceipt(){
 }
 
 function renderMedical(){
-  const has=form.elements.medical_status.value==='has';
-  $('#medical-details').hidden=!has;
-  form.elements.medical_notes.required=has;
-  if(!has)form.elements.medical_notes.value='';
-  $$('#medical-status-choice .choice').forEach(label=>label.classList.toggle('selected',Boolean($('input',label)?.checked)));
+  const none=form.elements.medical_none_confirm.checked;
+  form.elements.medical_status.value=none?'none':'has';
+  $('#medical-details').hidden=none;
+  form.elements.medical_notes.required=!none;
+  form.elements.medical_notes.disabled=none;
 }
 
 function renderPaymentChoice(){
@@ -151,7 +151,7 @@ form.elements.national_id.addEventListener('input',event=>{event.target.value=ev
 form.elements.receipt_id.addEventListener('input',event=>{event.target.value=event.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10);});
 form.elements.tax_upload_consent.addEventListener('change',renderReceipt);
 form.elements.no_receipt.addEventListener('change',renderReceipt);
-form.elements.medical_status.forEach(input=>input.addEventListener('change',renderMedical));
+form.elements.medical_none_confirm.addEventListener('change',renderMedical);
 form.elements.payment_method.forEach(input=>input.addEventListener('change',renderPaymentChoice));
 form.elements.guardian_name.addEventListener('blur',()=>{
   if(!form.elements.donor_name.value)form.elements.donor_name.value=form.elements.guardian_name.value;
@@ -315,13 +315,13 @@ async function createCheckout(){
       dialog.close();
       showMessage(`已收到例外資格申請，報名編號 ${data.registration_no}。審核通過後才會通知付款。`,true);
       form.reset();
-      renderPricing();renderFriendCode();renderEligibility();
+      renderPricing();renderFriendCode();renderEligibility();renderMedical();renderReceipt();renderPaymentChoice();
       return;
     }
     if(data.status!=='checkout'||!data.gateway||!data.fields)throw new Error('checkout_unavailable');
     postToGateway(data.gateway,data.fields);
   }catch(error){
-    const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',medical_status_required:'請選擇身體特殊狀況「有」或「無」；選擇「有」時請補充說明。',consent_required:'請完成所有必要同意項目。',receipt_preference_failed:'目前無法儲存收據選擇，請稍後再試。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選其他付款方式。'};
+    const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',medical_status_required:'請勾選「本人確認沒有」；若有特殊狀況，請補充說明。',consent_required:'請完成所有必要同意項目。',receipt_preference_failed:'目前無法儲存收據選擇，請稍後再試。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選其他付款方式。'};
     dialog.close();
     showMessage(labels[error.message]||'目前無法建立付款，資料尚未重複送出，請稍後再試。');
   }finally{
