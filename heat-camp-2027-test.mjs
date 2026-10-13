@@ -1,3 +1,5 @@
+import {initCampWizard} from './heat-camp-wizard.mjs';
+
 const $=(selector,root=document)=>root.querySelector(selector);
 const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
 const form=$('#camp-form');
@@ -38,10 +40,13 @@ function renderPricing(){
   const mode=form.elements.pricing_mode.value;
   onsiteFields.hidden=mode!=='onsite';
   friendFields.hidden=mode!=='friend';
+  form.elements.onsite_code.required=mode==='onsite';
+  form.elements.friend_code.required=mode==='friend'&&form.elements.friend_action.value==='join';
 }
 
 function renderFriendCode(){
   friendCodeField.hidden=form.elements.friend_action.value!=='join';
+  form.elements.friend_code.required=form.elements.pricing_mode.value==='friend'&&form.elements.friend_action.value==='join';
 }
 
 function renderEligibility(){
@@ -182,6 +187,7 @@ function finishForm(label){
 }
 
 function showValidationErrors(){
+  wizard.goToFirstInvalid();
   form.querySelectorAll('.field-error').forEach(node=>node.classList.remove('field-error'));
   form.querySelectorAll('[aria-invalid="true"]').forEach(node=>node.removeAttribute('aria-invalid'));
   const invalid=[...form.querySelectorAll('[required]')].filter(control=>!control.disabled&&!control.checkValidity());
@@ -195,7 +201,7 @@ function showValidationErrors(){
   }
   const message=$('#form-message');message.replaceChildren(document.createTextNode('請完成以下欄位：'));
   const list=document.createElement('ul');list.className='missing-list';for(const item of items){const li=document.createElement('li');li.textContent=item;list.append(li);}message.append(list);message.hidden=false;message.dataset.success='false';
-  const first=invalid[0];first?.closest('label,fieldset')?.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>first?.focus({preventScroll:true}),350);
+  const first=invalid[0];setTimeout(()=>first?.focus({preventScroll:true}),350);
 }
 
 function postToGateway(gateway,fields){
@@ -255,6 +261,7 @@ form.addEventListener('submit',event=>{
     return;
   }
   if(form.elements.school_stage.value==='elementary_6_or_below'&&!form.elements.eligibility_exception.checked){
+    wizard.showStep(1);
     message.textContent='國小六年級以下需先提出例外申請，才能送出資料。';
     message.hidden=false;
     eligibilityAlert.scrollIntoView({behavior:'smooth',block:'center'});
@@ -281,14 +288,22 @@ loadPaymentConfiguration();
 applyJerseyDeadline();
 renderReceipt();
 renderPaymentChoice();
+const wizard=initCampWizard(form);
 
 const paymentParams=new URLSearchParams(location.search),paymentState=paymentParams.get('payment'),paymentCode=paymentParams.get('code')||'',paymentMessage=paymentParams.get('message')||'';
 if(paymentState==='paid'){
   localStorage.removeItem('heat-camp-request-id');sessionStorage.removeItem('heat-camp-request-id');
+  wizard.showStep(4,{scroll:false});
   finishForm('報名與付款已完成');
+  $('.wizard-actions').hidden=true;
   showMessage('付款成功，報名已完成。付款入帳後將依填寫資料開立收據。',true);
 }else if(paymentState==='account-issued'){
   localStorage.removeItem('heat-camp-request-id');sessionStorage.removeItem('heat-camp-request-id');
+  wizard.showStep(4,{scroll:false});
   finishForm('付款資料已建立');
+  $('.wizard-actions').hidden=true;
   showMessage('繳費帳號、代碼或條碼已建立，請依藍新顯示的期限完成付款。入帳後才會正式保留名額。',true);
-}else if(paymentState==='failed')showMessage(`付款尚未完成。${paymentCode?` 錯誤代碼：${paymentCode}。`:''}${paymentMessage?` ${paymentMessage}`:' 請確認付款資料後重新操作。'}`);
+}else if(paymentState==='failed'){
+  wizard.showStep(4,{scroll:false});
+  showMessage(`付款尚未完成。${paymentCode?` 錯誤代碼：${paymentCode}。`:''}${paymentMessage?` ${paymentMessage}`:' 請確認付款資料後重新操作。'}`);
+}

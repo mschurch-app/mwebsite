@@ -1,3 +1,5 @@
+import {initCampWizard} from './heat-camp-wizard.mjs';
+
 const $=(selector,root=document)=>root.querySelector(selector);
 const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
 const form=$('#camp-form');
@@ -35,10 +37,13 @@ function renderPricing(){
   const mode=form.elements.pricing_mode.value;
   onsiteFields.hidden=mode!=='onsite';
   friendFields.hidden=mode!=='friend';
+  form.elements.onsite_code.required=mode==='onsite';
+  form.elements.friend_code.required=mode==='friend'&&form.elements.friend_action.value==='join';
 }
 
 function renderFriendCode(){
   friendCodeField.hidden=form.elements.friend_action.value!=='join';
+  form.elements.friend_code.required=form.elements.pricing_mode.value==='friend'&&form.elements.friend_action.value==='join';
 }
 
 function renderEligibility(){
@@ -109,12 +114,13 @@ form.addEventListener('submit',event=>{
   const message=$('#form-message');
   message.hidden=true;
   if(!form.checkValidity()){
-    form.reportValidity();
+    wizard.goToFirstInvalid();
     message.textContent='還有必填資料尚未完成，請依欄位提示補齊。';
     message.hidden=false;
     return;
   }
   if(form.elements.school_stage.value==='elementary_6_or_below'&&!form.elements.eligibility_exception.checked){
+    wizard.showStep(1);
     message.textContent='國小六年級以下需先提出例外申請，才能送出資料。';
     message.hidden=false;
     eligibilityAlert.scrollIntoView({behavior:'smooth',block:'center'});
@@ -133,3 +139,4 @@ renderEligibility();
 loadJerseyAvailability();
 applyJerseyDeadline();
 renderReceipt();
+const wizard=initCampWizard(form);

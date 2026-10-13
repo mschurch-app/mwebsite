@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="heat-camp-2027.css?v=20261013-logos6">
-  <script type="module" src="heat-camp-2027.mjs"></script>
+  <link rel="stylesheet" href="heat-camp-2027.css?v=20261013-wizard1">
+  <script type="module" src="heat-camp-2027.mjs?v=20261013-wizard1"></script>
 </head>
 <body>
   <header class="topbar">
@@ -47,6 +47,19 @@
       </ul>
     </section>
 
+    <section class="camp-feature wrap" aria-labelledby="camp-feature-title">
+      <div class="camp-feature-copy">
+        <p class="section-kicker">THE CAMP EXPERIENCE</p>
+        <h2 id="camp-feature-title">先看看熱火籃球營</h2>
+        <p>從球場上的練習到營會中的相處，透過影片認識這四天三夜的體驗。</p>
+        <a href="#register">看完影片，開始報名 <span aria-hidden="true">↗</span></a>
+        <p class="camp-feature-fallback"><a href="https://youtu.be/kb9gBiivmfI" target="_blank" rel="noopener noreferrer">影片無法播放？到 YouTube 觀看</a></p>
+      </div>
+      <div class="camp-feature-video">
+        <iframe src="https://www.youtube-nocookie.com/embed/kb9gBiivmfI?rel=0" title="熱火籃球營影片" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
     <section class="pricing wrap" aria-labelledby="pricing-title">
       <div class="section-heading">
         <div><p class="section-kicker">PRICE</p><h2 id="pricing-title">系統自動套用報名價格</h2></div>
@@ -68,17 +81,24 @@
         <h2>開始報名</h2>
         <p>約 5–8 分鐘。可先填資料，取得繳費帳號後再完成轉帳。</p>
         <a class="camp-service-link" href="#camp-contact">報名有疑問？前往客服資訊</a>
-        <a class="camp-service-link" href="#refund-policy">查看表單末段退款政策</a>
-        <ol class="steps" aria-label="報名步驟">
-          <li class="current"><i>1</i><span><b>填寫資料</b><small>球員與聯絡資訊</small></span></li>
-          <li><i>2</i><span><b>確認資格</b><small>價格、年級與球衣</small></span></li>
-          <li><i>3</i><span><b>取得帳號</b><small>藍新個人虛擬帳號</small></span></li>
-          <li><i>4</i><span><b>完成報名</b><small>付款入帳後保留名額</small></span></li>
+        <a class="camp-service-link" href="#refund-policy" data-wizard-refund>查看表單末段退款政策</a>
+        <ol class="steps" aria-label="填表進度">
+          <li class="current"><i>1</i><span><b>報名與聯絡</b><small>優惠、家長資料</small></span></li>
+          <li><i>2</i><span><b>球員資料</b><small>資格、籃球經驗</small></span></li>
+          <li><i>3</i><span><b>球衣與照顧</b><small>尺寸、健康需求</small></span></li>
+          <li><i>4</i><span><b>收據</b><small>收據資料</small></span></li>
+          <li><i>5</i><span><b>確認送出</b><small>核對、同意事項</small></span></li>
         </ol>
         <aside><b>資料安全</b><p>身分證字號僅供保險使用；頁面不會顯示完整字號，工作人員後台也只看得到遮罩資料。</p></aside>
       </div>
 
       <form id="camp-form" novalidate>
+        <div class="wizard-status" aria-live="polite" hidden>
+          <span class="wizard-count">第 1 步，共 5 步</span>
+          <strong class="wizard-title">報名與聯絡</strong>
+          <span class="wizard-track" aria-hidden="true"><span></span></span>
+        </div>
+        <div class="wizard-step" data-wizard-step="0">
         <fieldset>
           <legend><span>01</span>優惠資格</legend>
           <div class="choice-grid" id="pricing-choice">
@@ -107,7 +127,9 @@
             <label>收據寄送地址<input name="receipt_address" autocomplete="street-address" required maxlength="220" placeholder="縣市、區域及完整地址"></label>
           </div>
         </fieldset>
+        </div>
 
+        <div class="wizard-step" data-wizard-step="1">
         <fieldset>
           <legend><span>03</span>資格與基本資料</legend>
           <div class="fields three">
@@ -136,7 +158,9 @@
             <label class="wide">最想加強的項目<span class="chipset"><label><input type="checkbox" name="training_goals" value="shooting">投籃</label><label><input type="checkbox" name="training_goals" value="dribbling">運球</label><label><input type="checkbox" name="training_goals" value="defense">防守</label><label><input type="checkbox" name="training_goals" value="fitness">體能</label><label><input type="checkbox" name="training_goals" value="teamwork">團隊觀念</label></span></label>
           </div>
         </fieldset>
+        </div>
 
+        <div class="wizard-step" data-wizard-step="2">
         <fieldset id="jersey-section">
           <legend><span>05</span>專屬球衣</legend>
           <p class="fieldset-note">2027/6/30 前完成報名，可選球衣尺寸、背號與印製姓名；逾期由主辦單位統一安排。</p>
@@ -159,7 +183,9 @@
             <label class="wide">照顧備註<textarea name="care_notes" rows="3" maxlength="600" placeholder="飲食、住宿、情緒支持或其他需要同工留意的事項"></textarea></label>
           </div>
         </fieldset>
+        </div>
 
+        <div class="wizard-step" data-wizard-step="3">
         <fieldset>
           <legend><span>07</span>收據資料</legend>
           <p class="fieldset-note">藍新確認入帳後，系統會把付款資料匯入思遠捐款平台的籃球營項目，並寄發紙本單筆收據。</p>
@@ -172,7 +198,9 @@
           </div>
           <p class="field-note">匯入思遠平台的備註只包含報名編號與球員姓名，不會傳送球員保險用身分證字號、健康資料或球衣資料。</p>
         </fieldset>
+        </div>
 
+        <div class="wizard-step" data-wizard-step="4">
         <fieldset>
           <legend><span>08</span>確認與同意</legend>
           <article class="camp-service-card camp-refund" id="refund-policy" aria-labelledby="refund-policy-title" tabindex="-1">
@@ -203,6 +231,11 @@
         <div id="form-message" class="form-message" role="alert" hidden></div>
         <button class="submit" type="submit"><span>檢查資料並前往確認</span><b>→</b></button>
         <p class="submit-note">確認頁不會顯示完整身分證字號。付款帳號由藍新金流產生，每筆報名專用。</p>
+        </div>
+        <div class="wizard-actions" hidden>
+          <button class="wizard-back" type="button">← 上一步</button>
+          <button class="wizard-next" type="button">下一步 <span aria-hidden="true">→</span></button>
+        </div>
       </form>
     </section>
   </main>
