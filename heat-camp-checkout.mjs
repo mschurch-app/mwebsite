@@ -1,4 +1,4 @@
-import {initCampWizard} from './heat-camp-wizard.mjs?v=20261013-wizard2';
+import {initCampWizard} from './heat-camp-wizard.mjs?v=20261013-onsite1';
 
 const $=(selector,root=document)=>root.querySelector(selector);
 const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
@@ -16,6 +16,10 @@ let submitting=false;
 let retryAllowed=false;
 let retryBusy=false;
 let checkoutReady=false;
+let registrationReady=false;
+let wizard;
+const isOnsite=()=>form.elements.pricing_mode.value==='onsite';
+const canSubmit=()=>isOnsite()?registrationReady:checkoutReady;
 const expectedEnvironment=document.documentElement.dataset.paymentEnvironment;
 const requestStorageKey=`heat-camp-request-id-${expectedEnvironment}`;
 let activeRequestId=new URLSearchParams(location.search).has('payment')?(sessionStorage.getItem(requestStorageKey)||localStorage.getItem(requestStorageKey)):null;
@@ -29,7 +33,7 @@ function taipeiDate(){
 function currentPlan(){
   const {year,month,day}=taipeiDate(),today=`${year}-${month}-${day}`;
   const mode=form.elements.pricing_mode.value;
-  if(mode==='onsite')return {label:'2026 現場優惠',price:6000,note:'需通過現場登記驗證後才成立。'};
+  if(mode==='onsite')return {label:'現場已繳費・補填資料',price:6000,note:'核對現場已繳費資格後完成補填，不會再次收費。'};
   if(mode==='friend')return {label:'兩人友情價',price:8000,note:'兩人皆完成資料後成立；未配對前不產生付款帳號。'};
   if(today<='2026-12-31')return {label:'跨年早鳥',price:7000,note:'適用 2026/10/01–12/31。'};
   if(today<='2027-03-31')return {label:'新年優惠',price:8000,note:'適用 2027/01/01–03/31。'};
@@ -48,6 +52,28 @@ function renderPricing(){
   friendFields.hidden=mode!=='friend';
   form.elements.onsite_code.required=mode==='onsite';
   form.elements.friend_code.required=mode==='friend'&&form.elements.friend_action.value==='join';
+  renderRegistrationFlow();
+}
+
+function renderRegistrationFlow(){
+  const onsite=isOnsite();
+  const lastStep=form.querySelector(`[data-wizard-step="${onsite?3:4}"]`);
+  const final=$('#registration-final');
+  if(final.parentElement!==lastStep)lastStep.append(final);
+  $('#payment-section').hidden=onsite;
+  $('#onsite-completion-note').hidden=!onsite;
+  $('.submit-note').textContent=onsite?'核對現場已繳費資格後完成補填，不會建立付款帳號。':'確認頁不會顯示完整身分證字號。付款帳號由藍新金流產生，每筆報名專用。';
+  $('#summary-price').textContent=onsite?'現場已繳 NT$ 6,000':`NT$ ${currentPlan().price.toLocaleString('zh-TW')}`;
+  form.elements.payment_method.forEach(input=>{
+    input.disabled=onsite||!checkoutReady||input.closest('.payment-choice').classList.contains('unavailable');
+    input.required=!onsite&&input.value==='card';
+  });
+  const submit=$('.submit');
+  submit.disabled=!canSubmit()||submit.classList.contains('completed');
+  $('span',submit).textContent=onsite?'確認並送出補填資料':'檢查資料並前往確認';
+  $('#confirmation-note').textContent=onsite?'確認後會核對現場已繳費資格並儲存資料，不會前往付款。':'確認後會安全送出報名資料，並前往藍新金流完成所選付款方式。';
+  $('.dialog-confirm').textContent=onsite?'確認送出補填資料':'確認並前往付款';
+  wizard?.setLastStep(onsite?3:4);
 }
 
 function renderFriendCode(){
@@ -139,6 +165,8 @@ function renderPaymentChoice(){
 async function loadPaymentConfiguration(){
   const panel=$('#payment-configuration'),message=$('#payment-configuration-message'),retry=$('#payment-config-retry'),submit=$('.submit');
   checkoutReady=false;
+  registrationReady=false;
+  renderRegistrationFlow();
   submit.disabled=true;
   panel.hidden=false;
   retry.hidden=true;
@@ -151,6 +179,7 @@ async function loadPaymentConfiguration(){
     if(!response.ok||!data.ok)throw new Error('unavailable');
     if(data.environment!==expectedEnvironment)throw new Error('environment_mismatch');
     if(expectedEnvironment==='production'&&data.merchant_id!=='MS3845446298')throw new Error('merchant_mismatch');
+    registrationReady=true;
     if(!Object.values(data.payment_methods||{}).some(Boolean))throw new Error('unavailable');
     form.elements.payment_method.forEach(input=>{
       const enabled=Boolean(data.payment_methods?.[input.value]);
@@ -169,6 +198,8 @@ async function loadPaymentConfiguration(){
       const link=document.createElement('a');link.href='heat-camp-2027.html';link.textContent='前往正式報名頁';message.append(' ',link);
     }
     retry.hidden=false;
+  }finally{
+    renderRegistrationFlow();
   }
 }
 
@@ -334,16 +365,22 @@ async function retryPayment(){
 }
 
 async function createCheckout(){
-  if(submitting||!checkoutReady)return;
+  if(submitting||!canSubmit())return;
   submitting=true;
   const confirm=$('.dialog-confirm'),submit=$('.submit');
   confirm.disabled=true;
   submit.disabled=true;
-  confirm.textContent='正在建立安全付款…';
+  confirm.textContent=isOnsite()?'正在儲存補填資料…':'正在建立安全付款…';
   try{
-    const response=await fetch(JERSEY_AVAILABILITY_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'create_checkout',expected_environment:expectedEnvironment,request_id:requestId(),registration:registrationPayload()}),signal:AbortSignal.timeout(20000)});
+    const response=await fetch(JERSEY_AVAILABILITY_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:isOnsite()?'complete_onsite_registration':'create_checkout',expected_environment:expectedEnvironment,request_id:requestId(),registration:registrationPayload()}),signal:AbortSignal.timeout(20000)});
     const data=await response.json().catch(()=>({}));
     if(!response.ok||!data.ok)throw new Error(data.error||'registration_failed');
+    if(isOnsite()){
+      if(data.status!=='onsite_complete')throw new Error('onsite_verification_failed');
+      clearRequestId();
+      location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(data.registration_no)}&source=onsite`);
+      return;
+    }
     if(data.status==='exception_review'){
       clearRequestId();
       dialog.close();
@@ -361,15 +398,15 @@ async function createCheckout(){
     postToGateway(data.gateway,data.fields);
   }catch(error){
     const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',medical_status_required:'請勾選「本人確認沒有」；若有特殊狀況，請補充說明。',consent_required:'請完成所有必要同意項目。',receipt_preference_failed:'目前無法儲存收據選擇，請稍後再試。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選其他付款方式。'};
-    const extraLabels={request_registration_mismatch:'這次輸入與原報名不同，請重新開啟報名頁為另一位球員報名；原報名仍保留。',payment_environment_mismatch:'付款環境已更新，請重新連線確認後再付款。',production_checkout_preparing:'正式付款服務仍在準備中，請稍後再試。'};
+    const extraLabels={onsite_verification_failed:'無法核對現場已繳費資格，請確認驗證碼或聯絡同工。已填資料會保留，不會再次收款。',onsite_code_used:'此現場驗證碼已完成補填，請聯絡同工查詢原報名。',request_registration_mismatch:'這次輸入與原報名不同，請重新開啟報名頁為另一位球員報名；原報名仍保留。',payment_environment_mismatch:'付款環境已更新，請重新連線確認後再付款。',production_checkout_preparing:'正式付款服務仍在準備中，請稍後再試。'};
     dialog.close();
-    showMessage(extraLabels[error.message]||labels[error.message]||'目前無法建立付款，資料尚未重複送出，請稍後再試。');
+    showMessage(extraLabels[error.message]||labels[error.message]||(isOnsite()?'目前無法儲存補填資料，已填內容會保留，請稍後再試。':'目前無法建立付款，資料尚未重複送出，請稍後再試。'));
     if(error.message==='payment_environment_mismatch')await loadPaymentConfiguration();
   }finally{
     submitting=false;
     confirm.disabled=false;
-    submit.disabled=!checkoutReady;
-    confirm.textContent='確認並前往付款';
+    submit.disabled=!canSubmit();
+    confirm.textContent=isOnsite()?'確認送出補填資料':'確認並前往付款';
   }
 }
 
@@ -377,7 +414,7 @@ form.addEventListener('submit',event=>{
   event.preventDefault();
   const message=$('#form-message');
   message.hidden=true;
-  if(!checkoutReady){showMessage('請先重新連線確認付款服務，已填資料會保留。');return;}
+  if(!canSubmit()){showMessage('請先重新連線確認報名服務，已填資料會保留。');return;}
   if(!form.checkValidity()){
     showValidationErrors();
     return;
@@ -393,7 +430,7 @@ form.addEventListener('submit',event=>{
   $('#confirm-player').textContent=form.elements.player_name.value;
   $('#confirm-guardian').textContent=form.elements.guardian_name.value;
   $('#confirm-plan').textContent=plan.label;
-  $('#confirm-price').textContent=`NT$ ${plan.price.toLocaleString('zh-TW')}`;
+  $('#confirm-price').textContent=isOnsite()?'現場已繳費，本次無需付款':`NT$ ${plan.price.toLocaleString('zh-TW')}`;
   dialog.showModal();
 });
 
@@ -413,7 +450,8 @@ loadPaymentConfiguration();
 applyJerseyDeadline();
 renderReceipt();
 renderPaymentChoice();
-const wizard=initCampWizard(form);
+wizard=initCampWizard(form);
+renderRegistrationFlow();
 
 const paymentParams=new URLSearchParams(location.search),paymentState=paymentParams.get('payment'),paymentCode=paymentParams.get('code')||'',paymentMessage=paymentParams.get('message')||'';
 if(paymentState==='paid'){
