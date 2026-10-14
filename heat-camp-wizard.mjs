@@ -11,6 +11,7 @@ export function initCampWizard(form){
   error.hidden=true;
   status.append(error);
   let current=0;
+  let last=steps.length-1;
 
   function clearError(){
     error.hidden=true;
@@ -18,20 +19,21 @@ export function initCampWizard(form){
   }
 
   function showStep(index,{scroll=true}={}){
-    current=Math.max(0,Math.min(index,steps.length-1));
+    current=Math.max(0,Math.min(index,last));
     steps.forEach((step,number)=>{step.hidden=number!==current;});
     progress.forEach((item,number)=>{
+      item.hidden=number>last;
       item.classList.toggle('current',number===current);
       item.classList.toggle('done',number<current);
       if(number===current)item.setAttribute('aria-current','step');
       else item.removeAttribute('aria-current');
     });
-    form.querySelector('.wizard-count').textContent=`第 ${current+1} 步，共 ${steps.length} 步`;
+    form.querySelector('.wizard-count').textContent=`第 ${current+1} 步，共 ${last+1} 步`;
     form.querySelector('.wizard-title').textContent=progress[current]?.querySelector('b')?.textContent||'';
-    form.querySelector('.wizard-track span').style.width=`${((current+1)/steps.length)*100}%`;
+    form.querySelector('.wizard-track span').style.width=`${((current+1)/(last+1))*100}%`;
     back.hidden=current===0;
-    next.hidden=current===steps.length-1;
-    if(current<steps.length-1)next.innerHTML=`下一步：${progress[current+1]?.querySelector('b')?.textContent||'繼續'} <span aria-hidden="true">→</span>`;
+    next.hidden=current===last;
+    if(current<last)next.innerHTML=`下一步：${progress[current+1]?.querySelector('b')?.textContent||'繼續'} <span aria-hidden="true">→</span>`;
     clearError();
     if(scroll)status.scrollIntoView({behavior:'smooth',block:'start'});
   }
@@ -74,7 +76,7 @@ export function initCampWizard(form){
   }
 
   function goToFirstInvalid(){
-    for(let index=0;index<steps.length;index++){
+    for(let index=0;index<=last;index++){
       if(invalidControl(steps[index])||(
         steps[index].querySelector('[name="school_stage"]')?.value==='elementary_6_or_below'&&
         !steps[index].querySelector('[name="eligibility_exception"]')?.checked
@@ -92,7 +94,7 @@ export function initCampWizard(form){
   });
   back.addEventListener('click',()=>showStep(current-1));
   form.addEventListener('submit',event=>{
-    if(current<steps.length-1){
+    if(current<last){
       event.preventDefault();
       event.stopImmediatePropagation();
       if(validateStep(current))showStep(current+1);
@@ -106,5 +108,8 @@ export function initCampWizard(form){
   status.hidden=false;
   actions.hidden=false;
   showStep(location.hash==='#refund-policy'?refundStep:0,{scroll:false});
-  return {showStep,goToFirstInvalid};
+  return {showStep,goToFirstInvalid,setLastStep(index){
+    last=Math.max(0,Math.min(index,steps.length-1));
+    showStep(current,{scroll:false});
+  }};
 }
