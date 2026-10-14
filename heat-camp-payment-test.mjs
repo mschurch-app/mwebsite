@@ -26,6 +26,15 @@ function renderOrders(orders){
     const values=[new Date(order.created_at).toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),names[order.payment_method]||order.payment_method,`NT$${order.amount}`,order.merchant_order_no,statuses[order.status]||order.status];
     for(const value of values){const cell=row.insertCell();cell.textContent=value;}
     row.lastElementChild.className=`status-${order.status}`;
+    if(order.status==='account_issued'&&order.payment_details){
+      const details=order.payment_details,detailRow=tbody.insertRow(),cell=detailRow.insertCell();
+      cell.colSpan=5;cell.className='payment-details';
+      const items=order.payment_method==='atm'
+        ?[['銀行代碼',details.bank_code],['虛擬帳號',details.account_no],['繳費截止',details.expire_date]]
+        :[['第一段條碼數字',details.barcode_1],['第二段條碼數字',details.barcode_2],['第三段條碼數字',details.barcode_3],['繳費截止',details.expire_date]];
+      for(const [label,value] of items){if(!value)continue;const line=document.createElement('p');line.textContent=`${label}：${value}`;cell.append(line);}
+      if(order.payment_method==='barcode'){const note=document.createElement('p');note.textContent='到超商繳款請使用藍新寄出的可掃描繳費單；上方數字僅供核對。';cell.append(note);}
+    }
   }
 }
 async function enter(){
