@@ -31,10 +31,17 @@
     </section>
   </main>
   <script>
-    const registration=new URLSearchParams(location.search).get('registration');
+    const params=new URLSearchParams(location.search);
+    const registration=params.get('registration');
     if(registration&&/^HC27-[A-Z0-9]+$/.test(registration)){
-      localStorage.removeItem('heat-camp-request-id');
-      sessionStorage.removeItem('heat-camp-request-id');
+      for(const key of ['heat-camp-request-id','heat-camp-request-id-production','heat-camp-request-id-test']){
+        localStorage.removeItem(key);
+        sessionStorage.removeItem(key);
+      }
+      if(params.get('source')==='onsite'){
+        document.querySelector('h1').textContent='補填資料完成！';
+        document.querySelector('.success-lead').textContent='現場已繳費資格已核對，報名資料已補齊，無需再次付款。球場見！';
+      }
       const node=document.querySelector('#registration-number');
       node.textContent=`報名編號：${registration}`;
       node.hidden=false;
