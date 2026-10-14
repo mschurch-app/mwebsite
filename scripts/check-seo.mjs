@@ -36,9 +36,12 @@ for(const [page,route]of Object.entries(routes)){
  assert.ok(html.includes(`data-page="${page}" class="active" aria-current="page"`));
  assert.ok(!html.includes('{{CONTENT}}'));
 }
-for(const file of ['preview.html','heat-camp-2027.html','heat-camp-2027-test.html','heat-camp-2027-success.html'])assert.match(await read(file),/name="robots" content="noindex,nofollow"/);
+const camp=await read('heat-camp-2027.html');
+assert.match(camp,/<meta name="robots" content="index,follow">/);
+assert.match(camp,/<link rel="canonical" href="https:\/\/mchurch\.online\/heat-camp-2027\.html">/);
+for(const file of ['preview.html','heat-camp-2027-test.html','heat-camp-2027-success.html','heat-camp-payment-test.html'])assert.match(await read(file),/name="robots" content="noindex,nofollow"/);
 const items=visibleItems(JSON.parse(await read('sermons-data.json')).items);assert.ok(items.length);
 assert.ok((await read('sermons.html')).includes(esc(items[0].title)));assert.ok(home.includes(esc(items[0].title)));
 assert.equal(visibleItems([{title:'unsafe',url:'javascript:alert(1)',thumbnail:'x',published:'2026-10-11'}]).length,0);
 assert.equal(esc('<script>"&'), '&lt;script&gt;&quot;&amp;');
-console.log(JSON.stringify({sitemapPages:urls.length,staticAboutPages:5,verificationTag:true,excludedUtilityPages:4,localLinks:'valid',structuredData:'valid',unsafeSermonUrlRejected:true}));
+console.log(JSON.stringify({sitemapPages:urls.length,staticAboutPages:5,verificationTag:true,excludedUtilityPages:4,publicCampPage:'indexable',localLinks:'valid',structuredData:'valid',unsafeSermonUrlRejected:true}));
