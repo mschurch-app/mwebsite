@@ -45,7 +45,7 @@ async function enter(){
 $('#login-form').addEventListener('submit',async event=>{
   event.preventDefault();password=$('#password').value.trim();
   message('#login-message','');
-  try{await enter();}catch{message('#login-message','密碼錯誤或金流服務暫時無法連線。');}
+  try{await enter();}catch(error){message('#login-message',error.message==='payment_test_password_invalid'?'密碼錯誤。':`金流服務暫時無法連線（${error.message}）。`);}
 });
 $('#method').addEventListener('change',updateAmount);
 $('#refresh').addEventListener('click',async()=>{
