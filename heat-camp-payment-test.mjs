@@ -1,5 +1,5 @@
 const ENDPOINT='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-registration';
-const minimums={card:10,webatm:10,atm:10,barcode:20,cvs:30};
+const minimums={card:10,atm:10,barcode:20};
 const names={card:'信用卡',webatm:'WebATM',atm:'ATM 虛擬帳號',barcode:'超商條碼',cvs:'超商代碼'};
 const statuses={created:'待前往付款',account_issued:'待繳款／待入帳',paid:'已付款',failed:'付款失敗'};
 const $=selector=>document.querySelector(selector);
@@ -40,7 +40,7 @@ async function enter(){
   renderOrders(result.orders||[]);updateAmount();
   sessionStorage.setItem('heat-camp-payment-test-password',password);
   const payment=new URLSearchParams(location.search).get('payment');
-  if(payment){message('#test-message',payment==='paid'?'此筆交易已由藍新確認付款；下方可查核紀錄。':payment==='account-issued'?'已取得付款帳號或代碼，實際繳款後請重新查詢狀態。':'交易尚未完成，請查看下方狀態。');}
+  if(payment){message('#test-message',payment==='paid'?'此筆交易已由藍新確認付款；下方可查核紀錄。':payment==='account-issued'?'藍新已回傳付款帳號或條碼，實際繳款後請重新查詢狀態。':payment==='unknown'?'付款回傳尚待確認；請查看下方紀錄，勿重複付款。':'交易尚未完成，請查看下方狀態。');}
 }
 $('#login-form').addEventListener('submit',async event=>{
   event.preventDefault();password=$('#password').value.trim();
