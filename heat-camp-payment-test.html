@@ -34,7 +34,7 @@
         <form id="test-form">
           <label class="field">付款方式<select id="method" required><option value="card">信用卡</option><option value="webatm">WebATM</option><option value="atm">ATM 虛擬帳號</option><option value="barcode">超商條碼</option><option value="cvs">超商代碼</option></select></label>
           <label class="field">測試金額（新台幣）<input id="amount" type="number" inputmode="numeric" step="1" min="10" max="1000" value="10" required></label>
-          <label class="field">接收交易資訊的 Email<input id="email" type="email" autocomplete="email" required></label>
+          <label class="field">測試聯絡 Email（交給藍新，本站暫不寄確認信）<input id="email" type="email" autocomplete="email" required></label>
           <p id="amount-note" class="muted"></p>
           <button id="test-submit" type="submit">建立交易並前往藍新</button>
           <p id="test-message" class="error" role="alert" hidden></p>
@@ -42,7 +42,7 @@
       </section>
       <section class="card">
         <h2>最近交易狀態</h2>
-        <p class="muted">「待繳」表示取得帳號或代碼，尚未確認入帳。ATM 與超商實際付款後，請重新整理狀態。</p>
+        <p class="muted">「待繳」表示取得帳號或代碼，尚未確認入帳。ATM 與超商實際付款後，請重新整理狀態。「已付款」表示藍新回傳交易成功；教會銀行撥款仍需另行對帳。</p>
         <button id="refresh" type="button">重新查詢狀態</button>
         <div class="table-wrap"><table><thead><tr><th>建立時間</th><th>方式</th><th>金額</th><th>交易單號</th><th>狀態</th></tr></thead><tbody id="orders"></tbody></table></div>
       </section>
