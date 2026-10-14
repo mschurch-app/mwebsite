@@ -1,7 +1,7 @@
 const ENDPOINT='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-registration';
 const minimums={card:10,atm:10,barcode:20};
 const names={card:'信用卡',webatm:'WebATM',atm:'ATM 虛擬帳號',barcode:'超商條碼',cvs:'超商代碼'};
-const statuses={created:'待前往付款',account_issued:'待繳款／待入帳',paid:'已付款',failed:'付款失敗'};
+const statuses={created:'付款資訊待確認',account_issued:'待繳款／待入帳',paid:'已付款',failed:'付款失敗'};
 const $=selector=>document.querySelector(selector);
 let password=sessionStorage.getItem('heat-camp-payment-test-password')||'';
 
