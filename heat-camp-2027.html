@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="heat-camp-2027.css?v=20261014-payment-test1">
-  <script type="module" src="heat-camp-2027.mjs?v=20261014-onsite-launch1"></script>
+  <link rel="stylesheet" href="heat-camp-2027.css?v=20261015-church1">
+  <script type="module" src="heat-camp-2027.mjs?v=20261015-church1"></script>
 </head>
 <body>
   <header class="topbar">
@@ -119,6 +119,7 @@
           <legend><span>02</span>球員與家長</legend>
           <div class="fields two">
             <label>球員姓名<input name="player_name" autocomplete="name" required maxlength="80" placeholder="請填中文全名"></label>
+            <div class="camp-church-choice"><label>所屬教會<input name="church_affiliation" required maxlength="120" placeholder="請填教會名稱，或勾選「無」"></label><label class="check"><input name="church_none" type="checkbox">無</label></div>
             <label>家長／監護人姓名<input name="guardian_name" autocomplete="name" required maxlength="80"></label>
             <label>家長手機<input name="guardian_phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20" placeholder="09xx-xxx-xxx"></label>
             <label>家長 Email<input name="email" type="email" inputmode="email" autocomplete="email" required maxlength="160"></label>

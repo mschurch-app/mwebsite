@@ -11,7 +11,7 @@ form.addEventListener('submit',async event=>{
   const data=new FormData(form);
   let requestId=sessionStorage.getItem('heat_camp_volunteer_request_id');
   if(!requestId){requestId=crypto.randomUUID();sessionStorage.setItem('heat_camp_volunteer_request_id',requestId);}
-  const payload={action:'submit',request_id:requestId,name:String(data.get('name')||'').trim(),phone:String(data.get('phone')||'').trim(),email:String(data.get('email')||'').trim(),line_id:String(data.get('line_id')||'').trim(),roles,experience:String(data.get('experience')||'').trim(),notes:String(data.get('notes')||'').trim(),website:String(data.get('website')||''),training_agreed:data.has('training_agreed'),deployment_agreed:data.has('deployment_agreed'),privacy_agreed:data.has('privacy_agreed')};
+  const payload={action:'submit',request_id:requestId,name:String(data.get('name')||'').trim(),church_affiliation:String(data.get('church_affiliation')||'').trim(),phone:String(data.get('phone')||'').trim(),email:String(data.get('email')||'').trim(),line_id:String(data.get('line_id')||'').trim(),roles,experience:String(data.get('experience')||'').trim(),notes:String(data.get('notes')||'').trim(),website:String(data.get('website')||''),training_agreed:data.has('training_agreed'),deployment_agreed:data.has('deployment_agreed'),privacy_agreed:data.has('privacy_agreed')};
   button.disabled=true;status.textContent='正在送出報名…';
   try{
     const response=await fetch(endpoint,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});
