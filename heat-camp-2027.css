@@ -115,3 +115,8 @@ footer .camp-footer-logos{grid-column:1/-1;display:flex;justify-content:center;a
 .volunteer-invite p:last-child{line-height:1.75;color:#475e50;max-width:700px;margin:0}
 .volunteer-invite a{display:inline-flex;align-items:center;justify-content:center;gap:15px;flex:none;min-height:48px;padding:12px 19px;border-radius:11px;background:#d96a4b;color:#fff;font-weight:800;text-align:center}
 @media(max-width:720px){.volunteer-invite{flex-direction:column;align-items:stretch;padding:26px 23px;margin:26px auto}.volunteer-invite a{width:100%}}
+
+.camp-church-choice{display:flex;align-items:end;gap:12px}
+.camp-church-choice>label:first-child{flex:1;min-width:0}
+.camp-church-choice .check{flex:none;min-height:48px;align-items:center;white-space:nowrap}
+@media(max-width:620px){.camp-church-choice{align-items:stretch;flex-direction:column}.camp-church-choice .check{width:max-content}}

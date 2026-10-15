@@ -11,6 +11,7 @@ const exceptionReason=$('#exception-reason');
 const dialog=$('#preview-dialog');
 const jerseySelect=$('#jersey-number');
 const JERSEY_AVAILABILITY_URL='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-registration';
+const CHURCH_AFFILIATION_URL='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-church';
 const boolFields=['eligibility_exception','tax_upload_consent','public_credit','no_receipt','insurance_consent','privacy_consent','refund_consent','receipt_consent','truth_consent'];
 let submitting=false;
 let retryAllowed=false;
@@ -23,7 +24,7 @@ const canSubmit=()=>isOnsite()?registrationReady:checkoutReady;
 const expectedEnvironment=document.documentElement.dataset.paymentEnvironment;
 const requestStorageKey=`heat-camp-request-id-${expectedEnvironment}`;
 let activeRequestId=new URLSearchParams(location.search).has('payment')?(sessionStorage.getItem(requestStorageKey)||localStorage.getItem(requestStorageKey)):null;
-const FIELD_LABELS={player_name:'球員姓名',guardian_name:'家長／監護人姓名',guardian_phone:'家長手機',email:'家長 Email',line_id:'LINE ID',national_id:'球員身分證字號',postal_code:'郵遞區號',receipt_address:'收據寄送地址',birthday:'出生日期',school_stage:'營會時就讀階段',school_name:'學校名稱',height_cm:'身高',weight_kg:'體重',basketball_years:'球齡',primary_position:'主要位置',dominant_hand:'慣用手',competition_level:'比賽經驗',jersey_size:'球衣尺寸',jersey_number:'希望背號',jersey_name:'球衣姓名',emergency_name:'緊急聯絡人',emergency_phone:'緊急聯絡電話',dietary_need:'飲食需求',special_identity:'特殊身分類別',medical_status:'身體特殊狀況有無',medical_notes:'特殊狀況說明',donor_name:'捐款人姓名',receipt_title:'收據抬頭',receipt_id:'收據 ID',payment_method:'付款方式',insurance_consent:'保險個資同意',truth_consent:'資料正確確認',privacy_consent:'個資與活動規範同意',refund_consent:'退款政策同意',receipt_consent:'收據資料傳送同意',exception_reason:'例外原因'};
+const FIELD_LABELS={player_name:'球員姓名',church_affiliation:'所屬教會',guardian_name:'家長／監護人姓名',guardian_phone:'家長手機',email:'家長 Email',line_id:'LINE ID',national_id:'球員身分證字號',postal_code:'郵遞區號',receipt_address:'收據寄送地址',birthday:'出生日期',school_stage:'營會時就讀階段',school_name:'學校名稱',height_cm:'身高',weight_kg:'體重',basketball_years:'球齡',primary_position:'主要位置',dominant_hand:'慣用手',competition_level:'比賽經驗',jersey_size:'球衣尺寸',jersey_number:'希望背號',jersey_name:'球衣姓名',emergency_name:'緊急聯絡人',emergency_phone:'緊急聯絡電話',dietary_need:'飲食需求',special_identity:'特殊身分類別',medical_status:'身體特殊狀況有無',medical_notes:'特殊狀況說明',donor_name:'捐款人姓名',receipt_title:'收據抬頭',receipt_id:'收據 ID',payment_method:'付款方式',insurance_consent:'保險個資同意',truth_consent:'資料正確確認',privacy_consent:'個資與活動規範同意',refund_consent:'退款政策同意',receipt_consent:'收據資料傳送同意',exception_reason:'例外原因'};
 
 function taipeiDate(){
   const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
@@ -212,6 +213,8 @@ async function loadPaymentConfiguration(){
 $$('input[name="pricing_mode"]').forEach(input=>input.addEventListener('change',renderPricing));
 form.elements.friend_action.addEventListener('change',renderFriendCode);
 form.elements.school_stage.addEventListener('change',renderEligibility);
+function renderChurchAffiliation(){const none=form.elements.church_none.checked,input=form.elements.church_affiliation;if(none){if(input.value!=='無')input.dataset.previous=input.value;input.value='無';input.readOnly=true;}else{input.readOnly=false;if(input.value==='無')input.value=input.dataset.previous||'';}}
+form.elements.church_none.addEventListener('change',renderChurchAffiliation);
 form.elements.eligibility_exception.addEventListener('change',renderException);
 form.elements.national_id.addEventListener('input',event=>{event.target.value=event.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10);});
 form.elements.receipt_id.addEventListener('input',event=>{event.target.value=event.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,10);});
@@ -227,6 +230,8 @@ form.elements.guardian_name.addEventListener('blur',()=>{
 function registrationPayload(){
   const formData=new FormData(form);
   const data=Object.fromEntries(formData);
+  delete data.church_affiliation;
+  delete data.church_none;
   data.training_goals=formData.getAll('training_goals');
   for(const name of boolFields)data[name]=form.elements[name].checked;
   return data;
@@ -259,6 +264,7 @@ function showMessage(text,success=false){
 
 function finishForm(label){
   form.reset();
+  renderChurchAffiliation();
   renderPricing();renderFriendCode();renderEligibility();renderException();renderMedical();renderReceipt();renderPaymentChoice();
   const submit=$('.submit');
   submit.disabled=true;
@@ -370,6 +376,23 @@ async function retryPayment(){
   }
 }
 
+async function saveChurchAffiliation(registrationNo){
+  if(!registrationNo||!storedRequestId())throw new Error('church_affiliation_unavailable');
+  try{
+    const response=await fetch(CHURCH_AFFILIATION_URL,{
+      method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({
+        action:'save',request_id:storedRequestId(),registration_no:registrationNo,
+        email:form.elements.email.value.trim(),
+        church_affiliation:form.elements.church_affiliation.value.trim()
+      }),
+      signal:AbortSignal.timeout(10000)
+    });
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok||data.ok!==true)throw new Error('save_failed');
+  }catch{throw new Error('church_affiliation_unavailable');}
+}
+
 async function createCheckout(){
   if(submitting||!canSubmit())return;
   submitting=true;
@@ -381,6 +404,7 @@ async function createCheckout(){
     const response=await fetch(JERSEY_AVAILABILITY_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:isOnsite()?'complete_onsite_registration':'create_checkout',expected_environment:expectedEnvironment,request_id:requestId(),registration:registrationPayload()}),signal:AbortSignal.timeout(20000)});
     const data=await response.json().catch(()=>({}));
     if(!response.ok||!data.ok)throw new Error(data.error||'registration_failed');
+    await saveChurchAffiliation(data.registration_no);
     if(isOnsite()){
       if(data.status!=='onsite_complete')throw new Error('onsite_verification_failed');
       clearRequestId();
@@ -404,7 +428,7 @@ async function createCheckout(){
     postToGateway(data.gateway,data.fields);
   }catch(error){
     const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',medical_status_required:'請勾選「本人確認沒有」；若有特殊狀況，請補充說明。',consent_required:'請完成所有必要同意項目。',receipt_preference_failed:'目前無法儲存收據選擇，請稍後再試。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選其他付款方式。'};
-    const extraLabels={onsite_verification_failed:'無法核對現場已繳費資格，請確認驗證碼或聯絡同工。已填資料會保留，不會再次收款。',onsite_code_used:'此現場驗證碼已完成補填，請聯絡同工查詢原報名。',request_registration_mismatch:'這次輸入與原報名不同，請重新開啟報名頁為另一位球員報名；原報名仍保留。',payment_environment_mismatch:'付款環境已更新，請重新連線確認後再付款。',production_checkout_preparing:'正式付款服務仍在準備中，請稍後再試。'};
+    const extraLabels={church_affiliation_unavailable:'所屬教會資料暫時無法儲存，請稍後重試；已建立的報名資料仍保留。',onsite_verification_failed:'無法核對現場已繳費資格，請確認驗證碼或聯絡同工。已填資料會保留，不會再次收款。',onsite_code_used:'此現場驗證碼已完成補填，請聯絡同工查詢原報名。',request_registration_mismatch:'這次輸入與原報名不同，請重新開啟報名頁為另一位球員報名；原報名仍保留。',payment_environment_mismatch:'付款環境已更新，請重新連線確認後再付款。',production_checkout_preparing:'正式付款服務仍在準備中，請稍後再試。'};
     dialog.close();
     showMessage(extraLabels[error.message]||labels[error.message]||(isOnsite()?'目前無法儲存補填資料，已填內容會保留，請稍後再試。':'目前無法建立付款，資料尚未重複送出，請稍後再試。'));
     if(error.message==='payment_environment_mismatch')await loadPaymentConfiguration();
@@ -447,6 +471,7 @@ $('#retry-refresh').addEventListener('click',loadRetryState);
 $('#payment-config-retry').addEventListener('click',loadPaymentConfiguration);
 dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});
 
+renderChurchAffiliation();
 renderPricing();
 renderFriendCode();
 renderEligibility();
