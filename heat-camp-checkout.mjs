@@ -416,7 +416,7 @@ async function createCheckout(){
       dialog.close();
       showMessage(`已收到例外資格申請，報名編號 ${data.registration_no}。審核通過後才會通知付款。`,true);
       form.reset();
-      renderPricing();renderFriendCode();renderEligibility();renderMedical();renderReceipt();renderPaymentChoice();
+      renderChurchAffiliation();renderPricing();renderFriendCode();renderEligibility();renderMedical();renderReceipt();renderPaymentChoice();
       return;
     }
     if(data.status==='paid'){
