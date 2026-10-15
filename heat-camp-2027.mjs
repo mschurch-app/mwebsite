@@ -1,1 +1,1 @@
-import './heat-camp-checkout.mjs?v=20261015-church1';
+import './heat-camp-checkout.mjs?v=20261015-church2';
