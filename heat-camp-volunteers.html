@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#14211e">
+  <meta name="description" content="報名 2027 熱火籃球營志工，參與小隊輔、敬拜團或籃球助教服務。">
+  <title>志工招募｜2027 熱火籃球營</title>
+  <link rel="stylesheet" href="heat-camp-volunteers.css?v=20261015-1">
+  <script type="module" src="heat-camp-volunteers.mjs?v=20261015-1"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="heat-camp-2027.html"><span class="mark">M+</span><span>熱火籃球營</span></a><a class="back" href="heat-camp-2027.html">返回營隊頁面 ↗</a></header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">HEAT BASKETBALL CAMP 2027 · VOLUNTEERS</p>
+      <h1>一起成為孩子們<br><em>成長路上的隊友。</em></h1>
+      <p class="lead">招募熱火籃球營志工。選擇你願意參與的服事，同工收到資料後會與你聯繫。</p>
+      <div class="facts"><span>2027 / 7 / 12 — 7 / 15</span><span>台中東海大學</span><span>四天三夜</span></div>
+    </section>
+
+    <section class="panel intro" aria-labelledby="roles-heading">
+      <div class="section-title"><p class="eyebrow">SERVE TOGETHER</p><h2 id="roles-heading">選擇你的服事位置</h2><p>可複選，由營隊同工聯繫並安排。</p></div>
+      <div class="role-grid">
+        <article><span>01</span><h3>小隊輔志工</h3><strong>10 名</strong><p>陪伴隊員，協助小隊生活與活動。</p></article>
+        <article><span>02</span><h3>敬拜團志工</h3><strong>5 名</strong><p>參與敬拜與聚會服事。</p></article>
+        <article><span>03</span><h3>籃球助教志工</h3><strong>6 名</strong><p>協助球場教學與練習。</p></article>
+      </div>
+      <div class="arrangements"><h3>營隊安排</h3><ul><li>提供餐食、住宿及保險</li><li>由協會開立志工證明</li><li>交通自理，請自行到營隊地點報到</li><li>預計參加約兩次會前訓練，並配合營隊指揮調度</li></ul></div>
+    </section>
+
+    <section class="panel application" aria-labelledby="form-heading">
+      <div class="section-title"><p class="eyebrow">APPLICATION</p><h2 id="form-heading">志工報名</h2><p>填寫後同工會與你聯繫；勾選職務是服務意願，實際安排會再確認。</p></div>
+      <form id="volunteer-form">
+        <div class="fields"><label>姓名 <span>*</span><input name="name" autocomplete="name" maxlength="80" required placeholder="請填真實姓名"></label><label>手機 <span>*</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" required placeholder="方便同工聯繫"></label><label>Email <span>*</span><input name="email" type="email" autocomplete="email" maxlength="160" required placeholder="name@example.com"></label><label>LINE ID <small>選填</small><input name="line_id" maxlength="80" autocomplete="off" placeholder="若方便，也可以留下 LINE ID"></label></div>
+        <fieldset><legend>想參與的志工服事 <span>*</span><small>可複選</small></legend><div class="checks roles"><label><input type="checkbox" name="roles" value="group_leader">小隊輔志工</label><label><input type="checkbox" name="roles" value="worship">敬拜團志工</label><label><input type="checkbox" name="roles" value="basketball_assistant">籃球助教志工</label></div></fieldset>
+        <div class="fields notes"><label>相關經驗 <small>選填</small><textarea name="experience" maxlength="1000" rows="3" placeholder="可分享你想投入的原因或相關經驗"></textarea></label><label>想讓同工知道的事 <small>選填</small><textarea name="notes" maxlength="1000" rows="3" placeholder="例如聯繫時段、需要討論的安排"></textarea></label></div>
+        <div class="agreements"><label><input type="checkbox" name="training_agreed" required>我知道營隊預計安排約兩次會前訓練，願意參與。</label><label><input type="checkbox" name="deployment_agreed" required>我願意配合營隊的現場指揮與調度。</label><label><input type="checkbox" name="privacy_agreed" required>我同意主辦單位將此表單資料用於志工招募、聯繫、保險與服務安排。</label></div>
+        <input class="trap" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p id="form-status" role="status" aria-live="polite"></p>
+        <button id="submit" type="submit">送出志工報名 <span aria-hidden="true">↗</span></button>
+      </form>
+      <div id="success" class="success" hidden tabindex="-1"><span>✓</span><h2>志工報名已收到</h2><p>謝謝你願意一起服事。同工會依你留下的聯絡方式與你聯繫。</p><p id="reference"></p><a href="heat-camp-2027.html">返回熱火籃球營</a></div>
+    </section>
+  </main>
+  <footer>© M+ 熱火籃球營 · <a href="heat-camp-2027.html">營隊資訊</a></footer>
+</body>
+</html>
