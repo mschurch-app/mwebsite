@@ -9,7 +9,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),origi
 const read=name=>readFile(path.join(root,name),'utf8');
 const xml=await read('sitemap.xml');
 const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
-assert.equal(urls.length,12);assert.equal(new Set(urls).size,12);
+assert.equal(urls.length,13);assert.equal(new Set(urls).size,13);
 const titles=new Set();
 for(const url of urls){
  assert.ok(url.startsWith(origin));assert.ok(!url.includes('?'));
@@ -37,6 +37,9 @@ for(const [page,route]of Object.entries(routes)){
  assert.ok(!html.includes('{{CONTENT}}'));
 }
 const camp=await read('heat-camp-2027.html');
+assert.ok(home.includes('href="heat-camp-2027.html"'));
+assert.ok(urls.includes(origin+'heat-camp-2027.html'));
+assert.ok(!camp.includes('href="heat-camp-payment-test.html"'));
 assert.match(camp,/<meta name="robots" content="index,follow">/);
 assert.match(camp,/<link rel="canonical" href="https:\/\/mchurch\.online\/heat-camp-2027\.html">/);
 for(const file of ['preview.html','heat-camp-2027-test.html','heat-camp-2027-success.html','heat-camp-payment-test.html'])assert.match(await read(file),/name="robots" content="noindex,nofollow"/);
