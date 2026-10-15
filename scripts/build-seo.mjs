@@ -46,6 +46,6 @@ const data={'@context':'https://schema.org','@type':'CollectionPage',name:'ä¸»æ—
 sermons=replaceOnce(sermons,/<script type="application\/ld\+json">[\s\S]*?<\/script>/,`<script type="application/ld+json">${json(data)}</script>`);
 await write('sermons.html',sermons);
 // No lastmod is emitted: CMS pages change independently, and a build date is not a content date.
-const urls=['','newcomers.html','sermons.html','gospel.html',...Object.values(routes),'group-resources.html','weekly.html','weekly-archive.html'];
+const urls=['','newcomers.html','sermons.html','gospel.html',...Object.values(routes),'group-resources.html','weekly.html','weekly-archive.html','heat-camp-2027.html'];
 await write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls.map(route=>`  <url><loc>${origin+route}</loc></url>`).join('\n')+'\n</urlset>\n');
 console.log(JSON.stringify({aboutPages:5,sermonCards:items.length,homeCards:Math.min(items.length,3),sitemapUrls:urls.length}));
