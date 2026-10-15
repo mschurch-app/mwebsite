@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#14211e">
   <meta name="description" content="報名 2027 熱火籃球營志工，參與小隊輔、敬拜團或籃球助教服務。">
   <title>志工招募｜2027 熱火籃球營</title>
-  <link rel="stylesheet" href="heat-camp-volunteers.css?v=20261015-1">
-  <script type="module" src="heat-camp-volunteers.mjs?v=20261015-church1"></script>
+  <link rel="stylesheet" href="heat-camp-volunteers.css?v=20261015-insurance1">
+  <script type="module" src="heat-camp-volunteers.mjs?v=20261015-insurance1"></script>
 </head>
 <body>
   <header class="topbar"><a class="brand" href="heat-camp-2027.html"><span class="mark">M+</span><span>熱火籃球營</span></a><a class="back" href="heat-camp-2027.html">返回營隊頁面 ↗</a></header>
@@ -33,9 +33,10 @@
       <div class="section-title"><p class="eyebrow">APPLICATION</p><h2 id="form-heading">志工報名</h2><p>填寫後同工會與你聯繫；勾選職務是服務意願，實際安排會再確認。</p></div>
       <form id="volunteer-form">
         <div class="fields"><label>姓名 <span>*</span><input name="name" autocomplete="name" maxlength="80" required placeholder="請填真實姓名"></label><label>所屬教會 <span>*</span><input name="church_affiliation" maxlength="120" required placeholder="若無固定所屬教會，請填「無」"></label><label>手機 <span>*</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" required placeholder="方便同工聯繫"></label><label>Email <span>*</span><input name="email" type="email" autocomplete="email" maxlength="160" required placeholder="name@example.com"></label><label>LINE ID <small>選填</small><input name="line_id" maxlength="80" autocomplete="off" placeholder="若方便，也可以留下 LINE ID"></label></div>
+        <fieldset class="insurance-fields"><legend>投保資料 <span>*</span></legend><p class="insurance-note">身分證字號、生日及未滿 18 歲者的監護人姓名，僅供本次營隊志工保險使用；不會出現在 LINE 或一般通知。投保資料可能提供承保保險公司辦理投保及必要理賠；未提供完整資料可能無法安排志工服務。</p><div class="fields"><label>生日 <span>*</span><input name="birthday" type="date" autocomplete="bday" required></label><label>身分證字號 <span>*</span><input name="national_id" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="10" minlength="10" pattern="[A-Za-z][12][0-9]{8}" required placeholder="僅供志工保險投保"></label><label id="guardian-field" hidden>監護人姓名 <span>*</span><input name="guardian_name" autocomplete="off" maxlength="80" placeholder="未滿 18 歲者填寫"></label></div></fieldset>
         <fieldset><legend>想參與的志工服事 <span>*</span><small>可複選</small></legend><div class="checks roles"><label><input type="checkbox" name="roles" value="group_leader">小隊輔志工</label><label><input type="checkbox" name="roles" value="worship">敬拜團志工</label><label><input type="checkbox" name="roles" value="basketball_assistant">籃球助教志工</label></div></fieldset>
         <div class="fields notes"><label>相關經驗 <small>選填</small><textarea name="experience" maxlength="1000" rows="3" placeholder="可分享你想投入的原因或相關經驗"></textarea></label><label>想讓同工知道的事 <small>選填</small><textarea name="notes" maxlength="1000" rows="3" placeholder="例如聯繫時段、需要討論的安排"></textarea></label></div>
-        <div class="agreements"><label><input type="checkbox" name="training_agreed" required>我知道營隊預計安排約兩次會前訓練，願意參與。</label><label><input type="checkbox" name="deployment_agreed" required>我願意配合營隊的現場指揮與調度。</label><label><input type="checkbox" name="privacy_agreed" required>我同意主辦單位將此表單資料用於志工招募、聯繫、保險與服務安排。</label></div>
+        <div class="agreements"><label><input type="checkbox" name="training_agreed" required>我知道營隊預計安排約兩次會前訓練，願意參與。</label><label><input type="checkbox" name="deployment_agreed" required>我願意配合營隊的現場指揮與調度。</label><label><input type="checkbox" name="privacy_agreed" required>我同意主辦單位將表單資料用於志工招募、聯繫與服務安排，並將上述投保資料用於本次營隊志工保險。</label></div>
         <input class="trap" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <p id="form-status" role="status" aria-live="polite"></p>
         <button id="submit" type="submit">送出志工報名 <span aria-hidden="true">↗</span></button>
