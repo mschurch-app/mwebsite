@@ -1090,6 +1090,7 @@
       .resource-card p{font-size:.86rem;line-height:1.65}
       .section-title{font-size:1.72rem;line-height:1.35}
     }
+    .section-more{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
   </style>
 <link rel="stylesheet" href="church-palette.css?v=20261003-contrast1"><link rel="stylesheet" href="site-design.css?v=20261003-cute-tree1"></head>
 <body class="home-page">
@@ -1100,14 +1101,14 @@
       <a class="brand public-header-brand" href="index.html" aria-label="M+大雅教會首頁"><svg class="public-brand-home" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-8h6v8"/></svg><span class="public-brand-m">M+</span><span class="public-brand-name">大雅教會</span></a>
       <ul class="nav-links" aria-label="主要導覽">
         <li><a href="newcomers.html">第一次來</a></li>
-        <li><a href="sermons.html">主日信息</a></li><li><a href="gospel.html">認識信仰</a></li>
+        <li><a href="sermons.html">主日信息</a></li><li><a href="faith-on-the-way/index.html">牧者專欄</a></li><li><a href="gospel.html">認識信仰</a></li>
         <li><a href="about.html" target="_top">關於我們</a></li>
         <li><a href="weekly.html?church=M%2B">本週週報</a></li>
       </ul>
       <button class="nav-btn" onclick="openModal('預約本週主日')">預約本週主日</button>
       <button class="menu-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="mobileNav" onclick="toggleMenu()">☰</button>
     </div>
-    <div class="mobile-nav" id="mobileNav"><a href="newcomers.html">第一次來</a><a href="weekly.html?church=M%2B">本週週報</a><a href="sermons.html">主日信息</a><a href="gospel.html">認識信仰</a><a href="about.html" target="_top">關於我們</a><a href="#gathering" onclick="toggleMenu(true)">時間與交通</a></div>
+    <div class="mobile-nav" id="mobileNav"><a href="newcomers.html">第一次來</a><a href="weekly.html?church=M%2B">本週週報</a><a href="sermons.html">主日信息</a><a href="faith-on-the-way/index.html">牧者專欄</a><a href="gospel.html">認識信仰</a><a href="about.html" target="_top">關於我們</a><a href="#gathering" onclick="toggleMenu(true)">時間與交通</a></div>
   </header>
 
   <!-- ==================== HERO SECTION ==================== -->
@@ -1220,7 +1221,7 @@
         <p>從一篇信息開始，把星期日聽見的帶進每一天。</p>
       </div>
       <div class="home-sermon-grid"><a class="home-sermon-card featured" href="https://www.youtube.com/watch?v=q_6Sjk6WlFs" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/q_6Sjk6WlFs/hqdefault.jpg" alt="不是擁有太少 是你算得太多主日信息封面" loading="lazy"><span>2026.10.04・吳俊璋牧師</span><h3>不是擁有太少 是你算得太多</h3><p>馬可福音6:30-44</p></a><a class="home-sermon-card" href="https://www.youtube.com/watch?v=6awK0TaZEDo" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/6awK0TaZEDo/hqdefault.jpg" alt="耶穌教你降維打擊：原來這才是偉大主日信息封面" loading="lazy"><span>2026.09.27・吳俊璋牧師</span><h3>耶穌教你降維打擊：原來這才是偉大</h3><p>約翰福音13:1-15</p></a><a class="home-sermon-card" href="https://www.youtube.com/watch?v=LTpmo8PDeSo" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/LTpmo8PDeSo/hqdefault.jpg" alt="治標還是治本主日信息封面" loading="lazy"><span>2026.09.13・江建平長老</span><h3>治標還是治本</h3><p>希伯來書4:14-5:10</p></a></div>
-      <div class="section-more"><a class="btn-secondary" href="sermons.html">查看全部主日信息 <i data-lucide="arrow-right" size="18"></i></a></div>
+      <div class="section-more"><a class="btn-secondary" href="sermons.html">查看全部主日信息 <i data-lucide="arrow-right" size="18"></i></a><a class="btn-secondary" href="faith-on-the-way/index.html">信仰，在路上 · 牧者專欄 <i data-lucide="book-open" size="18"></i></a></div>
     </div>
   </section>
 
@@ -1382,7 +1383,7 @@
         <a href="https://www.facebook.com/shangfengchurch/" target="_blank" rel="noopener noreferrer" aria-label="前往 M+ 大雅教會 Facebook"><i data-lucide="facebook" size="17" aria-hidden="true"></i>FB</a>
         <a href="https://line.me/R/ti/p/@505reyot" target="_blank" rel="noopener noreferrer" aria-label="加入 M+ 大雅教會 LINE 官方帳號"><i data-lucide="message-circle" size="17" aria-hidden="true"></i>LINE</a>
       </nav>
-      <nav class="footer-links" aria-label="頁尾導覽"><a href="about.html">認識教會</a><a href="newcomers.html">第一次來</a><a href="weekly.html?church=M%2B">本週週報</a><a href="sermons.html">主日信息</a><a href="gospel.html">認識信仰</a><a href="https://www.youtube.com/@m-church/live" target="_blank" rel="noopener noreferrer">YouTube 直播</a></nav>
+      <nav class="footer-links" aria-label="頁尾導覽"><a href="about.html">認識教會</a><a href="newcomers.html">第一次來</a><a href="weekly.html?church=M%2B">本週週報</a><a href="sermons.html">主日信息</a><a href="faith-on-the-way/index.html">牧者專欄</a><a href="gospel.html">認識信仰</a><a href="https://www.youtube.com/@m-church/live" target="_blank" rel="noopener noreferrer">YouTube 直播</a></nav>
       <address class="footer-contact">台中市大雅區神林南路 513 巷 13 號<br><a href="tel:+886425658977">04-2565-8977</a>・<a href="mailto:church@tcsc.org.tw">church@tcsc.org.tw</a></address>
       <p style="font-size: 0.8rem; opacity: 0.6;">© 2026 M+大雅教會. All rights reserved.</p>
     </div>
