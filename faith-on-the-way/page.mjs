@@ -3,11 +3,11 @@ import {initSharing} from './sharing.mjs';
 const sharing=initSharing();
 const triggers=new WeakMap();
 function openDialog(dialog,trigger){if(!dialog)return;triggers.set(dialog,trigger);dialog.showModal();}
-document.querySelectorAll('[data-share]').forEach(button=>button.addEventListener('click',()=>{openDialog(document.getElementById('share-dialog'),button);sharing.prepare();}));
+document.querySelectorAll('[data-share]').forEach(button=>button.addEventListener('click',()=>{button.closest('dialog')?.close();openDialog(document.getElementById('share-dialog'),button);sharing.prepare();}));
 document.querySelectorAll('[data-contents]').forEach(button=>button.addEventListener('click',()=>openDialog(document.getElementById('contents-dialog'),button)));
 document.querySelectorAll('dialog').forEach(dialog=>{
   dialog.querySelectorAll('[data-close],.dialog-close').forEach(button=>button.addEventListener('click',()=>dialog.close()));
-  dialog.addEventListener('close',()=>triggers.get(dialog)?.focus({preventScroll:true}));
+  dialog.addEventListener('close',()=>{const trigger=triggers.get(dialog);if(trigger?.closest('dialog')&&!trigger.closest('dialog').open){document.getElementById('next-page')?.focus({preventScroll:true});}else trigger?.focus({preventScroll:true});});
 });
 document.getElementById('copy-share')?.addEventListener('click',async()=>{
   const text=document.getElementById('share-copy');
