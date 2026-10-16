@@ -1,7 +1,9 @@
+import {initSharing} from './sharing.mjs';
 // Keep navigation inside the book; each dialog restores its initiating control.
+const sharing=initSharing();
 const triggers=new WeakMap();
 function openDialog(dialog,trigger){if(!dialog)return;triggers.set(dialog,trigger);dialog.showModal();}
-document.querySelectorAll('[data-share]').forEach(button=>button.addEventListener('click',()=>openDialog(document.getElementById('share-dialog'),button)));
+document.querySelectorAll('[data-share]').forEach(button=>button.addEventListener('click',()=>{openDialog(document.getElementById('share-dialog'),button);sharing.prepare();}));
 document.querySelectorAll('[data-contents]').forEach(button=>button.addEventListener('click',()=>openDialog(document.getElementById('contents-dialog'),button)));
 document.querySelectorAll('dialog').forEach(dialog=>{
   dialog.querySelectorAll('[data-close],.dialog-close').forEach(button=>button.addEventListener('click',()=>dialog.close()));
@@ -153,5 +155,3 @@ if(source){
   let frame;
   new ResizeObserver(()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(layout);}).observe(container);
 }
-
-const nativeShare=document.getElementById('native-share');if(nativeShare&&navigator.share){nativeShare.hidden=false;nativeShare.addEventListener('click',async()=>{try{await navigator.share({title:document.title,url:document.querySelector('link[rel="canonical"]').href});}catch(error){if(error.name!=='AbortError')document.getElementById('share-status').textContent='請複製文案與連結分享。';}});}
