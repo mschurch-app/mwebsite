@@ -22,3 +22,5 @@ dialog{width:min(540px,calc(100% - 32px));max-height:calc(100dvh - 48px);border:
 #chapter-end .chapter-share{display:flex;width:100%;margin-top:14px;background:var(--sage);border-color:#c7d1be;color:var(--forest)}
 
 #chapter-end .end-summary{font-family:var(--serif);font-size:16px;line-height:1.9;border-left:2px solid #bbc9b0;padding-left:14px;margin:18px 0;color:var(--forest)}
+
+.share-recovery{display:flex;align-items:center;gap:16px;margin:8px 0 12px}.share-recovery small{font-size:10px;line-height:1.7;color:var(--muted)}#image-share-dialog{width:min(440px,calc(100% - 28px))}#image-share-dialog p{line-height:1.8}#image-share-dialog img{width:min(100%,260px);margin:18px auto;border:1px solid var(--line);border-radius:4px}#image-share-dialog .button{display:flex;width:100%}

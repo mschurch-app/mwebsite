@@ -1,77 +1,78 @@
-// Web Share leaves target selection and final publication to the reader.
-export function initSharing({doc=document,nav=navigator,fetchImage=fetch,makeFile=(blob)=>new File([blob],'faith-on-the-way.jpg',{type:'image/jpeg'}),openWindow=(url)=>window.open(url,'_blank','noopener,noreferrer')}={}) {
-  const status=doc.getElementById('share-status');
-  const ig=doc.getElementById('instagram-share');
-  const fb=doc.getElementById('facebook-share');
+// Native sharing hands content to the OS; it cannot select an app or confirm publication.
+export function initSharing({doc=document,nav=navigator,fetchImage=fetch,makeFile=blob=>new File([blob],'faith-on-the-way.jpg',{type:'image/jpeg'}),createUrl=blob=>URL.createObjectURL(blob),revokeUrl=url=>URL.revokeObjectURL(url)}={}) {
+  const ig=doc.getElementById('instagram-share'),fb=doc.getElementById('facebook-share');
   if(!ig||!fb)return {prepare(){}};
+  const status=doc.getElementById('share-status'),help=doc.getElementById('instagram-help');
+  const guide=doc.getElementById('image-share-dialog'),shareDialog=doc.getElementById('share-dialog');
+  const image=doc.getElementById('share-image'),download=doc.getElementById('download-ig');
+  const save=doc.getElementById('save-share-image'),other=doc.getElementById('native-share');
   const preview=doc.body.dataset.publication!=='public';
   const articleNode=doc.getElementById('article-share-data');
   const article=articleNode?JSON.parse(articleNode.textContent):null;
-  if(article){
-    const intro=doc.querySelector('.share-intro');
-    if(intro)intro.textContent=`分享〈${article.title}〉，陪另一個人走一程。`;
-    doc.getElementById('download-ig')?.addEventListener('click',async event=>{
-      event.preventDefault();
-      try{
-        const blob=await createArticleCard(doc,article);
-        const href=URL.createObjectURL(blob),link=doc.createElement('a');
-        link.href=href;link.download=article.label+'-信仰在路上.jpg';link.click();
-        setTimeout(()=>URL.revokeObjectURL(href),60000);
-      }catch{status.textContent='圖片暫時無法產生，請複製本篇文案與連結分享。';}
-    });
-  }
-  const help=doc.getElementById('instagram-help');
-  const other=doc.getElementById('native-share');
   const say=text=>{status.textContent=text;};
-  let file,loading;
   const url=doc.querySelector('link[rel="canonical"]')?.href;
-  const validUrl=()=>{try{const parsed=new URL(url);return parsed.origin==='https://mchurch.online'&&parsed.pathname.startsWith('/faith-on-the-way/');}catch{return false;}};
-  const supportsFiles=()=>!!(nav.share&&nav.canShare);
-  function unavailable(){
-    help.textContent='此瀏覽器無法分享圖片。請以手機 Safari／Chrome 開啟，或展開下方選項下載 IG 圖片。';
+  const validUrl=()=>{try{const u=new URL(url);return u.origin==='https://mchurch.online'&&u.pathname.startsWith('/faith-on-the-way/');}catch{return false;}};
+  let file,loading,objectUrl,nativePending=false,returnToShare=false;
+  if(article){const intro=doc.querySelector('.share-intro');if(intro)intro.textContent=`分享〈${article.title}〉，陪另一個人走一程。`;}
+  function canShareImage(){try{return !!(file&&nav.share&&nav.canShare?.({files:[file]}));}catch{return false;}}
+  function setImage(blob){
+    if(blob.type!=='image/jpeg')throw Error('unexpected image');
+    file=makeFile(blob);objectUrl=createUrl(blob);
+    for(const link of [download,save])if(link){link.href=objectUrl;link.download=(article?.label||'信仰在路上')+'-分享圖.jpg';}
+    if(image)image.src=objectUrl;
+    help.textContent=preview?'沙盒可檢查圖卡；FB／IG 交接僅示範，不會送出。':canShareImage()?'分享選單中選擇 Instagram；若沒有看到，請使用下方「儲存圖卡」。':'此瀏覽器無法直接分享圖片，請點下方「儲存圖卡」，再到 Instagram 選用。';
   }
   function prepare(){
-    if(preview||loading||file)return loading;
-    if(!supportsFiles()){unavailable();return;}
-    ig.disabled=true;
-    ig.setAttribute('aria-busy','true');
-    const image=article?createArticleCard(doc,article):fetchImage('ig-card.jpg').then(response=>{
-      if(!response.ok)throw Error('image unavailable');
-      return response.blob();
-    });
-    loading=image.then(blob=>{
-      if(blob.type!=='image/jpeg')throw Error('unexpected image');
-      const ready=makeFile(blob);
-      if(!nav.canShare({files:[ready]})){unavailable();return;}
-      file=ready;
-    }).catch(()=>{help.textContent='圖片尚未備妥，請下載 IG 圖片，或稍後再試。';})
-      .finally(()=>{ig.disabled=false;ig.removeAttribute('aria-busy');loading=null;});
+    if(file)return Promise.resolve(file);
+    if(loading)return loading;
+    // A preview can render its chapter card locally without any external request.
+    if(preview&&!article)return Promise.resolve();
+    const blobPromise=article?Promise.resolve().then(()=>createArticleCard(doc,article)):fetchImage('ig-card.jpg').then(response=>{if(!response.ok)throw Error('image unavailable');return response.blob();});
+    let timer;
+    loading=Promise.race([blobPromise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('image timeout')),10000);})])
+      .then(blob=>{setImage(blob);return file;})
+      .catch(()=>{say('圖片暫時無法準備，請重試或先複製文案與連結。');})
+      .finally(()=>{clearTimeout(timer);loading=null;});
     return loading;
   }
-  fb.addEventListener('click',()=>{
-    if(preview){say('正式版會開啟 Facebook 分享視窗，帶入本頁閱讀連結，讓您確認發佈。');return;}
-    if(!validUrl()){say('閱讀連結尚未備妥，請稍後再試。');return;}
-    openWindow('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url));
-    say('已要求開啟 Facebook 分享視窗；請在視窗內確認發佈。');
+  async function showImage(){
+    await prepare();
+    if(!guide)return;
+    if(!file&&!(preview&&!article))return;
+    returnToShare=!!shareDialog?.open;
+    shareDialog?.close();guide.showModal();
+  }
+  guide?.addEventListener('close',()=>{if(returnToShare&&!shareDialog.open){shareDialog.showModal();ig.focus();}returnToShare=false;});
+  doc.getElementById('save-image')?.addEventListener('click',showImage);
+  // Normal same-tab navigation avoids blocked window.open popups in in-app browsers.
+  if(!preview&&validUrl())fb.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+  fb.addEventListener('click',event=>{
+    if(preview){event.preventDefault();say('正式版會在目前頁面開啟 Facebook。若顯示未登入，需先登入 Facebook；返回即可繼續閱讀。');}
+    else if(!validUrl()){event.preventDefault();say('閱讀連結尚未備妥，請稍後再試。');}
   });
-  ig.addEventListener('click',async()=>{
-    if(preview){say(article?`將分享〈${article.title}〉的專屬圖片。選擇 Instagram，再確認發佈。`:'正式版會帶入 IG 圖片，開啟手機分享選單。選擇 Instagram，再確認發佈；若未看到 IG，請使用下方下載圖片。');return;}
-    if(!file){prepare();say('請待圖片備妥再點一次；若此瀏覽器不支援，請使用下方下載圖片。');return;}
-    // No fetch/clipboard await before share: iOS requires this click's activation.
-    ig.disabled=true;
-    try{await nav.share({files:[file]});say('圖片已交給手機分享功能；請在 Instagram 完成發佈。');}
-    catch(error){say(error.name==='AbortError'?'已取消分享。':'無法開啟分享，請以手機 Safari／Chrome 開啟，或下載 IG 圖片。');}
-    finally{ig.disabled=false;}
+  ig.addEventListener('click',()=>{
+    if(preview){say('正式版會嘗試開啟手機圖片分享選單；此處先檢查圖卡，無法交接時也能直接儲存。');return showImage();}
+    if(!file){prepare();say('正在準備圖卡，稍後再點一次，或點「儲存圖卡」。');return;}
+    if(nativePending||!canShareImage())return showImage();
+    nativePending=true;
+    say('請在手機分享選單選擇 Instagram。若沒有開啟，點「儲存圖卡」繼續。');
+    // No await before share, and no disabled button while the OS promise is pending.
+    try{
+      return Promise.resolve(nav.share({files:[file]})).then(()=>say('已交給系統分享功能；是否發佈請在 Instagram 確認。'))
+        .catch(error=>{if(error.name==='AbortError')say('已取消分享，仍可使用「儲存圖卡」。');else{say('此瀏覽器無法交接圖片，請使用「儲存圖卡」。');showImage();}})
+        .finally(()=>{nativePending=false;});
+    }catch{nativePending=false;say('無法開啟分享，請使用「儲存圖卡」。');return showImage();}
   });
   if(other&&(preview||nav.share)){
     other.hidden=false;
     other.addEventListener('click',async()=>{
-      if(preview){say('正式版會開啟手機分享選單，分享本頁閱讀連結。');return;}
+      if(preview){say('正式版會開啟手機分享選單，分享本篇閱讀連結。');return;}
       if(!validUrl())return;
-      try{await nav.share({title:doc.title,url});say('閱讀連結已交給手機分享功能。');}
+      try{await nav.share({title:doc.title,url});say('閱讀連結已交給系統分享功能。');}
       catch(error){if(error.name!=='AbortError')say('請複製文案與連結分享。');}
     });
   }
+  doc.defaultView?.addEventListener('pagehide',()=>{if(objectUrl)revokeUrl(objectUrl);});
   return {prepare};
 }
 
