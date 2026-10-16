@@ -9,7 +9,9 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),origi
 const read=name=>readFile(path.join(root,name),'utf8');
 const xml=await read('sitemap.xml');
 const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
-assert.equal(urls.length,13);assert.equal(new Set(urls).size,13);
+const faith=JSON.parse(await read('faith-on-the-way/publication.json'));
+const expectedPages=13+faith.pages.length;
+assert.equal(urls.length,expectedPages);assert.equal(new Set(urls).size,expectedPages);
 const titles=new Set();
 for(const url of urls){
  assert.ok(url.startsWith(origin));assert.ok(!url.includes('?'));
@@ -23,7 +25,8 @@ for(const url of urls){
  for(const match of html.matchAll(/(?:href|src)="([^"#]+)"/g)){
   const value=match[1].split(/[?#]/)[0];
   if(!value||/^(?:[a-z]+:|\/\/)/i.test(value))continue;
-  await access(path.join(root,value));
+  const currentRoute=url.slice(origin.length)||'index.html';
+  await access(value.startsWith('/')?path.join(root,value):path.resolve(root,path.dirname(currentRoute),value));
  }
 }
 const home=await read('index.html');
@@ -48,3 +51,14 @@ assert.ok((await read('sermons.html')).includes(esc(items[0].title)));assert.ok(
 assert.equal(visibleItems([{title:'unsafe',url:'javascript:alert(1)',thumbnail:'x',published:'2026-10-11'}]).length,0);
 assert.equal(esc('<script>"&'), '&lt;script&gt;&quot;&amp;');
 console.log(JSON.stringify({sitemapPages:urls.length,staticAboutPages:5,verificationTag:true,excludedUtilityPages:4,publicCampPage:'indexable',localLinks:'valid',structuredData:'valid',unsafeSermonUrlRejected:true}));
+
+const pending=await read('faith-on-the-way/chapter-02.html');
+if(!faith.chapterTwoPublished){
+ assert.ok(!faith.pages.includes('chapter-02.html'));
+ assert.ok(!pending.includes('id="article-source"'));
+ assert.ok(pending.includes('noindex,nofollow'));
+ assert.ok(!(await read('faith-on-the-way/book.html')).includes('href="chapter-02.html"'));
+ assert.ok(!(await read('faith-on-the-way/chapter-01.html')).includes('href="chapter-02.html"'));
+}
+assert.ok(!(await read('faith-on-the-way/page.mjs')).includes('preview-metrics'));
+console.log(JSON.stringify({faithPages:faith.pages.length,scheduledChapterIsPublic:faith.chapterTwoPublished,faithIndexing:'valid'}));
