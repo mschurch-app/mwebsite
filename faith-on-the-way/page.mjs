@@ -1,4 +1,4 @@
-import {initSharing} from './sharing.mjs';
+import {initSharing} from './sharing.mjs?v=27465f97737f';
 // Keep navigation inside the book; each dialog restores its initiating control.
 const sharing=initSharing();
 const triggers=new WeakMap();
