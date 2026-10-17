@@ -12,13 +12,14 @@ export function initSharing({doc=document,nav=navigator,fetchImage=fetch,makeFil
   const say=text=>{status.textContent=text;};
   const url=doc.querySelector('link[rel="canonical"]')?.href;
   const validUrl=()=>{try{const u=new URL(url);return u.origin==='https://mchurch.online'&&u.pathname.startsWith('/faith-on-the-way/');}catch{return false;}};
+  const mobile=/Android|iPhone|iPad|iPod/i.test(nav.userAgent||'');
   function shareLink(){
     if(preview){say('正式版會直接開啟手機分享選單，分享本篇閱讀連結。');return false;}
     if(!validUrl()){say('閱讀連結尚未備妥，請稍後再試。');return false;}
-    if(!nav.share)return false;
+    if(!mobile||!nav.share)return false;
     try{
       Promise.resolve(nav.share({title:doc.title,url})).then(()=>say('閱讀連結已交給系統分享功能。'))
-        .catch(error=>{if(error.name!=='AbortError')say('無法開啟分享選單，請複製閱讀連結。');});
+        .catch(error=>{if(error.name!=='AbortError'){say('無法開啟系統分享，請選擇 Facebook 或複製閱讀連結。');if(!shareDialog?.open)shareDialog?.showModal();}});
       return true;
     }catch{return false;}
   }
