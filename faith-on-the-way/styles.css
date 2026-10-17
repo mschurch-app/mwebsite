@@ -24,3 +24,29 @@ dialog{width:min(540px,calc(100% - 32px));max-height:calc(100dvh - 48px);border:
 #chapter-end .end-summary{font-family:var(--serif);font-size:16px;line-height:1.9;border-left:2px solid #bbc9b0;padding-left:14px;margin:18px 0;color:var(--forest)}
 
 .share-recovery{display:flex;align-items:center;gap:16px;margin:8px 0 12px}.share-recovery small{font-size:10px;line-height:1.7;color:var(--muted)}#image-share-dialog{width:min(440px,calc(100% - 28px))}#image-share-dialog p{line-height:1.8}#image-share-dialog img{width:min(100%,260px);margin:18px auto;border:1px solid var(--line);border-radius:4px}#image-share-dialog .button{display:flex;width:100%}
+/* Bigger touch targets and cover for phones; keep the reading text unchanged. */
+#share-now{width:100%;min-height:56px;margin:0 0 14px;font-size:16px}
+.reader-toolbar button,.reader-back,.book-tools button,.book-actions a,.page-controls button,.page-selector select{min-height:48px}
+.reader-toolbar{gap:8px}
+.reader-toolbar>span{margin-inline:auto}
+.corner-illustration{overflow:hidden;border-radius:6px;box-shadow:0 3px 14px #31412d26}
+.illustration-photo>img{object-fit:cover;border-radius:6px}
+@media(max-width:650px){
+  .shelf-main{justify-content:flex-start;padding:24px 18px 30px}
+  .shelf-heading{margin-bottom:22px}
+  .shelf-book{max-width:430px;gap:16px;padding:24px 20px 18px}
+  .shelf-cover{width:clamp(185px,54vw,250px)}
+  .shelf-book-copy h2{font-size:22px;margin:8px 0}
+  .shelf-book-copy h2>span{font-size:18px}
+  .shelf-enter{min-height:54px;font-size:16px}
+  .book-main{padding:20px 20px 30px}
+  .book-cover-display{width:clamp(180px,50vw,245px)}
+  .book-actions .button,.book-actions .text-link{min-height:52px;font-size:15px}
+  .book-tools button{font-size:14px}
+  .reader-toolbar{height:56px}
+  .reader-toolbar button,.reader-back{font-size:13px;padding:8px 10px}
+  .reader-toolbar>span{font-size:12px}
+  .page-controls>button{min-width:100px;min-height:48px;font-size:13px}
+  .page-selector select{min-height:48px;font-size:13px}
+}
+@media(max-height:740px) and (max-width:650px){.shelf-cover{width:clamp(160px,43vw,205px)}.book-cover-display{width:clamp(165px,44vw,210px)}}
