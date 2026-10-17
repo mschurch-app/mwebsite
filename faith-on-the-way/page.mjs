@@ -1,9 +1,10 @@
-import {initSharing} from './sharing.mjs?v=27465f97737f';
+import {initSharing} from './sharing.mjs?v=c36f1a2b69f6';
 // Keep navigation inside the book; each dialog restores its initiating control.
 const sharing=initSharing();
 const triggers=new WeakMap();
 function openDialog(dialog,trigger){if(!dialog)return;triggers.set(dialog,trigger);dialog.showModal();}
-document.querySelectorAll('[data-share]').forEach(button=>button.addEventListener('click',()=>{button.closest('dialog')?.close();openDialog(document.getElementById('share-dialog'),button);sharing.prepare();}));
+document.querySelectorAll('[data-share]').forEach(button=>button.addEventListener('click',()=>{if(button.hasAttribute('data-share-now')&&sharing.shareLink())return;button.closest('dialog')?.close();openDialog(document.getElementById('share-dialog'),button);sharing.prepare();}));
+if(document.getElementById('article-share-data')){const warm=()=>sharing.prepare();if('requestIdleCallback' in window)requestIdleCallback(warm,{timeout:1500});else setTimeout(warm,250);}
 document.querySelectorAll('[data-contents]').forEach(button=>button.addEventListener('click',()=>openDialog(document.getElementById('contents-dialog'),button)));
 document.querySelectorAll('dialog').forEach(dialog=>{
   dialog.querySelectorAll('[data-close],.dialog-close').forEach(button=>button.addEventListener('click',()=>dialog.close()));
@@ -50,7 +51,7 @@ if(source){
     const anchorKind=ready?pages[current].dataset.kind:params.get('sheet');
     const anchor=ready?Number(pages[current].dataset.start):(Number.isFinite(requestedPosition)&&requestedPosition>0?requestedPosition:0);
     lastSize=size;
-    const cornerSpace=document.getElementById('corner-opening')?Math.min(202,Math.max(60,container.clientHeight*.38)):0;
+    const cornerSpace=document.getElementById('corner-opening')?Math.min(230,Math.max(175,container.clientHeight*.52)):0;
     const height=Math.max(80,container.clientHeight-2);
     container.replaceChildren();pages=[];
     let offset=0,pendingHeadings=[];

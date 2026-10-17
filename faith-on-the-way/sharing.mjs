@@ -12,6 +12,16 @@ export function initSharing({doc=document,nav=navigator,fetchImage=fetch,makeFil
   const say=text=>{status.textContent=text;};
   const url=doc.querySelector('link[rel="canonical"]')?.href;
   const validUrl=()=>{try{const u=new URL(url);return u.origin==='https://mchurch.online'&&u.pathname.startsWith('/faith-on-the-way/');}catch{return false;}};
+  function shareLink(){
+    if(preview){say('正式版會直接開啟手機分享選單，分享本篇閱讀連結。');return false;}
+    if(!validUrl()){say('閱讀連結尚未備妥，請稍後再試。');return false;}
+    if(!nav.share)return false;
+    try{
+      Promise.resolve(nav.share({title:doc.title,url})).then(()=>say('閱讀連結已交給系統分享功能。'))
+        .catch(error=>{if(error.name!=='AbortError')say('無法開啟分享選單，請複製閱讀連結。');});
+      return true;
+    }catch{return false;}
+  }
   let file,loading,objectUrl,nativePending=false,returnToShare=false;
   if(article){const intro=doc.querySelector('.share-intro');if(intro)intro.textContent=`分享〈${article.title}〉，陪另一個人走一程。`;}
   function canShareImage(){try{return !!(file&&nav.share&&nav.canShare?.({files:[file]}));}catch{return false;}}
@@ -52,7 +62,7 @@ export function initSharing({doc=document,nav=navigator,fetchImage=fetch,makeFil
   });
   ig.addEventListener('click',()=>{
     if(preview){say('正式版會嘗試開啟手機圖片分享選單；此處先檢查圖卡，無法交接時也能直接儲存。');return showImage();}
-    if(!file){prepare();say('正在準備圖卡，稍後再點一次，或點「儲存圖卡」。');return;}
+    if(!file){say('正在準備圖卡，完成後會顯示儲存與分享方式。');return showImage();}
     if(nativePending||!canShareImage())return showImage();
     nativePending=true;
     say('請在手機分享選單選擇 Instagram。若沒有開啟，點「儲存圖卡」繼續。');
@@ -65,15 +75,13 @@ export function initSharing({doc=document,nav=navigator,fetchImage=fetch,makeFil
   });
   if(other&&(preview||nav.share)){
     other.hidden=false;
-    other.addEventListener('click',async()=>{
-      if(preview){say('正式版會開啟手機分享選單，分享本篇閱讀連結。');return;}
-      if(!validUrl())return;
-      try{await nav.share({title:doc.title,url});say('閱讀連結已交給系統分享功能。');}
-      catch(error){if(error.name!=='AbortError')say('請複製文案與連結分享。');}
-    });
+    other.addEventListener('click',shareLink);
   }
+  doc.getElementById('share-now')?.addEventListener('click',()=>{
+    if(!shareLink())doc.getElementById('copy-share')?.click();
+  });
   doc.defaultView?.addEventListener('pagehide',()=>{if(objectUrl)revokeUrl(objectUrl);});
-  return {prepare};
+  return {prepare,shareLink};
 }
 
 // A chapter's card carries its own title and reading URL, without borrowing another chapter's image.
