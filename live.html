@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173f38">
+  <meta name="description" content="M+大雅教會主日直播倒數與觀看入口。每週日早上十點，歡迎一起敬拜。">
+  <link rel="canonical" href="https://mchurch.online/live.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="主日直播｜M+大雅教會">
+  <meta property="og:description" content="每週日早上十點一起敬拜。查看直播倒數與觀看連結。">
+  <meta property="og:url" content="https://mchurch.online/live.html">
+  <meta property="og:image" content="https://mchurch.online/assets/brand/mplus-social-card.png">
+  <title>主日直播｜M+大雅教會</title>
+  <link rel="icon" href="assets/brand/mplus-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="live.css?v=20261018-1">
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="index.html"><img src="assets/brand/mplus-icon.svg" width="44" height="44" alt=""><span>M+ 大雅教會</span></a><a class="home-link" href="index.html">返回首頁</a></header>
+  <main>
+    <section class="live-card" aria-labelledby="live-heading">
+      <p class="eyebrow">SUNDAY LIVE · 每週日 10:00</p>
+      <h1 id="live-heading">一起參與主日崇拜</h1>
+      <p id="live-topic" class="topic">歡迎回家，我們在這裡等你。</p>
+      <p id="live-date" class="date">正在讀取本週主日資訊…</p>
+      <div id="countdown" class="countdown" aria-label="距離主日直播開始">
+        <div><strong id="days">--</strong><span>天</span></div><div><strong id="hours">--</strong><span>時</span></div><div><strong id="minutes">--</strong><span>分</span></div><div><strong id="seconds">--</strong><span>秒</span></div>
+      </div>
+      <p id="live-state" class="state" role="status">直播將在主日上午十點開始。</p>
+      <div class="actions"><a id="watch-link" class="watch" href="https://www.youtube.com/@m-church/live" target="_blank" rel="noopener noreferrer">前往 YouTube 直播</a><a class="secondary" href="weekly.html?church=M%2B">閱讀本週週報</a></div>
+      <p id="live-help" class="help">直播前可先開啟 YouTube 等候室；開播後若畫面沒有更新，請重新整理。</p>
+      <div id="player-wrap" class="player-wrap" hidden><iframe id="live-player" title="M+大雅教會主日直播" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    </section>
+  </main>
+  <footer>© M+ 大雅教會 · 歡迎你一起敬拜</footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script>
+  <script type="module" src="live.mjs?v=20261018-1"></script>
+</body>
+</html>
