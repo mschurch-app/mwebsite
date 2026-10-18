@@ -12,9 +12,9 @@ function render(){
  const day=new Intl.DateTimeFormat('zh-TW',{timeZone:'Asia/Taipei',month:'long',day:'numeric',weekday:'long'}).format(new Date(start));
  $('live-date').textContent=`${day} 上午 10:00 · 線上直播`;
  $('live-topic').textContent=live.title||'歡迎回家，我們在這裡等你。';
- $('live-state').textContent=remaining>0?'直播即將開始，歡迎先到 YouTube 等候室。':'主日直播時間到了，點選下方按鈕觀看。';
- $('countdown').hidden=remaining===0;
  const videoId=/^[A-Za-z0-9_-]{11}$/.test(live.video_id||'')?live.video_id:null;
+ $('live-state').textContent=remaining>0?(videoId?'直播即將開始，歡迎先到 YouTube 等候室。':'距離下次主日崇拜還有：'):'主日直播時間到了，點選下方按鈕觀看。';
+ $('countdown').hidden=remaining===0;
  $('watch-link').href=videoId?`https://www.youtube.com/watch?v=${videoId}`:fallbackUrl;
  $('live-help').textContent=videoId?'若直播尚未開始，YouTube 會顯示等候畫面；開播後可重新整理。':'本週直播場次尚未確認，按鈕會帶你到教會的 YouTube 直播頁。';
  if(videoId&&remaining===0&&$('live-player').src===''){$('live-player').src=`https://www.youtube-nocookie.com/embed/${videoId}`;$('player-wrap').hidden=false;}
