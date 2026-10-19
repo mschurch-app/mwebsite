@@ -36,6 +36,12 @@
     const token=location.hash.slice(1);
     const stateKey='heatCampLinePayLiveStatus';
     let statusUrl=sessionStorage.getItem(stateKey)||'';
+    if(statusUrl){
+      try{
+        const issuedAt=Number(new URL(statusUrl).searchParams.get('state')?.split('.')[2]);
+        if(!Number.isFinite(issuedAt)||Date.now()-issuedAt>55*60*1000){statusUrl='';sessionStorage.removeItem(stateKey);}
+      }catch{statusUrl='';sessionStorage.removeItem(stateKey);}
+    }
     function show(text,isError=false){message.textContent=text;message.className=isError?'error':'';}
     if(statusUrl){start.disabled=true;actions.hidden=false;pay.hidden=true;show('已有一筆正式測試交易。完成授權後可查詢狀態；請勿重複建立。');}
     start.addEventListener('click',async()=>{
@@ -57,7 +63,7 @@
       check.disabled=true;show('正在查詢 LINE Pay 狀態…');
       try{
         const response=await fetch(statusUrl,{cache:'no-store'}),data=await response.json();
-        if(data.phase==='confirmed'&&data.ok){show('LINE Pay 正式 NT$1 測試交易已確認。此筆實際扣款不建立營隊報名或營隊收據。');pay.hidden=true;return;}
+        if(data.phase==='confirmed'&&data.ok){show('LINE Pay 正式 NT$1 測試交易已確認。訂單 '+String(data.orderId)+'，交易 '+String(data.transactionId)+'。此筆實際扣款不建立營隊報名或營隊收據。');pay.hidden=true;return;}
         if(data.phase==='waiting'&&data.ok){show('仍在等待 LINE Pay 授權。若已完成付款，請稍後再查；不要重新付款。');return;}
         if(data.phase==='failed'){show('這筆正式測試未完成（狀態 '+String(data.linePayCode||'未知')+'）。請先聯絡我核對，勿立刻再次付款。',true);return;}
         throw Error('目前無法確認狀態，請稍後再試。');
