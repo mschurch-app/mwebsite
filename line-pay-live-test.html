@@ -19,13 +19,13 @@
     <div class="card">
       <p class="notice">這是獨立的 NT$1 正式交易，會實際扣款；不建立營隊報名，也不產生營隊收據。請只完成一筆。</p>
       <p>請按「開始」建立一筆新的正式測試交易，確認金額為 NT$1 後再付款。</p>
-      <p class="small">這是正式付款環境；付款完成後回到本頁按「查詢並確認測試」，不要再次建立交易。</p>
+      <p class="small">這是正式付款環境。LINE Pay 完成後會導回此頁，自動核對原交易；若畫面顯示錯誤，請先查詢原交易，勿重新付款。</p>
       <button class="button" id="start" type="button">建立 NT$1 正式測試交易</button>
       <div id="actions" hidden>
         <a class="button" id="pay" href="#">開啟 LINE Pay 正式付款</a>
         <button class="button secondary" id="check" type="button">查詢並確認測試</button>
       </div>
-      <p class="small">完成網頁版 LINE Pay 授權後，返回此頁按「查詢並確認測試」。若你關閉了這個瀏覽器，請重新開啟本頁。</p>
+      <p class="small">若未自動導回，請回到此頁按「查詢並確認測試」。請勿建立第二筆交易。</p>
       <p id="message" role="status" aria-live="polite"></p>
     </div>
   </main>
@@ -33,9 +33,22 @@
     const endpoint='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-line-pay-live-probe';
     const start=document.getElementById('start'),actions=document.getElementById('actions');
     const pay=document.getElementById('pay'),check=document.getElementById('check'),message=document.getElementById('message');
-    const token=location.hash.slice(1);
+    const fragment=location.hash.slice(1);
+    const token=fragment.startsWith('status=')?'':fragment;
     const stateKey='heatCampLinePayLiveStatus';
+    const tokenKey='heatCampLinePayLiveToken';
     let statusUrl=sessionStorage.getItem(stateKey)||'';
+    if(token&&sessionStorage.getItem(tokenKey)!==token.slice(-8)){
+      statusUrl='';sessionStorage.removeItem(stateKey);sessionStorage.setItem(tokenKey,token.slice(-8));
+    }
+    if(fragment.startsWith('status=')){
+      const returnedState=decodeURIComponent(fragment.slice(7));
+      if(/^[A-Z0-9]+\.\d{16,22}\.\d{13}\.[0-9a-f]{64}$/.test(returnedState)){
+        statusUrl=endpoint+'?mode=status&state='+encodeURIComponent(returnedState);
+        sessionStorage.setItem(stateKey,statusUrl);
+      }
+      history.replaceState(null,'',location.pathname+location.search);
+    }
     if(statusUrl){
       try{
         const issuedAt=Number(new URL(statusUrl).searchParams.get('state')?.split('.')[2]);
@@ -43,7 +56,10 @@
       }catch{statusUrl='';sessionStorage.removeItem(stateKey);}
     }
     function show(text,isError=false){message.textContent=text;message.className=isError?'error':'';}
-    if(statusUrl){start.disabled=true;actions.hidden=false;pay.hidden=true;show('已有一筆正式測試交易。完成授權後可查詢狀態；請勿重複建立。');}
+    if(statusUrl){start.disabled=true;actions.hidden=false;pay.hidden=true;show('正在查詢原 LINE Pay 交易；請勿重複付款。');}
+    else if(new URLSearchParams(location.search).get('payment')==='unknown'){
+      start.disabled=true;show('LINE Pay 已返回，但此頁暫時無法查到原交易。請勿再次付款，先聯絡營會同工查證。',true);
+    }
     start.addEventListener('click',async()=>{
       if(!token){show('測試連結缺少權杖，請使用剛收到的完整連結重新開啟。',true);return;}
       start.disabled=true;show('正在建立 NT$1 正式測試交易…');
@@ -54,7 +70,7 @@
         const payment=new URL(data.paymentUrl),status=new URL(data.statusUrl);
         if(payment.protocol!=='https:'||payment.hostname!=='web-pay.line.me'||status.origin!==new URL(endpoint).origin)throw Error('收到不正確的付款連結，已停止測試。');
         statusUrl=status.href;sessionStorage.setItem(stateKey,statusUrl);
-        pay.href=payment.href;pay.target='_blank';pay.rel='noopener noreferrer';pay.hidden=false;actions.hidden=false;
+        pay.href=payment.href;pay.hidden=false;actions.hidden=false;
         show('新交易已建立。請立即開啟 LINE Pay 正式付款。');
       }catch(error){show(error.message||'建立交易失敗。',true);start.disabled=false;}
     });
@@ -69,6 +85,7 @@
         throw Error('目前無法確認狀態，請稍後再試。');
       }catch(error){show(error.message||'查詢失敗。',true);}finally{check.disabled=false;}
     });
+    if(statusUrl)check.click();
   </script>
 </body>
 </html>
