@@ -18,13 +18,14 @@
     <h1>LINE Pay 沙盒付款測試</h1>
     <div class="card">
       <p class="notice">這是獨立的 NT$100 沙盒模擬交易，不會實際扣款，也不會建立營隊報名。</p>
-      <p>請在手機上按「開始」，建立一筆全新的測試交易。舊付款連結無法重用。</p>
+      <p>請在電腦瀏覽器按「開始」，建立一筆全新的測試交易。舊付款連結無法重用。</p>
+      <p class="small">LINE Pay 沙盒不支援 App 付款流程。請在電腦版沙盒付款頁按「LOGIN」，以個人 LINE 帳號登入；不要用手機 LINE App 開啟或掃描付款碼測試。</p>
       <button class="button" id="start" type="button">開始新的沙盒測試</button>
       <div id="actions" hidden>
         <a class="button" id="pay" href="#">開啟 LINE Pay 沙盒付款</a>
         <button class="button secondary" id="check" type="button">查詢並完成測試</button>
       </div>
-      <p class="small">完成 LINE Pay 授權後，返回此頁按「查詢並完成測試」。若你關閉了這個瀏覽器，請重新開啟本頁。</p>
+      <p class="small">完成網頁版 LINE Pay 授權後，返回此頁按「查詢並完成測試」。若你關閉了這個瀏覽器，請重新開啟本頁。</p>
       <p id="message" role="status" aria-live="polite"></p>
     </div>
   </main>
@@ -36,7 +37,7 @@
     const stateKey='heatCampLinePaySandboxStatus';
     let statusUrl=sessionStorage.getItem(stateKey)||'';
     function show(text,isError=false){message.textContent=text;message.className=isError?'error':'';}
-    if(statusUrl){actions.hidden=false;pay.hidden=true;show('已有一筆測試交易。完成手機授權後可查詢狀態。');}
+    if(statusUrl){actions.hidden=false;pay.hidden=true;show('已有一筆測試交易。完成網頁版授權後可查詢狀態。');}
     start.addEventListener('click',async()=>{
       if(!token){show('測試連結缺少權杖，請使用剛收到的完整連結重新開啟。',true);return;}
       start.disabled=true;show('正在建立新的沙盒交易…');
