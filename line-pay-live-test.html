@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://aqanuwilmvdtlzuqlrau.supabase.co; base-uri 'none'; form-action 'none'">
+  <title>LINE Pay 正式小額付款測試｜熱火籃球營</title>
+  <style>
+    :root{font:17px/1.6 -apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;color:#18352c;background:#f5f7f3}
+    *{box-sizing:border-box}body{margin:0;padding:0 18px 50px}main{max-width:560px;margin:40px auto}h1{font-size:clamp(27px,7vw,38px);line-height:1.25;margin:0 0 14px}p{margin:0 0 14px}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.14em;color:#008a50}.card{background:white;border:1px solid #d8e4dc;border-radius:22px;padding:24px;box-shadow:0 16px 35px #19382712}.notice{background:#e9f7ed;border-radius:12px;padding:12px 15px;font-size:15px}.button{display:block;width:100%;border:0;border-radius:13px;background:#00a751;color:white;padding:15px;text-align:center;text-decoration:none;font-family:inherit;font-size:18px;font-weight:700;line-height:1.4;margin:14px 0;cursor:pointer}.button.secondary{background:#245246}.button:disabled{opacity:.55;cursor:wait}.small{font-size:14px;color:#566d62}.error{color:#a82025;font-weight:700}[hidden]{display:none!important}
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">2027 熱火籃球營</p>
+    <h1>LINE Pay 正式小額付款測試</h1>
+    <div class="card">
+      <p class="notice">這是獨立的 NT$1 正式交易，會實際扣款；不建立營隊報名，也不產生營隊收據。請只完成一筆。</p>
+      <p>請按「開始」建立一筆新的正式測試交易，確認金額為 NT$1 後再付款。</p>
+      <p class="small">這是正式付款環境；付款完成後回到本頁按「查詢並確認測試」，不要再次建立交易。</p>
+      <button class="button" id="start" type="button">建立 NT$1 正式測試交易</button>
+      <div id="actions" hidden>
+        <a class="button" id="pay" href="#">開啟 LINE Pay 正式付款</a>
+        <button class="button secondary" id="check" type="button">查詢並確認測試</button>
+      </div>
+      <p class="small">完成網頁版 LINE Pay 授權後，返回此頁按「查詢並確認測試」。若你關閉了這個瀏覽器，請重新開啟本頁。</p>
+      <p id="message" role="status" aria-live="polite"></p>
+    </div>
+  </main>
+  <script>
+    const endpoint='https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/heat-camp-line-pay-live-probe';
+    const start=document.getElementById('start'),actions=document.getElementById('actions');
+    const pay=document.getElementById('pay'),check=document.getElementById('check'),message=document.getElementById('message');
+    const token=location.hash.slice(1);
+    const stateKey='heatCampLinePayLiveStatus';
+    let statusUrl=sessionStorage.getItem(stateKey)||'';
+    function show(text,isError=false){message.textContent=text;message.className=isError?'error':'';}
+    if(statusUrl){start.disabled=true;actions.hidden=false;pay.hidden=true;show('已有一筆正式測試交易。完成授權後可查詢狀態；請勿重複建立。');}
+    start.addEventListener('click',async()=>{
+      if(!token){show('測試連結缺少權杖，請使用剛收到的完整連結重新開啟。',true);return;}
+      start.disabled=true;show('正在建立 NT$1 正式測試交易…');
+      try{
+        const response=await fetch(endpoint+'?mode=start',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({token}),cache:'no-store'});
+        const data=await response.json();
+        if(!response.ok||!data.ok)throw Error('無法建立交易：'+String(data.error||'未知錯誤')+'。未付款，請勿重複操作。');
+        const payment=new URL(data.paymentUrl),status=new URL(data.statusUrl);
+        if(payment.protocol!=='https:'||payment.hostname!=='web-pay.line.me'||status.origin!==new URL(endpoint).origin)throw Error('收到不正確的付款連結，已停止測試。');
+        statusUrl=status.href;sessionStorage.setItem(stateKey,statusUrl);
+        pay.href=payment.href;pay.target='_blank';pay.rel='noopener noreferrer';pay.hidden=false;actions.hidden=false;
+        show('新交易已建立。請立即開啟 LINE Pay 正式付款。');
+      }catch(error){show(error.message||'建立交易失敗。',true);start.disabled=false;}
+    });
+    check.addEventListener('click',async()=>{
+      if(!statusUrl){show('請先建立一筆新測試交易。',true);return;}
+      check.disabled=true;show('正在查詢 LINE Pay 狀態…');
+      try{
+        const response=await fetch(statusUrl,{cache:'no-store'}),data=await response.json();
+        if(data.phase==='confirmed'&&data.ok){show('LINE Pay 正式 NT$1 測試交易已確認。此筆實際扣款不建立營隊報名或營隊收據。');pay.hidden=true;return;}
+        if(data.phase==='waiting'&&data.ok){show('仍在等待 LINE Pay 授權。若已完成付款，請稍後再查；不要重新付款。');return;}
+        if(data.phase==='failed'){show('這筆正式測試未完成（狀態 '+String(data.linePayCode||'未知')+'）。請先聯絡我核對，勿立刻再次付款。',true);return;}
+        throw Error('目前無法確認狀態，請稍後再試。');
+      }catch(error){show(error.message||'查詢失敗。',true);}finally{check.disabled=false;}
+    });
+  </script>
+</body>
+</html>
