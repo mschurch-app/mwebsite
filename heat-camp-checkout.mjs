@@ -16,6 +16,7 @@ const boolFields=['eligibility_exception','tax_upload_consent','public_credit','
 let submitting=false;
 let retryAllowed=false;
 let retryBusy=false;
+let retryResumeUrl='';
 let checkoutReady=false;
 let registrationReady=false;
 let wizard;
@@ -69,7 +70,7 @@ function renderRegistrationFlow(){
   if(final.parentElement!==lastStep)lastStep.append(final);
   $('#payment-section').hidden=onsite;
   $('#onsite-completion-note').hidden=!onsite;
-  $('.submit-note').textContent=onsite?'核對現場已繳費資格後完成補填，不會建立付款帳號。':'確認頁不會顯示完整身分證字號。付款帳號由藍新金流產生，每筆報名專用。';
+  $('.submit-note').textContent=onsite?'核對現場已繳費資格後完成補填，不會建立付款帳號。':form.elements.payment_method.value==='line_pay'?'確認頁不會顯示完整身分證字號。付款會在 LINE Pay 安全頁面完成。':'確認頁不會顯示完整身分證字號。付款帳號由藍新金流產生，每筆報名專用。';
   $('#summary-price').textContent=onsite?'現場已繳 NT$ 6,000':`NT$ ${currentPlan().price.toLocaleString('zh-TW')}`;
   form.elements.payment_method.forEach(input=>{
     input.disabled=onsite||!checkoutReady||input.closest('.payment-choice').classList.contains('unavailable');
@@ -78,7 +79,7 @@ function renderRegistrationFlow(){
   const submit=$('.submit');
   submit.disabled=!canSubmit()||submit.classList.contains('completed');
   $('span',submit).textContent=onsite?'確認並送出補填資料':'檢查資料並前往確認';
-  $('#confirmation-note').textContent=onsite?'確認後會核對現場已繳費資格並儲存資料，不會前往付款。':'確認後會安全送出報名資料，並前往藍新金流完成所選付款方式。';
+  $('#confirmation-note').textContent=onsite?'確認後會核對現場已繳費資格並儲存資料，不會前往付款。':form.elements.payment_method.value==='line_pay'?'確認後會安全送出報名資料，並前往 LINE Pay 完成付款。':'確認後會安全送出報名資料，並前往藍新金流完成所選付款方式。';
   $('.dialog-confirm').textContent=onsite?'確認送出補填資料':'確認並前往付款';
   wizard?.setLastStep(onsite?3:4);
 }
@@ -162,11 +163,29 @@ function renderMedical(){
 
 function renderPaymentChoice(){
   $$('#payment-choice-grid .choice').forEach(label=>label.classList.toggle('selected',Boolean($('input',label)?.checked)));
+  renderRegistrationFlow();
   const retryButton=$('#retry-submit');
   if(retryButton){
-    retryButton.disabled=!checkoutReady||!retryAllowed||retryBusy||!form.elements.payment_method.value;
-    retryButton.textContent=retryBusy?'正在建立付款…':retryAllowed?'接續付款':'確認狀態後再付款';
+    retryButton.disabled=!checkoutReady||retryBusy||(!retryResumeUrl&&(!retryAllowed||!form.elements.payment_method.value));
+    retryButton.textContent=retryBusy?'正在確認付款…':retryResumeUrl?'返回 LINE Pay 繼續付款':retryAllowed?'接續付款':'確認狀態後再付款';
   }
+}
+
+function continueToPayment(data){
+  if(data.status!=='checkout')throw new Error('checkout_unavailable');
+  if(data.redirect_url){
+    location.assign(safeLinePayRedirect(data.redirect_url));
+    return;
+  }
+  if(!data.gateway||!data.fields)throw new Error('checkout_unavailable');
+  postToGateway(data.gateway,data.fields);
+}
+
+function safeLinePayRedirect(value){
+  const url=new URL(value);
+  if(url.protocol!=='https:'||!['web-pay.line.me','sandbox-web-pay.line.me'].includes(url.hostname))
+    throw new Error('checkout_unavailable');
+  return url.href;
 }
 
 async function loadPaymentConfiguration(){
@@ -316,6 +335,7 @@ async function paymentRequest(action,extra={}){
 async function loadRetryState(){
   const detail=$('#retry-detail');
   retryAllowed=false;
+  retryResumeUrl='';
   renderPaymentChoice();
   if(!storedRequestId()){
     detail.textContent='此瀏覽器沒有原報名的付款識別資料。請提供報名編號給營會客服協助查詢。';
@@ -331,8 +351,15 @@ async function loadRetryState(){
       location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(data.registration_no)}`);
       return;
     }
+    if(data.verification_pending){
+      detail.textContent=`報名編號 ${data.registration_no}，LINE Pay 已送出，但系統暫時無法向 LINE 查核最終結果。請勿重新付款；稍後再按「重新查詢狀態」。`;
+      return;
+    }
     const amount=`NT$ ${Number(data.amount).toLocaleString('zh-TW')}`;
-    if(data.retry_allowed){
+    if(data.resume_url){
+      retryResumeUrl=safeLinePayRedirect(data.resume_url);
+      detail.textContent=`報名編號 ${data.registration_no}，原報名金額 ${amount}。LINE Pay 尚未完成授權，可返回同一筆付款；請勿建立新訂單。`;
+    }else if(data.retry_allowed){
       retryAllowed=true;
       detail.textContent=`報名編號 ${data.registration_no}，原報名金額 ${amount}。原付款未完成，請選擇上方付款方式，繼續使用同一筆報名付款。`;
     }else{
@@ -345,7 +372,9 @@ async function loadRetryState(){
 }
 
 async function retryPayment(){
-  if(!checkoutReady||retryBusy||!retryAllowed||!form.elements.payment_method.value)return;
+  if(!checkoutReady||retryBusy)return;
+  if(retryResumeUrl){location.assign(safeLinePayRedirect(retryResumeUrl));return;}
+  if(!retryAllowed||!form.elements.payment_method.value)return;
   retryBusy=true;
   renderPaymentChoice();
   $('#retry-detail').textContent='正在再次核對付款狀態並建立付款頁，請勿重複點擊。';
@@ -365,8 +394,7 @@ async function retryPayment(){
       location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(data.registration_no)}`);
       return;
     }
-    if(data.status!=='checkout'||!data.gateway||!data.fields)throw new Error('payment_retry_unavailable');
-    postToGateway(data.gateway,data.fields);
+    continueToPayment(data);
   }catch(error){
     showMessage(error.message==='payment_status_pending'?'付款狀態仍待確認，已停止再次付款以避免重複扣款。請重新查詢或聯絡客服。':'目前無法接續付款。原報名資料仍保留，請重新查詢付款狀態。');
     await loadRetryState();
@@ -416,7 +444,8 @@ async function createCheckout(){
       dialog.close();
       showMessage(`已收到例外資格申請，報名編號 ${data.registration_no}。審核通過後才會通知付款。`,true);
       form.reset();
-      renderChurchAffiliation();renderPricing();renderFriendCode();renderEligibility();renderMedical();renderReceipt();renderPaymentChoice();
+      renderChurchAffiliation();
+      renderPricing();renderFriendCode();renderEligibility();renderMedical();renderReceipt();renderPaymentChoice();
       return;
     }
     if(data.status==='paid'){
@@ -424,14 +453,32 @@ async function createCheckout(){
       location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(data.registration_no)}`);
       return;
     }
-    if(data.status!=='checkout'||!data.gateway||!data.fields)throw new Error('checkout_unavailable');
-    postToGateway(data.gateway,data.fields);
+    continueToPayment(data);
   }catch(error){
     const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',medical_status_required:'請勾選「本人確認沒有」；若有特殊狀況，請補充說明。',consent_required:'請完成所有必要同意項目。',receipt_preference_failed:'目前無法儲存收據選擇，請稍後再試。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選其他付款方式。'};
     const extraLabels={church_affiliation_unavailable:'所屬教會資料暫時無法儲存，請稍後重試；已建立的報名資料仍保留。',onsite_verification_failed:'無法核對現場已繳費資格，請確認驗證碼或聯絡同工。已填資料會保留，不會再次收款。',onsite_code_used:'此現場驗證碼已完成補填，請聯絡同工查詢原報名。',request_registration_mismatch:'這次輸入與原報名不同，請重新開啟報名頁為另一位球員報名；原報名仍保留。',payment_environment_mismatch:'付款環境已更新，請重新連線確認後再付款。',production_checkout_preparing:'正式付款服務仍在準備中，請稍後再試。'};
     dialog.close();
     showMessage(extraLabels[error.message]||labels[error.message]||(isOnsite()?'目前無法儲存補填資料，已填內容會保留，請稍後再試。':'目前無法建立付款，資料尚未重複送出，請稍後再試。'));
     if(error.message==='payment_environment_mismatch')await loadPaymentConfiguration();
+    if(!isOnsite()&&storedRequestId()){
+      try{
+        const state=await paymentRequest('registration_status');
+        if(state.status==='paid'){
+          clearRequestId();
+          location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(state.registration_no)}`);
+          return;
+        }
+        if(state.status==='awaiting_payment'){
+          wizard.showStep(4,{scroll:false});
+          $('.wizard-actions').hidden=true;
+          $('.summary').hidden=true;
+          $('.submit').hidden=true;
+          $('.submit-note').hidden=true;
+          $('#payment-retry').hidden=false;
+          await loadRetryState();
+        }
+      }catch{/* A lookup failure must not submit another order. */}
+    }
   }finally{
     submitting=false;
     confirm.disabled=false;
@@ -497,13 +544,22 @@ if(paymentState==='paid'){
   finishForm('付款資料已建立');
   $('.wizard-actions').hidden=true;
   showMessage('繳費帳號、代碼或條碼已建立，請依藍新顯示的期限完成付款。入帳後才會正式保留名額。',true);
-}else if(paymentState==='failed'){
+}else if(paymentState==='failed'||paymentState==='cancelled'){
   wizard.showStep(4,{scroll:false});
   $('.wizard-actions').hidden=true;
   $('.summary').hidden=true;
   $('.submit').hidden=true;
   $('.submit-note').hidden=true;
   $('#payment-retry').hidden=false;
-  showMessage(`付款尚未完成。${paymentCode?` 錯誤代碼：${paymentCode}。`:''}${paymentMessage?` ${paymentMessage}`:' 請確認付款資料後重新操作。'}`);
+  showMessage(`${paymentState==='cancelled'?'LINE Pay 付款已取消。':'付款尚未完成。'}${paymentCode?` 錯誤代碼：${paymentCode}。`:''}${paymentMessage?` ${paymentMessage}`:' 請查詢原報名狀態後再操作。'}`);
+  loadRetryState();
+}else if(paymentState==='unknown'){
+  wizard.showStep(4,{scroll:false});
+  $('.wizard-actions').hidden=true;
+  $('.summary').hidden=true;
+  $('.submit').hidden=true;
+  $('.submit-note').hidden=true;
+  $('#payment-retry').hidden=false;
+  showMessage('LINE Pay 付款結果仍在確認。請先查詢原報名狀態；若已扣款，請勿再次付款，並提供報名編號給營會同工。');
   loadRetryState();
 }
