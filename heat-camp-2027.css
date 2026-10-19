@@ -108,6 +108,18 @@ footer .camp-footer-logos{grid-column:1/-1;display:flex;justify-content:center;a
 .payment-configuration a{text-decoration:underline;text-underline-offset:3px}
 .payment-config-retry{min-height:44px;margin-top:12px;padding:9px 16px;border:1px solid #a7b9ac;border-radius:10px;background:#fff;color:var(--green);font-weight:800;cursor:pointer}
 .payment-configuration[hidden],.payment-config-retry[hidden],.payment-choice[hidden]{display:none}
+
+/* Payment choices beneath the pricing cards. Availability follows checkout configuration. */
+.payment-methods{margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.22)}
+.payment-methods[hidden],.payment-methods li[hidden]{display:none}
+.payment-methods>p{margin:0 0 16px;color:#e9f2ed;font-size:16px;font-weight:800}
+.payment-methods ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
+.payment-methods li{min-height:84px;display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid rgba(255,255,255,.24);border-radius:16px;background:rgba(255,255,255,.08);font-size:15px;font-weight:800}
+.payment-method-icon{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:10px;background:#fff;color:#18443b}
+.payment-method-icon svg{width:27px;height:27px}
+.line-pay-icon{background:#06c755;color:#fff;font:900 11px/1 'Plus Jakarta Sans',sans-serif;text-align:center}
+.payment-methods>small{display:block;margin-top:14px;color:#bed0c9;font-size:12px}
+@media(max-width:700px){.payment-methods{margin-top:30px;padding-top:22px}.payment-methods ul{grid-template-columns:repeat(2,minmax(0,1fr))}.payment-methods li{min-height:74px;padding:10px 12px;font-size:13px}.payment-method-icon{width:36px;height:36px}.payment-method-icon svg{width:24px;height:24px}}
 .choice input{width:20px;height:20px;inset:12px auto auto 12px;margin:0;padding:0}
 
 .volunteer-invite{display:flex;align-items:center;justify-content:space-between;gap:36px;margin:40px auto;padding:34px 40px;border-radius:22px;background:#eaf3e9;border:1px solid #d8e7d7}

@@ -190,6 +190,7 @@ function safeLinePayRedirect(value){
 
 async function loadPaymentConfiguration(){
   const panel=$('#payment-configuration'),message=$('#payment-configuration-message'),retry=$('#payment-config-retry'),submit=$('.submit');
+  const methodsPanel=$('#available-payment-methods');
   checkoutReady=false;
   registrationReady=false;
   renderRegistrationFlow();
@@ -207,6 +208,9 @@ async function loadPaymentConfiguration(){
     if(expectedEnvironment==='production'&&data.merchant_id!=='MS3845446298')throw new Error('merchant_mismatch');
     registrationReady=true;
     if(!Object.values(data.payment_methods||{}).some(Boolean))throw new Error('unavailable');
+    if(methodsPanel){
+      $$('[data-payment-icon]').forEach(item=>{item.hidden=!Boolean(data.payment_methods?.[item.dataset.paymentIcon]);});
+    }
     form.elements.payment_method.forEach(input=>{
       const enabled=Boolean(data.payment_methods?.[input.value]);
       input.disabled=!enabled;

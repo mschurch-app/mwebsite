@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="heat-camp-2027.css?v=20261015-church1">
-  <script type="module" src="heat-camp-2027.mjs?v=20261019-line-pay-return1"></script>
+  <link rel="stylesheet" href="heat-camp-2027.css?v=20261020-payment-methods1">
+  <script type="module" src="heat-camp-2027.mjs?v=20261020-payment-methods1"></script>
 </head>
 <body>
   <header class="topbar">
@@ -73,6 +73,16 @@
         <article class="price-card"><span>晚鳥優惠</span><strong>$9,000</strong><p>2027/04/01–05/31</p></article>
         <article class="price-card"><span>原價</span><strong>$10,000</strong><p>2027/06/01 起</p></article>
         <article class="price-card duo"><span>兩人友情價</span><strong>$8,000 <small>/ 人</small></strong><p>2027/01/01–06/30，兩人完成報名才成立。</p></article>
+      </div>
+      <div class="payment-methods" id="available-payment-methods" aria-labelledby="payment-methods-title">
+        <p id="payment-methods-title">可使用的繳款方式</p>
+        <ul>
+          <li data-payment-icon="card"><span class="payment-method-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="3" y="7" width="26" height="18" rx="3" stroke="currentColor" stroke-width="2"/><path d="M3 13h26M8 20h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>信用卡</span></li>
+          <li data-payment-icon="atm"><span class="payment-method-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M4 13h24M6 13v13m7-13v13m6-13v13m7-13v13M3 27h26M16 4 3 11h26L16 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>ATM 轉帳</span></li>
+          <li data-payment-icon="barcode"><span class="payment-method-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M4 6v20m4-20v20m4-20v20m3-20v20m4-20v20m3-20v20m3-20v20m3-20v20" stroke="currentColor" stroke-width="2"/></svg></span><span>超商條碼</span></li>
+          <li data-payment-icon="line_pay"><span class="payment-method-icon line-pay-icon" aria-hidden="true">LINE<br>Pay</span><span>LINE Pay</span></li>
+        </ul>
+        <small>付款方式與金額會在報名最後一步確認。</small>
       </div>
     </section>
 
