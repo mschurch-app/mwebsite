@@ -17,15 +17,14 @@
     <p class="eyebrow">2027 熱火籃球營</p>
     <h1>LINE Pay 正式小額付款測試</h1>
     <div class="card">
-      <p class="notice">這是獨立的 NT$1 正式交易，會實際扣款；不建立營隊報名，也不產生營隊收據。請只完成一筆。</p>
-      <p>請按「開始」建立一筆新的正式測試交易，確認金額為 NT$1 後再付款。</p>
-      <p class="small">這是正式付款環境。LINE Pay 完成後會導回此頁，自動核對原交易；若畫面顯示錯誤，請先查詢原交易，勿重新付款。</p>
-      <button class="button" id="start" type="button">建立 NT$1 正式測試交易</button>
+      <p class="notice">這是獨立的 NT$1 正式交易，已完成實際扣款；沒有建立營隊報名，也沒有產生營隊收據。</p>
+      <p id="intro">本次小額付款測試已結束。請勿再次付款。</p>
+      <button class="button" id="start" type="button" hidden>建立 NT$1 正式測試交易</button>
       <div id="actions" hidden>
         <a class="button" id="pay" href="#">開啟 LINE Pay 正式付款</a>
         <button class="button secondary" id="check" type="button">查詢並確認測試</button>
       </div>
-      <p class="small">若未自動導回，請回到此頁按「查詢並確認測試」。請勿建立第二筆交易。</p>
+      <p class="small" id="afterword">若剛完成付款但未自動導回，請在原測試頁查詢既有交易；請勿建立第二筆交易。</p>
       <p id="message" role="status" aria-live="polite"></p>
     </div>
   </main>
@@ -56,9 +55,9 @@
       }catch{statusUrl='';sessionStorage.removeItem(stateKey);}
     }
     function show(text,isError=false){message.textContent=text;message.className=isError?'error':'';}
-    if(statusUrl){start.disabled=true;actions.hidden=false;pay.hidden=true;show('正在查詢原 LINE Pay 交易；請勿重複付款。');}
+    if(statusUrl){start.hidden=true;actions.hidden=false;pay.hidden=true;show('正在查詢原 LINE Pay 交易；請勿重複付款。');}
     else if(new URLSearchParams(location.search).get('payment')==='unknown'){
-      start.disabled=true;show('LINE Pay 已返回，但此頁暫時無法查到原交易。請勿再次付款，先聯絡營會同工查證。',true);
+      start.hidden=true;show('LINE Pay 已返回，但此頁暫時無法查到原交易。請勿再次付款，先聯絡營會同工查證。',true);
     }
     start.addEventListener('click',async()=>{
       if(!token){show('測試連結缺少權杖，請使用剛收到的完整連結重新開啟。',true);return;}
@@ -79,7 +78,7 @@
       check.disabled=true;show('正在查詢 LINE Pay 狀態…');
       try{
         const response=await fetch(statusUrl,{cache:'no-store'}),data=await response.json();
-        if(data.phase==='confirmed'&&data.ok){show('LINE Pay 正式 NT$1 測試交易已確認。訂單 '+String(data.orderId)+'，交易 '+String(data.transactionId)+'。此筆實際扣款不建立營隊報名或營隊收據。');pay.hidden=true;return;}
+        if(data.phase==='confirmed'&&data.ok){show('LINE Pay 正式 NT$1 測試交易已確認。訂單 '+String(data.orderId)+'，交易 '+String(data.transactionId)+'。此筆實際扣款不建立營隊報名或營隊收據。');start.hidden=true;actions.hidden=true;document.getElementById('intro').textContent='本次小額付款測試已完成，請勿再次付款。';document.getElementById('afterword').hidden=true;return;}
         if(data.phase==='waiting'&&data.ok){show('仍在等待 LINE Pay 授權。若已完成付款，請稍後再查；不要重新付款。');return;}
         if(data.phase==='failed'){show('這筆正式測試未完成（狀態 '+String(data.linePayCode||'未知')+'）。請先聯絡我核對，勿立刻再次付款。',true);return;}
         throw Error('目前無法確認狀態，請稍後再試。');
