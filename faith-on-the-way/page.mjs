@@ -51,14 +51,17 @@ if(source){
     const anchorKind=ready?pages[current].dataset.kind:params.get('sheet');
     const anchor=ready?Number(pages[current].dataset.start):(Number.isFinite(requestedPosition)&&requestedPosition>0?requestedPosition:0);
     lastSize=size;
-    const cornerSpace=document.getElementById('corner-opening')?Math.min(230,Math.max(175,container.clientHeight*.52)):0;
+    const illustrated=Boolean(document.getElementById('corner-opening'));
+    const openingWidth=Math.min(560,container.clientWidth*(container.clientWidth<450?.96:.88));
+    const openingSpace=illustrated?Math.min(container.clientHeight*.59,openingWidth*630/1200+16):0;
+    const closingSpace=illustrated?Math.min(230,Math.max(175,container.clientHeight*.52)):0;
     const height=Math.max(80,container.clientHeight-2);
     container.replaceChildren();pages=[];
     let offset=0,pendingHeadings=[];
     function newPage(){const node=document.createElement('section');node.className='book-page is-measuring';node.dataset.kind='text';node.dataset.start=String(offset);container.append(node);return node;}
     let page=newPage();
     function append(tag,text){const node=document.createElement(tag);node.textContent=text;page.append(node);return node;}
-    const fits=()=>page.getBoundingClientRect().height<=height-(pages.length===0?cornerSpace:0);
+    const fits=()=>page.getBoundingClientRect().height<=height-(pages.length===0?openingSpace:0);
     function finish(){if(!page.children.length)return;page.classList.remove('is-measuring');page.hidden=true;page.dataset.page=String(pages.length+1);page.setAttribute('aria-label',`第 ${pages.length+1} 頁`);pages.push(page);page=newPage();}
     for(const block of blocks){
       if(block.tag!=='p'){pendingHeadings.push(block);continue;}
@@ -89,12 +92,12 @@ if(source){
     finish();page.remove();
     const last=pages.at(-1);
     last.hidden=false;last.classList.add('is-measuring');
-    if(cornerSpace&&last.getBoundingClientRect().height>height-cornerSpace){
+    if(closingSpace&&last.getBoundingClientRect().height>height-closingSpace){
       // Reflow only the final sheet, leaving the other text pages unchanged.
       const prefix=document.createElement('section');
       prefix.className='book-page is-measuring';prefix.dataset.kind='text';prefix.dataset.start=last.dataset.start;
       container.insertBefore(prefix,last);
-      const endingFits=()=>last.getBoundingClientRect().height<=height-cornerSpace;
+      const endingFits=()=>last.getBoundingClientRect().height<=height-closingSpace;
       while(!endingFits()||/H[23]/.test(prefix.lastElementChild?.tagName||'')){
         const first=last.firstElementChild;
         if(first.tagName!=='P'||last.children.length>1){prefix.append(first);continue;}
@@ -119,9 +122,11 @@ if(source){
       const target=kind==='opening'?pages[0]:pages.at(-1);
       const figure=template.content.firstElementChild.cloneNode(true),img=figure.querySelector('img');
       const width=Number(img.getAttribute('width')),height=Number(img.getAttribute('height'));
-      const scale=Math.min(180/width,(cornerSpace-12)/height);
+      const availableHeight=kind==='opening'?openingSpace:closingSpace;
+      const maxWidth=kind==='opening'?openingWidth:180;
+      const scale=Math.min(maxWidth/width,(availableHeight-12)/height);
       figure.style.width=`${width*scale}px`;figure.style.height=`${height*scale}px`;
-      target.classList.add('has-corner');target.append(figure);
+      target.classList.add('has-corner',`has-${kind}-art`);target.append(figure);
     }
     picker.replaceChildren(...pages.map((_,index)=>new Option(String(index+1),String(index))));
     document.getElementById('page-total').textContent=` / ${pages.length}`;
