@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="heat-camp-2027.css?v=20261020-payment-methods1">
-  <script type="module" src="heat-camp-2027.mjs?v=20261020-payment-methods1"></script>
+  <link rel="stylesheet" href="heat-camp-2027.css?v=20261020-receipts1">
+  <script type="module" src="heat-camp-2027.mjs?v=20261020-receipts1"></script>
 </head>
 <body>
   <header class="topbar">
@@ -202,7 +202,7 @@
         <div class="wizard-step" data-wizard-step="3">
         <fieldset id="receipt-section">
           <legend><span>07</span>收據資料</legend>
-          <p class="fieldset-note">藍新確認入帳後，系統會把付款資料匯入思遠捐款平台的籃球營項目，並寄發紙本單筆收據。</p>
+          <p class="fieldset-note">付款確認入帳後，由營會系統開立報名費收據，可下載及列印；如需紙本請聯絡營會同工。</p>
           <label class="check receipt-opt-out"><input type="checkbox" name="no_receipt">我不需要收據</label>
           <div class="fields two" id="receipt-fields">
             <label>捐款人姓名<input name="donor_name" required maxlength="80" placeholder="預設填家長／監護人姓名"></label>
@@ -212,7 +212,7 @@
             <label class="check wide"><input type="checkbox" name="tax_upload_consent">同意將本筆捐款紀錄上傳國稅局（公司行號等法人不適用）</label>
             <label class="check wide"><input type="checkbox" name="public_credit">同意於教會徵信資料顯示捐款人姓名</label>
           </div>
-          <p class="field-note">匯入思遠平台的備註只包含報名編號與球員姓名，不會傳送球員保險用身分證字號、健康資料或球衣資料。</p>
+          <p class="field-note">收據只顯示付款與開立所需資訊，不會顯示球員保險用身分證字號、健康資料或球衣資料。</p>
         </fieldset>
 
         <fieldset>
@@ -233,7 +233,7 @@
             <label class="check"><input type="checkbox" name="truth_consent" required>我確認以上資料正確，並已完整告知球員健康與運動限制。</label>
             <label class="check"><input type="checkbox" name="privacy_consent" required>我已閱讀並同意報名個資告知事項與活動規範。</label>
             <label class="check"><input type="checkbox" name="refund_consent" required>我已閱讀並同意上述退款政策。</label>
-            <label class="check" id="receipt-consent-row"><input type="checkbox" name="receipt_consent" required>我同意付款成功後，將開立收據所需資料傳送至思遠捐款平台的「2027 年籃球營」項目。</label>
+            <label class="check" id="receipt-consent-row"><input type="checkbox" name="receipt_consent" required>我同意付款確認後，由社團法人台灣基督教社會關懷協會使用上述資料開立營會報名費收據。</label>
           </div>
         </fieldset>
         </div>
