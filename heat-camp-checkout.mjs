@@ -271,7 +271,10 @@ function storedRequestId(){
   return activeRequestId;
 }
 
-function clearRequestId(){
+function clearRequestId(registrationNo){
+  if(expectedEnvironment==='production'&&activeRequestId&&/^HC27-[A-Z0-9]+$/.test(registrationNo||'')){
+    sessionStorage.setItem('camp-receipt-'+registrationNo,JSON.stringify({request_id:activeRequestId,expires:Date.now()+86400000}));
+  }
   if(localStorage.getItem(requestStorageKey)===activeRequestId)localStorage.removeItem(requestStorageKey);
   sessionStorage.removeItem(requestStorageKey);
   activeRequestId=null;
@@ -351,7 +354,7 @@ async function loadRetryState(){
     const returnedRegistration=new URLSearchParams(location.search).get('registration');
     if(returnedRegistration&&returnedRegistration!==data.registration_no)throw new Error('registration_mismatch');
     if(data.status==='paid'){
-      clearRequestId();
+      clearRequestId(data.registration_no);
       location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(data.registration_no)}`);
       return;
     }
@@ -387,14 +390,14 @@ async function retryPayment(){
     const returnedRegistration=new URLSearchParams(location.search).get('registration');
     if(returnedRegistration&&returnedRegistration!==state.registration_no)throw new Error('registration_mismatch');
     if(state.status==='paid'){
-      clearRequestId();
+      clearRequestId(state.registration_no);
       location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(state.registration_no)}`);
       return;
     }
     if(!state.retry_allowed)throw new Error('payment_status_pending');
     const data=await paymentRequest('retry_payment',{payment_method:form.elements.payment_method.value});
     if(data.status==='paid'){
-      clearRequestId();
+      clearRequestId(data.registration_no);
       location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(data.registration_no)}`);
       return;
     }
@@ -439,7 +442,7 @@ async function createCheckout(){
     await saveChurchAffiliation(data.registration_no);
     if(isOnsite()){
       if(data.status!=='onsite_complete')throw new Error('onsite_verification_failed');
-      clearRequestId();
+      clearRequestId(data.registration_no);
       location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(data.registration_no)}&source=onsite`);
       return;
     }
@@ -453,7 +456,7 @@ async function createCheckout(){
       return;
     }
     if(data.status==='paid'){
-      clearRequestId();
+      clearRequestId(data.registration_no);
       location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(data.registration_no)}`);
       return;
     }
@@ -468,7 +471,7 @@ async function createCheckout(){
       try{
         const state=await paymentRequest('registration_status');
         if(state.status==='paid'){
-          clearRequestId();
+          clearRequestId(state.registration_no);
           location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(state.registration_no)}`);
           return;
         }

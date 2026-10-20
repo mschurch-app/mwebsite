@@ -28,12 +28,23 @@
       </div>
       <p class="success-wait">接下來敬請期待，我們會在活動前陸續公布行前資訊。</p>
       <p class="success-number" id="registration-number" hidden></p>
+      <section id="receipt-area" hidden aria-label="營會收據">
+        <h2>營會報名費收據</h2>
+        <p>付款核對後可下載及列印。若選擇不索取收據，系統不會開立。</p>
+        <button id="camp-receipt" type="button" style="min-height:44px;padding:12px 20px;border:0;border-radius:12px;background:#23544a;color:white;font:inherit">收據下載／列印</button>
+        <p id="receipt-status" role="status" aria-live="polite"></p>
+      </section>
     </section>
   </main>
   <script>
     const params=new URLSearchParams(location.search);
     const registration=params.get('registration');
     if(registration&&/^HC27-[A-Z0-9]+$/.test(registration)){
+      // Preserve only this registration's secret capability in this tab for 24 hours.
+      try{
+        const request=sessionStorage.getItem('heat-camp-request-id-production')||localStorage.getItem('heat-camp-request-id-production');
+        if(request&&/^[0-9a-f-]{36}$/i.test(request))sessionStorage.setItem('camp-receipt-'+registration,JSON.stringify({request_id:request,expires:Date.now()+86400000}));
+      }catch{}
       for(const key of ['heat-camp-request-id','heat-camp-request-id-production','heat-camp-request-id-test']){
         localStorage.removeItem(key);
         sessionStorage.removeItem(key);
@@ -47,5 +58,6 @@
       node.hidden=false;
     }
   </script>
+  <script type="module" src="heat-camp-receipt-download.mjs?v=20261020-receipts1"></script>
 </body>
 </html>
