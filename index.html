@@ -1092,7 +1092,7 @@
     }
     .section-more{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
   </style>
-<link rel="stylesheet" href="church-palette.css?v=20261003-contrast1"><link rel="stylesheet" href="site-design.css?v=20261003-cute-tree1"></head>
+<link rel="stylesheet" href="church-palette.css?v=20261003-contrast1"><link rel="stylesheet" href="site-design.css?v=20261003-cute-tree1"><link rel="stylesheet" href="testimony-home.css?v=20261022-1"></head>
 <body class="home-page">
 
   <!-- ==================== HEADER ==================== -->
@@ -1371,6 +1371,9 @@
   </section>
 
   <!-- ==================== FOOTER ==================== -->
+  <section class="testimony-invitation" aria-labelledby="share-testimony-title"><div><p class="eyebrow">SHARE YOUR STORY</p><h2 id="share-testimony-title">讓一份恩典，成為另一個人的鼓勵。</h2><p>從一段文字、一張照片或一支影片，分享你生命中的真實經歷。</p></div><a href="share-testimony.html">分享我的見證 ↗</a></section>
+  <section id="testimonies" class="home-testimonies" aria-labelledby="testimonies-title" hidden><p class="eyebrow">A CLOUD OF WITNESSES</p><h2 id="testimonies-title">雲彩見證</h2><p>每個真實的生命，都有值得記念的恩典。</p><div id="testimony-cards" class="testimony-cards"></div></section>
+  <dialog id="testimony-detail"><button type="button" id="testimony-close" aria-label="關閉見證">×</button><div id="testimony-detail-body"></div></dialog>
   <footer class="footer">
     <div class="container footer-content">
       <div class="logo" style="color: var(--white);">
@@ -1383,7 +1386,7 @@
         <a href="https://www.facebook.com/shangfengchurch/" target="_blank" rel="noopener noreferrer" aria-label="前往 M+ 大雅教會 Facebook"><i data-lucide="facebook" size="17" aria-hidden="true"></i>FB</a>
         <a href="https://line.me/R/ti/p/@505reyot" target="_blank" rel="noopener noreferrer" aria-label="加入 M+ 大雅教會 LINE 官方帳號"><i data-lucide="message-circle" size="17" aria-hidden="true"></i>LINE</a>
       </nav>
-      <nav class="footer-links" aria-label="頁尾導覽"><a href="about.html">認識教會</a><a href="newcomers.html">第一次來</a><a href="weekly.html?church=M%2B">本週週報</a><a href="sermons.html">主日信息</a><a href="faith-on-the-way/index.html">牧者專欄</a><a href="gospel.html">認識信仰</a><a href="live.html">主日直播</a></nav>
+      <nav class="footer-links" aria-label="頁尾導覽"><a href="share-testimony.html">分享見證</a><a href="about.html">認識教會</a><a href="newcomers.html">第一次來</a><a href="weekly.html?church=M%2B">本週週報</a><a href="sermons.html">主日信息</a><a href="faith-on-the-way/index.html">牧者專欄</a><a href="gospel.html">認識信仰</a><a href="live.html">主日直播</a></nav>
       <address class="footer-contact">台中市大雅區神林南路 513 巷 13 號<br><a href="tel:+886425658977">04-2565-8977</a>・<a href="mailto:church@tcsc.org.tw">church@tcsc.org.tw</a></address>
       <p style="font-size: 0.8rem; opacity: 0.6;">© 2026 M+大雅教會. All rights reserved.</p>
     </div>
@@ -1598,5 +1601,5 @@
       }
     }
   </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script><script type="module" src="website-home.mjs?v=20261011-seo1"></script></body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script><script type="module" src="website-home.mjs?v=20261011-seo1"></script><script type="module" src="testimony-public.mjs?v=20261022-1"></script></body>
 </html>
