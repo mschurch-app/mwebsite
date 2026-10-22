@@ -42,3 +42,9 @@
 - YouTube 自動更新工作會同步建置 HTML 與 sitemap。修改內容模組或模板後亦須執行建置並提交產出；`node scripts/check-seo.mjs` 與 SEO workflow 會檢查 metadata、canonical、公開連結及同步狀況。
 - sitemap 僅列 12 個正式公開網址；付款測試、報名成功及視覺預覽頁維持 noindex。CMS 內容更新日期與 Git 日期不同，因此 sitemap 不填不可靠的 lastmod。
 - Search Console 的索引、成效、體驗報告須由具權限的教會 Google 帳號查閱；不要將 Google 密碼或私人 API token 放入網站或 Git。
+
+## 雲彩見證（先開放投稿）
+
+`share-testimony.html` 支援文字、影片與照片。投稿進入 Supabase 私人儲存及教會 OS `testimony-admin.html?church=M%2B` 審核；沒有核准稿件時首頁只顯示投稿入口，雲彩見證區保持隱藏。只有核准稿件的顯示名稱與內容可公開，真實姓名及聯絡資料不在公開 API。
+
+後端來源與 migration 保存在教會 OS repo 的 `supabase/functions/testimony-intake/` 及 `20261022144818_testimony_submission_review.sql`。官網不能使用瀏覽器草稿資料作為公開資料源。
