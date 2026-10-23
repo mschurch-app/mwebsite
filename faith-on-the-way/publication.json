@@ -9,7 +9,9 @@
     "chapter-01.html",
     "chapter-02.html",
     "chapter-03.html",
-    "chapter-04.html"
+    "chapter-04.html",
+    "chapter-05.html"
   ],
-  "chapterFourPublished": true
+  "chapterFourPublished": true,
+  "chapterFivePublished": true
 }
