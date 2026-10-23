@@ -11,10 +11,10 @@ export const storyBody=[
 ].join('\n\n');
 export function makeStory(origin,kind='normal'){
  const body=kind==='short'?'這是一篇短篇合成見證。':kind==='media-only'?'':storyBody;
- const count=kind==='many'||kind==='short'||kind==='media-only'?8:3;
+ const count=kind==='illustration'?0:kind==='many'||kind==='short'||kind==='media-only'?8:3;
  const media=Array.from({length:count},(_,i)=>({slot:i,kind:'photo',url:origin+'/qa/photo/'+(i%3+1)+'.jpg'}));
  if(kind==='many')media.push({slot:8,kind:'video',url:origin+'/qa/synthetic-video.mp4'});
- const s={id:'71000000-0000-4000-8000-000000000010',category:'禱告與盼望',display_name:'匿名分享 · 合成排版示意',title:'在平凡的日子裡，看見恩典',body,media};s.presentation=buildStoryPresentation(body,media);return s;
+ const s={id:'71000000-0000-4000-8000-000000000010',category:'禱告與盼望',display_name:'匿名分享 · 合成排版示意',title:'在平凡的日子裡，看見恩典',body,media};s.presentation=buildStoryPresentation(body,media);if(kind==='illustration')s.presentation.illustrations=[{key:'quiet-waiting-v1',after:0,style:'right'}];return s;
 }
 export async function startFixture(port=0){
  const server=http.createServer(async(req,res)=>{
@@ -27,7 +27,7 @@ export async function startFixture(port=0){
    file=process.env.TESTIMONY_FIXTURE_PHOTOS?path.join(process.env.TESTIMONY_FIXTURE_PHOTOS,['bird-sea-sunlight.jpg','bird-coffee-and-bread.jpg','bird-seaside-companions.jpg'][i]):path.join(root,'faith-on-the-way/illustrations/',['jordan-river.jpg','jordan-river-wide.jpg','loaves-fish.jpg'][i]);
   }
   try{let data=await fs.readFile(file);if(file.endsWith('index.html'))data=Buffer.from(data.toString().replace(/<script\b(?![^>]*src="testimony-public\.mjs)[^>]*>[\s\S]*?<\/script>/gi,''));if(file.endsWith('/testimony-public.mjs'))data=Buffer.from(data.toString().replace("'https://aqanuwilmvdtlzuqlrau.supabase.co/functions/v1/testimony-intake?action=public'","'/qa/public?case='+encodeURIComponent(new URLSearchParams(location.search).get('case')||'normal')"));
-   res.setHeader('content-type',file.endsWith('.html')?'text/html; charset=utf-8':/\.m?js$/.test(file)?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.svg')?'image/svg+xml':'image/jpeg');res.end(data);
+   res.setHeader('content-type',file.endsWith('.html')?'text/html; charset=utf-8':/\.m?js$/.test(file)?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.svg')?'image/svg+xml':file.endsWith('.webp')?'image/webp':'image/jpeg');res.end(data);
   }catch{res.writeHead(404);res.end();}
  });await new Promise(r=>server.listen(port,'127.0.0.1',r));return {origin:'http://127.0.0.1:'+server.address().port,close:()=>new Promise(r=>server.close(r))};
 }
