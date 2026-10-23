@@ -48,3 +48,5 @@
 `share-testimony.html` 支援文字、影片與照片。投稿進入 Supabase 私人儲存及教會 OS `testimony-admin.html?church=M%2B` 審核；沒有核准稿件時首頁只顯示投稿入口，雲彩見證區保持隱藏。只有核准稿件的顯示名稱與內容可公開，真實姓名及聯絡資料不在公開 API。
 
 後端來源與 migration 保存在教會 OS repo 的 `supabase/functions/testimony-intake/` 及 `20261022144818_testimony_submission_review.sql`。官網不能使用瀏覽器草稿資料作為公開資料源。
+
+見證圖文閱讀由 `testimony-layout-plan.mjs`、`testimony-story-layout.mjs` 及同名 CSS 共用。官網可先重排已公開的舊稿；`testimony-published-layouts.mjs` 只保存編排與來源指紋，原文與照片仍從已核准公開 API 讀取。新投稿在初審前儲存編排的教會 OS 後端屬另一批待部署更新。修改時需同步兩個 repository 的共用檔並核對內容一致，執行 `node qa/layout-plan.mjs`、`node qa/layout-browser.mjs` 及既有 SEO 檢查。
