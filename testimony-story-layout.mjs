@@ -1,6 +1,6 @@
 import {buildStoryPresentation,resolveStoryPresentation} from './testimony-layout-plan.mjs?v=20261023-layout1';
 import {resolveStoryIllustrations} from './testimony-illustrations.mjs?v=20261024-story2';
-import {createStoryShares} from './testimony-social-share.mjs?v=20261024-story2';
+import {createStoryShares} from './testimony-social-share.mjs?v=20261024-shareimage1';
 // Shared by the public website and the private review preview. Content stays plain text.
 const node=(tag,text,cls)=>{const el=document.createElement(tag);if(text)el.textContent=text;if(cls)el.className=cls;return el;};
 
