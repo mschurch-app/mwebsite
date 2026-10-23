@@ -1,4 +1,5 @@
 import http from 'node:http';import fs from 'node:fs/promises';import path from 'node:path';import {fileURLToPath} from 'node:url';
+import {prepareSharePage} from '../scripts/build-testimony-shares.mjs';
 import {buildStoryPresentation} from '../testimony-layout-plan.mjs';
 const root=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 export const storyBody=[
@@ -11,8 +12,9 @@ export const storyBody=[
 ].join('\n\n');
 export function makeStory(origin,kind='normal'){
  const body=kind==='short'?'這是一篇短篇合成見證。':kind==='media-only'?'':storyBody;
- const count=kind==='illustration'?0:kind==='many'||kind==='short'||kind==='media-only'?8:3;
+ const count=kind==='illustration'||kind==='noimage'?0:kind==='many'||kind==='short'||kind==='media-only'?8:3;
  const media=Array.from({length:count},(_,i)=>({slot:i,kind:'photo',url:origin+'/qa/photo/'+(i%3+1)+'.jpg'}));
+ if(kind==='broken')media[0].url=origin+'/missing-photo.jpg';
  if(kind==='many')media.push({slot:8,kind:'video',url:origin+'/qa/synthetic-video.mp4'});
  const s={id:'71000000-0000-4000-8000-000000000010',category:'禱告與盼望',display_name:'匿名分享 · 合成排版示意',title:'在平凡的日子裡，看見恩典',body,media};s.presentation=buildStoryPresentation(body,media);if(kind==='illustration')s.presentation.illustrations=[{key:'quiet-waiting-v1',after:0,style:'right'}];return s;
 }
@@ -20,6 +22,9 @@ export async function startFixture(port=0){
  const server=http.createServer(async(req,res)=>{
   const origin='http://127.0.0.1:'+server.address().port,u=new URL(req.url,origin);
   if(u.pathname==='/qa/public'&&u.searchParams.get('case')==='published'&&process.env.PUBLISHED_TESTIMONY_FIXTURE){res.setHeader('content-type','application/json');res.end(await fs.readFile(process.env.PUBLISHED_TESTIMONY_FIXTURE));return;}
+  if(u.pathname==='/testimony-share-pages.mjs'){const p=await prepareSharePage(makeStory(origin,u.searchParams.get('case')||'normal'));res.setHeader('content-type','text/javascript');res.end("const c=new URLSearchParams(location.search).get('case')||'normal';const r=await fetch('/qa/share-manifest?case='+encodeURIComponent(c));export const sharePages=await r.json();");return;}
+  if(u.pathname==='/qa/share-manifest'){const p=await prepareSharePage(makeStory(origin,u.searchParams.get('case')||'normal'));res.setHeader('content-type','application/json');res.end(JSON.stringify(p&&u.searchParams.get('case')!=='unprepared'?{[p.id]:p.revision}:{}));return;}
+  if(u.pathname.startsWith('/testimonies/')){const p=await prepareSharePage(makeStory(origin,'normal'));res.setHeader('content-type','text/html; charset=utf-8');res.end(p.html);return;}
   if(u.pathname==='/qa/public'){res.setHeader('content-type','application/json');res.end(JSON.stringify({ok:true,items:u.searchParams.get('case')==='empty'?[]:[makeStory(origin,u.searchParams.get('case'))]}));return;}
   let file=path.resolve(root,'.'+(u.pathname==='/'?'/index.html':u.pathname));if(!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return;}
   if(u.pathname.startsWith('/qa/photo/')){

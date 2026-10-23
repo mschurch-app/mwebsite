@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pages: write
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -21,11 +22,16 @@ jobs:
           node-version: "22"
       - name: 同步可供搜尋的 HTML 與 sitemap
         run: node scripts/build-seo.mjs
+      - name: 同步已公開見證的分享圖片預覽
+        run: node scripts/build-testimony-shares.mjs
       - name: 發布新的主日信息
         run: |
-          if git diff --quiet -- sermons-data.json index.html sermons.html sitemap.xml about*.html; then exit 0; fi
+          if test -z "$(git status --porcelain -- sermons-data.json index.html sermons.html sitemap.xml about*.html testimony-share-pages.mjs testimonies/)"; then exit 0; fi
           git config user.name "mchurch-website-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add sermons-data.json index.html sermons.html sitemap.xml about*.html
+          git add sermons-data.json index.html sermons.html sitemap.xml about*.html testimony-share-pages.mjs testimonies/
           git commit -m "content: 自動更新主日信息"
           git push
+          gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
