@@ -1,0 +1,35 @@
+[
+  {
+    "width": 1440,
+    "heroLoaded": true,
+    "hero": "http://127.0.0.1:18727/assets/campaign/heat-2027/hero-wide.webp",
+    "overflow": false,
+    "requiredValidation": true,
+    "wizardAdvanced": true,
+    "errors": [],
+    "mutations": [],
+    "fieldCount": 57
+  },
+  {
+    "width": 393,
+    "heroLoaded": true,
+    "hero": "http://127.0.0.1:18727/assets/campaign/heat-2027/hero-portrait.webp",
+    "overflow": false,
+    "requiredValidation": true,
+    "wizardAdvanced": true,
+    "errors": [],
+    "mutations": [],
+    "fieldCount": 57
+  },
+  {
+    "width": 320,
+    "heroLoaded": true,
+    "hero": "http://127.0.0.1:18727/assets/campaign/heat-2027/hero-portrait.webp",
+    "overflow": false,
+    "requiredValidation": true,
+    "wizardAdvanced": true,
+    "errors": [],
+    "mutations": [],
+    "fieldCount": 57
+  }
+]
