@@ -1092,7 +1092,7 @@
     }
     .section-more{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
   </style>
-<link rel="stylesheet" href="church-palette.css?v=20261003-contrast1"><link rel="stylesheet" href="site-design.css?v=20261003-cute-tree1"><link rel="stylesheet" href="testimony-home.css?v=20261022-1"></head>
+<link rel="stylesheet" href="church-palette.css?v=20261003-contrast1"><link rel="stylesheet" href="site-design.css?v=20261003-cute-tree1"><link rel="stylesheet" href="testimony-home.css?v=20261024-published1"><link rel="stylesheet" href="testimony-story-layout.css?v=20261024-published1"></head>
 <body class="home-page">
 
   <!-- ==================== HEADER ==================== -->
@@ -1224,6 +1224,12 @@
       <div class="section-more"><a class="btn-secondary" href="sermons.html">查看全部主日信息 <i data-lucide="arrow-right" size="18"></i></a><a class="btn-secondary" href="faith-on-the-way/index.html">信仰，在路上 · 牧者專欄 <i data-lucide="book-open" size="18"></i></a></div>
     </div>
   </section>
+
+  <section id="testimonies" class="home-testimonies" aria-labelledby="testimonies-title" hidden>
+    <div class="testimony-section-head"><div><p class="eyebrow">A CLOUD OF WITNESSES</p><h2 id="testimonies-title">雲彩見證</h2><p>每個真實的生命，都有值得記念的恩典。</p></div><a class="testimony-share-link" href="share-testimony.html">分享我的見證 ↗</a></div>
+    <div id="testimony-cards" class="testimony-cards"></div>
+  </section>
+  <section class="testimony-invitation" aria-labelledby="share-testimony-title"><div><p class="eyebrow">SHARE YOUR STORY</p><h2 id="share-testimony-title">讓一份恩典，成為另一個人的鼓勵。</h2><p>從一段文字、一張照片或一支影片，分享你生命中的真實經歷。</p></div><a href="share-testimony.html">分享我的見證 ↗</a></section>
 
   <!-- ==================== 2027 LIFE TREE TEASER ==================== -->
   <section class="life-tree-teaser" aria-labelledby="life-tree-title">
@@ -1371,9 +1377,7 @@
   </section>
 
   <!-- ==================== FOOTER ==================== -->
-  <section class="testimony-invitation" aria-labelledby="share-testimony-title"><div><p class="eyebrow">SHARE YOUR STORY</p><h2 id="share-testimony-title">讓一份恩典，成為另一個人的鼓勵。</h2><p>從一段文字、一張照片或一支影片，分享你生命中的真實經歷。</p></div><a href="share-testimony.html">分享我的見證 ↗</a></section>
-  <section id="testimonies" class="home-testimonies" aria-labelledby="testimonies-title" hidden><p class="eyebrow">A CLOUD OF WITNESSES</p><h2 id="testimonies-title">雲彩見證</h2><p>每個真實的生命，都有值得記念的恩典。</p><div id="testimony-cards" class="testimony-cards"></div></section>
-  <dialog id="testimony-detail"><button type="button" id="testimony-close" aria-label="關閉見證">×</button><div id="testimony-detail-body"></div></dialog>
+  <dialog id="testimony-detail" class="testimony-reader" aria-label="雲彩見證全文"><div class="testimony-reader__bar"><span>雲彩見證 · 生命中的恩典</span><button type="button" class="testimony-reader__close" data-story-close aria-label="關閉見證" autofocus>×</button></div><div class="testimony-reader__body" data-story-body></div></dialog>
   <footer class="footer">
     <div class="container footer-content">
       <div class="logo" style="color: var(--white);">
@@ -1601,5 +1605,5 @@
       }
     }
   </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script><script type="module" src="website-home.mjs?v=20261011-seo1"></script><script type="module" src="testimony-public.mjs?v=20261022-1"></script></body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0/dist/umd/supabase.js"></script><script type="module" src="website-home.mjs?v=20261011-seo1"></script><script type="module" src="testimony-public.mjs?v=20261024-published1"></script></body>
 </html>
