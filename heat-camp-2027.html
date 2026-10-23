@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#101716">
+  <meta name="theme-color" content="#102132">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://mchurch.online/heat-camp-2027.html">
   <title>不只要變強，還要成為更有價值的 MVP｜2027 熱火籃球營</title>
@@ -12,27 +12,47 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="heat-camp-2027.css?v=20261020-payment-methods1">
+  <link rel="stylesheet" href="heat-camp-campaign.css?v=20261023-poster1">
+  <meta property="og:title" content="2027 熱火籃球營｜不只要變強，還要成為更有價值的 MVP">
+  <meta property="og:description" content="2027/7/12–7/15，東海大學，四天三夜・100 名限定。一起在球技、品格與團隊中成長。">
+  <meta property="og:image" content="https://mchurch.online/assets/campaign/heat-2027/hero-wide.webp">
+  <meta property="og:url" content="https://mchurch.online/heat-camp-2027.html">
+  <meta property="og:type" content="website">
   <script type="module" src="heat-camp-2027.mjs?v=20261020-payment-methods1"></script>
+  <script type="module" src="heat-camp-campaign.mjs?v=20261023-poster1"></script>
 </head>
-<body>
+<body class="camp-campaign">
   <header class="topbar">
     <a class="brand" href="index.html" aria-label="回到 M+ 大雅教會首頁"><span class="brand-mark">M+</span><span>熱火籃球營</span></a>
-    <div class="topbar-actions"><span class="capacity-pill"><b>100</b> 名限定</span></div>
+    <nav class="topbar-actions" aria-label="營會導覽">
+      <a class="camp-nav-detail" href="#camp-experience">營會體驗</a>
+      <a class="camp-nav-detail" href="#pricing-title">報名方案</a>
+      <a class="camp-nav-register" href="#register">立即報名 <span aria-hidden="true">↗</span></a>
+    </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">HEAT BASKETBALL CAMP 2027</p>
-        <h1>不只要變強<br><span>還要成為更有價值的 MVP</span></h1>
-        <p class="hero-lead">四天三夜，在球技、品格與團隊中，成為球場內外更有價值的球員。</p>
-        <div class="event-facts" aria-label="活動資訊">
-          <div><small>日期</small><strong>7/12 — 7/15</strong><span>2027・四天三夜</span></div>
-          <div><small>地點</small><strong>東海大學</strong><span>台中市西屯區</span></div>
-          <div><small>名額</small><strong>100 名</strong><span>完成付款才保留</span></div>
-        </div>
+    <section class="camp-campaign-hero" aria-labelledby="camp-title">
+      <h1 id="camp-title" class="camp-sr-only">2027 熱火籃球營｜不只要變強，還要成為更有價值的 MVP</h1>
+      <a class="camp-campaign-art" href="#register" aria-label="2027 熱火籃球營，立即報名">
+        <picture>
+          <source media="(max-width: 650px)" srcset="assets/campaign/heat-2027/hero-portrait.webp" width="900" height="1272">
+          <img src="assets/campaign/heat-2027/hero-wide.webp" width="1920" height="640" alt="熱火籃球營球場攻防主視覺：不只要變強，還要成為更有價值的 MVP" fetchpriority="high" decoding="async">
+        </picture>
+      </a>
+      <div class="camp-campaign-details">
+        <div class="camp-date"><small>2027・四天三夜</small><strong><time datetime="2027-07-12">7/12</time><span>—</span><time datetime="2027-07-15">7/15</time></strong></div>
+        <div><small>營會地點</small><strong>東海大學</strong><span>臺中市西屯區</span></div>
+        <div><small>招生名額</small><strong>100 <span>名限定</span></strong><span>完成付款後保留名額</span></div>
+        <div class="camp-hero-actions"><a class="camp-primary-cta" href="#register">立即報名 <span aria-hidden="true">↗</span></a><a class="camp-price-link" href="#pricing-title">查看費用與方案 <span aria-hidden="true">↓</span></a></div>
       </div>
-      <div class="hero-ball" aria-hidden="true"><span>27</span></div>
+    </section>
+
+    <section class="camp-values wrap" aria-labelledby="camp-values-title">
+      <div class="camp-values-heading"><p class="section-kicker">MORE THAN A GAME</p><h2 id="camp-values-title">球場上的突破，<br>成為生活裡的成長。</h2></div>
+      <div class="camp-value"><span>01 / SKILLS</span><h3>球技</h3><p>在教練團隊的帶領下練習基本功，把每一次練習化為上場的準備。</p></div>
+      <div class="camp-value"><span>02 / CHARACTER</span><h3>品格</h3><p>在挑戰中學習尊重、紀律與承擔，面對輸贏，也認識自己的價值。</p></div>
+      <div class="camp-value"><span>03 / TEAMWORK</span><h3>團隊</h3><p>學習溝通、彼此補位，和隊友一起走過四天三夜，建立新的友誼。</p></div>
     </section>
 
     <section class="included wrap" aria-labelledby="included-title">
@@ -48,7 +68,7 @@
       </ul>
     </section>
 
-    <section class="camp-feature wrap" aria-labelledby="camp-feature-title">
+    <section class="camp-feature wrap" id="camp-experience" aria-labelledby="camp-feature-title">
       <div class="camp-feature-copy">
         <p class="section-kicker">THE CAMP EXPERIENCE</p>
         <h2 id="camp-feature-title">先看看熱火籃球營</h2>
@@ -63,7 +83,7 @@
 
     <section class="pricing wrap" aria-labelledby="pricing-title">
       <div class="section-heading">
-        <div><p class="section-kicker">PRICE</p><h2 id="pricing-title">系統自動套用報名價格</h2></div>
+        <div><p class="section-kicker">JOIN THE CAMP</p><h2 id="pricing-title">找到你的報名方案</h2></div>
         <p>送出資料時，以台灣時間及符合的優惠資格計價。</p>
       </div>
       <div class="price-grid">
@@ -84,6 +104,17 @@
         </ul>
         <small>付款方式與金額會在報名最後一步確認。</small>
       </div>
+    </section>
+
+    <section class="camp-refund-overview wrap" id="refund-information" aria-labelledby="camp-refund-title">
+      <div class="camp-refund-heading"><p class="section-kicker">CANCELLATION &amp; REFUND</p><h2 id="camp-refund-title">取消報名與退款</h2><p>活動於 2027 年 7 月 12 日開始，取消報名請聯絡營會客服，提供球員姓名及報名編號。</p></div>
+      <dl class="camp-refund-summary">
+        <div><dt>2027/5/12（含）以前</dt><dd><strong>全額退費</strong><p>活動兩個月前提出取消報名申請，退還已繳報名費全額。</p></dd></div>
+        <div><dt>2027/5/13 起至活動開始前</dt><dd><strong>扣除球衣費 NT$1,500，餘款退費</strong><p>客製球衣將寄送至學員指定地址，申請時請一併提供收件地址。</p></dd></div>
+        <div><dt>活動開始後退出或缺席報到</dt><dd><strong>不予退費</strong><p>活動開始後中途退出，或未依規定報到而缺席者，無法辦理退費。</p></dd></div>
+      </dl>
+      <p class="camp-refund-rights">本政策不限制消費者依法享有的權利；依法應辦理退費的情形，仍依相關法令辦理。</p>
+      <a class="camp-refund-contact" href="tel:+886425658977">取消／退費客服：04-2565-8977 · 邵姐妹 <span aria-hidden="true">↗</span></a>
     </section>
 
     <section class="registration wrap" id="register">
@@ -316,6 +347,11 @@
     </div>
   </footer>
 
+  <div class="camp-mobile-register" aria-label="快速報名">
+    <div><small>2027 熱火籃球營</small><strong>7/12–7/15・東海大學</strong></div>
+    <a href="#register">立即報名 <span aria-hidden="true">↗</span></a>
+  </div>
+
   <dialog id="preview-dialog">
     <button class="dialog-close" type="button" aria-label="關閉">×</button>
     <p class="section-kicker">CONFIRM</p>
@@ -327,6 +363,7 @@
       <p><span>應付金額</span><strong id="confirm-price">—</strong></p>
     </div>
     <p id="confirmation-note">確認後會安全送出報名資料，並前往藍新金流完成所選付款方式。</p>
+    <p class="camp-confirm-refund">取消時間會影響退費金額。<a href="#refund-information" data-camp-refund>查看退款規則</a></p>
     <button class="dialog-confirm" type="button">確認並前往付款</button>
   </dialog>
 </body>

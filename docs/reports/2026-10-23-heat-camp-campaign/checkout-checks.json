@@ -1,0 +1,56 @@
+[
+  {
+    "scenario": "card",
+    "fullWizard": true,
+    "refundRequired": true,
+    "confirmation": true,
+    "singleSubmit": true,
+    "gatewayMethod": "POST",
+    "resultState": "paid",
+    "actualCharge": false
+  },
+  {
+    "scenario": "atm",
+    "fullWizard": true,
+    "refundRequired": true,
+    "confirmation": true,
+    "singleSubmit": true,
+    "gatewayMethod": "POST",
+    "resultState": "account-issued",
+    "actualCharge": false
+  },
+  {
+    "scenario": "barcode",
+    "fullWizard": true,
+    "refundRequired": true,
+    "confirmation": true,
+    "singleSubmit": true,
+    "gatewayMethod": "POST",
+    "resultState": "account-issued",
+    "actualCharge": false
+  },
+  {
+    "scenario": "line_pay",
+    "fullWizard": true,
+    "refundRequired": true,
+    "confirmation": true,
+    "singleSubmit": true,
+    "gatewayMethod": "GET",
+    "resultState": "paid",
+    "actualCharge": false
+  },
+  {
+    "scenario": "failed-return-resumes-original",
+    "noDuplicateRegistration": true,
+    "actualCharge": false
+  },
+  {
+    "scenario": "uncertain-return-blocks-repeat",
+    "noDuplicateRegistration": true,
+    "actualCharge": false
+  },
+  {
+    "scenario": "completion-page",
+    "refundLink": true
+  }
+]

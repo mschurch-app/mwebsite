@@ -1,0 +1,205 @@
+/* 2027 campaign: the approved poster artwork, with readable native registration UI. */
+.camp-campaign {
+  --ink:#102132; --muted:#5a6571; --cream:#fffcf3; --line:#dcdedb;
+  --green:#102132; --fire:#eb5a15; --fire-dark:#b63c05; --lime:#ffcf88;
+  --court:#ed7b30; background:var(--cream);
+}
+.camp-sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.camp-campaign a:focus-visible,.camp-campaign button:focus-visible {outline:3px solid #f07827;outline-offset:5px}
+.camp-campaign .topbar {height:80px;background:var(--cream);color:var(--ink);border-bottom:1px solid #1021321a}
+.camp-campaign .brand-mark {color:var(--ink);border:0;border-radius:0;width:43px;height:43px;font-size:25px;font-style:italic;letter-spacing:-.1em;border-bottom:4px solid var(--fire)}
+.camp-campaign .brand {gap:14px;font-size:17px}
+.camp-campaign .topbar-actions {gap:28px;font-size:14px;font-weight:800}
+.camp-nav-detail {display:inline-flex;align-items:center;min-height:44px}
+.camp-nav-detail:hover {color:var(--fire-dark)}
+.camp-nav-register {display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-height:44px;padding:11px 19px;background:var(--ink);color:#fff;border-radius:3px}
+.camp-nav-register:hover {background:var(--fire-dark)}
+.camp-campaign-hero {background:var(--ink);color:#fff;position:relative}
+.camp-campaign-art {display:block;position:relative;width:min(1800px,100%);margin:auto;aspect-ratio:3.41;overflow:hidden;background:var(--cream)}
+.camp-campaign-art picture,.camp-campaign-art img {display:block;width:100%;height:auto}
+.camp-campaign-details {display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:22px;align-items:center;width:min(1180px,calc(100% - 48px));margin:auto;padding:30px 0 34px}
+.camp-campaign-details>div {min-width:0}
+.camp-campaign-details>div+div:not(.camp-hero-actions) {padding-left:30px;border-left:1px solid #ffffff30}
+.camp-campaign-details small,.camp-campaign-details>div>span {display:block;color:#c5cdd3;font-size:12px;line-height:1.5}
+.camp-campaign-details strong {display:block;margin:4px 0;font-size:27px;line-height:1.5;font-weight:900;letter-spacing:-.035em}
+.camp-campaign-details strong span {font-size:17px;letter-spacing:0;margin-inline:2px}
+.camp-campaign-details .camp-date strong {font-family:'Plus Jakarta Sans',var(--font);font-size:30px;white-space:nowrap}
+.camp-date strong>span {color:#f47b32;margin-inline:9px}
+.camp-hero-actions {display:grid;gap:9px;padding-left:6px}
+.camp-primary-cta {display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:52px;padding:12px 19px;background:var(--fire);color:#fff;font-size:18px;font-weight:900;border-radius:3px}
+.camp-primary-cta:hover {background:#bd410a}
+.camp-primary-cta>span {font-size:25px;line-height:1}
+.camp-price-link {display:flex;justify-content:space-between;align-items:center;min-height:34px;font-size:12px;color:#e4e7e9}
+.camp-values {display:grid;grid-template-columns:1.45fr repeat(3,1fr);gap:32px;padding-block:74px;border-bottom:1px solid #10213228}
+.camp-values-heading h2 {font-size:clamp(24px,2.5vw,34px);font-weight:900;line-height:1.4;letter-spacing:-.04em;margin:0}
+.camp-values .section-kicker {font-size:11px;letter-spacing:.14em;color:var(--fire-dark);margin-bottom:12px}
+.camp-value {padding-left:26px;border-left:1px solid #10213224;min-width:0}
+.camp-value>span {font:800 10px 'Plus Jakarta Sans',sans-serif;color:var(--fire-dark);letter-spacing:.1em}
+.camp-value h3 {margin:8px 0 12px;font-size:34px;font-style:italic;font-weight:900;letter-spacing:-.05em}
+.camp-value p {margin:0;color:var(--muted);font-size:14px;line-height:1.9}
+.camp-campaign .included {padding-block:76px;gap:64px;align-items:center}
+.camp-campaign .included h2 {max-width:8.5em;line-height:1.25;font-size:clamp(30px,3.5vw,45px)}
+.camp-campaign .included li {border-radius:3px;border:0;border-top:3px solid var(--ink);background:#f2eee4;padding:20px 24px}
+.camp-campaign .included li span {color:var(--fire-dark)}
+.camp-campaign .included li b {font-size:19px}
+.camp-campaign .section-kicker {color:var(--fire-dark)}
+.camp-campaign .camp-feature {position:relative;border-radius:3px;box-shadow:none;border:1px solid #10213224;padding:40px 44px;gap:45px;background:#fff}
+.camp-campaign .camp-feature::before {content:'';position:absolute;left:-1px;top:-1px;width:110px;height:5px;background:var(--fire);transform:skewX(-30deg);transform-origin:left}
+.camp-campaign .camp-feature-copy h2 {font-size:clamp(30px,3.2vw,45px);line-height:1.3}
+.camp-campaign .camp-feature-copy a {border-radius:3px;background:var(--ink)}
+.camp-campaign .camp-feature-copy .camp-feature-fallback a {background:transparent}
+.camp-campaign .camp-feature-video {border-radius:3px;box-shadow:none}
+.camp-campaign .pricing {position:relative;background:var(--ink);border-radius:3px;padding:62px 54px;overflow:hidden}
+.camp-campaign .pricing::before {content:'';position:absolute;top:0;right:-8px;width:220px;height:8px;background:var(--fire);transform:skewX(-35deg);pointer-events:none}
+.camp-campaign .pricing .section-kicker {color:#ffae70}
+.camp-campaign .section-heading h2 {font-size:clamp(30px,3.8vw,46px);line-height:1.25}
+.camp-campaign .section-heading p:last-child {font-size:14px;color:#c0cad2}
+.camp-campaign .price-grid {gap:14px}
+.camp-campaign .price-card {border-radius:3px;background:#1a2c3e;border-color:#3c4e5d;min-height:180px}
+.camp-campaign .price-card span,.camp-campaign .price-card p {color:#c0cad2}
+.camp-campaign .price-card strong {font-size:38px}
+.camp-campaign .price-card.expired {opacity:1;background:#142538}
+.camp-campaign .price-card.active {background:#d8490a;border:1px solid #ff9156;box-shadow:none}
+.camp-campaign .price-card.active span,.camp-campaign .price-card.active p {color:#fff}
+.camp-campaign .price-card em {border-radius:2px;background:#fff5df;color:#6b2608;right:12px;top:14px}
+.camp-campaign .price-card.duo {background:#f2e9d6;color:var(--ink);border-color:#f2e9d6}
+.camp-campaign .price-card.duo span,.camp-campaign .price-card.duo p {color:#4b4b42}
+.camp-campaign .payment-methods li {border-radius:3px;color:#fff}
+.camp-campaign .payment-method-icon {color:var(--ink);border-radius:3px}
+.camp-campaign .payment-methods>small {color:#becbd3}
+.camp-campaign .payment-method-icon.line-pay-icon {color:#fff}
+.camp-campaign .registration {padding-block:90px;gap:60px;scroll-margin-top:24px}
+.camp-refund-overview {margin-top:70px;padding:36px 40px;background:#f3eee2;border:1px solid #dcd3c2;border-left:5px solid var(--fire);scroll-margin-top:24px}
+.camp-refund-heading h2 {font-size:32px;line-height:1.3;letter-spacing:-.03em;margin:0}
+.camp-refund-heading>p:last-child {font-size:14px;color:var(--muted);margin:16px 0 24px;max-width:60em}
+.camp-refund-summary {margin:0}
+.camp-refund-summary>div {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.8fr);gap:26px;padding:20px 0;border-top:1px solid #d6ccba}
+.camp-refund-summary dt {font-size:15px;font-weight:800}
+.camp-refund-summary dd {margin:0;min-width:0}
+.camp-refund-summary dd strong {font-size:18px;color:#a43306}
+.camp-refund-summary dd p {margin:6px 0 0;font-size:14px;color:var(--muted)}
+.camp-refund-rights {font-size:12px;color:var(--muted);margin:15px 0 10px}
+.camp-refund-contact {display:inline-flex;gap:20px;align-items:center;min-height:44px;font-size:14px;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.camp-confirm-refund {padding-top:12px;border-top:1px solid #ded8ca;font-size:13px}
+.camp-confirm-refund a {display:inline-flex;align-items:center;min-height:44px;color:var(--ink);font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.camp-campaign.success-page {background:var(--ink);padding-bottom:0}
+.camp-campaign .success-card {border-radius:4px;border-top:7px solid var(--fire);box-shadow:none}
+.camp-campaign .success-mark {background:#f9dfbe;color:#853908;border-radius:4px}
+.camp-campaign .success-card h1 {font-style:italic}
+.camp-campaign .success-facts div,.camp-campaign .line-invite,.camp-campaign .line-invite a {border-radius:4px}
+.camp-success-help {display:flex;justify-content:center;flex-wrap:wrap;gap:8px 24px;border-top:1px solid #dcd7ca;margin-top:26px;padding-top:16px}
+.camp-success-help a {display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px;font-size:13px;font-weight:700}
+.camp-campaign #camp-form {padding:32px;background:#fff;border:1px solid #10213226;border-top:5px solid var(--fire);border-radius:3px}
+.camp-campaign .form-intro h2 {font-size:46px;font-style:italic}
+.camp-campaign .form-intro>p:not(.section-kicker) {font-size:15px}
+.camp-campaign .form-intro aside {border-radius:3px;background:#f0ecdf}
+.camp-campaign .wizard-status {padding:20px;background:#fffcf3;border-radius:3px}
+.camp-campaign .wizard-count {color:var(--fire-dark)}
+.camp-campaign .wizard-title {font-size:22px}
+.camp-campaign .wizard-track {border-radius:0}
+.camp-campaign .wizard-track span {border-radius:0;background:var(--fire)}
+.camp-campaign input,.camp-campaign select,.camp-campaign textarea {border-radius:5px;font-size:16px}
+.camp-campaign .choice {border-radius:5px}
+.camp-campaign .choice.selected {border-color:var(--fire-dark)}
+.camp-campaign .choice.selected::after {background:var(--fire-dark)}
+.camp-campaign .wizard-next,.camp-campaign .submit {background:#d8490a;border-radius:4px;box-shadow:none}
+.camp-campaign .wizard-back {border-radius:4px}
+.camp-campaign .steps .done i {color:var(--ink);border-color:#d9c4ae;background:#f9e7d4}
+.camp-campaign .steps .done b {color:var(--ink)}
+.camp-campaign .volunteer-invite {border-radius:3px;background:#f0e9da;border-color:#ddd5c5;border-left:5px solid var(--fire)}
+.camp-campaign .volunteer-invite a {border-radius:3px;background:var(--ink)}
+.camp-campaign .camp-films {background:#eee9df;padding-block:75px}
+.camp-campaign .film-card,.camp-campaign .film-frame {border-radius:3px}
+.camp-campaign .film-card {box-shadow:none;border:1px solid #10213220}
+.camp-campaign footer {background:var(--ink);padding-block:50px}
+.camp-campaign footer .brand-mark {color:#fff}
+.camp-mobile-register {display:none}
+@media(min-width:1801px) {.camp-campaign-art {border-inline:1px solid #10213228}}
+@media(max-width:1000px) {
+  .camp-values {grid-template-columns:repeat(3,1fr);gap:26px;padding-block:55px}
+  .camp-values-heading {grid-column:1/-1}
+  .camp-values-heading h2 br {display:none}
+  .camp-value {padding-left:20px}
+  .camp-campaign .included {gap:32px}
+  .camp-campaign-details {gap:18px;grid-template-columns:1.1fr 1fr 1fr}
+  .camp-campaign-details .camp-hero-actions {grid-column:1/-1;grid-template-columns:1fr 1fr;align-items:center;padding:0}
+  .camp-hero-actions .camp-price-link {justify-content:center;gap:15px;min-height:48px}
+  .camp-campaign .registration {gap:32px}
+}
+@media(max-width:650px) {
+  .camp-campaign {padding-bottom:78px}
+  .camp-campaign .topbar {height:66px;padding-inline:18px}
+  .camp-campaign .brand {font-size:14px;gap:10px}
+  .camp-campaign .brand-mark {width:34px;height:36px;font-size:23px}
+  .camp-campaign .topbar-actions {gap:0}
+  .camp-nav-detail {display:none}
+  .camp-nav-register {font-size:12px;gap:14px;padding:9px 12px;min-height:40px}
+  .camp-campaign-art {aspect-ratio:.804;background:var(--cream)}
+  .camp-campaign-details {width:calc(100% - 36px);grid-template-columns:1fr 1fr;gap:22px 16px;padding:25px 0 28px}
+  .camp-campaign-details>div+div:not(.camp-hero-actions) {padding-left:16px}
+  .camp-campaign-details>div:nth-child(3) {grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3px 12px;border-left:0;padding:0;border-top:1px solid #ffffff28;padding-top:15px}
+  .camp-campaign-details>div:nth-child(3)>small {grid-row:1;grid-column:1}
+  .camp-campaign-details>div:nth-child(3)>strong {grid-row:1/3;grid-column:2;text-align:right;margin:0}
+  .camp-campaign-details>div:nth-child(3)>span {grid-row:2;grid-column:1;font-size:11px}
+  .camp-campaign-details strong {font-size:25px}
+  .camp-campaign-details .camp-date strong {font-size:27px}
+  .camp-date strong>span {margin-inline:5px}
+  .camp-campaign-details .camp-hero-actions {display:grid;grid-template-columns:1fr;gap:8px}
+  .camp-primary-cta {min-height:54px;padding:13px 20px}
+  .camp-hero-actions .camp-price-link {min-height:34px}
+  .camp-values {grid-template-columns:1fr;gap:27px;padding-block:46px}
+  .camp-values-heading h2 {font-size:30px;max-width:11em}
+  .camp-values-heading h2 br {display:inline}
+  .camp-value {display:grid;grid-template-columns:68px minmax(0,1fr);column-gap:20px;padding:0 0 0 15px}
+  .camp-value>span {grid-column:1/-1;font-size:9px;margin-bottom:7px}
+  .camp-value h3 {font-size:29px;margin:0;line-height:1.4}
+  .camp-value p {font-size:14px}
+  .camp-campaign .included {padding-block:48px;gap:26px}
+  .camp-campaign .included h2 {font-size:33px;max-width:10em}
+  .camp-campaign .included ul {grid-template-columns:1fr 1fr;gap:12px}
+  .camp-campaign .included li {padding:16px 13px}
+  .camp-campaign .included li b {font-size:16px}
+  .camp-campaign .included li small {font-size:12px;line-height:1.6;display:block}
+  .camp-campaign .camp-feature {padding:26px 21px;gap:24px;margin-bottom:48px}
+  .camp-campaign .camp-feature-copy h2 {font-size:31px}
+  .camp-campaign .camp-feature-copy a {font-size:14px}
+  .camp-campaign .pricing {width:100%;border-radius:0;padding:44px 20px}
+  .camp-campaign .section-heading h2 {font-size:34px}
+  .camp-campaign .price-grid {grid-template-columns:1fr 1fr;gap:12px}
+  .camp-campaign .price-card {min-height:160px;padding:17px 13px}
+  .camp-campaign .price-card span {font-size:14px}
+  .camp-campaign .price-card strong {font-size:27px}
+  .camp-campaign .price-card p {font-size:12px}
+  .camp-campaign .price-card em {position:static;display:inline-block;margin-top:9px;padding:3px 7px;font-size:10px}
+  .camp-campaign .price-card strong small {font-size:12px}
+  .camp-campaign .registration {padding-block:48px;gap:26px}
+  .camp-refund-overview {margin-top:36px;padding:25px 20px}
+  .camp-refund-heading h2 {font-size:28px}
+  .camp-refund-summary>div {grid-template-columns:1fr;gap:8px;padding-block:20px}
+  .camp-refund-summary dd strong {font-size:17px}
+  .camp-refund-heading .section-kicker {font-size:10px;letter-spacing:.1em}
+  .camp-refund-contact {font-size:12px;gap:8px}
+  .camp-campaign .success-card {padding:32px 21px}
+  .camp-campaign .success-card h1 {font-size:38px;line-height:1.25}
+  .camp-campaign .form-intro h2 {font-size:40px}
+  .camp-campaign #camp-form {padding:20px 15px}
+  .camp-campaign legend {font-size:21px}
+  .camp-campaign .wizard-status {padding:16px 13px}
+  .camp-campaign .wizard-title {font-size:20px}
+  .camp-campaign .volunteer-invite {padding:24px 21px}
+  .camp-campaign .camp-films {padding-block:48px}
+  .camp-mobile-register {position:fixed;z-index:20;bottom:0;inset-inline:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:#fffcf3f5;color:var(--ink);border-top:1px solid #10213226;box-shadow:0 -4px 22px #1021320c}
+  .camp-mobile-register small {display:block;font-size:10px;color:var(--muted)}
+  .camp-mobile-register strong {display:block;font-size:12px}
+  .camp-mobile-register a {display:flex;align-items:center;justify-content:space-between;gap:20px;background:#d8490a;color:#fff;font-weight:900;font-size:15px;padding:12px 17px;min-height:48px;border-radius:3px}
+  .camp-mobile-register[hidden] {display:none}
+}
+@media(max-width:360px) {
+  .camp-campaign .brand {font-size:12px;gap:7px}
+  .camp-campaign-details .camp-date strong {font-size:24px}
+  .camp-campaign-details strong {font-size:23px}
+  .camp-campaign .price-card strong {font-size:24px}
+  .camp-mobile-register {padding-inline:12px;gap:8px}
+  .camp-mobile-register a {gap:14px;padding-inline:13px}
+}
+@media(prefers-reduced-motion:reduce) {html:has(.camp-campaign),.camp-campaign {scroll-behavior:auto}.camp-campaign * {scroll-behavior:auto;transition:none}}
