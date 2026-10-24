@@ -1,0 +1,62 @@
+[
+  {
+    "width": 390,
+    "same": true,
+    "pages": 15,
+    "overflow": [],
+    "pageOverflow": false,
+    "images": [
+      {
+        "ok": true,
+        "src": "illustrations/red-sea-wide.jpg"
+      },
+      {
+        "ok": true,
+        "src": "illustrations/red-sea-family-crossing.jpg"
+      },
+      {
+        "ok": true,
+        "src": "illustrations/red-sea.jpg"
+      }
+    ],
+    "checks": [
+      "text integrity",
+      "all sheets fit",
+      "three loaded illustrations",
+      "contents and focus restoration",
+      "chapter ending",
+      "chapter-specific share card"
+    ],
+    "scriptErrors": []
+  },
+  {
+    "width": 1440,
+    "same": true,
+    "pages": 13,
+    "overflow": [],
+    "pageOverflow": false,
+    "images": [
+      {
+        "ok": true,
+        "src": "illustrations/red-sea-wide.jpg"
+      },
+      {
+        "ok": true,
+        "src": "illustrations/red-sea-family-crossing.jpg"
+      },
+      {
+        "ok": true,
+        "src": "illustrations/red-sea.jpg"
+      }
+    ],
+    "checks": [
+      "text integrity",
+      "all sheets fit",
+      "three loaded illustrations",
+      "contents and focus restoration",
+      "chapter ending",
+      "chapter-specific share card"
+    ],
+    "scriptErrors": []
+  }
+]

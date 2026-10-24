@@ -23,7 +23,7 @@ if(source){
   const next=document.getElementById('next-page');
   const picker=document.getElementById('page-select');
   const book=document.querySelector('.reading-book');
-  const blocks=Array.from(source.content.children,node=>({tag:node.tagName.toLowerCase(),text:node.textContent,node:node.tagName==='FIGURE'?node:null}));
+  const blocks=Array.from(source.content.children,node=>({tag:node.tagName.toLowerCase(),text:node.textContent,node:node.tagName==='FIGURE'?node:null,keepTogether:node.hasAttribute('data-keep-together')}));
   let pages=[],current=0,ready=false,lastSize='';
   const params=new URL(location.href).searchParams;
   const requested=Number(params.get('page'));
@@ -81,6 +81,8 @@ if(source){
       if(!fits()&&page.children.length>headingNodes.length+1){probe.remove();headingNodes.forEach(node=>node.remove());finish();headingNodes=pendingHeadings.map(h=>append(h.tag,h.text));}
       else probe.remove();
       offset+=pendingHeadings.reduce((sum,h)=>sum+h.text.length,0);pendingHeadings=[];
+      // A short closing prayer should move as a whole rather than leave a lone final line.
+      if(block.keepTogether&&!headingNodes.length&&page.children.length){const probe=append('p',block.text);const fitsHere=fits();probe.remove();if(!fitsHere)finish();}
       let rest=block.text;
       while(rest){
         let paragraph=append('p',rest);
