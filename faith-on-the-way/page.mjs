@@ -23,7 +23,7 @@ if(source){
   const next=document.getElementById('next-page');
   const picker=document.getElementById('page-select');
   const book=document.querySelector('.reading-book');
-  const blocks=Array.from(source.content.children,node=>({tag:node.tagName.toLowerCase(),text:node.textContent}));
+  const blocks=Array.from(source.content.children,node=>({tag:node.tagName.toLowerCase(),text:node.textContent,node:node.tagName==='FIGURE'?node:null}));
   let pages=[],current=0,ready=false,lastSize='';
   const params=new URL(location.href).searchParams;
   const requested=Number(params.get('page'));
@@ -64,6 +64,16 @@ if(source){
     const fits=()=>page.getBoundingClientRect().height<=height-(pages.length===0?openingSpace:0);
     function finish(){if(!page.children.length)return;page.classList.remove('is-measuring');page.hidden=true;page.dataset.page=String(pages.length+1);page.setAttribute('aria-label',`第 ${pages.length+1} 頁`);pages.push(page);page=newPage();}
     for(const block of blocks){
+      if(block.tag==='figure'){
+        for(const heading of pendingHeadings){append(heading.tag,heading.text);offset+=heading.text.length;}
+        pendingHeadings=[];finish();
+        const figure=block.node.cloneNode(true),img=figure.querySelector('img');
+        const width=Number(img.getAttribute('width')),imageHeight=Number(img.getAttribute('height'));
+        const scale=Math.min(container.clientWidth/width,(height-16)/imageHeight);
+        figure.style.width=`${width*scale}px`;figure.style.height=`${imageHeight*scale}px`;
+        page.dataset.kind='illustration';page.classList.add('illustration-page');page.append(figure);finish();
+        continue;
+      }
       if(block.tag!=='p'){pendingHeadings.push(block);continue;}
       let headingNodes=pendingHeadings.map(h=>append(h.tag,h.text));
       // Keep headings with at least the beginning of their paragraph.
@@ -133,6 +143,7 @@ if(source){
     let target=0;
     if(anchorKind==='closing')target=pages.length-1;
     else if(anchorKind==='opening')target=0;
+    else if(anchorKind==='illustration')target=Math.max(0,pages.findIndex(page=>page.dataset.kind==='illustration'&&Number(page.dataset.start)===anchor));
     else if(ready||params.has('at')||anchorKind==='text'){
       const textPages=pages.filter(page=>page.dataset.kind==='text');
       const after=textPages.findIndex(page=>Number(page.dataset.start)>anchor);
