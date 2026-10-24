@@ -1,0 +1,47 @@
+[
+  {
+    "width": 1440,
+    "http": 200,
+    "overflow": false,
+    "photoCount": 4,
+    "formMarkupPreserved": true,
+    "scriptPreserved": true,
+    "minorGuardian": true,
+    "roleValidation": true,
+    "consentRequired": true,
+    "mockedSubmission": true,
+    "realSubmission": false,
+    "errorRecovery": false,
+    "errors": []
+  },
+  {
+    "width": 393,
+    "http": 200,
+    "overflow": false,
+    "photoCount": 4,
+    "formMarkupPreserved": true,
+    "scriptPreserved": true,
+    "minorGuardian": true,
+    "roleValidation": true,
+    "consentRequired": true,
+    "mockedSubmission": true,
+    "realSubmission": false,
+    "errorRecovery": true,
+    "errors": []
+  },
+  {
+    "width": 320,
+    "http": 200,
+    "overflow": false,
+    "photoCount": 4,
+    "formMarkupPreserved": true,
+    "scriptPreserved": true,
+    "minorGuardian": true,
+    "roleValidation": true,
+    "consentRequired": true,
+    "mockedSubmission": true,
+    "realSubmission": false,
+    "errorRecovery": false,
+    "errors": []
+  }
+]
