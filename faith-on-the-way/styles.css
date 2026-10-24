@@ -54,3 +54,11 @@ dialog{width:min(540px,calc(100% - 32px));max-height:calc(100dvh - 48px);border:
 @media(max-height:740px) and (max-width:650px){.shelf-cover{width:clamp(160px,43vw,205px)}.book-cover-display{width:clamp(165px,44vw,210px)}}
 
 .book-page.illustration-page{height:100%;display:flex;align-items:center;justify-content:center}.interior-illustration{margin:0;flex:none;max-width:100%;overflow:hidden;border-radius:6px}.interior-illustration img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* Scripture and its reference travel together as one inset on the book page. */
+.scripture-callout{display:flow-root;width:100%;margin:8px 0 20px;padding:18px 20px 16px;border:1px solid #c9d2bd;border-inline-start:3px solid #8a785b;border-radius:4px;background:#edf1e6;color:#3e513b;break-inside:avoid}
+.book-page .scripture-callout p{font-size:19px;line-height:1.85;letter-spacing:.02em;margin:0 0 12px}
+.scripture-callout footer{font:12px/1.7 var(--sans);color:#65705d;text-align:end;overflow-wrap:anywhere}
+.scripture-callout cite{font-style:normal}
+@media(max-width:650px){.scripture-callout{padding:14px 15px 12px;margin:6px 0 17px}.book-page .scripture-callout p{font-size:18px;line-height:1.8;margin-bottom:10px}.scripture-callout footer{font-size:11px}}
+@media(max-height:500px){.scripture-callout{padding:10px 13px;margin:4px 0 12px}.book-page .scripture-callout p{font-size:17px;line-height:1.7;margin-bottom:7px}.scripture-callout footer{font-size:10px}}
