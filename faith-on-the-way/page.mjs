@@ -23,7 +23,7 @@ if(source){
   const next=document.getElementById('next-page');
   const picker=document.getElementById('page-select');
   const book=document.querySelector('.reading-book');
-  const blocks=Array.from(source.content.children,node=>({tag:node.tagName.toLowerCase(),text:node.textContent,node:['FIGURE','BLOCKQUOTE'].includes(node.tagName)?node:null,keepTogether:node.hasAttribute('data-keep-together')}));
+  const blocks=Array.from(source.content.children,node=>({tag:node.tagName.toLowerCase(),text:node.textContent,node:['FIGURE','BLOCKQUOTE','ASIDE'].includes(node.tagName)?node:null,keepTogether:node.hasAttribute('data-keep-together')}));
   let pages=[],current=0,ready=false,lastSize='';
   const params=new URL(location.href).searchParams;
   const requested=Number(params.get('page'));
@@ -63,7 +63,7 @@ if(source){
     function append(tag,text){const node=document.createElement(tag);node.textContent=text;page.append(node);return node;}
     const fits=()=>page.getBoundingClientRect().height<=height-(pages.length===0?openingSpace:0);
     function finish(){if(!page.children.length)return;page.classList.remove('is-measuring');page.hidden=true;page.dataset.page=String(pages.length+1);page.setAttribute('aria-label',`第 ${pages.length+1} 頁`);pages.push(page);page=newPage();}
-    for(const block of blocks){
+    for(const [blockIndex,block] of blocks.entries()){
       if(block.tag==='figure'){
         for(const heading of pendingHeadings){append(heading.tag,heading.text);offset+=heading.text.length;}
         pendingHeadings=[];finish();
@@ -74,10 +74,10 @@ if(source){
         page.dataset.kind='illustration';page.classList.add('illustration-page');page.append(figure);finish();
         continue;
       }
-      if(block.tag==='blockquote'){
+      if(block.tag==='blockquote'||block.tag==='aside'){
         let headingNodes=pendingHeadings.map(h=>append(h.tag,h.text));
         const quote=block.node.cloneNode(true);page.append(quote);
-        // Move the whole scripture box, including its reference, to the next sheet.
+        // Keep a scripture inset or pull-quote card together with its attribution.
         if(!fits()&&page.children.length>headingNodes.length+1){
           quote.remove();headingNodes.forEach(node=>node.remove());finish();
           headingNodes=pendingHeadings.map(h=>append(h.tag,h.text));page.append(quote);
@@ -87,6 +87,19 @@ if(source){
         continue;
       }
       if(block.tag!=='p'){pendingHeadings.push(block);continue;}
+      const following=blocks[blockIndex+1];
+      if(following?.tag==='aside'&&page.children.length){
+        // When the pair fits on a fresh sheet, keep a paragraph with its pull quote.
+        const probes=pendingHeadings.map(h=>append(h.tag,h.text));
+        probes.push(append('p',block.text),following.node.cloneNode(true));
+        page.append(probes.at(-1));
+        const fitsHere=fits();
+        const group=document.createElement('section');group.className='book-page is-measuring';
+        group.append(...probes);container.append(group);
+        const fitsTogether=group.getBoundingClientRect().height<=height;
+        group.remove();
+        if(!fitsHere&&fitsTogether)finish();
+      }
       let headingNodes=pendingHeadings.map(h=>append(h.tag,h.text));
       // Keep headings with at least the beginning of their paragraph.
       let probe=append('p',block.text.slice(0,30));
