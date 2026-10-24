@@ -1,0 +1,82 @@
+[
+  {
+    "chapter": 1,
+    "fallbackPages": 17,
+    "fallbackTextIntact": true,
+    "scripturesCardsHeadingsImagesUnchanged": true,
+    "linksExist": true,
+    "bytes": 44128
+  },
+  {
+    "chapter": 2,
+    "fallbackPages": 17,
+    "fallbackTextIntact": true,
+    "scripturesCardsHeadingsImagesUnchanged": true,
+    "linksExist": true,
+    "bytes": 42712
+  },
+  {
+    "chapter": 3,
+    "fallbackPages": 17,
+    "fallbackTextIntact": true,
+    "scripturesCardsHeadingsImagesUnchanged": true,
+    "linksExist": true,
+    "bytes": 44702
+  },
+  {
+    "chapter": 4,
+    "fallbackPages": 16,
+    "fallbackTextIntact": true,
+    "scripturesCardsHeadingsImagesUnchanged": true,
+    "linksExist": true,
+    "bytes": 43650
+  },
+  {
+    "chapter": 5,
+    "fallbackPages": 17,
+    "fallbackTextIntact": true,
+    "scripturesCardsHeadingsImagesUnchanged": true,
+    "linksExist": true,
+    "bytes": 45053
+  },
+  {
+    "chapter": 6,
+    "fallbackPages": 16,
+    "fallbackTextIntact": true,
+    "scripturesCardsHeadingsImagesUnchanged": true,
+    "linksExist": true,
+    "bytes": 42784
+  },
+  {
+    "chapter": 7,
+    "fallbackPages": 16,
+    "fallbackTextIntact": true,
+    "scripturesCardsHeadingsImagesUnchanged": true,
+    "linksExist": true,
+    "bytes": 42143
+  },
+  {
+    "chapter": 8,
+    "fallbackPages": 19,
+    "fallbackTextIntact": true,
+    "scripturesCardsHeadingsImagesUnchanged": true,
+    "linksExist": true,
+    "bytes": 48205
+  },
+  {
+    "chapter": 9,
+    "fallbackPages": 18,
+    "fallbackTextIntact": true,
+    "scripturesCardsHeadingsImagesUnchanged": true,
+    "linksExist": true,
+    "bytes": 45584
+  },
+  {
+    "chapter": 10,
+    "fallbackPages": 17,
+    "fallbackTextIntact": true,
+    "scripturesCardsHeadingsImagesUnchanged": true,
+    "linksExist": true,
+    "bytes": 43407
+  }
+]
