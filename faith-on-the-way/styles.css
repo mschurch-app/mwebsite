@@ -55,10 +55,23 @@ dialog{width:min(540px,calc(100% - 32px));max-height:calc(100dvh - 48px);border:
 
 .book-page.illustration-page{height:100%;display:flex;align-items:center;justify-content:center}.interior-illustration{margin:0;flex:none;max-width:100%;overflow:hidden;border-radius:6px}.interior-illustration img{display:block;width:100%;height:100%;object-fit:contain}
 
-/* Scripture and its reference travel together as one inset on the book page. */
-.scripture-callout{display:flow-root;width:100%;margin:8px 0 20px;padding:18px 20px 16px;border:1px solid #c9d2bd;border-inline-start:3px solid #8a785b;border-radius:4px;background:#edf1e6;color:#3e513b;break-inside:avoid}
-.book-page .scripture-callout p{font-size:19px;line-height:1.85;letter-spacing:.02em;margin:0 0 12px}
-.scripture-callout footer{font:12px/1.7 var(--sans);color:#65705d;text-align:end;overflow-wrap:anywhere}
+/* Quiet ivory-and-gold scripture insets, kept together with their reference. */
+.scripture-callout{display:flow-root;width:100%;margin:12px 0 22px;padding:16px 19px 14px;border:1px solid #cbb991;border-radius:2px;background:#fbf8f0;color:var(--ink);break-inside:avoid}
+.book-page .scripture-callout p{font-size:19px;line-height:1.85;letter-spacing:.02em;margin:0 0 10px}
+.scripture-callout footer{font:12px/1.7 var(--serif);color:#706957;text-align:end;overflow-wrap:anywhere}
 .scripture-callout cite{font-style:normal}
-@media(max-width:650px){.scripture-callout{padding:14px 15px 12px;margin:6px 0 17px}.book-page .scripture-callout p{font-size:18px;line-height:1.8;margin-bottom:10px}.scripture-callout footer{font-size:11px}}
-@media(max-height:500px){.scripture-callout{padding:10px 13px;margin:4px 0 12px}.book-page .scripture-callout p{font-size:17px;line-height:1.7;margin-bottom:7px}.scripture-callout footer{font-size:10px}}
+@media(max-width:650px){.scripture-callout{padding:13px 15px 11px;margin:9px 0 18px}.book-page .scripture-callout p{font-size:18px;line-height:1.8;margin-bottom:9px}.scripture-callout footer{font-size:11px}}
+@media(max-height:500px){.scripture-callout{padding:9px 12px;margin:4px 0 11px}.book-page .scripture-callout p{font-size:17px;line-height:1.7;margin-bottom:6px}.scripture-callout footer{font-size:10px}}
+
+/* Editorial pull quotes use live type so the cards stay sharp at every size. */
+.quote-card{position:relative;isolation:isolate;display:flow-root;width:100%;overflow:hidden;margin:18px 0 22px;padding:25px 26px 19px;border:1px solid #cbb991;border-radius:2px;background:linear-gradient(135deg,#fcfaf3,#f0eadc);color:#3f503c;break-inside:avoid}
+.quote-card::before{content:'“';position:absolute;z-index:-1;top:-11px;left:14px;font:100px/1 Georgia,serif;color:#b89b68;opacity:.26}
+.quote-card::after{content:'';position:absolute;z-index:-1;right:-42px;bottom:-62px;width:170px;height:170px;border:1px solid #c8b48866;border-radius:50%;box-shadow:0 0 0 15px #c8b48814}
+.book-page .quote-card p{font-size:23px;line-height:1.65;letter-spacing:.05em;margin:0;text-align:start}
+.quote-card footer{display:flex;justify-content:space-between;gap:12px;position:relative;margin-top:19px;padding-top:12px;border-top:1px solid #c4b28e99;font:10px/1.6 var(--sans);letter-spacing:.05em;color:#74664e}
+.quote-card footer span:last-child{text-align:end}
+.quote-card--forest{background:#465a44;color:#fff9eb;border-color:#8d936f}
+.quote-card--forest::before{color:#d3b679;opacity:.3}
+.quote-card--forest footer{color:#e2d5b8;border-color:#c8b48866}
+@media(max-width:650px){.quote-card{padding:21px 20px 16px;margin:15px 0 19px}.book-page .quote-card p{font-size:21px;line-height:1.65;letter-spacing:.035em}.quote-card footer{margin-top:16px;padding-top:10px;font-size:9px;gap:8px}}
+@media(max-height:500px){.quote-card{padding:13px 19px 11px;margin:7px 0 12px}.book-page .quote-card p{font-size:19px;line-height:1.5}.quote-card footer{margin-top:10px;padding-top:7px;font-size:9px}.quote-card::before{font-size:74px}}
