@@ -23,7 +23,7 @@ if(source){
   const next=document.getElementById('next-page');
   const picker=document.getElementById('page-select');
   const book=document.querySelector('.reading-book');
-  const blocks=Array.from(source.content.children,node=>({tag:node.tagName.toLowerCase(),text:node.textContent,node:node.tagName==='FIGURE'?node:null,keepTogether:node.hasAttribute('data-keep-together')}));
+  const blocks=Array.from(source.content.children,node=>({tag:node.tagName.toLowerCase(),text:node.textContent,node:['FIGURE','BLOCKQUOTE'].includes(node.tagName)?node:null,keepTogether:node.hasAttribute('data-keep-together')}));
   let pages=[],current=0,ready=false,lastSize='';
   const params=new URL(location.href).searchParams;
   const requested=Number(params.get('page'));
@@ -72,6 +72,18 @@ if(source){
         const scale=Math.min(container.clientWidth/width,(height-16)/imageHeight);
         figure.style.width=`${width*scale}px`;figure.style.height=`${imageHeight*scale}px`;
         page.dataset.kind='illustration';page.classList.add('illustration-page');page.append(figure);finish();
+        continue;
+      }
+      if(block.tag==='blockquote'){
+        let headingNodes=pendingHeadings.map(h=>append(h.tag,h.text));
+        const quote=block.node.cloneNode(true);page.append(quote);
+        // Move the whole scripture box, including its reference, to the next sheet.
+        if(!fits()&&page.children.length>headingNodes.length+1){
+          quote.remove();headingNodes.forEach(node=>node.remove());finish();
+          headingNodes=pendingHeadings.map(h=>append(h.tag,h.text));page.append(quote);
+        }
+        offset+=pendingHeadings.reduce((sum,h)=>sum+h.text.length,0)+block.text.length;
+        pendingHeadings=[];
         continue;
       }
       if(block.tag!=='p'){pendingHeadings.push(block);continue;}
