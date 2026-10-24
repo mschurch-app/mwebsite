@@ -66,7 +66,7 @@ if(latestChapter){
  const latest=JSON.parse(latestHtml.match(/<script type="application\/json" id="article-share-data">([\s\S]*?)<\/script>/)[1]);
  const shelf=await read('faith-on-the-way/index.html');
  assert.ok(shelf.includes(`<a class="shelf-caption" href="${latestChapter}">最新閱讀｜${latest.label}・${latest.title} →</a>`),'書架最新閱讀必須指向最後已出版章節');
- assert.ok((await read('faith-on-the-way/book.html')).includes(`href="${latestChapter}">最新・${latest.label} →</a>`),'書本最新章節必須與出版清單同步');
+ assert.ok((await read('faith-on-the-way/book.html')).includes(`href="${latestChapter}">最新・${latest.label}｜${latest.title} →</a>`),'書本最新章節必須與出版清單同步');
 }
 assert.ok(!(await read('faith-on-the-way/page.mjs')).includes('preview-metrics'));
 console.log(JSON.stringify({faithPages:faith.pages.length,scheduledChapterIsPublic:faith.chapterTwoPublished,faithIndexing:'valid'}));
