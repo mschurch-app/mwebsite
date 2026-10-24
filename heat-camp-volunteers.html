@@ -3,33 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#14211e">
+  <meta name="theme-color" content="#102132">
   <meta name="description" content="報名 2027 熱火籃球營志工，參與小隊輔、敬拜團或籃球助教服務。">
   <title>志工招募｜2027 熱火籃球營</title>
-  <link rel="stylesheet" href="heat-camp-volunteers.css?v=20261015-insurance1">
+  <link rel="stylesheet" href="heat-camp-volunteers.css?v=20261024-campaign1">
+  <link rel="stylesheet" href="heat-camp-volunteers-campaign.css?v=20261024-campaign1">
   <script type="module" src="heat-camp-volunteers.mjs?v=20261015-insurance1"></script>
 </head>
 <body>
+  <a class="skip-link" href="#volunteer-form">前往志工報名表</a>
   <header class="topbar"><a class="brand" href="heat-camp-2027.html"><span class="mark">M+</span><span>熱火籃球營</span></a><a class="back" href="heat-camp-2027.html">返回營隊頁面 ↗</a></header>
   <main>
-    <section class="hero">
+    <section class="hero" aria-labelledby="volunteer-title">
+      <div class="hero-copy">
       <p class="eyebrow">HEAT BASKETBALL CAMP 2027 · VOLUNTEERS</p>
-      <h1>成為我們的<em>火隊友</em></h1>
-      <p class="lead">招募熱火籃球營志工。選擇你願意參與的服事，同工收到資料後會與你聯繫。</p>
+      <h1 id="volunteer-title">成為我們的<em>火隊友</em></h1>
+      <p class="lead">把你擅長的，化為陪伴的力量。<br>加入小隊輔、敬拜團或籃球助教，和我們一起陪伴孩子成長。</p>
       <div class="facts"><span>2027 / 7 / 12 — 7 / 15</span><span>台中東海大學</span><span>四天三夜</span></div>
+      <div class="hero-actions"><a class="primary-link" href="#application">我要加入志工 <span aria-hidden="true">↗</span></a><a class="roles-link" href="#roles-heading">找到我的服事位置 ↓</a></div>
+      </div>
+      <div class="hero-art"><img src="assets/campaign/heat-2027/volunteers/team-hero.webp" alt="2026 營會回顧：米白制服同工陪同學員參與球場練習" width="1108" height="1477" fetchpriority="high"><span aria-hidden="true" class="hero-stamp">JOIN<br>THE TEAM.</span></div>
+      <span class="light-trail trail-one" aria-hidden="true"></span><span class="light-trail trail-two" aria-hidden="true"></span>
     </section>
+
+    <div class="campaign-strip" aria-label="球技、品格、團隊"><span>SKILLS / 球技</span><span>CHARACTER / 品格</span><span>TEAMWORK / 團隊</span></div>
 
     <section class="panel intro" aria-labelledby="roles-heading">
       <div class="section-title"><p class="eyebrow">SERVE TOGETHER</p><h2 id="roles-heading">選擇你的服事位置</h2><p>可複選，由營隊同工聯繫並安排。</p></div>
       <div class="role-grid">
-        <article><span>01</span><h3>小隊輔志工</h3><strong>10 名</strong><p>陪伴隊員，協助小隊生活與活動。</p></article>
-        <article><span>02</span><h3>敬拜團志工</h3><strong>5 名</strong><p>參與敬拜與聚會服事。</p></article>
-        <article><span>03</span><h3>籃球助教志工</h3><strong>6 名</strong><p>協助球場教學與練習。</p></article>
+        <article><img src="assets/campaign/heat-2027/volunteers/team.webp" alt="2026 營會回顧：團隊圍圈互動" width="1400" height="1050" loading="lazy"><div class="role-copy"><span>01 / COMPANION</span><h3>小隊輔志工</h3><strong>10 <small>名</small></strong><p>陪伴隊員，協助小隊生活與活動。</p></div></article>
+        <article><img src="assets/campaign/heat-2027/volunteers/worship.webp" alt="2026 營會回顧：敬拜團音樂服事" width="1400" height="788" loading="lazy"><div class="role-copy"><span>02 / WORSHIP</span><h3>敬拜團志工</h3><strong>5 <small>名</small></strong><p>參與敬拜與聚會服事。</p></div></article>
+        <article><img src="assets/campaign/heat-2027/volunteers/coaching.webp" alt="2026 營會回顧：球場上的教學與練習" width="1400" height="788" loading="lazy"><div class="role-copy"><span>03 / BASKETBALL</span><h3>籃球助教志工</h3><strong>6 <small>名</small></strong><p>協助球場教學與練習。</p></div></article>
       </div>
+      <p class="photo-note">照片為 2026 營會回顧；職務可複選，實際安排由營隊同工聯繫確認。</p>
       <div class="arrangements"><h3>營隊安排</h3><ul><li>提供餐食、住宿及保險</li><li>由協會開立志工證明</li><li>交通自理，請自行到營隊地點報到</li><li>預計參加約兩次會前訓練，並配合營隊指揮調度</li></ul></div>
     </section>
 
-    <section class="panel application" aria-labelledby="form-heading">
+    <section id="application" class="panel application" aria-labelledby="form-heading">
       <div class="section-title"><p class="eyebrow">APPLICATION</p><h2 id="form-heading">志工報名</h2><p>填寫後同工會與你聯繫；勾選職務是服務意願，實際安排會再確認。</p></div>
       <form id="volunteer-form">
         <div class="fields"><label>姓名 <span>*</span><input name="name" autocomplete="name" maxlength="80" required placeholder="請填真實姓名"></label><label>所屬教會 <span>*</span><input name="church_affiliation" maxlength="120" required placeholder="若無固定所屬教會，請填「無」"></label><label>手機 <span>*</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" required placeholder="方便同工聯繫"></label><label>Email <span>*</span><input name="email" type="email" autocomplete="email" maxlength="160" required placeholder="name@example.com"></label><label>LINE ID <small>選填</small><input name="line_id" maxlength="80" autocomplete="off" placeholder="若方便，也可以留下 LINE ID"></label></div>
