@@ -1,0 +1,54 @@
+[
+  {
+    "width": 390,
+    "same": true,
+    "pages": 14,
+    "overflow": [],
+    "pageOverflow": false,
+    "images": [
+      {
+        "ok": true,
+        "src": "illustrations/ten-lepers-road-wide.jpg"
+      },
+      {
+        "ok": true,
+        "src": "illustrations/samaritan-thanks.jpg"
+      }
+    ],
+    "checks": [
+      "text integrity",
+      "all sheets fit",
+      "two loaded illustrations",
+      "contents and focus restoration",
+      "chapter ending",
+      "chapter-specific share card"
+    ],
+    "scriptErrors": []
+  },
+  {
+    "width": 1440,
+    "same": true,
+    "pages": 13,
+    "overflow": [],
+    "pageOverflow": false,
+    "images": [
+      {
+        "ok": true,
+        "src": "illustrations/ten-lepers-road-wide.jpg"
+      },
+      {
+        "ok": true,
+        "src": "illustrations/samaritan-thanks.jpg"
+      }
+    ],
+    "checks": [
+      "text integrity",
+      "all sheets fit",
+      "two loaded illustrations",
+      "contents and focus restoration",
+      "chapter ending",
+      "chapter-specific share card"
+    ],
+    "scriptErrors": []
+  }
+]
