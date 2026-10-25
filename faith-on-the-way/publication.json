@@ -16,7 +16,8 @@
     "chapter-08.html",
     "chapter-09.html",
     "chapter-10.html",
-    "chapter-11.html"
+    "chapter-11.html",
+    "chapter-12.html"
   ],
   "chapterFourPublished": true,
   "chapterFivePublished": true,
@@ -25,5 +26,6 @@
   "chapterEightPublished": true,
   "chapterNinePublished": true,
   "chapterTenPublished": true,
-  "chapterElevenPublished": true
+  "chapterElevenPublished": true,
+  "chapterTwelvePublished": true
 }
