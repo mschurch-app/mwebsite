@@ -60,7 +60,7 @@ if(!faith.chapterTwoPublished){
  assert.ok(!(await read('faith-on-the-way/book.html')).includes('href="chapter-02.html"'));
  assert.ok(!(await read('faith-on-the-way/chapter-01.html')).includes('href="chapter-02.html"'));
 }
-const latestChapter=faith.pages.filter(name=>/^chapter-\d+\.html$/.test(name)).sort().at(-1);
+const latestChapter=faith.pages.filter(name=>/^(?:chapter-\d+|epilogue)\.html$/.test(name)).at(-1);
 if(latestChapter){
  const latestHtml=await read('faith-on-the-way/'+latestChapter);
  const latest=JSON.parse(latestHtml.match(/<script type="application\/json" id="article-share-data">([\s\S]*?)<\/script>/)[1]);
