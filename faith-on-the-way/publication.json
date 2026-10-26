@@ -5,6 +5,7 @@
   "pages": [
     "index.html",
     "book.html",
+    "foreword-wang-naichun.html",
     "preface.html",
     "chapter-01.html",
     "chapter-02.html",
@@ -29,5 +30,6 @@
   "chapterTenPublished": true,
   "chapterElevenPublished": true,
   "chapterTwelvePublished": true,
-  "epiloguePublished": true
+  "epiloguePublished": true,
+  "forewordWangPublished": true
 }
