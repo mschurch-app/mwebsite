@@ -50,3 +50,9 @@
 後端來源與 migration 保存在教會 OS repo 的 `supabase/functions/testimony-intake/` 及 `20261022144818_testimony_submission_review.sql`。官網不能使用瀏覽器草稿資料作為公開資料源。
 
 見證圖文閱讀由 `testimony-layout-plan.mjs`、`testimony-story-layout.mjs` 及同名 CSS 共用。官網可先重排已公開的舊稿；`testimony-published-layouts.mjs` 只保存編排與來源指紋，原文與照片仍從已核准公開 API 讀取。新投稿在初審前儲存編排的教會 OS 後端屬另一批待部署更新。修改時需同步兩個 repository 的共用檔並核對內容一致，執行 `node qa/layout-plan.mjs`、`node qa/layout-browser.mjs` 及既有 SEO 檢查。
+
+## 小書出版預告與試讀
+
+「信仰，在路上」目前為出版預告模式，`faith-on-the-way/publication.json` 的 `pages` 僅列書籍介紹、推薦序、作者序與前三章精選試讀。第四至十二章及終章的既有網址保留出版預告，不再包含全文、隱藏文章模板或全文資料。完整書稿與邀序PDF另存於私人出版工作目錄，不放入本網站repository；歷次書稿及編修報告也已移出公開部署範圍。
+
+維護試讀頁後，執行 `node scripts/build-seo.mjs`、`node scripts/check-seo.mjs` 及 `node qa/faith-publication-preview.mjs`。推薦序與作者序應保留作者核定原文；未經作者指示，不恢復完整章節。

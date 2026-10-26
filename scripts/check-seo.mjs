@@ -52,6 +52,25 @@ assert.equal(visibleItems([{title:'unsafe',url:'javascript:alert(1)',thumbnail:'
 assert.equal(esc('<script>"&'), '&lt;script&gt;&quot;&amp;');
 console.log(JSON.stringify({sitemapPages:urls.length,staticAboutPages:5,verificationTag:true,excludedUtilityPages:4,publicCampPage:'indexable',localLinks:'valid',structuredData:'valid',unsafeSermonUrlRejected:true}));
 
+if(faith.mode==='publication-preview'){
+ const expected=['index.html','book.html','foreword-wang-naichun.html','preface.html','chapter-01.html','chapter-02.html','chapter-03.html'];
+ assert.deepEqual(faith.pages,expected);
+ assert.equal(faith.fullChaptersPublished,false);
+ for(const file of expected){
+  const html=await read('faith-on-the-way/'+file);
+  assert.ok(html.includes('即將出版'));
+  assert.ok(!html.includes('id="article-source"'));
+ }
+ for(const file of [...Array.from({length:9},(_,i)=>`chapter-${String(i+4).padStart(2,'0')}.html`),'epilogue.html']){
+  const html=await read('faith-on-the-way/'+file);
+  assert.ok(!faith.pages.includes(file));
+  assert.match(html,/<meta name="robots" content="noindex,follow">/);
+  assert.ok(!html.includes('id="article-source"'));
+  assert.ok(!html.includes('class="reading-prose"'));
+  assert.ok(html.includes('完整內容即將出版'));
+ }
+ console.log(JSON.stringify({faithMode:'publication-preview',previewChapters:3,withdrawnFullArticles:10,fullTextTemplatesRemoved:true}));
+}else{
 const pending=await read('faith-on-the-way/chapter-02.html');
 if(!faith.chapterTwoPublished){
  assert.ok(!faith.pages.includes('chapter-02.html'));
@@ -70,3 +89,5 @@ if(latestChapter){
 }
 assert.ok(!(await read('faith-on-the-way/page.mjs')).includes('preview-metrics'));
 console.log(JSON.stringify({faithPages:faith.pages.length,scheduledChapterIsPublic:faith.chapterTwoPublished,faithIndexing:'valid'}));
+
+}
