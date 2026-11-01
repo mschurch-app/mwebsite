@@ -1,7 +1,25 @@
 {
-  "updated_at": "2026-10-31T07:04:41+00:00",
+  "updated_at": "2026-11-01T11:27:04+00:00",
   "channel_url": "https://www.youtube.com/@m-church",
   "items": [
+    {
+      "id": "QTKWqZDpi-k",
+      "title": "以詩篇學習禱告：詩篇第五篇：周學信教授：M+大雅教會主日直播",
+      "speaker": "",
+      "scripture": "",
+      "published": "2026-11-01",
+      "url": "https://www.youtube.com/watch?v=QTKWqZDpi-k",
+      "thumbnail": "https://i.ytimg.com/vi/QTKWqZDpi-k/hqdefault.jpg"
+    },
+    {
+      "id": "-BXZqogX_Cg",
+      "title": "以詩篇學習禱告：詩篇第五篇：周學信教授：M+大雅教會主日直播",
+      "speaker": "",
+      "scripture": "",
+      "published": "2026-11-01",
+      "url": "https://www.youtube.com/watch?v=-BXZqogX_Cg",
+      "thumbnail": "https://i.ytimg.com/vi/-BXZqogX_Cg/hqdefault.jpg"
+    },
     {
       "id": "KyfnUIP7TR8",
       "title": "一次勇敢的對話，能改變什麼？：M+大雅教會主日直播",
@@ -100,24 +118,6 @@
       "published": "2026-08-02",
       "url": "https://www.youtube.com/watch?v=Y6iPiiuDXmA",
       "thumbnail": "https://i.ytimg.com/vi/Y6iPiiuDXmA/hqdefault.jpg"
-    },
-    {
-      "id": "FjpwND2J42Q",
-      "title": "人生到底要跟誰走？",
-      "speaker": "iM 陳淑芬傳道",
-      "scripture": "馬太福音16:13-28",
-      "published": "2026-07-26",
-      "url": "https://www.youtube.com/watch?v=FjpwND2J42Q",
-      "thumbnail": "https://i.ytimg.com/vi/FjpwND2J42Q/hqdefault.jpg"
-    },
-    {
-      "id": "JDRD1lpKH0s",
-      "title": "當禱告震動天地：突破困境最強武器",
-      "speaker": "吳俊璋牧師",
-      "scripture": "使徒行傳4:23-31",
-      "published": "2026-07-19",
-      "url": "https://www.youtube.com/watch?v=JDRD1lpKH0s",
-      "thumbnail": "https://i.ytimg.com/vi/JDRD1lpKH0s/hqdefault.jpg"
     }
   ]
 }
