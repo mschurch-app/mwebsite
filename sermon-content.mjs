@@ -2,11 +2,16 @@
 export const esc=value=>String(value??'').replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
 const dateLabel=value=>/^\d{4}-\d{2}-\d{2}$/.test(value||'')?value.replaceAll('-','.'):'';
 export function visibleItems(items){
+ const seenVideos=new Set(),seenMessages=new Set();
  return (Array.isArray(items)?items:[]).filter(item=>
   typeof item.title==='string' && /^https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}$/.test(item.url||'') &&
   /^https:\/\/i\.ytimg\.com\/vi\/[\w-]{11}\/hqdefault\.jpg$/.test(item.thumbnail||'') &&
   /^\d{4}-\d{2}-\d{2}$/.test(item.published||'')
- ).slice(0,6);
+ ).filter(item=>{
+  const identity=`${item.published}:${item.title.normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,'')}`;
+  if(seenVideos.has(item.url)||seenMessages.has(identity))return false;
+  seenVideos.add(item.url);seenMessages.add(identity);return true;
+ }).slice(0,6);
 }
 const metadata=item=>`${dateLabel(item.published)}${item.speaker?`・${esc(item.speaker)}`:''}`;
 export function renderFeatured(item){return `<a class="video-frame" href="${esc(item.url)}" target="_blank" rel="noopener"><img src="${esc(item.thumbnail)}" alt="${esc(item.title)}主日信息封面"></a><div><p class="eyebrow">LATEST MESSAGE</p><div class="sermon-meta">${metadata(item)}</div><h2>${esc(item.title)}</h2><p>${esc(item.scripture||'M+大雅教會主日信息')}</p><a class="button" href="${esc(item.url)}" target="_blank" rel="noopener">觀看完整信息</a></div>`;}

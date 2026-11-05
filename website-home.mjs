@@ -1,4 +1,4 @@
-import {visibleItems,renderHome} from './sermon-content.mjs?v=20261011-seo1';
+import {visibleItems,renderHome} from './sermon-content.mjs?v=20261105-dedupe1';
 const PROJECT_URL='https://aqanuwilmvdtlzuqlrau.supabase.co';
 const PUBLISHABLE_KEY='sb_publishable_-on9uPxVvSaERBEpkoc_xg_CYuANexJ';
 const BUCKET='church-website-public-media';
