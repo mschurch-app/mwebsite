@@ -13,6 +13,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 檢查講道來源與重複顯示
+        run: |
+          python qa/sermon-source.py
+          node qa/sermon-dedup.mjs
       - name: 核對靜態頁面與內容來源同步
         run: |
           node scripts/build-seo.mjs

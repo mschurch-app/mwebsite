@@ -1,4 +1,4 @@
-import {visibleItems,renderFeatured,renderCards} from './sermon-content.mjs?v=20261011-seo1';
+import {visibleItems,renderFeatured,renderCards} from './sermon-content.mjs?v=20261105-dedupe1';
 const list=document.querySelector('#sermonList'),featured=document.querySelector('#featuredSermon'),empty=document.querySelector('#sermonEmpty');
 fetch(`sermons-data.json?v=${Date.now()}`).then(r=>r.ok?r.json():Promise.reject()).then(data=>{
  const items=visibleItems(data.items);

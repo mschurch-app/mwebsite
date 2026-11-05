@@ -1,0 +1,8 @@
+{
+  "excluded_video_ids": {
+    "QTKWqZDpi-k": {
+      "reason": "Duplicate 2026-11-01 sermon listing; YouTube reports is_upcoming with no playable duration as verified 2026-11-05.",
+      "preferred_video_id": "-BXZqogX_Cg"
+    }
+  }
+}

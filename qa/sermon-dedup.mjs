@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {visibleItems,renderHome} from '../sermon-content.mjs';
+const item=(id,title='同一篇信息',published='2026-11-01')=>({title,published,url:`https://www.youtube.com/watch?v=${id}`,thumbnail:`https://i.ytimg.com/vi/${id}/hqdefault.jpg`});
+const first=item('abcdefghijk');
+assert.equal(visibleItems([first,first]).length,1,'same video is only shown once');
+assert.equal(visibleItems([first,item('lmnopqrstuv','同一篇 信息！')]).length,1,'same date/title with punctuation changes is one message');
+assert.equal(visibleItems([first,item('lmnopqrstuv','另一篇信息'),item('12345678901','同一篇信息','2026-10-25')]).length,3,'different titles or dates remain');
+assert.equal(visibleItems([...Array(8).fill(first),item('lmnopqrstuv','另一篇信息')]).length,2,'deduplicate before limiting results');
+const data=JSON.parse(await readFile(new URL('../sermons-data.json',import.meta.url)));
+assert(!data.items.some(x=>x.id==='QTKWqZDpi-k'));
+assert(data.items.some(x=>x.id==='-BXZqogX_Cg'));
+assert.equal(visibleItems(data.items).filter(x=>x.published==='2026-11-01').length,1);
+assert.equal((renderHome(visibleItems(data.items)).match(/home-sermon-card/g)||[]).length,3);
+console.log('sermon deduplication: 8 checks passed');
