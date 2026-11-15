@@ -1,7 +1,34 @@
 {
-  "updated_at": "2026-11-13T08:07:54+00:00",
+  "updated_at": "2026-11-15T12:10:55+00:00",
   "channel_url": "https://www.youtube.com/@m-church",
   "items": [
+    {
+      "id": "D2M9ADWaFDU",
+      "title": "藏不住的好消息：主日講道・音質優化版",
+      "speaker": "吳俊璋牧師",
+      "scripture": "",
+      "published": "2026-11-15",
+      "url": "https://www.youtube.com/watch?v=D2M9ADWaFDU",
+      "thumbnail": "https://i.ytimg.com/vi/D2M9ADWaFDU/hqdefault.jpg"
+    },
+    {
+      "id": "xDPYs-r5_j0",
+      "title": "藏不住的好消息：M+大雅教會主日直播",
+      "speaker": "吳俊璋牧師",
+      "scripture": "",
+      "published": "2026-11-14",
+      "url": "https://www.youtube.com/watch?v=xDPYs-r5_j0",
+      "thumbnail": "https://i.ytimg.com/vi/xDPYs-r5_j0/hqdefault.jpg"
+    },
+    {
+      "id": "98KXBQ7jd9Y",
+      "title": "有福的人：余文綺師母：M+大雅教會主日直播",
+      "speaker": "",
+      "scripture": "馬太福音4:17、5:1-16",
+      "published": "2026-11-15",
+      "url": "https://www.youtube.com/watch?v=98KXBQ7jd9Y",
+      "thumbnail": "https://i.ytimg.com/vi/98KXBQ7jd9Y/hqdefault.jpg"
+    },
     {
       "id": "-BXZqogX_Cg",
       "title": "以詩篇學習禱告：詩篇第五篇：M+大雅教會主日直播",
@@ -82,33 +109,6 @@
       "published": "2026-08-23",
       "url": "https://www.youtube.com/watch?v=Pga5MXMX5hM",
       "thumbnail": "https://i.ytimg.com/vi/Pga5MXMX5hM/hqdefault.jpg"
-    },
-    {
-      "id": "BPm7XZVD2y0",
-      "title": "攪亂天下的危險份子：另有一位王的主權爭奪戰",
-      "speaker": "吳俊璋牧師",
-      "scripture": "使徒行傳17:1-7",
-      "published": "2026-08-16",
-      "url": "https://www.youtube.com/watch?v=BPm7XZVD2y0",
-      "thumbnail": "https://i.ytimg.com/vi/BPm7XZVD2y0/hqdefault.jpg"
-    },
-    {
-      "id": "VYKjvOEfTiU",
-      "title": "如何把水變酒",
-      "speaker": "張永龍執事",
-      "scripture": "約翰福音 2:1-12",
-      "published": "2026-08-09",
-      "url": "https://www.youtube.com/watch?v=VYKjvOEfTiU",
-      "thumbnail": "https://i.ytimg.com/vi/VYKjvOEfTiU/hqdefault.jpg"
-    },
-    {
-      "id": "Y6iPiiuDXmA",
-      "title": "在最黑的夜、唱最亮的歌",
-      "speaker": "吳俊璋牧師",
-      "scripture": "使徒行傳16:22-26",
-      "published": "2026-08-02",
-      "url": "https://www.youtube.com/watch?v=Y6iPiiuDXmA",
-      "thumbnail": "https://i.ytimg.com/vi/Y6iPiiuDXmA/hqdefault.jpg"
     }
   ]
 }
