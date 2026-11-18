@@ -111,10 +111,30 @@ function addAutoGroupResourceContent(target,text,sections){
   section.append(heading,body);target.append(section);
  }
 }
+function addPlainGroupResourceContent(target,text){
+ let body=document.createElement('div');body.className='group-overview group-meta';target.append(body);
+ const sectionHeading=/^(?:(?:🏠|🎵|📖|📝|📜)\s*)?(?:[1-4][.、]\s*)?(?:Welcome\b|Worship\b|Word\b|Work\b|破冰|敬拜|神的話|神的工)/i;
+ for(const line of text.split('\n').map(value=>value.trim()).filter(Boolean)){
+  if(sectionHeading.test(line)&&line.length<160){
+   const section=document.createElement('section'),heading=document.createElement('h3');
+   section.className='group-main-section';heading.className='group-main-title';heading.textContent=line;
+   body=document.createElement('div');body.className='group-main-body';section.append(heading,body);target.append(section);continue;
+  }
+  if(/^(?:[A-D][.、]\s*|[一二三四五六七八九十]+、|引言[：:]|結語[：:])/.test(line)&&line.length<160){
+   const heading=document.createElement('h4');heading.className='group-subheading';heading.textContent=line;body.append(heading);continue;
+  }
+  const paragraph=document.createElement('p'),label=line.match(/^(【[^】]+】\s*[：:]|活動方式[：:]|小組長引導[：:]|建議詩歌[：:]|禱告方向[：:])/);
+  if(label){const strong=document.createElement('strong');strong.textContent=label[0];paragraph.append(strong);appendLinkedText(paragraph,line.slice(label[0].length));}
+  else appendLinkedText(paragraph,line);
+  body.append(paragraph);
+ }
+ if(!target.firstElementChild?.childNodes.length)target.firstElementChild?.remove();
+}
 function addGroupResourceContent(target,raw){
  const safe=document.createElement('div');safe.innerHTML=DOMPurify.sanitize(raw||'',{ALLOWED_TAGS:['p','h1','h2','h3','h4','ul','ol','li','blockquote','table','thead','tbody','tr','td','th','strong','b','em','i','a','img','br','hr'],ALLOWED_ATTR:['href','src','alt','title','target','rel','colspan','rowspan']});
  const text=groupText(safe),sectionPattern=/(?:🏠|🎵|📖|📝|📜)?\s*[1-4][.、]\s*(?:Welcome|Worship|Word|Work|破冰|敬拜|神的話|神的工)/gi,sections=[...text.matchAll(sectionPattern)];
  if(sections.length&&!safe.querySelector('img,table')){addAutoGroupResourceContent(target,text,sections);return;}
+ if(!safe.children.length){addPlainGroupResourceContent(target,text);return;}
  let intro=null,current=null;
  for(const node of [...safe.childNodes]){
   if(node.nodeType===Node.TEXT_NODE&&!node.textContent.trim())continue;
