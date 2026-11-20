@@ -235,17 +235,12 @@
   .camp-campaign footer .camp-footer-caption {font-size:clamp(8px,2vw,10px)}
 }
 
-/* Keep the complete sponsor block level with its neighboring marks. */
-.camp-campaign footer .camp-footer-logo.newhope {--newhope-mark:54px;width:74.667px;flex-basis:74.667px;height:70px;padding:3px;gap:1px;justify-content:center}
-.camp-campaign footer .camp-footer-logo.newhope img {width:var(--newhope-mark);height:var(--newhope-mark);flex:none}
-.camp-campaign footer .camp-footer-caption {width:var(--newhope-mark);max-width:var(--newhope-mark);font-size:6.5px;line-height:1.1}
+/* Restore the approved vertical card with a larger, close-set project label. */
+.camp-campaign footer .camp-footer-logo.newhope {gap:0}
+.camp-campaign footer .camp-footer-logo.newhope img {aspect-ratio:auto}
+.camp-campaign footer .camp-footer-caption {width:100%;max-width:100%;font-size:11.5px;line-height:1.1;letter-spacing:0}
+.camp-footer-caption>span {display:inline-block}
 @media(max-width:620px) {
-  .camp-campaign footer .camp-footer-logo.newhope {--newhope-mark:calc(clamp(32px,11.3vw,70px) - 13px);width:66.667%;height:clamp(32px,11.3vw,70px);padding:0;gap:1px}
-  .camp-campaign footer .camp-footer-caption {font-size:clamp(4.5px,1.3vw,6.5px)}
+  .camp-campaign footer .camp-footer-logo.newhope {gap:0}
+  .camp-campaign footer .camp-footer-caption {font-size:clamp(7.5px,2.3vw,11.5px)}
 }
-
-/* Project caption sits beside the vertical sponsor mark. */
-.camp-campaign footer .camp-footer-logo.newhope {flex-direction:row;align-items:center;gap:4%}
-.camp-campaign footer .camp-footer-logo.newhope img {width:56%;height:auto;aspect-ratio:1}
-.camp-campaign footer .camp-footer-caption {width:40%;max-width:40%;text-align:left}
-.camp-footer-caption>span {display:block;white-space:nowrap}
