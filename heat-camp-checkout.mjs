@@ -45,7 +45,7 @@ function currentPlan(){
   const {year,month,day}=taipeiDate(),today=`${year}-${month}-${day}`;
   const mode=form.elements.pricing_mode.value;
   if(mode==='newhope')return {label:'新希望專案・免繳費',price:0,note:'折扣碼驗證通過後由專案補助，免繳費。'};
-  if(mode==='onsite')return {label:'現場已繳費・補填資料',price:6000,note:'核對現場已繳費資格後完成補填，不會再次收費。'};
+  if(mode==='onsite')return {label:'現場已繳費・補填資料',price:5000,note:'核對現場已繳費資格後完成補填，不會再次收費。'};
   if(mode==='friend')return {label:'兩人友情價',price:8000,note:'兩人皆完成資料後成立；未配對前不產生付款帳號。'};
   if(today<='2026-12-31')return {label:'跨年早鳥',price:7000,note:'適用 2026/10/01–12/31。'};
   if(today<='2027-03-31')return {label:'新年優惠',price:8000,note:'適用 2027/01/01–03/31。'};
@@ -80,7 +80,7 @@ function renderRegistrationFlow(){
   $('#onsite-completion-note').hidden=!onsite;
   $('#onsite-completion-note').textContent=newhope?'新希望專案折扣碼驗證通過後即完成報名，免繳費。':'現場已繳費者只需確認並送出資料，不會再次付款。';
   $('.submit-note').textContent=newhope?'核對新希望專案折扣碼後完成報名，免繳費，不會建立付款帳號。':onsite?'核對現場已繳費資格後完成補填，不會建立付款帳號。':form.elements.payment_method.value==='line_pay'?'確認頁不會顯示完整身分證字號。付款會在 LINE Pay 安全頁面完成。':'確認頁不會顯示完整身分證字號。付款帳號由藍新金流產生，每筆報名專用。';
-  $('#summary-price').textContent=newhope?'免繳費 NT$ 0':onsite?'現場已繳 NT$ 6,000':`NT$ ${currentPlan().price.toLocaleString('zh-TW')}`;
+  $('#summary-price').textContent=newhope?'免繳費 NT$ 0':onsite?'現場已繳 NT$ 5,000':`NT$ ${currentPlan().price.toLocaleString('zh-TW')}`;
   form.elements.payment_method.forEach(input=>{
     input.disabled=onsite||!checkoutReady||input.closest('.payment-choice').classList.contains('unavailable');
     input.required=!onsite&&input.value==='card';
