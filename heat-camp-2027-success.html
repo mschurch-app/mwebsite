@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="heat-camp-2027.css?v=20261006-form2">
-  <link rel="stylesheet" href="heat-camp-campaign.css?v=20261023-poster1">
+  <link rel="stylesheet" href="heat-camp-campaign.css?v=20261120-newhope1">
 </head>
 <body class="success-page camp-campaign">
   <main class="success-shell">
@@ -40,6 +40,7 @@
         localStorage.removeItem(key);
         sessionStorage.removeItem(key);
       }
+      if(params.get('source')==='newhope'){document.querySelector('h1').textContent='新希望專案報名完成！';document.querySelector('.success-lead').textContent='專案折扣碼已驗證，完整報名資料已儲存，免繳費。球場見！';}
       if(params.get('source')==='onsite'){
         document.querySelector('h1').textContent='補填資料完成！';
         document.querySelector('.success-lead').textContent='現場已繳費資格已核對，報名資料已補齊，無需再次付款。球場見！';
