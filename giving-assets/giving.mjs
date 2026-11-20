@@ -1,4 +1,4 @@
-// church-os-giving-pages-20261120/app-function-definitions.mjs?v=20261116-memberline1
+// church-os-giving-catalog-20261120/app-function-definitions.mjs?v=20261116-memberline1
 function freezeTree(value) {
   if (value && typeof value === "object") {
     Object.values(value).forEach(freezeTree);
@@ -7,45 +7,45 @@ function freezeTree(value) {
   return value;
 }
 var FUNCTION_CATALOG = freezeTree({
-  "church_giving_preview": { "file": "church-giving.html", "title": "\u6559\u6703\u5949\u737B\u9801\u9762\u9810\u89BD", "description": "\u55AE\u6B21\u8207\u5B9A\u671F\u5B9A\u984D\u4ECB\u9762\u9810\u89BD\uFF0C\u5C1A\u672A\u958B\u653E\u6536\u6B3E", "key": "church_giving_preview", "church": "M+", "group": "finance", "symbol": "heart", "owner": true, "configurableHome": false, "searchTerms": ["\u5949\u737B", "\u5B9A\u671F\u5B9A\u984D", "\u91D1\u6D41\u9810\u89BD"] },
-  "association_donation_preview": { "file": "association-donate.html", "title": "\u5354\u6703\u6350\u6B3E\u9801\u9762\u9810\u89BD", "description": "\u5354\u6703\u5C08\u7528\u6350\u6B3E\u4ECB\u9762\u9810\u89BD\uFF0C\u5C1A\u672A\u958B\u653E\u6536\u6B3E", "key": "association_donation_preview", "church": "M+", "group": "finance", "symbol": "heart", "owner": true, "configurableHome": false, "searchTerms": ["\u5354\u6703", "\u6350\u6B3E", "\u5B9A\u671F\u5B9A\u984D"] },
-  "admin_workbench": { "file": "admin-workbench.html", "title": "\u884C\u653F\u5F85\u8FA6", "description": "\u5F85\u6211\u8655\u7406\u3001\u6211\u9001\u51FA\u7684\u3001\u6838\u51C6\u5F85\u5B8C\u6210\u8207\u7570\u5E38\u8FFD\u8E64", "key": "admin_workbench", "church": "M+", "group": "finance", "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["\u884C\u653F", "\u5F85\u8FA6", "\u903E\u671F", "\u7D50\u6848"] },
-  "member_line_history": { "file": "member-line-history.html", "title": "LINE \u8A0A\u606F\u767C\u9001\u7D00\u9304", "description": "\u67E5\u8A62\u767C\u9001\u4EBA\u3001\u6536\u4EF6\u4EBA\u3001\u5168\u6587\u3001\u6642\u9593\u8207\u53D7\u7406\u72C0\u614B", "key": "member_line_history", "group": "system", "church": "M+", "owner": true, "symbol": "chat", "configurableHome": false, "searchTerms": ["LINE", "\u7D00\u9304", "\u8AB0\u767C\u7684", "\u8A0A\u606F"], "settingsId": "member-line-history", "settingsGroup": "people" },
-  "member_line_settings": { "file": "member-line-settings.html", "title": "\u6703\u53CB LINE \u50B3\u9001\u6B0A\u9650", "description": "\u958B\u95DC\u500B\u5225\u540C\u5DE5\u7684\u6703\u53CB\u79C1\u4EBA\u8A0A\u606F\u50B3\u9001\u6B0A", "key": "member_line_settings", "group": "system", "church": "M+", "owner": true, "symbol": "chat", "configurableHome": false, "searchTerms": ["LINE", "\u8A0A\u606F", "\u50B3\u9001", "\u6B0A\u9650"], "settingsId": "member-line-settings", "settingsGroup": "people" },
-  "potluck": { "file": "potluck-admin.html", "title": "\u4E92\u52D5\u6599\u7406\u52DF\u96C6", "description": "\u6D3B\u52D5\u8A2D\u5B9A\u3001\u6599\u7406\u540D\u55AE\u8207\u611F\u6069\u9910\u684C\u7D71\u8A08", "key": "potluck", "group": "events", "church": "M+", "owner": true, "symbol": "heart", "configurableHome": false, "searchTerms": ["\u611F\u6069\u7BC0", "\u6599\u7406", "\u6D3B\u52D5\u7BA1\u7406"] },
-  "finance_permission_settings": { "file": "admin-accounts.html?church=M%2B", "title": "\u540C\u5DE5\u6B0A\u9650\u8A2D\u5B9A", "description": "\u7D71\u4E00\u52FE\u9078\u6559\u6703\u529F\u80FD\u3001\u64CD\u4F5C\u8207\u8CA1\u52D9\u6B0A\u9650", "key": "finance_permission_settings", "group": "finance", "church": "M+", "owner": true, "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["\u6388\u6B0A", "\u540C\u5DE5\u6B0A\u9650"] },
-  "finance_accounting_reports": { "file": "finance-permissions.html#reports", "title": "\u6703\u8A08\u5831\u8868", "description": "\u67E5\u95B1\u8207\u532F\u51FA\u5DF2\u6838\u51C6\u8CA1\u52D9\u8CC7\u6599", "key": "finance_accounting_reports", "group": "finance", "church": "M+", "accountingReportAccess": true, "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["\u6703\u8A08", "\u5831\u8868", "\u532F\u51FA"] },
-  "school_staff_scheduling": { "file": "https://school.mchurch.online/?tab=schedules", "title": "\u73ED\u8868\u5B89\u6392", "description": "\u5B89\u6392\u8001\u5E2B\u8207\u5DE5\u8B80\u751F\u73ED\u8868\uFF0C\u50C5\u9650\u923A\u5EAD\u8207\u6069\u8339\u64CD\u4F5C", "key": "school_staff_scheduling", "group": "finance", "church": "M+", "symbol": "mplus-calendar", "configurableHome": false, "scheduleAccess": true, "searchTerms": ["\u6392\u73ED", "\u8001\u5E2B\u73ED\u8868", "\u5DE5\u8B80\u751F\u73ED\u8868"] },
-  "school_payroll": { "file": "school-payroll.html?month=current", "title": "\u8AB2\u8F14\u85AA\u8CC7\u7D50\u7B97", "description": "\u6642\u85AA\u8A2D\u5B9A\u3001\u6708\u5E95\u7D50\u7B97\u3001\u7C3D\u5230\u8868\u8207\u9010\u7D1A\u5BE9\u6838", "key": "school_payroll", "group": "finance", "church": "M+", "symbol": "mplus-box", "configurableHome": false, "payrollAccess": true, "searchTerms": ["\u8001\u5E2B\u85AA\u8CC7", "\u5DE5\u8B80\u751F\u85AA\u6C34", "\u6BCF\u6708\u7C3D\u5230\u8868", "\u7D50\u7B97\u5BE9\u6838"] },
+  "church_giving_preview": { "file": "church-giving.html", "title": "教會奉獻頁面預覽", "description": "單次與定期定額介面預覽，尚未開放收款", "key": "church_giving_preview", "church": "M+", "group": "finance", "symbol": "heart", "owner": true, "configurableHome": false, "searchTerms": ["奉獻", "定期定額", "金流預覽"] },
+  "association_donation_preview": { "file": "association-donate.html", "title": "協會捐款頁面預覽", "description": "協會專用捐款介面預覽，尚未開放收款", "key": "association_donation_preview", "church": "M+", "group": "finance", "symbol": "heart", "owner": true, "configurableHome": false, "searchTerms": ["協會", "捐款", "定期定額"] },
+  "admin_workbench": { "file": "admin-workbench.html", "title": "行政待辦", "description": "待我處理、我送出的、核准待完成與異常追蹤", "key": "admin_workbench", "church": "M+", "group": "finance", "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["行政", "待辦", "逾期", "結案"] },
+  "member_line_history": { "file": "member-line-history.html", "title": "LINE 訊息發送紀錄", "description": "查詢發送人、收件人、全文、時間與受理狀態", "key": "member_line_history", "group": "system", "church": "M+", "owner": true, "symbol": "chat", "configurableHome": false, "searchTerms": ["LINE", "紀錄", "誰發的", "訊息"], "settingsId": "member-line-history", "settingsGroup": "people" },
+  "member_line_settings": { "file": "member-line-settings.html", "title": "會友 LINE 傳送權限", "description": "開關個別同工的會友私人訊息傳送權", "key": "member_line_settings", "group": "system", "church": "M+", "owner": true, "symbol": "chat", "configurableHome": false, "searchTerms": ["LINE", "訊息", "傳送", "權限"], "settingsId": "member-line-settings", "settingsGroup": "people" },
+  "potluck": { "file": "potluck-admin.html", "title": "互動料理募集", "description": "活動設定、料理名單與感恩餐桌統計", "key": "potluck", "group": "events", "church": "M+", "owner": true, "symbol": "heart", "configurableHome": false, "searchTerms": ["感恩節", "料理", "活動管理"] },
+  "finance_permission_settings": { "file": "admin-accounts.html?church=M%2B", "title": "同工權限設定", "description": "統一勾選教會功能、操作與財務權限", "key": "finance_permission_settings", "group": "finance", "church": "M+", "owner": true, "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["授權", "同工權限"] },
+  "finance_accounting_reports": { "file": "finance-permissions.html#reports", "title": "會計報表", "description": "查閱與匯出已核准財務資料", "key": "finance_accounting_reports", "group": "finance", "church": "M+", "accountingReportAccess": true, "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["會計", "報表", "匯出"] },
+  "school_staff_scheduling": { "file": "https://school.mchurch.online/?tab=schedules", "title": "班表安排", "description": "安排老師與工讀生班表，僅限鈺庭與恩茹操作", "key": "school_staff_scheduling", "group": "finance", "church": "M+", "symbol": "mplus-calendar", "configurableHome": false, "scheduleAccess": true, "searchTerms": ["排班", "老師班表", "工讀生班表"] },
+  "school_payroll": { "file": "school-payroll.html?month=current", "title": "課輔薪資結算", "description": "時薪設定、月底結算、簽到表與逐級審核", "key": "school_payroll", "group": "finance", "church": "M+", "symbol": "mplus-box", "configurableHome": false, "payrollAccess": true, "searchTerms": ["老師薪資", "工讀生薪水", "每月簽到表", "結算審核"] },
   "testimony_review": {
     "permission": "website_weekly",
     "file": "testimony-admin.html",
     "church": "M+",
-    "icon": "\u2601",
-    "title": "\u96F2\u5F69\u898B\u8B49",
-    "description": "\u6587\u5B57\u3001\u5F71\u7247\u8207\u7167\u7247\u6295\u7A3F\u5BE9\u6838",
+    "icon": "☁",
+    "title": "雲彩見證",
+    "description": "文字、影片與照片投稿審核",
     "key": "testimony_review",
     "group": "media",
     "symbol": "book",
     "configurableHome": false,
-    "searchTerms": ["\u898B\u8B49", "\u6295\u7A3F", "\u5206\u4EAB", "\u5BE9\u6838"],
+    "searchTerms": ["見證", "投稿", "分享", "審核"],
     "settingsId": "testimony-review",
     "settingsGroup": "content"
   },
   "review_workflows": {
     "permission": "notification_settings",
     "file": "review-workflow-settings.html",
-    "icon": "\u2705",
-    "title": "\u5BE9\u6838\u6D41\u7A0B",
-    "description": "\u521D\u5BE9\u3001\u8907\u5BE9\u8207\u901A\u77E5\u8A2D\u5B9A",
+    "icon": "✅",
+    "title": "審核流程",
+    "description": "初審、複審與通知設定",
     "key": "review_workflows",
     "group": "system",
     "symbol": "check",
     "configurableHome": false,
     "searchTerms": [
-      "\u521D\u5BE9",
-      "\u8907\u5BE9",
-      "\u5BE9\u6838\u4EBA"
+      "初審",
+      "複審",
+      "審核人"
     ],
     "settingsId": "review-workflows",
     "settingsGroup": "review"
@@ -53,138 +53,138 @@ var FUNCTION_CATALOG = freezeTree({
   "members": {
     "permission": "members",
     "file": "members.html",
-    "icon": "\u{1F465}",
-    "title": "\u6703\u53CB",
-    "description": "\u6703\u53CB\u8207\u65B0\u670B\u53CB\u8CC7\u6599",
+    "icon": "👥",
+    "title": "會友",
+    "description": "會友與新朋友資料",
     "key": "members",
     "group": "pastoral",
     "symbol": "people",
     "configurableHome": true,
     "searchTerms": [
-      "\u6703\u53CB\u540D\u518A"
+      "會友名冊"
     ]
   },
   "newcomer_care": {
     "permission": "newcomer_care",
     "file": "newcomer-care.html",
-    "icon": "\u{1F331}",
-    "title": "\u65B0\u670B\u53CB",
-    "description": "\u806F\u7D61\u3001\u8FFD\u8E64\u8207\u5F8C\u7E8C\u95DC\u61F7",
+    "icon": "🌱",
+    "title": "新朋友",
+    "description": "聯絡、追蹤與後續關懷",
     "key": "newcomer_care",
     "group": "pastoral",
     "symbol": "sprout",
     "configurableHome": true,
     "searchTerms": [
-      "\u65B0\u670B\u53CB\u95DC\u61F7"
+      "新朋友關懷"
     ]
   },
-  "church_albums": { "file": "church-albums.html", "title": "\u76F8\u7C3F", "description": "\u6559\u6703\u8207\u8AB2\u8F14\u7167\u7247\u3001\u8CC7\u6599\u593E\u53CA\u6A94\u6848\u4E0A\u50B3", "key": "church_albums", "permission": "church_albums", "group": "pastoral", "church": "M+", "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["\u6559\u6703\u76F8\u7C3F", "\u8AB2\u8F14\u76F8\u7C3F", "\u7167\u7247", "\u4E0A\u50B3"] },
+  "church_albums": { "file": "church-albums.html", "title": "相簿", "description": "教會與課輔照片、資料夾及檔案上傳", "key": "church_albums", "permission": "church_albums", "group": "pastoral", "church": "M+", "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["教會相簿", "課輔相簿", "照片", "上傳"] },
   "pastoral_workspace": {
     "file": "pastoral/workspace.html",
-    "icon": "\u{1F91D}",
-    "title": "\u540C\u5DE5\u5DE5\u4F5C\u5340",
-    "description": "\u5DE5\u4F5C\u3001\u884C\u7A0B\u8207\u540C\u5DE5\u5DE5\u5177",
+    "icon": "🤝",
+    "title": "同工工作區",
+    "description": "工作、行程與同工工具",
     "key": "pastoral_workspace",
     "group": "pastoral",
     "symbol": "people",
     "configurableHome": true,
     "searchTerms": [
-      "\u540C\u5DE5\u5354\u4F5C"
+      "同工協作"
     ]
   },
   "pastoral_workflow_survey": {
     "file": "pastoral/workflow-survey.html",
-    "icon": "\u{1F4DD}",
-    "title": "\u540C\u5DE5\u5DE5\u4F5C\u6D41\u7A0B\u8ABF\u67E5",
-    "description": "\u8490\u96C6\u4F8B\u884C\u5DE5\u4F5C\u3001\u5361\u9EDE\u8207\u63D0\u9192\u504F\u597D",
+    "icon": "📝",
+    "title": "同工工作流程調查",
+    "description": "蒐集例行工作、卡點與提醒偏好",
     "key": "pastoral_workflow_survey",
     "group": "pastoral",
     "symbol": "check",
     "configurableHome": false,
-    "searchTerms": ["\u540C\u5DE5\u554F\u5377", "\u5DE5\u4F5C\u6D41\u7A0B", "\u6BCF\u9031\u5DE5\u4F5C"]
+    "searchTerms": ["同工問卷", "工作流程", "每週工作"]
   },
   "private_prayers": {
     "permission": "private_prayers",
     "file": "prayers.html",
-    "icon": "\u{1F64F}",
-    "title": "\u4EE3\u79B1\u8207\u95DC\u61F7",
-    "description": "\u4EE3\u79B1\u4E8B\u9805\u8207\u5F8C\u7E8C\u95DC\u5FC3",
+    "icon": "🙏",
+    "title": "代禱與關懷",
+    "description": "代禱事項與後續關心",
     "key": "private_prayers",
     "group": "pastoral",
     "symbol": "heart",
     "configurableHome": true,
     "searchTerms": [
-      "\u4EE3\u79B1\u95DC\u61F7"
+      "代禱關懷"
     ]
   },
   "pastoral_chats": {
     "permission": "pastoral_chats",
     "file": "pastoral-inbox.html",
-    "icon": "\u{1F4AC}",
-    "title": "\u95DC\u61F7\u8A0A\u606F",
-    "description": "\u4E00\u5C0D\u4E00\u8A0A\u606F\u8207\u8DDF\u9032",
+    "icon": "💬",
+    "title": "關懷訊息",
+    "description": "一對一訊息與跟進",
     "key": "pastoral_chats",
     "group": "pastoral",
     "symbol": "chat",
     "configurableHome": true,
     "searchTerms": [
-      "\u7267\u990A\u8A0A\u606F"
+      "牧養訊息"
     ]
   },
   "attendance": {
     "permission": "attendance",
     "file": "attendance.html",
-    "icon": "\u2705",
-    "title": "\u51FA\u5E2D\u767B\u8A18",
-    "description": "\u805A\u6703\u51FA\u5E2D\u8207\u7D71\u8A08",
+    "icon": "✅",
+    "title": "出席登記",
+    "description": "聚會出席與統計",
     "key": "attendance",
     "group": "service",
     "symbol": "check",
     "configurableHome": true,
     "searchTerms": [
-      "\u805A\u6703\u9EDE\u540D"
+      "聚會點名"
     ]
   },
   "groups": {
     "permission": "groups",
     "file": "groups.html",
-    "icon": "\u{1FAF6}",
-    "title": "\u5C0F\u7D44\u8207\u5C0F\u5BB6",
-    "description": "\u5206\u7D44\u3001\u7D44\u9577\u8207\u6210\u54E1",
+    "icon": "🫶",
+    "title": "小組與小家",
+    "description": "分組、組長與成員",
     "key": "groups",
     "group": "pastoral",
     "symbol": "people",
     "configurableHome": true,
     "searchTerms": [
-      "\u5C0F\u7D44\uFF0F\u5C0F\u5BB6"
+      "小組／小家"
     ]
   },
   "schedules": {
     "permission": "schedules",
     "file": "schedules.html",
-    "icon": "\u{1F4C5}",
-    "title": "\u670D\u4E8B\u5B89\u6392",
-    "description": "\u4E3B\u65E5\u8207\u805A\u6703\u670D\u4E8B",
+    "icon": "📅",
+    "title": "服事安排",
+    "description": "主日與聚會服事",
     "key": "schedules",
     "group": "service",
     "symbol": "calendar",
     "configurableHome": true,
     "searchTerms": [
-      "\u670D\u4E8B\u6392\u73ED"
+      "服事排班"
     ]
   },
   "spaces": {
     "permission": "spaces",
     "file": "spaces.html",
-    "icon": "\u{1F4CD}",
-    "title": "\u5834\u5730\u8207\u8A2D\u5099",
-    "description": "\u7A7A\u9593\u3001\u8A2D\u5099\u8207\u9810\u7D04",
+    "icon": "📍",
+    "title": "場地與設備",
+    "description": "空間、設備與預約",
     "key": "spaces",
     "group": "service",
     "symbol": "pin",
     "configurableHome": true,
     "searchTerms": [
-      "\u5834\u5730\u9810\u7D04"
+      "場地預約"
     ],
     "settingsId": "space-settings",
     "settingsGroup": "church"
@@ -192,15 +192,15 @@ var FUNCTION_CATALOG = freezeTree({
   "inventory": {
     "permission": "inventory",
     "file": "inventory.html",
-    "icon": "\u{1F4E6}",
-    "title": "\u7269\u54C1\u8207\u501F\u7528",
-    "description": "\u4F4D\u7F6E\u3001\u6578\u91CF\u8207\u501F\u9084",
+    "icon": "📦",
+    "title": "物品與借用",
+    "description": "位置、數量與借還",
     "key": "inventory",
     "group": "service",
     "symbol": "box",
     "configurableHome": true,
     "searchTerms": [
-      "\u7269\u54C1\u6E05\u518A"
+      "物品清冊"
     ],
     "settingsId": "inventory-settings",
     "settingsGroup": "church"
@@ -209,63 +209,63 @@ var FUNCTION_CATALOG = freezeTree({
     "church": "M+",
     "permission": "heat_camp",
     "file": "heat-camp-admin.html",
-    "icon": "\u{1F3C0}",
-    "title": "\u71B1\u706B\u7C43\u7403\u71DF",
-    "description": "\u5831\u540D\u3001\u7E73\u8CBB\u3001\u540D\u55AE\u8207\u5FD7\u5DE5",
+    "icon": "🏀",
+    "title": "熱火籃球營",
+    "description": "報名、繳費、名單與志工",
     "key": "heat_camp",
     "group": "basketball",
     "symbol": "target",
     "configurableHome": true,
-    "searchTerms": ["\u5FD7\u5DE5\u5831\u540D", "\u71B1\u706B\u7C43\u7403\u71DF\u5FD7\u5DE5"]
+    "searchTerms": ["志工報名", "熱火籃球營志工"]
   },
   "website_weekly": {
     "permission": "website_weekly",
     "file": "website-maintenance.html",
-    "icon": "\u{1F310}",
-    "title": "\u4E3B\u65E5\u9031\u5831",
-    "description": "\u9031\u5831\u3001\u9810\u544A\u5716\u8207\u670D\u4E8B\u8868",
+    "icon": "🌐",
+    "title": "主日週報",
+    "description": "週報、預告圖與服事表",
     "key": "website_weekly",
     "group": "media",
     "symbol": "globe",
     "configurableHome": true,
     "searchTerms": [
-      "\u6559\u6703\u7DB2\u7AD9\u7DAD\u8B77",
-      "\u5B98\u7DB2",
-      "\u7DB2\u7AD9",
-      "\u9810\u544A\u5716",
-      "\u4E3B\u65E5"
+      "教會網站維護",
+      "官網",
+      "網站",
+      "預告圖",
+      "主日"
     ],
     "settingsId": "website-maintenance",
     "settingsGroup": "content"
   },
-  "association_stories": { "church": "M+", "permission": "association_content", "file": "association-stories.html", "title": "\u5354\u6703\u7167\u7247\u8AAA\u6545\u4E8B", "description": "\u7167\u7247\u8207\u6545\u4E8B\u7522\u751F FB \u6587\u6848\uFF0C\u9001\u7267\u5E2B\uFF0F\u5E2B\u6BCD\u5BE9\u6838\u5F8C\u767C\u5E03\uFF0C\u53EF\u540C\u6B65\u5354\u6703\u6700\u65B0\u6D88\u606F", "key": "association_stories", "group": "media", "symbol": "globe", "configurableHome": false, "searchTerms": ["\u5354\u6703", "FB", "Facebook", "\u7167\u7247\u8AAA\u6545\u4E8B", "\u5E2B\u6BCD\u5BE9\u6838"], "settingsId": "association-stories", "settingsGroup": "content" },
+  "association_stories": { "church": "M+", "permission": "association_content", "file": "association-stories.html", "title": "協會照片說故事", "description": "照片與故事產生 FB 文案，送牧師／師母審核後發布，可同步協會最新消息", "key": "association_stories", "group": "media", "symbol": "globe", "configurableHome": false, "searchTerms": ["協會", "FB", "Facebook", "照片說故事", "師母審核"], "settingsId": "association-stories", "settingsGroup": "content" },
   "association_news": {
     "church": "M+",
     "permission": "association_content",
     "file": "association-news.html",
-    "icon": "\u{1F4F0}",
-    "title": "\u5354\u6703\u7DB2\u7AD9",
-    "description": "\u6700\u65B0\u6D88\u606F\u4E0A\u7A3F\uFF0C\u767C\u4F48\u5F8C\u76F4\u63A5\u986F\u793A\u65BC\u5354\u6703\u9996\u9801",
+    "icon": "📰",
+    "title": "協會網站",
+    "description": "最新消息上稿，發佈後直接顯示於協會首頁",
     "key": "association_news",
     "group": "media",
     "symbol": "globe",
     "configurableHome": true,
-    "searchTerms": ["\u5354\u6703", "\u6700\u65B0\u6D88\u606F", "tcsc.org.tw", "\u4E0A\u7A3F"],
+    "searchTerms": ["協會", "最新消息", "tcsc.org.tw", "上稿"],
     "settingsId": "association-news",
     "settingsGroup": "content"
   },
   "website_group_resources": {
     "permission": "website_group_resources",
     "file": "group-resources-management.html",
-    "icon": "\u{1F4DA}",
-    "title": "\u5C0F\u7D44\u6559\u6750",
-    "description": "\u6BCF\u9031\u6559\u6750\u8207\u805A\u6703\u5167\u5BB9",
+    "icon": "📚",
+    "title": "小組教材",
+    "description": "每週教材與聚會內容",
     "key": "website_group_resources",
     "group": "media",
     "symbol": "book",
     "configurableHome": true,
     "searchTerms": [
-      "\u5C0F\u7D44\u805A\u6703\u8CC7\u6E90"
+      "小組聚會資源"
     ],
     "settingsId": "group-resources",
     "settingsGroup": "content"
@@ -273,18 +273,18 @@ var FUNCTION_CATALOG = freezeTree({
   "tree_reading_admin": {
     "permission": "tree_reading_admin",
     "file": "daily-devotional-admin.html",
-    "icon": "\u{1F333}",
-    "title": "\u751F\u547D\u6A39",
-    "description": "\u6BCF\u65E5\u9748\u4FEE\u8207\u8B80\u7D93\u9032\u5EA6",
+    "icon": "🌳",
+    "title": "生命樹",
+    "description": "每日靈修與讀經進度",
     "key": "tree_reading_admin",
     "group": "media",
     "symbol": "tree",
     "configurableHome": true,
     "searchTerms": [
-      "\u6BCF\u65E5\u9748\u4FEE\u751F\u547D\u6A39",
-      "\u8B80\u7D93\u751F\u547D\u6A39",
-      "\u6BCF\u65E5\u9748\u4FEE",
-      "\u8B80\u7D93"
+      "每日靈修生命樹",
+      "讀經生命樹",
+      "每日靈修",
+      "讀經"
     ],
     "settingsId": "daily-devotional",
     "settingsGroup": "content"
@@ -293,68 +293,68 @@ var FUNCTION_CATALOG = freezeTree({
     "permission": "tree_reading_admin",
     "church": "M+",
     "file": "bibletree-admin.html",
-    "icon": "\u{1F333}",
-    "title": "\u8B80\u7D93\u6A39\u7BA1\u7406",
-    "description": "\u73A9\u5BB6\u9032\u5EA6\u8207365\u65E5\u9748\u4FEE\u5167\u5BB9",
+    "icon": "🌳",
+    "title": "讀經樹管理",
+    "description": "玩家進度與365日靈修內容",
     "key": "bibletree_admin",
     "group": "events",
     "symbol": "tree",
     "configurableHome": false,
-    "searchTerms": ["\u8B80\u7D93\u6A39", "RPG", "\u904A\u6232\u7BA1\u7406", "\u73A9\u5BB6", "365", "\u9748\u4FEE"]
+    "searchTerms": ["讀經樹", "RPG", "遊戲管理", "玩家", "365", "靈修"]
   },
   "bibletree_devotional": {
     "permission": "tree_reading_admin",
     "church": "M+",
     "file": "bibletree-devotional-admin.html",
-    "icon": "\u{1F333}",
-    "title": "\u8B80\u7D93\u6A39365\u65E5\u9748\u4FEE",
-    "description": "\u9010\u65E5\u6AA2\u8996\u3001\u4FEE\u8A02\u8207\u767C\u5E03\u9748\u4FEE\u5167\u5BB9",
+    "icon": "🌳",
+    "title": "讀經樹365日靈修",
+    "description": "逐日檢視、修訂與發布靈修內容",
     "key": "bibletree_devotional",
     "group": "events",
     "symbol": "tree",
     "configurableHome": false,
-    "searchTerms": ["\u8B80\u7D93\u6A39", "365", "\u5168\u5E74\u9748\u4FEE", "\u7D93\u6587", "\u5167\u5BB9\u5BE9\u67E5"]
+    "searchTerms": ["讀經樹", "365", "全年靈修", "經文", "內容審查"]
   },
   "bibletree_players": {
     "permission": "tree_reading_admin",
     "church": "M+",
     "file": "bibletree-players.html",
-    "icon": "\u{1F465}",
-    "title": "\u8B80\u7D93\u6A39\u73A9\u5BB6\u5217\u8868",
-    "description": "\u73A9\u5BB6\u8CC7\u6599\u3001\u8B80\u7D93\u9032\u5EA6\u8207\u516C\u6E2C\u53C3\u8207",
+    "icon": "👥",
+    "title": "讀經樹玩家列表",
+    "description": "玩家資料、讀經進度與公測參與",
     "key": "bibletree_players",
     "group": "events",
     "symbol": "people",
     "configurableHome": false,
-    "searchTerms": ["\u73A9\u5BB6", "\u904A\u6232\u5E33\u865F", "\u8B80\u7D93\u6A39", "\u516C\u6E2C", "\u56DE\u994B"]
+    "searchTerms": ["玩家", "遊戲帳號", "讀經樹", "公測", "回饋"]
   },
   "life_tree_festivals": {
     "permission": "tree_reading_admin",
     "church": "M+",
     "file": "life-tree-festivals.html",
-    "icon": "\u{1F333}",
-    "title": "\u751F\u547D\u6A39\u7BC0\u6176\u9810\u89BD",
-    "description": "\u4E5D\u7A2E\u7BC0\u6176\u5834\u666F\u8207\u6BCF\u65E5\u4E92\u52D5\u8A66\u73A9",
+    "icon": "🌳",
+    "title": "生命樹節慶預覽",
+    "description": "九種節慶場景與每日互動試玩",
     "key": "life_tree_festivals",
     "group": "media",
     "symbol": "tree",
     "configurableHome": false,
-    "searchTerms": ["\u7BC0\u6176", "\u751F\u547D\u6A39", "\u8056\u8A95\u71C8", "\u611F\u6069\u7BC0", "\u5149\u660E\u52C7\u58EB"],
+    "searchTerms": ["節慶", "生命樹", "聖誕燈", "感恩節", "光明勇士"],
     "settingsId": "life-tree-festivals",
     "settingsGroup": "content"
   },
   "binding_review": {
     "permission": "binding_review",
     "file": "binding-review.html",
-    "icon": "\u{1F517}",
-    "title": "LINE \u8EAB\u5206\u78BA\u8A8D",
-    "description": "\u78BA\u8A8D\u6703\u53CB\u8207 LINE \u5E33\u865F",
+    "icon": "🔗",
+    "title": "LINE 身分確認",
+    "description": "確認會友與 LINE 帳號",
     "key": "binding_review",
     "group": "system",
     "symbol": "link",
     "configurableHome": true,
     "searchTerms": [
-      "LINE \u7D81\u5B9A\u5BE9\u6838"
+      "LINE 綁定審核"
     ],
     "settingsId": "binding-review",
     "settingsGroup": "people"
@@ -362,25 +362,25 @@ var FUNCTION_CATALOG = freezeTree({
   "notification_settings": {
     "permission": "notification_settings",
     "file": "notification-settings.html",
-    "icon": "\u{1F514}",
-    "title": "\u901A\u77E5\u8A2D\u5B9A",
-    "description": "\u624B\u6A5F\u8207 LINE \u901A\u77E5",
+    "icon": "🔔",
+    "title": "通知設定",
+    "description": "手機與 LINE 通知",
     "key": "notification_settings",
     "group": "system",
     "symbol": "bell",
     "configurableHome": true,
     "searchTerms": [
-      "LINE \u901A\u77E5\u8A2D\u5B9A",
-      "\u901A\u77E5\u7BA1\u9053\u8A2D\u5B9A"
+      "LINE 通知設定",
+      "通知管道設定"
     ],
     "settingsId": "notification-settings",
     "settingsGroup": "review"
   },
   "school": {
     "file": "https://school.mchurch.online/",
-    "icon": "\u{1F4DA}",
-    "title": "\u8AB2\u8F14",
-    "description": "\u5B78\u751F\u3001\u51FA\u5E2D\u8207\u8F14\u5C0E",
+    "icon": "📚",
+    "title": "課輔",
+    "description": "學生、出席與輔導",
     "key": "school",
     "group": "school",
     "symbol": "book",
@@ -389,9 +389,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "school_checkin": {
     "file": "https://school.mchurch.online/?tab=checkin",
-    "icon": "\u{1F4F7}",
-    "title": "\u8AB2\u8F14\u6253\u5361",
-    "description": "\u5B78\u751F\u8207\u540C\u5DE5\u6253\u5361",
+    "icon": "📷",
+    "title": "課輔打卡",
+    "description": "學生與同工打卡",
     "key": "school_checkin",
     "group": "school",
     "symbol": "camera",
@@ -400,9 +400,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "school_schedules": {
     "file": "https://school.mchurch.online/?tab=schedules",
-    "icon": "\u{1F5D3}\uFE0F",
-    "title": "\u8AB2\u8F14\u5B89\u6392",
-    "description": "\u8001\u5E2B\u8207\u540C\u5DE5\u5B89\u6392",
+    "icon": "🗓️",
+    "title": "課輔安排",
+    "description": "老師與同工安排",
     "key": "school_schedules",
     "group": "school",
     "symbol": "calendar",
@@ -411,9 +411,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "school_rollcall": {
     "file": "https://school.mchurch.online/?tab=rollcall",
-    "icon": "\u2705",
-    "title": "\u8AB2\u8F14\u51FA\u5E2D",
-    "description": "\u6BCF\u65E5\u8AB2\u5802\u51FA\u5E2D",
+    "icon": "✅",
+    "title": "課輔出席",
+    "description": "每日課堂出席",
     "key": "school_rollcall",
     "group": "school",
     "symbol": "check",
@@ -422,9 +422,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "school_students": {
     "file": "https://school.mchurch.online/?tab=students",
-    "icon": "\u{1F9D1}\u200D\u{1F393}",
-    "title": "\u5B78\u751F",
-    "description": "\u5B78\u751F\u8207\u540C\u5DE5\u8CC7\u6599",
+    "icon": "🧑‍🎓",
+    "title": "學生",
+    "description": "學生與同工資料",
     "key": "school_students",
     "group": "school",
     "symbol": "student",
@@ -433,9 +433,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "school_counseling": {
     "file": "https://school.mchurch.online/?tab=counseling",
-    "icon": "\u{1F49B}",
-    "title": "\u500B\u5225\u8F14\u5C0E",
-    "description": "\u8F14\u5C0E\u7D00\u9304\u8207\u8DDF\u9032",
+    "icon": "💛",
+    "title": "個別輔導",
+    "description": "輔導紀錄與跟進",
     "key": "school_counseling",
     "group": "school",
     "symbol": "heart",
@@ -444,9 +444,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "school_reports": {
     "file": "https://school.mchurch.online/?tab=print-center",
-    "icon": "\u{1F5A8}\uFE0F",
-    "title": "\u8AB2\u8F14\u5831\u8868",
-    "description": "\u51FA\u5E2D\u8868\u8207\u5B78\u751F\u8CC7\u6599",
+    "icon": "🖨️",
+    "title": "課輔報表",
+    "description": "出席表與學生資料",
     "key": "school_reports",
     "group": "school",
     "symbol": "printer",
@@ -455,9 +455,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "basketball": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/",
-    "icon": "\u{1F3C0}",
-    "title": "\u7C43\u7403\u968A",
-    "description": "\u7403\u54E1\u8207\u7403\u968A",
+    "icon": "🏀",
+    "title": "籃球隊",
+    "description": "球員與球隊",
     "key": "basketball",
     "group": "basketball",
     "symbol": "target",
@@ -466,9 +466,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "basketball_gamecenter": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/?tab=gamecenter",
-    "icon": "\u{1F3C6}",
-    "title": "\u6BD4\u8CFD\u7D00\u9304",
-    "description": "\u6BD4\u8CFD\u3001\u5F97\u5206\u8207\u72AF\u898F",
+    "icon": "🏆",
+    "title": "比賽紀錄",
+    "description": "比賽、得分與犯規",
     "key": "basketball_gamecenter",
     "group": "basketball",
     "symbol": "trophy",
@@ -477,9 +477,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "basketball_tactics": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/?tab=tactics",
-    "icon": "\u{1F4CB}",
-    "title": "\u7C43\u7403\u6230\u8853",
-    "description": "\u6230\u8853\u677F\u8207\u8A13\u7DF4\u5167\u5BB9",
+    "icon": "📋",
+    "title": "籃球戰術",
+    "description": "戰術板與訓練內容",
     "key": "basketball_tactics",
     "group": "basketball",
     "symbol": "clipboard",
@@ -488,9 +488,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "basketball_assignments": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/?tab=assignments",
-    "icon": "\u{1F3AF}",
-    "title": "\u7403\u54E1\u4F5C\u696D",
-    "description": "\u8A13\u7DF4\u4EFB\u52D9\u8207\u6210\u679C",
+    "icon": "🎯",
+    "title": "球員作業",
+    "description": "訓練任務與成果",
     "key": "basketball_assignments",
     "group": "basketball",
     "symbol": "target",
@@ -499,9 +499,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "basketball_schedule": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/?tab=schedule",
-    "icon": "\u{1F4C6}",
-    "title": "\u7403\u968A\u884C\u7A0B",
-    "description": "\u7DF4\u7403\u8207\u6BD4\u8CFD",
+    "icon": "📆",
+    "title": "球隊行程",
+    "description": "練球與比賽",
     "key": "basketball_schedule",
     "group": "basketball",
     "symbol": "calendar",
@@ -510,9 +510,9 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "basketball_daily": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/?tab=dailystatus",
-    "icon": "\u{1F4AA}",
-    "title": "\u6BCF\u65E5\u72C0\u614B",
-    "description": "\u8EAB\u9AD4\u8207\u8A13\u7DF4\u72C0\u614B",
+    "icon": "💪",
+    "title": "每日狀態",
+    "description": "身體與訓練狀態",
     "key": "basketball_daily",
     "group": "basketball",
     "symbol": "bolt",
@@ -521,42 +521,42 @@ var FUNCTION_CATALOG = freezeTree({
   },
   "system_monitor": {
     "file": "system-monitor.html",
-    "icon": "\u{1F4CA}",
-    "title": "\u7CFB\u7D71\u72C0\u6CC1",
-    "description": "\u7DB2\u7AD9\u3001\u670D\u52D9\u8207\u6392\u7A0B",
+    "icon": "📊",
+    "title": "系統狀況",
+    "description": "網站、服務與排程",
     "key": "system_monitor",
     "group": "system",
     "symbol": "chart",
     "configurableHome": true,
     "searchTerms": [
-      "\u7CFB\u7D71\u76E3\u63A7\u4E2D\u5FC3"
+      "系統監控中心"
     ]
   },
   "church_settings": {
     "file": "church-settings.html",
-    "icon": "\u2699\uFE0F",
-    "title": "\u6559\u6703\u8A2D\u5B9A",
-    "description": "\u5802\u6703\u3001\u5E33\u865F\u8207\u529F\u80FD",
+    "icon": "⚙️",
+    "title": "教會設定",
+    "description": "堂會、帳號與功能",
     "key": "church_settings",
     "group": "system",
     "symbol": "gear",
     "configurableHome": true,
     "searchTerms": [
-      "\u7CFB\u7D71\u8A2D\u5B9A"
+      "系統設定"
     ]
   },
   "pastoral_content": {
     "permission": "pastoral",
     "file": "pastoral-content.html",
-    "icon": "\u2728",
-    "title": "\u7267\u990A\u5716\u5361",
-    "description": "\u795D\u79B1\u3001\u5C0F\u5361\u8207\u65B0\u670B\u53CB\u65C5\u7A0B",
+    "icon": "✨",
+    "title": "牧養圖卡",
+    "description": "祝禱、小卡與新朋友旅程",
     "key": "pastoral_content",
     "group": "media",
     "symbol": "sparkle",
     "configurableHome": false,
     "searchTerms": [
-      "\u6559\u7267\u5167\u5BB9"
+      "教牧內容"
     ],
     "settingsId": "pastoral-content",
     "settingsGroup": "content"
@@ -564,9 +564,9 @@ var FUNCTION_CATALOG = freezeTree({
   "todays_message": {
     "permission": "pastoral",
     "file": "todays-message-settings.html",
-    "icon": "\u2728",
-    "title": "\u7D66\u4ECA\u5929\u7684\u4F60",
-    "description": "\u6BCF\u65E5\u7D93\u6587\u8207\u795D\u798F\u5167\u5BB9",
+    "icon": "✨",
+    "title": "給今天的你",
+    "description": "每日經文與祝福內容",
     "key": "todays_message",
     "group": "media",
     "symbol": "sparkle",
@@ -578,9 +578,9 @@ var FUNCTION_CATALOG = freezeTree({
   "love_share": {
     "permission": "pastoral",
     "file": "love-share-settings.html",
-    "icon": "\u{1F49B}",
-    "title": "\u628A\u611B\u50B3\u51FA\u53BB",
-    "description": "\u795D\u798F\u60C5\u5883\u8207\u5206\u4EAB\u5716\u7247",
+    "icon": "💛",
+    "title": "把愛傳出去",
+    "description": "祝福情境與分享圖片",
     "key": "love_share",
     "group": "media",
     "symbol": "heart",
@@ -592,9 +592,9 @@ var FUNCTION_CATALOG = freezeTree({
   "line_preview": {
     "permission": "pastoral",
     "file": "line-preview.html",
-    "icon": "\u{1F517}",
-    "title": "LINE \u670D\u52D9\u9810\u89BD",
-    "description": "\u6AA2\u67E5\u6703\u53CB\u670D\u52D9\u5167\u5BB9",
+    "icon": "🔗",
+    "title": "LINE 服務預覽",
+    "description": "檢查會友服務內容",
     "key": "line_preview",
     "group": "media",
     "symbol": "link",
@@ -606,9 +606,9 @@ var FUNCTION_CATALOG = freezeTree({
   "customization": {
     "permission": "pastoral",
     "file": "customization-settings.html",
-    "icon": "\u2699\uFE0F",
-    "title": "\u540D\u7A31\u8207\u8868\u55AE",
-    "description": "\u529F\u80FD\u540D\u7A31\u3001\u9806\u5E8F\u3001\u8FCE\u65B0\u8868\u55AE\u8207\u9078\u9805",
+    "icon": "⚙️",
+    "title": "名稱與表單",
+    "description": "功能名稱、順序、迎新表單與選項",
     "key": "customization",
     "group": "system",
     "symbol": "sliders",
@@ -620,9 +620,9 @@ var FUNCTION_CATALOG = freezeTree({
   "admin_accounts": {
     "owner": true,
     "file": "admin-accounts.html",
-    "icon": "\u{1F465}",
-    "title": "\u540C\u5DE5\u5E33\u865F\u8207\u6B0A\u9650",
-    "description": "\u9078\u540C\u5DE5\u3001\u52FE\u9078\u529F\u80FD\u8207\u64CD\u4F5C\u6B0A\u9650",
+    "icon": "👥",
+    "title": "同工帳號與權限",
+    "description": "選同工、勾選功能與操作權限",
     "key": "admin_accounts",
     "group": "system",
     "symbol": "people",
@@ -635,9 +635,9 @@ var FUNCTION_CATALOG = freezeTree({
     "permission": "website_weekly",
     "action": "approve",
     "file": "authorization-settings.html",
-    "icon": "\u25B6",
-    "title": "\u670D\u52D9\u6388\u6B0A\u7BA1\u7406",
-    "description": "YouTube\u3001Instagram\u3001\u6559\u6703\u8207\u5354\u6703 FB\u3001Google \u8207 LINE \u9023\u7DDA\u6388\u6B0A",
+    "icon": "▶",
+    "title": "服務授權管理",
+    "description": "YouTube、Instagram、教會與協會 FB、Google 與 LINE 連線授權",
     "key": "media_publishing",
     "group": "media",
     "symbol": "play",
@@ -646,8 +646,8 @@ var FUNCTION_CATALOG = freezeTree({
       "IG",
       "Instagram",
       "YouTube",
-      "\u5F71\u7247",
-      "\u793E\u7FA4"
+      "影片",
+      "社群"
     ],
     "settingsId": "media-publishing",
     "settingsGroup": "content"
@@ -657,14 +657,14 @@ var FUNCTION_CATALOG = freezeTree({
     "action": "edit",
     "church": "M+",
     "file": "sermon-preparation.html",
-    "icon": "\u{1F4D6}",
-    "title": "\u4FE1\u606F\u9810\u5099",
-    "description": "\u7D20\u6750\u3001\u9818\u53D7\u3001\u5927\u7DB1\u8207\u8B1B\u7AE0",
+    "icon": "📖",
+    "title": "信息預備",
+    "description": "素材、領受、大綱與講章",
     "key": "sermon_preparation",
     "group": "media",
     "symbol": "book",
     "configurableHome": true,
-    "searchTerms": ["\u8B1B\u7AE0", "\u8B1B\u9053", "\u9810\u5099", "\u4FE1\u606F\u5DE5\u4F5C\u5BA4"],
+    "searchTerms": ["講章", "講道", "預備", "信息工作室"],
     "settingsId": "sermon-preparation",
     "settingsGroup": "content"
   },
@@ -673,9 +673,9 @@ var FUNCTION_CATALOG = freezeTree({
     "action": "edit",
     "church": "M+",
     "file": "youtube-subtitle-library.html",
-    "icon": "\u{1F4DA}",
-    "title": "\u5B57\u5E55\u8A5E\u5EAB",
-    "description": "\u8FA8\u8B58\u932F\u5B57\u8207\u8B1B\u54E1\u7528\u8A9E",
+    "icon": "📚",
+    "title": "字幕詞庫",
+    "description": "辨識錯字與講員用語",
     "key": "subtitle_library",
     "group": "media",
     "symbol": "book",
@@ -688,75 +688,75 @@ var FUNCTION_CATALOG = freezeTree({
     "church": "M+",
     "permission": "schedules",
     "file": "service-signup-admin.html",
-    "icon": "\u{1F4C5}",
-    "title": "\u670D\u4E8B\u610F\u9858\u8207\u5354\u8ABF",
-    "description": "\u6BCF\u5169\u500B\u6708\u7684\u670D\u4E8B\u610F\u9858\u3001\u5019\u88DC\u8207\u6392\u73ED\u5354\u8ABF",
+    "icon": "📅",
+    "title": "服事意願與協調",
+    "description": "每兩個月的服事意願、候補與排班協調",
     "key": "service_signups",
     "group": "service",
     "symbol": "calendar",
     "configurableHome": false,
     "searchTerms": []
   },
-  "thanksgiving_offering_admin": { "file": "thanksgiving-offering-admin.html", "title": "\u611F\u6069\u7BC0\u5949\u737B\u56DE\u5831", "description": "\u79C1\u4EBA\u5949\u737B\u56DE\u5831\u3001\u901A\u77E5\u6295\u905E\u8207\u8CA1\u52D9\u6838\u5C0D", "key": "thanksgiving_offering_admin", "group": "finance", "church": "M+", "offeringAccess": true, "symbol": "clipboard", "configurableHome": false, "searchTerms": ["\u611F\u6069\u7BC0", "\u5949\u737B\u56DE\u61C9", "\u672B\u4E94\u78BC", "\u532F\u6B3E", "\u5C0D\u5E33"] },
-  "finance_projects": { "file": "finance-projects.html", "title": "\u5C08\u6848\u8207\u4E8B\u5DE5\u8A2D\u5B9A", "description": "\u5C08\u6848\u3001\u4E8B\u5DE5\u9805\u76EE\u3001\u6536\u5165\u79D1\u76EE\u8207\u7DDA\u4E0A\u6350\u6B3E\u5C0D\u61C9", "key": "finance_projects", "group": "finance", "church": "M+", "owner": true, "symbol": "clipboard", "configurableHome": false, "settingsGroup": "church", "settingsId": "finance-projects", "searchTerms": ["\u5C08\u6848", "\u4E8B\u5DE5", "\u6536\u5165\u79D1\u76EE", "\u6350\u6B3E\u9805\u76EE"] },
+  "thanksgiving_offering_admin": { "file": "thanksgiving-offering-admin.html", "title": "感恩節奉獻回報", "description": "私人奉獻回報、通知投遞與財務核對", "key": "thanksgiving_offering_admin", "group": "finance", "church": "M+", "offeringAccess": true, "symbol": "clipboard", "configurableHome": false, "searchTerms": ["感恩節", "奉獻回應", "末五碼", "匯款", "對帳"] },
+  "finance_projects": { "file": "finance-projects.html", "title": "專案與事工設定", "description": "專案、事工項目、收入科目與線上捐款對應", "key": "finance_projects", "group": "finance", "church": "M+", "owner": true, "symbol": "clipboard", "configurableHome": false, "settingsGroup": "church", "settingsId": "finance-projects", "searchTerms": ["專案", "事工", "收入科目", "捐款項目"] },
   "finance_receipts": {
     "church": "M+",
     "receiptAccess": true,
     "file": "finance-receipts.html",
-    "title": "\u6536\u64DA\u958B\u7ACB",
-    "description": "\u91D1\u9322\u8207\u7269\u54C1\u6536\u64DA\u3001\u958B\u7ACB\u53CA\u4F5C\u5EE2\u7D00\u9304",
+    "title": "收據開立",
+    "description": "金錢與物品收據、開立及作廢紀錄",
     "key": "finance_receipts",
     "group": "finance",
     "symbol": "clipboard",
     "configurableHome": false,
-    "searchTerms": ["\u6536\u64DA", "\u6350\u6B3E\u6536\u64DA", "\u6350\u7269", "\u91D1\u9322", "\u7269\u54C1", "\u6703\u8A08"]
+    "searchTerms": ["收據", "捐款收據", "捐物", "金錢", "物品", "會計"]
   },
   "finance_expenses": {
     "church": "M+",
     "expenseAccess": true,
     "file": "finance-expenses.html",
-    "icon": "\u{1F4CB}",
-    "title": "\u652F\u51FA\u8A18\u5E33",
-    "description": "\u8CBB\u7528\u63D0\u5831\u3001\u6191\u8B49\u6838\u5C0D\u3001\u5BE9\u6838\u8207\u4ED8\u6B3E\u7D00\u9304",
+    "icon": "📋",
+    "title": "支出記帳",
+    "description": "費用提報、憑證核對、審核與付款紀錄",
     "key": "finance_expenses",
     "group": "finance",
     "symbol": "clipboard",
     "configurableHome": false,
-    "searchTerms": ["\u652F\u51FA", "\u8CBB\u7528", "\u8A18\u5E33", "\u6838\u92B7", "\u4ED8\u6B3E", "\u96F6\u7528\u91D1"]
+    "searchTerms": ["支出", "費用", "記帳", "核銷", "付款", "零用金"]
   },
   "finance_cash": {
     "church": "M+",
     "financeAccess": true,
     "file": "finance-cash.html",
-    "icon": "\u{1F4CB}",
-    "title": "\u4E3B\u65E5\u5949\u737B",
-    "description": "\u9010\u7B46\u767B\u9304\u5949\u737B\u3001\u6838\u5C0D\u8207\u5165\u5E33",
+    "icon": "📋",
+    "title": "主日奉獻",
+    "description": "逐筆登錄奉獻、核對與入帳",
     "key": "finance_cash",
     "group": "finance",
     "symbol": "clipboard",
     "configurableHome": false,
-    "searchTerms": ["\u8CA1\u52D9", "\u6703\u8A08", "\u5949\u737B", "\u9EDE\u6536", "\u73FE\u91D1"]
+    "searchTerms": ["財務", "會計", "奉獻", "點收", "現金"]
   },
   "service_quick_match": {
     "church": "M+",
     "permission": "schedules",
     "file": "service-signup-admin.html?match=1",
-    "icon": "\u26A1",
-    "title": "\u670D\u4E8B\u5FEB\u901F\u9069\u914D",
-    "description": "\u4E8B\u5DE5\u9818\u8896\u53EF\u9810\u6392\u8CA0\u8CAC\u985E\u5225\u7684\u670D\u4E8B\u4EBA\u9078",
+    "icon": "⚡",
+    "title": "服事快速適配",
+    "description": "事工領袖可預排負責類別的服事人選",
     "key": "service_quick_match",
     "group": "service",
     "symbol": "calendar",
     "configurableHome": false,
-    "searchTerms": ["\u667A\u80FD\u914D\u5C0D", "\u5FEB\u901F\u914D\u5C0D", "\u4E8B\u5DE5\u9818\u8896"]
+    "searchTerms": ["智能配對", "快速配對", "事工領袖"]
   }
 });
 var FUNCTION_GROUPS = freezeTree([
-  { "key": "events", "title": "\u6D3B\u52D5", "note": "\u6D3B\u52D5\u53C3\u8207\u53CA\u904A\u6232\u73A9\u5BB6\u7BA1\u7406", "keys": ["potluck", "bibletree_admin", "bibletree_players", "bibletree_devotional"] },
+  { "key": "events", "title": "活動", "note": "活動參與及遊戲玩家管理", "keys": ["potluck", "bibletree_admin", "bibletree_players", "bibletree_devotional"] },
   {
     "key": "pastoral",
-    "title": "\u4EBA\u8207\u95DC\u61F7",
-    "note": "\u6703\u53CB\u3001\u65B0\u670B\u53CB\u3001\u5C0F\u7D44\u8207\u95DC\u61F7",
+    "title": "人與關懷",
+    "note": "會友、新朋友、小組與關懷",
     "keys": [
       "members",
       "newcomer_care",
@@ -770,8 +770,8 @@ var FUNCTION_GROUPS = freezeTree([
   },
   {
     "key": "service",
-    "title": "\u805A\u6703\u8207\u670D\u4E8B",
-    "note": "\u51FA\u5E2D\u3001\u610F\u9858\u767B\u8A18\u3001\u6392\u73ED\u8207\u5834\u5730",
+    "title": "聚會與服事",
+    "note": "出席、意願登記、排班與場地",
     "keys": [
       "attendance",
       "schedules",
@@ -783,14 +783,14 @@ var FUNCTION_GROUPS = freezeTree([
   },
   {
     "key": "finance",
-    "title": "\u6559\u6703\u8CA1\u52D9",
-    "note": "M\uFF0B\u5949\u737B\u6536\u5165\u3001\u652F\u51FA\u8A18\u5E33\u8207\u6838\u5C0D",
+    "title": "教會財務",
+    "note": "M＋奉獻收入、支出記帳與核對",
     "keys": ["church_giving_preview", "association_donation_preview", "admin_workbench", "thanksgiving_offering_admin", "finance_projects", "finance_cash", "finance_expenses", "finance_receipts", "finance_permission_settings", "finance_accounting_reports", "school_staff_scheduling", "school_payroll"]
   },
   {
     "key": "media",
-    "title": "\u5167\u5BB9\u8207\u767C\u5E03",
-    "note": "\u9748\u4FEE\u3001\u9031\u5831\u3001\u6559\u6750\u8207\u793E\u7FA4\u5167\u5BB9",
+    "title": "內容與發布",
+    "note": "靈修、週報、教材與社群內容",
     "keys": [
       "testimony_review",
       "tree_reading_admin",
@@ -810,8 +810,8 @@ var FUNCTION_GROUPS = freezeTree([
   },
   {
     "key": "school",
-    "title": "\u8AB2\u8F14",
-    "note": "\u5B78\u751F\u3001\u51FA\u5E2D\u3001\u8F14\u5C0E\u8207\u5831\u8868",
+    "title": "課輔",
+    "note": "學生、出席、輔導與報表",
     "keys": [
       "school",
       "school_checkin",
@@ -824,8 +824,8 @@ var FUNCTION_GROUPS = freezeTree([
   },
   {
     "key": "basketball",
-    "title": "\u7C43\u7403\u4E8B\u5DE5",
-    "note": "\u7C43\u7403\u968A\u3001\u8A13\u7DF4\u8207\u71B1\u706B\u7C43\u7403\u71DF",
+    "title": "籃球事工",
+    "note": "籃球隊、訓練與熱火籃球營",
     "keys": [
       "heat_camp",
       "basketball",
@@ -838,8 +838,8 @@ var FUNCTION_GROUPS = freezeTree([
   },
   {
     "key": "system",
-    "title": "\u8A2D\u5B9A\u8207\u5DE5\u5177",
-    "note": "\u5E33\u865F\u3001\u8EAB\u5206\u3001\u5BE9\u6838\u8207\u901A\u77E5",
+    "title": "設定與工具",
+    "note": "帳號、身分、審核與通知",
     "keys": [
       "binding_review",
       "review_workflows",
@@ -856,8 +856,8 @@ var FUNCTION_GROUPS = freezeTree([
 var SETTINGS_GROUPS = freezeTree([
   {
     "key": "people",
-    "title": "\u540C\u5DE5\u8207\u6B0A\u9650",
-    "note": "\u9080\u8ACB\u540C\u5DE5\u3001\u78BA\u8A8D LINE \u8EAB\u5206\u8207\u4F7F\u7528\u6B0A\u9650",
+    "title": "同工與權限",
+    "note": "邀請同工、確認 LINE 身分與使用權限",
     "keys": [
       "admin_accounts",
       "member_line_settings",
@@ -867,8 +867,8 @@ var SETTINGS_GROUPS = freezeTree([
   },
   {
     "key": "review",
-    "title": "\u5BE9\u6838\u8207\u901A\u77E5",
-    "note": "\u8A2D\u5B9A\u521D\u5BE9\u3001\u8907\u5BE9\u8207\u901A\u77E5\u65B9\u5F0F",
+    "title": "審核與通知",
+    "note": "設定初審、複審與通知方式",
     "keys": [
       "review_workflows",
       "notification_settings"
@@ -876,8 +876,8 @@ var SETTINGS_GROUPS = freezeTree([
   },
   {
     "key": "content",
-    "title": "\u5167\u5BB9\u8207\u767C\u5E03",
-    "note": "\u4E3B\u65E5\u3001\u9748\u4FEE\u3001\u8868\u55AE\u8207\u793E\u7FA4\u5167\u5BB9",
+    "title": "內容與發布",
+    "note": "主日、靈修、表單與社群內容",
     "keys": [
       "testimony_review",
       "website_weekly",
@@ -898,8 +898,8 @@ var SETTINGS_GROUPS = freezeTree([
   },
   {
     "key": "church",
-    "title": "\u5802\u6703\u8207\u5834\u5730",
-    "note": "\u516C\u958B\u8CC7\u8A0A\u3001\u805A\u6703\u4F4D\u7F6E\u3001\u7A7A\u9593\u8207\u7269\u54C1",
+    "title": "堂會與場地",
+    "note": "公開資訊、聚會位置、空間與物品",
     "keys": [
       "finance_projects",
       "spaces",
@@ -908,27 +908,27 @@ var SETTINGS_GROUPS = freezeTree([
   }
 ]);
 var PERMISSION_LABELS = freezeTree({
-  association_content: "\u5354\u6703\u5167\u5BB9\uFF08\u7167\u7247\u8AAA\u6545\u4E8B\uFF0F\u7DB2\u7AD9\u6D88\u606F\uFF09",
-  church_albums: "\u76F8\u7C3F",
-  "members": "\u6703\u53CB",
-  "attendance": "\u51FA\u5E2D\u767B\u8A18",
-  "groups": "\u5C0F\u7D44\u8207\u5C0F\u5BB6",
-  "schedules": "\u670D\u4E8B\u5B89\u6392",
-  "private_prayers": "\u4EE3\u79B1\u8207\u95DC\u61F7",
-  "pastoral_chats": "\u95DC\u61F7\u8A0A\u606F\u8207\u5716\u5361",
-  "spaces": "\u5834\u5730\u8207\u8A2D\u5099",
-  "newcomer_care": "\u65B0\u670B\u53CB",
-  "tree_reading_admin": "\u751F\u547D\u6A39",
-  "binding_review": "LINE \u8EAB\u5206\u78BA\u8A8D",
-  "notification_settings": "\u901A\u77E5\u8A2D\u5B9A",
-  "website_weekly": "\u4E3B\u65E5\u9031\u5831",
-  "website_group_resources": "\u5C0F\u7D44\u6559\u6750",
-  "inventory": "\u7269\u54C1\u8207\u501F\u7528",
-  "heat_camp": "\u71B1\u706B\u7C43\u7403\u71DF"
+  association_content: "協會內容（照片說故事／網站消息）",
+  church_albums: "相簿",
+  "members": "會友",
+  "attendance": "出席登記",
+  "groups": "小組與小家",
+  "schedules": "服事安排",
+  "private_prayers": "代禱與關懷",
+  "pastoral_chats": "關懷訊息與圖卡",
+  "spaces": "場地與設備",
+  "newcomer_care": "新朋友",
+  "tree_reading_admin": "生命樹",
+  "binding_review": "LINE 身分確認",
+  "notification_settings": "通知設定",
+  "website_weekly": "主日週報",
+  "website_group_resources": "小組教材",
+  "inventory": "物品與借用",
+  "heat_camp": "熱火籃球營"
 });
 var ROLE_TEMPLATES = freezeTree({
   "pastor": {
-    "label": "\u7267\u8005",
+    "label": "牧者",
     "permissions": [
       "members",
       "attendance",
@@ -947,7 +947,7 @@ var ROLE_TEMPLATES = freezeTree({
     ]
   },
   "pastor_spouse": {
-    "label": "\u5E2B\u6BCD",
+    "label": "師母",
     "permissions": [
       "members",
       "attendance",
@@ -966,7 +966,7 @@ var ROLE_TEMPLATES = freezeTree({
     ]
   },
   "administrator": {
-    "label": "\u884C\u653F\u7BA1\u7406",
+    "label": "行政管理",
     "permissions": [
       "members",
       "attendance",
@@ -980,7 +980,7 @@ var ROLE_TEMPLATES = freezeTree({
     ]
   },
   "group_leader": {
-    "label": "\u5C0F\u7D44\uFF0F\u5C0F\u5BB6\u9577",
+    "label": "小組／小家長",
     "permissions": [
       "members",
       "attendance",
@@ -988,7 +988,7 @@ var ROLE_TEMPLATES = freezeTree({
     ]
   },
   "care": {
-    "label": "\u95DC\u61F7\u540C\u5DE5",
+    "label": "關懷同工",
     "permissions": [
       "members",
       "private_prayers",
@@ -997,14 +997,14 @@ var ROLE_TEMPLATES = freezeTree({
     ]
   },
   "facilities": {
-    "label": "\u7E3D\u52D9\u540C\u5DE5",
+    "label": "總務同工",
     "permissions": [
       "spaces",
       "inventory"
     ]
   },
   "custom": {
-    "label": "\u81EA\u8A02\u6B0A\u9650",
+    "label": "自訂權限",
     "permissions": []
   }
 });
@@ -1060,42 +1060,42 @@ var HOME_TEMPLATES = freezeTree({
   ]
 });
 var FEATURE_ACTIONS = freezeTree({
-  "view": "\u67E5\u770B",
-  "create": "\u65B0\u589E",
-  "edit": "\u4FEE\u6539",
-  "delete": "\u522A\u9664",
-  "export": "\u532F\u51FA",
-  "approve": "\u5BE9\u6838",
-  "manage": "\u7BA1\u7406\u8A2D\u5B9A"
+  "view": "查看",
+  "create": "新增",
+  "edit": "修改",
+  "delete": "刪除",
+  "export": "匯出",
+  "approve": "審核",
+  "manage": "管理設定"
 });
 var FRIENDLY_LABELS = freezeTree({
-  "\u6703\u53CB\u540D\u518A": "\u6703\u53CB",
-  "\u65B0\u670B\u53CB\u95DC\u61F7": "\u65B0\u670B\u53CB",
-  "\u540C\u5DE5\u5354\u4F5C": "\u540C\u5DE5\u5DE5\u4F5C\u5340",
-  "\u4EE3\u79B1\u95DC\u61F7": "\u4EE3\u79B1\u8207\u95DC\u61F7",
-  "\u7267\u990A\u8A0A\u606F": "\u95DC\u61F7\u8A0A\u606F",
-  "\u805A\u6703\u9EDE\u540D": "\u51FA\u5E2D\u767B\u8A18",
-  "\u5C0F\u7D44\uFF0F\u5C0F\u5BB6": "\u5C0F\u7D44\u8207\u5C0F\u5BB6",
-  "\u670D\u4E8B\u6392\u73ED": "\u670D\u4E8B\u5B89\u6392",
-  "\u5834\u5730\u9810\u7D04": "\u5834\u5730\u8207\u8A2D\u5099",
-  "\u7269\u54C1\u6E05\u518A": "\u7269\u54C1\u8207\u501F\u7528",
-  "\u6559\u6703\u7DB2\u7AD9\u7DAD\u8B77": "\u4E3B\u65E5\u9031\u5831",
-  "\u5C0F\u7D44\u805A\u6703\u8CC7\u6E90": "\u5C0F\u7D44\u6559\u6750",
-  "\u6BCF\u65E5\u9748\u4FEE\u751F\u547D\u6A39": "\u751F\u547D\u6A39",
-  "\u8B80\u7D93\u751F\u547D\u6A39": "\u751F\u547D\u6A39",
-  "LINE \u7D81\u5B9A\u5BE9\u6838": "LINE \u8EAB\u5206\u78BA\u8A8D",
-  "LINE \u901A\u77E5\u8A2D\u5B9A": "\u901A\u77E5\u8A2D\u5B9A",
-  "\u901A\u77E5\u7BA1\u9053\u8A2D\u5B9A": "\u901A\u77E5\u8A2D\u5B9A",
-  "\u6559\u7267\u5167\u5BB9": "\u7267\u990A\u5716\u5361",
-  "\u7CFB\u7D71\u76E3\u63A7\u4E2D\u5FC3": "\u7CFB\u7D71\u72C0\u6CC1",
-  "\u7CFB\u7D71\u8A2D\u5B9A": "\u6559\u6703\u8A2D\u5B9A"
+  "會友名冊": "會友",
+  "新朋友關懷": "新朋友",
+  "同工協作": "同工工作區",
+  "代禱關懷": "代禱與關懷",
+  "牧養訊息": "關懷訊息",
+  "聚會點名": "出席登記",
+  "小組／小家": "小組與小家",
+  "服事排班": "服事安排",
+  "場地預約": "場地與設備",
+  "物品清冊": "物品與借用",
+  "教會網站維護": "主日週報",
+  "小組聚會資源": "小組教材",
+  "每日靈修生命樹": "生命樹",
+  "讀經生命樹": "生命樹",
+  "LINE 綁定審核": "LINE 身分確認",
+  "LINE 通知設定": "通知設定",
+  "通知管道設定": "通知設定",
+  "教牧內容": "牧養圖卡",
+  "系統監控中心": "系統狀況",
+  "系統設定": "教會設定"
 });
 var NAVIGATION_MODULES = freezeTree([
   {
     "key": "dashboard",
     "file": "admin-dashboard.html",
-    "label": "\u9996\u9801",
-    "icon": "\u{1F3E0}"
+    "label": "首頁",
+    "icon": "🏠"
   },
   {
     "key": "members",
@@ -1219,7 +1219,7 @@ var LEGACY_FEATURE_FILES = Object.freeze(Object.fromEntries([
   "website_group_resources"
 ].map((key) => [key, FUNCTION_CATALOG[canonicalFunctionKey(key)].file])));
 
-// church-os-giving-pages-20261120/app-icons.mjs?v=20261116-memberline1
+// church-os-giving-catalog-20261120/app-icons.mjs?v=20261116-memberline1
 var ICON_PATHS = Object.freeze({
   "mplus-book": '<path d="M12 5C8 2 4 3 2 4v15c4-2 7-1 10 1 3-2 6-3 10-1V4c-2-1-6-2-10 1Zm0 0v15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
   "mplus-box": '<path d="m3 7 9-4 9 4v13H3Zm0 0h18M8 12h8M8 16h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
@@ -1263,61 +1263,61 @@ var ICON_PATHS = Object.freeze({
   "more": '<circle cx="5" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.3" fill="currentColor" stroke="none"/>'
 });
 var SYMBOL_NAMES = Object.freeze({
-  "\u{1F3E0}": "home",
-  "\u2302": "home",
-  "\u{1F465}": "people",
-  "\u{1F91D}": "people",
-  "\u{1FAF6}": "people",
-  "\u{1F331}": "sprout",
-  "\u{1F333}": "tree",
-  "\u{1F517}": "link",
-  "\u{1F514}": "bell",
-  "\u2705": "check",
-  "\u2713": "check",
-  "\u{1F4C5}": "calendar",
-  "\u{1F5D3}\uFE0F": "calendar",
-  "\u{1F4C6}": "calendar",
-  "\u{1F4E6}": "box",
-  "\u{1F64F}": "heart",
-  "\u{1F49B}": "heart",
-  "\u{1F4AC}": "chat",
-  "\u2728": "sparkle",
-  "\u2605": "star",
-  "\u2699": "gear",
-  "\u2699\uFE0F": "gear",
-  "\u{1F4CD}": "pin",
-  "\u{1F310}": "globe",
-  "\u{1F4DA}": "book",
-  "\u{1F4CA}": "chart",
-  "\u25A6": "grid",
-  "\u25B6": "play",
-  "\u{1F4F7}": "camera",
-  "\u{1F9D1}\u200D\u{1F393}": "student",
-  "\u{1F468}\u200D\u{1F393}": "student",
-  "\u{1F469}\u200D\u{1F393}": "student",
-  "\u{1F5A8}\uFE0F": "printer",
-  "\u{1F5A8}": "printer",
-  "\u{1F3C0}": "target",
-  "\u{1F3C6}": "trophy",
-  "\u{1F4CB}": "clipboard",
-  "\u{1F3AF}": "target",
-  "\u{1F4AA}": "bolt",
-  "\u{1F6A8}": "alert",
-  "\u23F0": "clock",
-  "\u{1F39B}\uFE0F": "sliders",
-  "\u{1F39B}": "sliders",
-  "\u26EA": "church",
-  "\u2022\u2022\u2022": "more",
-  "\u{1F392}": "book",
-  "\u2630": "sliders",
-  "\u25CE": "people",
+  "🏠": "home",
+  "⌂": "home",
+  "👥": "people",
+  "🤝": "people",
+  "🫶": "people",
+  "🌱": "sprout",
+  "🌳": "tree",
+  "🔗": "link",
+  "🔔": "bell",
+  "✅": "check",
+  "✓": "check",
+  "📅": "calendar",
+  "🗓️": "calendar",
+  "📆": "calendar",
+  "📦": "box",
+  "🙏": "heart",
+  "💛": "heart",
+  "💬": "chat",
+  "✨": "sparkle",
+  "★": "star",
+  "⚙": "gear",
+  "⚙️": "gear",
+  "📍": "pin",
+  "🌐": "globe",
+  "📚": "book",
+  "📊": "chart",
+  "▦": "grid",
+  "▶": "play",
+  "📷": "camera",
+  "🧑‍🎓": "student",
+  "👨‍🎓": "student",
+  "👩‍🎓": "student",
+  "🖨️": "printer",
+  "🖨": "printer",
+  "🏀": "target",
+  "🏆": "trophy",
+  "📋": "clipboard",
+  "🎯": "target",
+  "💪": "bolt",
+  "🚨": "alert",
+  "⏰": "clock",
+  "🎛️": "sliders",
+  "🎛": "sliders",
+  "⛪": "church",
+  "•••": "more",
+  "🎒": "book",
+  "☰": "sliders",
+  "◎": "people",
   "LINE": "link",
-  "\u5B57": "book",
-  "\u{1F305}": "sparkle",
-  "\u{1F54A}\uFE0F": "heart",
-  "\u2615": "sprout",
-  "\u{1F48C}": "heart",
-  "\u{1F3DB}\uFE0F": "church"
+  "字": "book",
+  "🌅": "sparkle",
+  "🕊️": "heart",
+  "☕": "sprout",
+  "💌": "heart",
+  "🏛️": "church"
 });
 function iconSymbol(key) {
   const canonical = FUNCTION_ALIASES[key] || key;
@@ -1346,7 +1346,7 @@ function createAppIcon(key, className = "function-icon") {
   return applyAppIcon(node, key);
 }
 
-// church-os-giving-pages-20261120/app-function-definitions.mjs?v=20261116-admin1
+// church-os-giving-catalog-20261120/app-function-definitions.mjs?v=20261116-admin1
 function freezeTree2(value) {
   if (value && typeof value === "object") {
     Object.values(value).forEach(freezeTree2);
@@ -1355,45 +1355,45 @@ function freezeTree2(value) {
   return value;
 }
 var FUNCTION_CATALOG2 = freezeTree2({
-  "church_giving_preview": { "file": "church-giving.html", "title": "\u6559\u6703\u5949\u737B\u9801\u9762\u9810\u89BD", "description": "\u55AE\u6B21\u8207\u5B9A\u671F\u5B9A\u984D\u4ECB\u9762\u9810\u89BD\uFF0C\u5C1A\u672A\u958B\u653E\u6536\u6B3E", "key": "church_giving_preview", "church": "M+", "group": "finance", "symbol": "heart", "owner": true, "configurableHome": false, "searchTerms": ["\u5949\u737B", "\u5B9A\u671F\u5B9A\u984D", "\u91D1\u6D41\u9810\u89BD"] },
-  "association_donation_preview": { "file": "association-donate.html", "title": "\u5354\u6703\u6350\u6B3E\u9801\u9762\u9810\u89BD", "description": "\u5354\u6703\u5C08\u7528\u6350\u6B3E\u4ECB\u9762\u9810\u89BD\uFF0C\u5C1A\u672A\u958B\u653E\u6536\u6B3E", "key": "association_donation_preview", "church": "M+", "group": "finance", "symbol": "heart", "owner": true, "configurableHome": false, "searchTerms": ["\u5354\u6703", "\u6350\u6B3E", "\u5B9A\u671F\u5B9A\u984D"] },
-  "admin_workbench": { "file": "admin-workbench.html", "title": "\u884C\u653F\u5F85\u8FA6", "description": "\u5F85\u6211\u8655\u7406\u3001\u6211\u9001\u51FA\u7684\u3001\u6838\u51C6\u5F85\u5B8C\u6210\u8207\u7570\u5E38\u8FFD\u8E64", "key": "admin_workbench", "church": "M+", "group": "finance", "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["\u884C\u653F", "\u5F85\u8FA6", "\u903E\u671F", "\u7D50\u6848"] },
-  "member_line_history": { "file": "member-line-history.html", "title": "LINE \u8A0A\u606F\u767C\u9001\u7D00\u9304", "description": "\u67E5\u8A62\u767C\u9001\u4EBA\u3001\u6536\u4EF6\u4EBA\u3001\u5168\u6587\u3001\u6642\u9593\u8207\u53D7\u7406\u72C0\u614B", "key": "member_line_history", "group": "system", "church": "M+", "owner": true, "symbol": "chat", "configurableHome": false, "searchTerms": ["LINE", "\u7D00\u9304", "\u8AB0\u767C\u7684", "\u8A0A\u606F"], "settingsId": "member-line-history", "settingsGroup": "people" },
-  "member_line_settings": { "file": "member-line-settings.html", "title": "\u6703\u53CB LINE \u50B3\u9001\u6B0A\u9650", "description": "\u958B\u95DC\u500B\u5225\u540C\u5DE5\u7684\u6703\u53CB\u79C1\u4EBA\u8A0A\u606F\u50B3\u9001\u6B0A", "key": "member_line_settings", "group": "system", "church": "M+", "owner": true, "symbol": "chat", "configurableHome": false, "searchTerms": ["LINE", "\u8A0A\u606F", "\u50B3\u9001", "\u6B0A\u9650"], "settingsId": "member-line-settings", "settingsGroup": "people" },
-  "potluck": { "file": "potluck-admin.html", "title": "\u4E92\u52D5\u6599\u7406\u52DF\u96C6", "description": "\u6D3B\u52D5\u8A2D\u5B9A\u3001\u6599\u7406\u540D\u55AE\u8207\u611F\u6069\u9910\u684C\u7D71\u8A08", "key": "potluck", "group": "events", "church": "M+", "owner": true, "symbol": "heart", "configurableHome": false, "searchTerms": ["\u611F\u6069\u7BC0", "\u6599\u7406", "\u6D3B\u52D5\u7BA1\u7406"] },
-  "finance_permission_settings": { "file": "admin-accounts.html?church=M%2B", "title": "\u540C\u5DE5\u6B0A\u9650\u8A2D\u5B9A", "description": "\u7D71\u4E00\u52FE\u9078\u6559\u6703\u529F\u80FD\u3001\u64CD\u4F5C\u8207\u8CA1\u52D9\u6B0A\u9650", "key": "finance_permission_settings", "group": "finance", "church": "M+", "owner": true, "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["\u6388\u6B0A", "\u540C\u5DE5\u6B0A\u9650"] },
-  "finance_accounting_reports": { "file": "finance-permissions.html#reports", "title": "\u6703\u8A08\u5831\u8868", "description": "\u67E5\u95B1\u8207\u532F\u51FA\u5DF2\u6838\u51C6\u8CA1\u52D9\u8CC7\u6599", "key": "finance_accounting_reports", "group": "finance", "church": "M+", "accountingReportAccess": true, "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["\u6703\u8A08", "\u5831\u8868", "\u532F\u51FA"] },
-  "school_staff_scheduling": { "file": "https://school.mchurch.online/?tab=schedules", "title": "\u73ED\u8868\u5B89\u6392", "description": "\u5B89\u6392\u8001\u5E2B\u8207\u5DE5\u8B80\u751F\u73ED\u8868\uFF0C\u50C5\u9650\u923A\u5EAD\u8207\u6069\u8339\u64CD\u4F5C", "key": "school_staff_scheduling", "group": "finance", "church": "M+", "symbol": "mplus-calendar", "configurableHome": false, "scheduleAccess": true, "searchTerms": ["\u6392\u73ED", "\u8001\u5E2B\u73ED\u8868", "\u5DE5\u8B80\u751F\u73ED\u8868"] },
-  "school_payroll": { "file": "school-payroll.html?month=current", "title": "\u8AB2\u8F14\u85AA\u8CC7\u7D50\u7B97", "description": "\u6642\u85AA\u8A2D\u5B9A\u3001\u6708\u5E95\u7D50\u7B97\u3001\u7C3D\u5230\u8868\u8207\u9010\u7D1A\u5BE9\u6838", "key": "school_payroll", "group": "finance", "church": "M+", "symbol": "mplus-box", "configurableHome": false, "payrollAccess": true, "searchTerms": ["\u8001\u5E2B\u85AA\u8CC7", "\u5DE5\u8B80\u751F\u85AA\u6C34", "\u6BCF\u6708\u7C3D\u5230\u8868", "\u7D50\u7B97\u5BE9\u6838"] },
+  "church_giving_preview": { "file": "church-giving.html", "title": "教會奉獻頁面預覽", "description": "單次與定期定額介面預覽，尚未開放收款", "key": "church_giving_preview", "church": "M+", "group": "finance", "symbol": "heart", "owner": true, "configurableHome": false, "searchTerms": ["奉獻", "定期定額", "金流預覽"] },
+  "association_donation_preview": { "file": "association-donate.html", "title": "協會捐款頁面預覽", "description": "協會專用捐款介面預覽，尚未開放收款", "key": "association_donation_preview", "church": "M+", "group": "finance", "symbol": "heart", "owner": true, "configurableHome": false, "searchTerms": ["協會", "捐款", "定期定額"] },
+  "admin_workbench": { "file": "admin-workbench.html", "title": "行政待辦", "description": "待我處理、我送出的、核准待完成與異常追蹤", "key": "admin_workbench", "church": "M+", "group": "finance", "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["行政", "待辦", "逾期", "結案"] },
+  "member_line_history": { "file": "member-line-history.html", "title": "LINE 訊息發送紀錄", "description": "查詢發送人、收件人、全文、時間與受理狀態", "key": "member_line_history", "group": "system", "church": "M+", "owner": true, "symbol": "chat", "configurableHome": false, "searchTerms": ["LINE", "紀錄", "誰發的", "訊息"], "settingsId": "member-line-history", "settingsGroup": "people" },
+  "member_line_settings": { "file": "member-line-settings.html", "title": "會友 LINE 傳送權限", "description": "開關個別同工的會友私人訊息傳送權", "key": "member_line_settings", "group": "system", "church": "M+", "owner": true, "symbol": "chat", "configurableHome": false, "searchTerms": ["LINE", "訊息", "傳送", "權限"], "settingsId": "member-line-settings", "settingsGroup": "people" },
+  "potluck": { "file": "potluck-admin.html", "title": "互動料理募集", "description": "活動設定、料理名單與感恩餐桌統計", "key": "potluck", "group": "events", "church": "M+", "owner": true, "symbol": "heart", "configurableHome": false, "searchTerms": ["感恩節", "料理", "活動管理"] },
+  "finance_permission_settings": { "file": "admin-accounts.html?church=M%2B", "title": "同工權限設定", "description": "統一勾選教會功能、操作與財務權限", "key": "finance_permission_settings", "group": "finance", "church": "M+", "owner": true, "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["授權", "同工權限"] },
+  "finance_accounting_reports": { "file": "finance-permissions.html#reports", "title": "會計報表", "description": "查閱與匯出已核准財務資料", "key": "finance_accounting_reports", "group": "finance", "church": "M+", "accountingReportAccess": true, "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["會計", "報表", "匯出"] },
+  "school_staff_scheduling": { "file": "https://school.mchurch.online/?tab=schedules", "title": "班表安排", "description": "安排老師與工讀生班表，僅限鈺庭與恩茹操作", "key": "school_staff_scheduling", "group": "finance", "church": "M+", "symbol": "mplus-calendar", "configurableHome": false, "scheduleAccess": true, "searchTerms": ["排班", "老師班表", "工讀生班表"] },
+  "school_payroll": { "file": "school-payroll.html?month=current", "title": "課輔薪資結算", "description": "時薪設定、月底結算、簽到表與逐級審核", "key": "school_payroll", "group": "finance", "church": "M+", "symbol": "mplus-box", "configurableHome": false, "payrollAccess": true, "searchTerms": ["老師薪資", "工讀生薪水", "每月簽到表", "結算審核"] },
   "testimony_review": {
     "permission": "website_weekly",
     "file": "testimony-admin.html",
     "church": "M+",
-    "icon": "\u2601",
-    "title": "\u96F2\u5F69\u898B\u8B49",
-    "description": "\u6587\u5B57\u3001\u5F71\u7247\u8207\u7167\u7247\u6295\u7A3F\u5BE9\u6838",
+    "icon": "☁",
+    "title": "雲彩見證",
+    "description": "文字、影片與照片投稿審核",
     "key": "testimony_review",
     "group": "media",
     "symbol": "book",
     "configurableHome": false,
-    "searchTerms": ["\u898B\u8B49", "\u6295\u7A3F", "\u5206\u4EAB", "\u5BE9\u6838"],
+    "searchTerms": ["見證", "投稿", "分享", "審核"],
     "settingsId": "testimony-review",
     "settingsGroup": "content"
   },
   "review_workflows": {
     "permission": "notification_settings",
     "file": "review-workflow-settings.html",
-    "icon": "\u2705",
-    "title": "\u5BE9\u6838\u6D41\u7A0B",
-    "description": "\u521D\u5BE9\u3001\u8907\u5BE9\u8207\u901A\u77E5\u8A2D\u5B9A",
+    "icon": "✅",
+    "title": "審核流程",
+    "description": "初審、複審與通知設定",
     "key": "review_workflows",
     "group": "system",
     "symbol": "check",
     "configurableHome": false,
     "searchTerms": [
-      "\u521D\u5BE9",
-      "\u8907\u5BE9",
-      "\u5BE9\u6838\u4EBA"
+      "初審",
+      "複審",
+      "審核人"
     ],
     "settingsId": "review-workflows",
     "settingsGroup": "review"
@@ -1401,138 +1401,138 @@ var FUNCTION_CATALOG2 = freezeTree2({
   "members": {
     "permission": "members",
     "file": "members.html",
-    "icon": "\u{1F465}",
-    "title": "\u6703\u53CB",
-    "description": "\u6703\u53CB\u8207\u65B0\u670B\u53CB\u8CC7\u6599",
+    "icon": "👥",
+    "title": "會友",
+    "description": "會友與新朋友資料",
     "key": "members",
     "group": "pastoral",
     "symbol": "people",
     "configurableHome": true,
     "searchTerms": [
-      "\u6703\u53CB\u540D\u518A"
+      "會友名冊"
     ]
   },
   "newcomer_care": {
     "permission": "newcomer_care",
     "file": "newcomer-care.html",
-    "icon": "\u{1F331}",
-    "title": "\u65B0\u670B\u53CB",
-    "description": "\u806F\u7D61\u3001\u8FFD\u8E64\u8207\u5F8C\u7E8C\u95DC\u61F7",
+    "icon": "🌱",
+    "title": "新朋友",
+    "description": "聯絡、追蹤與後續關懷",
     "key": "newcomer_care",
     "group": "pastoral",
     "symbol": "sprout",
     "configurableHome": true,
     "searchTerms": [
-      "\u65B0\u670B\u53CB\u95DC\u61F7"
+      "新朋友關懷"
     ]
   },
-  "church_albums": { "file": "church-albums.html", "title": "\u76F8\u7C3F", "description": "\u6559\u6703\u8207\u8AB2\u8F14\u7167\u7247\u3001\u8CC7\u6599\u593E\u53CA\u6A94\u6848\u4E0A\u50B3", "key": "church_albums", "permission": "church_albums", "group": "pastoral", "church": "M+", "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["\u6559\u6703\u76F8\u7C3F", "\u8AB2\u8F14\u76F8\u7C3F", "\u7167\u7247", "\u4E0A\u50B3"] },
+  "church_albums": { "file": "church-albums.html", "title": "相簿", "description": "教會與課輔照片、資料夾及檔案上傳", "key": "church_albums", "permission": "church_albums", "group": "pastoral", "church": "M+", "symbol": "mplus-box", "configurableHome": false, "searchTerms": ["教會相簿", "課輔相簿", "照片", "上傳"] },
   "pastoral_workspace": {
     "file": "pastoral/workspace.html",
-    "icon": "\u{1F91D}",
-    "title": "\u540C\u5DE5\u5DE5\u4F5C\u5340",
-    "description": "\u5DE5\u4F5C\u3001\u884C\u7A0B\u8207\u540C\u5DE5\u5DE5\u5177",
+    "icon": "🤝",
+    "title": "同工工作區",
+    "description": "工作、行程與同工工具",
     "key": "pastoral_workspace",
     "group": "pastoral",
     "symbol": "people",
     "configurableHome": true,
     "searchTerms": [
-      "\u540C\u5DE5\u5354\u4F5C"
+      "同工協作"
     ]
   },
   "pastoral_workflow_survey": {
     "file": "pastoral/workflow-survey.html",
-    "icon": "\u{1F4DD}",
-    "title": "\u540C\u5DE5\u5DE5\u4F5C\u6D41\u7A0B\u8ABF\u67E5",
-    "description": "\u8490\u96C6\u4F8B\u884C\u5DE5\u4F5C\u3001\u5361\u9EDE\u8207\u63D0\u9192\u504F\u597D",
+    "icon": "📝",
+    "title": "同工工作流程調查",
+    "description": "蒐集例行工作、卡點與提醒偏好",
     "key": "pastoral_workflow_survey",
     "group": "pastoral",
     "symbol": "check",
     "configurableHome": false,
-    "searchTerms": ["\u540C\u5DE5\u554F\u5377", "\u5DE5\u4F5C\u6D41\u7A0B", "\u6BCF\u9031\u5DE5\u4F5C"]
+    "searchTerms": ["同工問卷", "工作流程", "每週工作"]
   },
   "private_prayers": {
     "permission": "private_prayers",
     "file": "prayers.html",
-    "icon": "\u{1F64F}",
-    "title": "\u4EE3\u79B1\u8207\u95DC\u61F7",
-    "description": "\u4EE3\u79B1\u4E8B\u9805\u8207\u5F8C\u7E8C\u95DC\u5FC3",
+    "icon": "🙏",
+    "title": "代禱與關懷",
+    "description": "代禱事項與後續關心",
     "key": "private_prayers",
     "group": "pastoral",
     "symbol": "heart",
     "configurableHome": true,
     "searchTerms": [
-      "\u4EE3\u79B1\u95DC\u61F7"
+      "代禱關懷"
     ]
   },
   "pastoral_chats": {
     "permission": "pastoral_chats",
     "file": "pastoral-inbox.html",
-    "icon": "\u{1F4AC}",
-    "title": "\u95DC\u61F7\u8A0A\u606F",
-    "description": "\u4E00\u5C0D\u4E00\u8A0A\u606F\u8207\u8DDF\u9032",
+    "icon": "💬",
+    "title": "關懷訊息",
+    "description": "一對一訊息與跟進",
     "key": "pastoral_chats",
     "group": "pastoral",
     "symbol": "chat",
     "configurableHome": true,
     "searchTerms": [
-      "\u7267\u990A\u8A0A\u606F"
+      "牧養訊息"
     ]
   },
   "attendance": {
     "permission": "attendance",
     "file": "attendance.html",
-    "icon": "\u2705",
-    "title": "\u51FA\u5E2D\u767B\u8A18",
-    "description": "\u805A\u6703\u51FA\u5E2D\u8207\u7D71\u8A08",
+    "icon": "✅",
+    "title": "出席登記",
+    "description": "聚會出席與統計",
     "key": "attendance",
     "group": "service",
     "symbol": "check",
     "configurableHome": true,
     "searchTerms": [
-      "\u805A\u6703\u9EDE\u540D"
+      "聚會點名"
     ]
   },
   "groups": {
     "permission": "groups",
     "file": "groups.html",
-    "icon": "\u{1FAF6}",
-    "title": "\u5C0F\u7D44\u8207\u5C0F\u5BB6",
-    "description": "\u5206\u7D44\u3001\u7D44\u9577\u8207\u6210\u54E1",
+    "icon": "🫶",
+    "title": "小組與小家",
+    "description": "分組、組長與成員",
     "key": "groups",
     "group": "pastoral",
     "symbol": "people",
     "configurableHome": true,
     "searchTerms": [
-      "\u5C0F\u7D44\uFF0F\u5C0F\u5BB6"
+      "小組／小家"
     ]
   },
   "schedules": {
     "permission": "schedules",
     "file": "schedules.html",
-    "icon": "\u{1F4C5}",
-    "title": "\u670D\u4E8B\u5B89\u6392",
-    "description": "\u4E3B\u65E5\u8207\u805A\u6703\u670D\u4E8B",
+    "icon": "📅",
+    "title": "服事安排",
+    "description": "主日與聚會服事",
     "key": "schedules",
     "group": "service",
     "symbol": "calendar",
     "configurableHome": true,
     "searchTerms": [
-      "\u670D\u4E8B\u6392\u73ED"
+      "服事排班"
     ]
   },
   "spaces": {
     "permission": "spaces",
     "file": "spaces.html",
-    "icon": "\u{1F4CD}",
-    "title": "\u5834\u5730\u8207\u8A2D\u5099",
-    "description": "\u7A7A\u9593\u3001\u8A2D\u5099\u8207\u9810\u7D04",
+    "icon": "📍",
+    "title": "場地與設備",
+    "description": "空間、設備與預約",
     "key": "spaces",
     "group": "service",
     "symbol": "pin",
     "configurableHome": true,
     "searchTerms": [
-      "\u5834\u5730\u9810\u7D04"
+      "場地預約"
     ],
     "settingsId": "space-settings",
     "settingsGroup": "church"
@@ -1540,15 +1540,15 @@ var FUNCTION_CATALOG2 = freezeTree2({
   "inventory": {
     "permission": "inventory",
     "file": "inventory.html",
-    "icon": "\u{1F4E6}",
-    "title": "\u7269\u54C1\u8207\u501F\u7528",
-    "description": "\u4F4D\u7F6E\u3001\u6578\u91CF\u8207\u501F\u9084",
+    "icon": "📦",
+    "title": "物品與借用",
+    "description": "位置、數量與借還",
     "key": "inventory",
     "group": "service",
     "symbol": "box",
     "configurableHome": true,
     "searchTerms": [
-      "\u7269\u54C1\u6E05\u518A"
+      "物品清冊"
     ],
     "settingsId": "inventory-settings",
     "settingsGroup": "church"
@@ -1557,63 +1557,63 @@ var FUNCTION_CATALOG2 = freezeTree2({
     "church": "M+",
     "permission": "heat_camp",
     "file": "heat-camp-admin.html",
-    "icon": "\u{1F3C0}",
-    "title": "\u71B1\u706B\u7C43\u7403\u71DF",
-    "description": "\u5831\u540D\u3001\u7E73\u8CBB\u3001\u540D\u55AE\u8207\u5FD7\u5DE5",
+    "icon": "🏀",
+    "title": "熱火籃球營",
+    "description": "報名、繳費、名單與志工",
     "key": "heat_camp",
     "group": "basketball",
     "symbol": "target",
     "configurableHome": true,
-    "searchTerms": ["\u5FD7\u5DE5\u5831\u540D", "\u71B1\u706B\u7C43\u7403\u71DF\u5FD7\u5DE5"]
+    "searchTerms": ["志工報名", "熱火籃球營志工"]
   },
   "website_weekly": {
     "permission": "website_weekly",
     "file": "website-maintenance.html",
-    "icon": "\u{1F310}",
-    "title": "\u4E3B\u65E5\u9031\u5831",
-    "description": "\u9031\u5831\u3001\u9810\u544A\u5716\u8207\u670D\u4E8B\u8868",
+    "icon": "🌐",
+    "title": "主日週報",
+    "description": "週報、預告圖與服事表",
     "key": "website_weekly",
     "group": "media",
     "symbol": "globe",
     "configurableHome": true,
     "searchTerms": [
-      "\u6559\u6703\u7DB2\u7AD9\u7DAD\u8B77",
-      "\u5B98\u7DB2",
-      "\u7DB2\u7AD9",
-      "\u9810\u544A\u5716",
-      "\u4E3B\u65E5"
+      "教會網站維護",
+      "官網",
+      "網站",
+      "預告圖",
+      "主日"
     ],
     "settingsId": "website-maintenance",
     "settingsGroup": "content"
   },
-  "association_stories": { "church": "M+", "permission": "association_content", "file": "association-stories.html", "title": "\u5354\u6703\u7167\u7247\u8AAA\u6545\u4E8B", "description": "\u7167\u7247\u8207\u6545\u4E8B\u7522\u751F FB \u6587\u6848\uFF0C\u9001\u7267\u5E2B\uFF0F\u5E2B\u6BCD\u5BE9\u6838\u5F8C\u767C\u5E03\uFF0C\u53EF\u540C\u6B65\u5354\u6703\u6700\u65B0\u6D88\u606F", "key": "association_stories", "group": "media", "symbol": "globe", "configurableHome": false, "searchTerms": ["\u5354\u6703", "FB", "Facebook", "\u7167\u7247\u8AAA\u6545\u4E8B", "\u5E2B\u6BCD\u5BE9\u6838"], "settingsId": "association-stories", "settingsGroup": "content" },
+  "association_stories": { "church": "M+", "permission": "association_content", "file": "association-stories.html", "title": "協會照片說故事", "description": "照片與故事產生 FB 文案，送牧師／師母審核後發布，可同步協會最新消息", "key": "association_stories", "group": "media", "symbol": "globe", "configurableHome": false, "searchTerms": ["協會", "FB", "Facebook", "照片說故事", "師母審核"], "settingsId": "association-stories", "settingsGroup": "content" },
   "association_news": {
     "church": "M+",
     "permission": "association_content",
     "file": "association-news.html",
-    "icon": "\u{1F4F0}",
-    "title": "\u5354\u6703\u7DB2\u7AD9",
-    "description": "\u6700\u65B0\u6D88\u606F\u4E0A\u7A3F\uFF0C\u767C\u4F48\u5F8C\u76F4\u63A5\u986F\u793A\u65BC\u5354\u6703\u9996\u9801",
+    "icon": "📰",
+    "title": "協會網站",
+    "description": "最新消息上稿，發佈後直接顯示於協會首頁",
     "key": "association_news",
     "group": "media",
     "symbol": "globe",
     "configurableHome": true,
-    "searchTerms": ["\u5354\u6703", "\u6700\u65B0\u6D88\u606F", "tcsc.org.tw", "\u4E0A\u7A3F"],
+    "searchTerms": ["協會", "最新消息", "tcsc.org.tw", "上稿"],
     "settingsId": "association-news",
     "settingsGroup": "content"
   },
   "website_group_resources": {
     "permission": "website_group_resources",
     "file": "group-resources-management.html",
-    "icon": "\u{1F4DA}",
-    "title": "\u5C0F\u7D44\u6559\u6750",
-    "description": "\u6BCF\u9031\u6559\u6750\u8207\u805A\u6703\u5167\u5BB9",
+    "icon": "📚",
+    "title": "小組教材",
+    "description": "每週教材與聚會內容",
     "key": "website_group_resources",
     "group": "media",
     "symbol": "book",
     "configurableHome": true,
     "searchTerms": [
-      "\u5C0F\u7D44\u805A\u6703\u8CC7\u6E90"
+      "小組聚會資源"
     ],
     "settingsId": "group-resources",
     "settingsGroup": "content"
@@ -1621,18 +1621,18 @@ var FUNCTION_CATALOG2 = freezeTree2({
   "tree_reading_admin": {
     "permission": "tree_reading_admin",
     "file": "daily-devotional-admin.html",
-    "icon": "\u{1F333}",
-    "title": "\u751F\u547D\u6A39",
-    "description": "\u6BCF\u65E5\u9748\u4FEE\u8207\u8B80\u7D93\u9032\u5EA6",
+    "icon": "🌳",
+    "title": "生命樹",
+    "description": "每日靈修與讀經進度",
     "key": "tree_reading_admin",
     "group": "media",
     "symbol": "tree",
     "configurableHome": true,
     "searchTerms": [
-      "\u6BCF\u65E5\u9748\u4FEE\u751F\u547D\u6A39",
-      "\u8B80\u7D93\u751F\u547D\u6A39",
-      "\u6BCF\u65E5\u9748\u4FEE",
-      "\u8B80\u7D93"
+      "每日靈修生命樹",
+      "讀經生命樹",
+      "每日靈修",
+      "讀經"
     ],
     "settingsId": "daily-devotional",
     "settingsGroup": "content"
@@ -1641,68 +1641,68 @@ var FUNCTION_CATALOG2 = freezeTree2({
     "permission": "tree_reading_admin",
     "church": "M+",
     "file": "bibletree-admin.html",
-    "icon": "\u{1F333}",
-    "title": "\u8B80\u7D93\u6A39\u7BA1\u7406",
-    "description": "\u73A9\u5BB6\u9032\u5EA6\u8207365\u65E5\u9748\u4FEE\u5167\u5BB9",
+    "icon": "🌳",
+    "title": "讀經樹管理",
+    "description": "玩家進度與365日靈修內容",
     "key": "bibletree_admin",
     "group": "events",
     "symbol": "tree",
     "configurableHome": false,
-    "searchTerms": ["\u8B80\u7D93\u6A39", "RPG", "\u904A\u6232\u7BA1\u7406", "\u73A9\u5BB6", "365", "\u9748\u4FEE"]
+    "searchTerms": ["讀經樹", "RPG", "遊戲管理", "玩家", "365", "靈修"]
   },
   "bibletree_devotional": {
     "permission": "tree_reading_admin",
     "church": "M+",
     "file": "bibletree-devotional-admin.html",
-    "icon": "\u{1F333}",
-    "title": "\u8B80\u7D93\u6A39365\u65E5\u9748\u4FEE",
-    "description": "\u9010\u65E5\u6AA2\u8996\u3001\u4FEE\u8A02\u8207\u767C\u5E03\u9748\u4FEE\u5167\u5BB9",
+    "icon": "🌳",
+    "title": "讀經樹365日靈修",
+    "description": "逐日檢視、修訂與發布靈修內容",
     "key": "bibletree_devotional",
     "group": "events",
     "symbol": "tree",
     "configurableHome": false,
-    "searchTerms": ["\u8B80\u7D93\u6A39", "365", "\u5168\u5E74\u9748\u4FEE", "\u7D93\u6587", "\u5167\u5BB9\u5BE9\u67E5"]
+    "searchTerms": ["讀經樹", "365", "全年靈修", "經文", "內容審查"]
   },
   "bibletree_players": {
     "permission": "tree_reading_admin",
     "church": "M+",
     "file": "bibletree-players.html",
-    "icon": "\u{1F465}",
-    "title": "\u8B80\u7D93\u6A39\u73A9\u5BB6\u5217\u8868",
-    "description": "\u73A9\u5BB6\u8CC7\u6599\u3001\u8B80\u7D93\u9032\u5EA6\u8207\u516C\u6E2C\u53C3\u8207",
+    "icon": "👥",
+    "title": "讀經樹玩家列表",
+    "description": "玩家資料、讀經進度與公測參與",
     "key": "bibletree_players",
     "group": "events",
     "symbol": "people",
     "configurableHome": false,
-    "searchTerms": ["\u73A9\u5BB6", "\u904A\u6232\u5E33\u865F", "\u8B80\u7D93\u6A39", "\u516C\u6E2C", "\u56DE\u994B"]
+    "searchTerms": ["玩家", "遊戲帳號", "讀經樹", "公測", "回饋"]
   },
   "life_tree_festivals": {
     "permission": "tree_reading_admin",
     "church": "M+",
     "file": "life-tree-festivals.html",
-    "icon": "\u{1F333}",
-    "title": "\u751F\u547D\u6A39\u7BC0\u6176\u9810\u89BD",
-    "description": "\u4E5D\u7A2E\u7BC0\u6176\u5834\u666F\u8207\u6BCF\u65E5\u4E92\u52D5\u8A66\u73A9",
+    "icon": "🌳",
+    "title": "生命樹節慶預覽",
+    "description": "九種節慶場景與每日互動試玩",
     "key": "life_tree_festivals",
     "group": "media",
     "symbol": "tree",
     "configurableHome": false,
-    "searchTerms": ["\u7BC0\u6176", "\u751F\u547D\u6A39", "\u8056\u8A95\u71C8", "\u611F\u6069\u7BC0", "\u5149\u660E\u52C7\u58EB"],
+    "searchTerms": ["節慶", "生命樹", "聖誕燈", "感恩節", "光明勇士"],
     "settingsId": "life-tree-festivals",
     "settingsGroup": "content"
   },
   "binding_review": {
     "permission": "binding_review",
     "file": "binding-review.html",
-    "icon": "\u{1F517}",
-    "title": "LINE \u8EAB\u5206\u78BA\u8A8D",
-    "description": "\u78BA\u8A8D\u6703\u53CB\u8207 LINE \u5E33\u865F",
+    "icon": "🔗",
+    "title": "LINE 身分確認",
+    "description": "確認會友與 LINE 帳號",
     "key": "binding_review",
     "group": "system",
     "symbol": "link",
     "configurableHome": true,
     "searchTerms": [
-      "LINE \u7D81\u5B9A\u5BE9\u6838"
+      "LINE 綁定審核"
     ],
     "settingsId": "binding-review",
     "settingsGroup": "people"
@@ -1710,25 +1710,25 @@ var FUNCTION_CATALOG2 = freezeTree2({
   "notification_settings": {
     "permission": "notification_settings",
     "file": "notification-settings.html",
-    "icon": "\u{1F514}",
-    "title": "\u901A\u77E5\u8A2D\u5B9A",
-    "description": "\u624B\u6A5F\u8207 LINE \u901A\u77E5",
+    "icon": "🔔",
+    "title": "通知設定",
+    "description": "手機與 LINE 通知",
     "key": "notification_settings",
     "group": "system",
     "symbol": "bell",
     "configurableHome": true,
     "searchTerms": [
-      "LINE \u901A\u77E5\u8A2D\u5B9A",
-      "\u901A\u77E5\u7BA1\u9053\u8A2D\u5B9A"
+      "LINE 通知設定",
+      "通知管道設定"
     ],
     "settingsId": "notification-settings",
     "settingsGroup": "review"
   },
   "school": {
     "file": "https://school.mchurch.online/",
-    "icon": "\u{1F4DA}",
-    "title": "\u8AB2\u8F14",
-    "description": "\u5B78\u751F\u3001\u51FA\u5E2D\u8207\u8F14\u5C0E",
+    "icon": "📚",
+    "title": "課輔",
+    "description": "學生、出席與輔導",
     "key": "school",
     "group": "school",
     "symbol": "book",
@@ -1737,9 +1737,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "school_checkin": {
     "file": "https://school.mchurch.online/?tab=checkin",
-    "icon": "\u{1F4F7}",
-    "title": "\u8AB2\u8F14\u6253\u5361",
-    "description": "\u5B78\u751F\u8207\u540C\u5DE5\u6253\u5361",
+    "icon": "📷",
+    "title": "課輔打卡",
+    "description": "學生與同工打卡",
     "key": "school_checkin",
     "group": "school",
     "symbol": "camera",
@@ -1748,9 +1748,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "school_schedules": {
     "file": "https://school.mchurch.online/?tab=schedules",
-    "icon": "\u{1F5D3}\uFE0F",
-    "title": "\u8AB2\u8F14\u5B89\u6392",
-    "description": "\u8001\u5E2B\u8207\u540C\u5DE5\u5B89\u6392",
+    "icon": "🗓️",
+    "title": "課輔安排",
+    "description": "老師與同工安排",
     "key": "school_schedules",
     "group": "school",
     "symbol": "calendar",
@@ -1759,9 +1759,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "school_rollcall": {
     "file": "https://school.mchurch.online/?tab=rollcall",
-    "icon": "\u2705",
-    "title": "\u8AB2\u8F14\u51FA\u5E2D",
-    "description": "\u6BCF\u65E5\u8AB2\u5802\u51FA\u5E2D",
+    "icon": "✅",
+    "title": "課輔出席",
+    "description": "每日課堂出席",
     "key": "school_rollcall",
     "group": "school",
     "symbol": "check",
@@ -1770,9 +1770,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "school_students": {
     "file": "https://school.mchurch.online/?tab=students",
-    "icon": "\u{1F9D1}\u200D\u{1F393}",
-    "title": "\u5B78\u751F",
-    "description": "\u5B78\u751F\u8207\u540C\u5DE5\u8CC7\u6599",
+    "icon": "🧑‍🎓",
+    "title": "學生",
+    "description": "學生與同工資料",
     "key": "school_students",
     "group": "school",
     "symbol": "student",
@@ -1781,9 +1781,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "school_counseling": {
     "file": "https://school.mchurch.online/?tab=counseling",
-    "icon": "\u{1F49B}",
-    "title": "\u500B\u5225\u8F14\u5C0E",
-    "description": "\u8F14\u5C0E\u7D00\u9304\u8207\u8DDF\u9032",
+    "icon": "💛",
+    "title": "個別輔導",
+    "description": "輔導紀錄與跟進",
     "key": "school_counseling",
     "group": "school",
     "symbol": "heart",
@@ -1792,9 +1792,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "school_reports": {
     "file": "https://school.mchurch.online/?tab=print-center",
-    "icon": "\u{1F5A8}\uFE0F",
-    "title": "\u8AB2\u8F14\u5831\u8868",
-    "description": "\u51FA\u5E2D\u8868\u8207\u5B78\u751F\u8CC7\u6599",
+    "icon": "🖨️",
+    "title": "課輔報表",
+    "description": "出席表與學生資料",
     "key": "school_reports",
     "group": "school",
     "symbol": "printer",
@@ -1803,9 +1803,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "basketball": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/",
-    "icon": "\u{1F3C0}",
-    "title": "\u7C43\u7403\u968A",
-    "description": "\u7403\u54E1\u8207\u7403\u968A",
+    "icon": "🏀",
+    "title": "籃球隊",
+    "description": "球員與球隊",
     "key": "basketball",
     "group": "basketball",
     "symbol": "target",
@@ -1814,9 +1814,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "basketball_gamecenter": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/?tab=gamecenter",
-    "icon": "\u{1F3C6}",
-    "title": "\u6BD4\u8CFD\u7D00\u9304",
-    "description": "\u6BD4\u8CFD\u3001\u5F97\u5206\u8207\u72AF\u898F",
+    "icon": "🏆",
+    "title": "比賽紀錄",
+    "description": "比賽、得分與犯規",
     "key": "basketball_gamecenter",
     "group": "basketball",
     "symbol": "trophy",
@@ -1825,9 +1825,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "basketball_tactics": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/?tab=tactics",
-    "icon": "\u{1F4CB}",
-    "title": "\u7C43\u7403\u6230\u8853",
-    "description": "\u6230\u8853\u677F\u8207\u8A13\u7DF4\u5167\u5BB9",
+    "icon": "📋",
+    "title": "籃球戰術",
+    "description": "戰術板與訓練內容",
     "key": "basketball_tactics",
     "group": "basketball",
     "symbol": "clipboard",
@@ -1836,9 +1836,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "basketball_assignments": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/?tab=assignments",
-    "icon": "\u{1F3AF}",
-    "title": "\u7403\u54E1\u4F5C\u696D",
-    "description": "\u8A13\u7DF4\u4EFB\u52D9\u8207\u6210\u679C",
+    "icon": "🎯",
+    "title": "球員作業",
+    "description": "訓練任務與成果",
     "key": "basketball_assignments",
     "group": "basketball",
     "symbol": "target",
@@ -1847,9 +1847,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "basketball_schedule": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/?tab=schedule",
-    "icon": "\u{1F4C6}",
-    "title": "\u7403\u968A\u884C\u7A0B",
-    "description": "\u7DF4\u7403\u8207\u6BD4\u8CFD",
+    "icon": "📆",
+    "title": "球隊行程",
+    "description": "練球與比賽",
     "key": "basketball_schedule",
     "group": "basketball",
     "symbol": "calendar",
@@ -1858,9 +1858,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "basketball_daily": {
     "file": "https://mschurch-app.github.io/m-plus-basketball/?tab=dailystatus",
-    "icon": "\u{1F4AA}",
-    "title": "\u6BCF\u65E5\u72C0\u614B",
-    "description": "\u8EAB\u9AD4\u8207\u8A13\u7DF4\u72C0\u614B",
+    "icon": "💪",
+    "title": "每日狀態",
+    "description": "身體與訓練狀態",
     "key": "basketball_daily",
     "group": "basketball",
     "symbol": "bolt",
@@ -1869,42 +1869,42 @@ var FUNCTION_CATALOG2 = freezeTree2({
   },
   "system_monitor": {
     "file": "system-monitor.html",
-    "icon": "\u{1F4CA}",
-    "title": "\u7CFB\u7D71\u72C0\u6CC1",
-    "description": "\u7DB2\u7AD9\u3001\u670D\u52D9\u8207\u6392\u7A0B",
+    "icon": "📊",
+    "title": "系統狀況",
+    "description": "網站、服務與排程",
     "key": "system_monitor",
     "group": "system",
     "symbol": "chart",
     "configurableHome": true,
     "searchTerms": [
-      "\u7CFB\u7D71\u76E3\u63A7\u4E2D\u5FC3"
+      "系統監控中心"
     ]
   },
   "church_settings": {
     "file": "church-settings.html",
-    "icon": "\u2699\uFE0F",
-    "title": "\u6559\u6703\u8A2D\u5B9A",
-    "description": "\u5802\u6703\u3001\u5E33\u865F\u8207\u529F\u80FD",
+    "icon": "⚙️",
+    "title": "教會設定",
+    "description": "堂會、帳號與功能",
     "key": "church_settings",
     "group": "system",
     "symbol": "gear",
     "configurableHome": true,
     "searchTerms": [
-      "\u7CFB\u7D71\u8A2D\u5B9A"
+      "系統設定"
     ]
   },
   "pastoral_content": {
     "permission": "pastoral",
     "file": "pastoral-content.html",
-    "icon": "\u2728",
-    "title": "\u7267\u990A\u5716\u5361",
-    "description": "\u795D\u79B1\u3001\u5C0F\u5361\u8207\u65B0\u670B\u53CB\u65C5\u7A0B",
+    "icon": "✨",
+    "title": "牧養圖卡",
+    "description": "祝禱、小卡與新朋友旅程",
     "key": "pastoral_content",
     "group": "media",
     "symbol": "sparkle",
     "configurableHome": false,
     "searchTerms": [
-      "\u6559\u7267\u5167\u5BB9"
+      "教牧內容"
     ],
     "settingsId": "pastoral-content",
     "settingsGroup": "content"
@@ -1912,9 +1912,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   "todays_message": {
     "permission": "pastoral",
     "file": "todays-message-settings.html",
-    "icon": "\u2728",
-    "title": "\u7D66\u4ECA\u5929\u7684\u4F60",
-    "description": "\u6BCF\u65E5\u7D93\u6587\u8207\u795D\u798F\u5167\u5BB9",
+    "icon": "✨",
+    "title": "給今天的你",
+    "description": "每日經文與祝福內容",
     "key": "todays_message",
     "group": "media",
     "symbol": "sparkle",
@@ -1926,9 +1926,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   "love_share": {
     "permission": "pastoral",
     "file": "love-share-settings.html",
-    "icon": "\u{1F49B}",
-    "title": "\u628A\u611B\u50B3\u51FA\u53BB",
-    "description": "\u795D\u798F\u60C5\u5883\u8207\u5206\u4EAB\u5716\u7247",
+    "icon": "💛",
+    "title": "把愛傳出去",
+    "description": "祝福情境與分享圖片",
     "key": "love_share",
     "group": "media",
     "symbol": "heart",
@@ -1940,9 +1940,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   "line_preview": {
     "permission": "pastoral",
     "file": "line-preview.html",
-    "icon": "\u{1F517}",
-    "title": "LINE \u670D\u52D9\u9810\u89BD",
-    "description": "\u6AA2\u67E5\u6703\u53CB\u670D\u52D9\u5167\u5BB9",
+    "icon": "🔗",
+    "title": "LINE 服務預覽",
+    "description": "檢查會友服務內容",
     "key": "line_preview",
     "group": "media",
     "symbol": "link",
@@ -1954,9 +1954,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   "customization": {
     "permission": "pastoral",
     "file": "customization-settings.html",
-    "icon": "\u2699\uFE0F",
-    "title": "\u540D\u7A31\u8207\u8868\u55AE",
-    "description": "\u529F\u80FD\u540D\u7A31\u3001\u9806\u5E8F\u3001\u8FCE\u65B0\u8868\u55AE\u8207\u9078\u9805",
+    "icon": "⚙️",
+    "title": "名稱與表單",
+    "description": "功能名稱、順序、迎新表單與選項",
     "key": "customization",
     "group": "system",
     "symbol": "sliders",
@@ -1968,9 +1968,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
   "admin_accounts": {
     "owner": true,
     "file": "admin-accounts.html",
-    "icon": "\u{1F465}",
-    "title": "\u540C\u5DE5\u5E33\u865F\u8207\u6B0A\u9650",
-    "description": "\u9078\u540C\u5DE5\u3001\u52FE\u9078\u529F\u80FD\u8207\u64CD\u4F5C\u6B0A\u9650",
+    "icon": "👥",
+    "title": "同工帳號與權限",
+    "description": "選同工、勾選功能與操作權限",
     "key": "admin_accounts",
     "group": "system",
     "symbol": "people",
@@ -1983,9 +1983,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
     "permission": "website_weekly",
     "action": "approve",
     "file": "authorization-settings.html",
-    "icon": "\u25B6",
-    "title": "\u670D\u52D9\u6388\u6B0A\u7BA1\u7406",
-    "description": "YouTube\u3001Instagram\u3001\u6559\u6703\u8207\u5354\u6703 FB\u3001Google \u8207 LINE \u9023\u7DDA\u6388\u6B0A",
+    "icon": "▶",
+    "title": "服務授權管理",
+    "description": "YouTube、Instagram、教會與協會 FB、Google 與 LINE 連線授權",
     "key": "media_publishing",
     "group": "media",
     "symbol": "play",
@@ -1994,8 +1994,8 @@ var FUNCTION_CATALOG2 = freezeTree2({
       "IG",
       "Instagram",
       "YouTube",
-      "\u5F71\u7247",
-      "\u793E\u7FA4"
+      "影片",
+      "社群"
     ],
     "settingsId": "media-publishing",
     "settingsGroup": "content"
@@ -2005,14 +2005,14 @@ var FUNCTION_CATALOG2 = freezeTree2({
     "action": "edit",
     "church": "M+",
     "file": "sermon-preparation.html",
-    "icon": "\u{1F4D6}",
-    "title": "\u4FE1\u606F\u9810\u5099",
-    "description": "\u7D20\u6750\u3001\u9818\u53D7\u3001\u5927\u7DB1\u8207\u8B1B\u7AE0",
+    "icon": "📖",
+    "title": "信息預備",
+    "description": "素材、領受、大綱與講章",
     "key": "sermon_preparation",
     "group": "media",
     "symbol": "book",
     "configurableHome": true,
-    "searchTerms": ["\u8B1B\u7AE0", "\u8B1B\u9053", "\u9810\u5099", "\u4FE1\u606F\u5DE5\u4F5C\u5BA4"],
+    "searchTerms": ["講章", "講道", "預備", "信息工作室"],
     "settingsId": "sermon-preparation",
     "settingsGroup": "content"
   },
@@ -2021,9 +2021,9 @@ var FUNCTION_CATALOG2 = freezeTree2({
     "action": "edit",
     "church": "M+",
     "file": "youtube-subtitle-library.html",
-    "icon": "\u{1F4DA}",
-    "title": "\u5B57\u5E55\u8A5E\u5EAB",
-    "description": "\u8FA8\u8B58\u932F\u5B57\u8207\u8B1B\u54E1\u7528\u8A9E",
+    "icon": "📚",
+    "title": "字幕詞庫",
+    "description": "辨識錯字與講員用語",
     "key": "subtitle_library",
     "group": "media",
     "symbol": "book",
@@ -2036,75 +2036,75 @@ var FUNCTION_CATALOG2 = freezeTree2({
     "church": "M+",
     "permission": "schedules",
     "file": "service-signup-admin.html",
-    "icon": "\u{1F4C5}",
-    "title": "\u670D\u4E8B\u610F\u9858\u8207\u5354\u8ABF",
-    "description": "\u6BCF\u5169\u500B\u6708\u7684\u670D\u4E8B\u610F\u9858\u3001\u5019\u88DC\u8207\u6392\u73ED\u5354\u8ABF",
+    "icon": "📅",
+    "title": "服事意願與協調",
+    "description": "每兩個月的服事意願、候補與排班協調",
     "key": "service_signups",
     "group": "service",
     "symbol": "calendar",
     "configurableHome": false,
     "searchTerms": []
   },
-  "thanksgiving_offering_admin": { "file": "thanksgiving-offering-admin.html", "title": "\u611F\u6069\u7BC0\u5949\u737B\u56DE\u5831", "description": "\u79C1\u4EBA\u5949\u737B\u56DE\u5831\u3001\u901A\u77E5\u6295\u905E\u8207\u8CA1\u52D9\u6838\u5C0D", "key": "thanksgiving_offering_admin", "group": "finance", "church": "M+", "offeringAccess": true, "symbol": "clipboard", "configurableHome": false, "searchTerms": ["\u611F\u6069\u7BC0", "\u5949\u737B\u56DE\u61C9", "\u672B\u4E94\u78BC", "\u532F\u6B3E", "\u5C0D\u5E33"] },
-  "finance_projects": { "file": "finance-projects.html", "title": "\u5C08\u6848\u8207\u4E8B\u5DE5\u8A2D\u5B9A", "description": "\u5C08\u6848\u3001\u4E8B\u5DE5\u9805\u76EE\u3001\u6536\u5165\u79D1\u76EE\u8207\u7DDA\u4E0A\u6350\u6B3E\u5C0D\u61C9", "key": "finance_projects", "group": "finance", "church": "M+", "owner": true, "symbol": "clipboard", "configurableHome": false, "settingsGroup": "church", "settingsId": "finance-projects", "searchTerms": ["\u5C08\u6848", "\u4E8B\u5DE5", "\u6536\u5165\u79D1\u76EE", "\u6350\u6B3E\u9805\u76EE"] },
+  "thanksgiving_offering_admin": { "file": "thanksgiving-offering-admin.html", "title": "感恩節奉獻回報", "description": "私人奉獻回報、通知投遞與財務核對", "key": "thanksgiving_offering_admin", "group": "finance", "church": "M+", "offeringAccess": true, "symbol": "clipboard", "configurableHome": false, "searchTerms": ["感恩節", "奉獻回應", "末五碼", "匯款", "對帳"] },
+  "finance_projects": { "file": "finance-projects.html", "title": "專案與事工設定", "description": "專案、事工項目、收入科目與線上捐款對應", "key": "finance_projects", "group": "finance", "church": "M+", "owner": true, "symbol": "clipboard", "configurableHome": false, "settingsGroup": "church", "settingsId": "finance-projects", "searchTerms": ["專案", "事工", "收入科目", "捐款項目"] },
   "finance_receipts": {
     "church": "M+",
     "receiptAccess": true,
     "file": "finance-receipts.html",
-    "title": "\u6536\u64DA\u958B\u7ACB",
-    "description": "\u91D1\u9322\u8207\u7269\u54C1\u6536\u64DA\u3001\u958B\u7ACB\u53CA\u4F5C\u5EE2\u7D00\u9304",
+    "title": "收據開立",
+    "description": "金錢與物品收據、開立及作廢紀錄",
     "key": "finance_receipts",
     "group": "finance",
     "symbol": "clipboard",
     "configurableHome": false,
-    "searchTerms": ["\u6536\u64DA", "\u6350\u6B3E\u6536\u64DA", "\u6350\u7269", "\u91D1\u9322", "\u7269\u54C1", "\u6703\u8A08"]
+    "searchTerms": ["收據", "捐款收據", "捐物", "金錢", "物品", "會計"]
   },
   "finance_expenses": {
     "church": "M+",
     "expenseAccess": true,
     "file": "finance-expenses.html",
-    "icon": "\u{1F4CB}",
-    "title": "\u652F\u51FA\u8A18\u5E33",
-    "description": "\u8CBB\u7528\u63D0\u5831\u3001\u6191\u8B49\u6838\u5C0D\u3001\u5BE9\u6838\u8207\u4ED8\u6B3E\u7D00\u9304",
+    "icon": "📋",
+    "title": "支出記帳",
+    "description": "費用提報、憑證核對、審核與付款紀錄",
     "key": "finance_expenses",
     "group": "finance",
     "symbol": "clipboard",
     "configurableHome": false,
-    "searchTerms": ["\u652F\u51FA", "\u8CBB\u7528", "\u8A18\u5E33", "\u6838\u92B7", "\u4ED8\u6B3E", "\u96F6\u7528\u91D1"]
+    "searchTerms": ["支出", "費用", "記帳", "核銷", "付款", "零用金"]
   },
   "finance_cash": {
     "church": "M+",
     "financeAccess": true,
     "file": "finance-cash.html",
-    "icon": "\u{1F4CB}",
-    "title": "\u4E3B\u65E5\u5949\u737B",
-    "description": "\u9010\u7B46\u767B\u9304\u5949\u737B\u3001\u6838\u5C0D\u8207\u5165\u5E33",
+    "icon": "📋",
+    "title": "主日奉獻",
+    "description": "逐筆登錄奉獻、核對與入帳",
     "key": "finance_cash",
     "group": "finance",
     "symbol": "clipboard",
     "configurableHome": false,
-    "searchTerms": ["\u8CA1\u52D9", "\u6703\u8A08", "\u5949\u737B", "\u9EDE\u6536", "\u73FE\u91D1"]
+    "searchTerms": ["財務", "會計", "奉獻", "點收", "現金"]
   },
   "service_quick_match": {
     "church": "M+",
     "permission": "schedules",
     "file": "service-signup-admin.html?match=1",
-    "icon": "\u26A1",
-    "title": "\u670D\u4E8B\u5FEB\u901F\u9069\u914D",
-    "description": "\u4E8B\u5DE5\u9818\u8896\u53EF\u9810\u6392\u8CA0\u8CAC\u985E\u5225\u7684\u670D\u4E8B\u4EBA\u9078",
+    "icon": "⚡",
+    "title": "服事快速適配",
+    "description": "事工領袖可預排負責類別的服事人選",
     "key": "service_quick_match",
     "group": "service",
     "symbol": "calendar",
     "configurableHome": false,
-    "searchTerms": ["\u667A\u80FD\u914D\u5C0D", "\u5FEB\u901F\u914D\u5C0D", "\u4E8B\u5DE5\u9818\u8896"]
+    "searchTerms": ["智能配對", "快速配對", "事工領袖"]
   }
 });
 var FUNCTION_GROUPS2 = freezeTree2([
-  { "key": "events", "title": "\u6D3B\u52D5", "note": "\u6D3B\u52D5\u53C3\u8207\u53CA\u904A\u6232\u73A9\u5BB6\u7BA1\u7406", "keys": ["potluck", "bibletree_admin", "bibletree_players", "bibletree_devotional"] },
+  { "key": "events", "title": "活動", "note": "活動參與及遊戲玩家管理", "keys": ["potluck", "bibletree_admin", "bibletree_players", "bibletree_devotional"] },
   {
     "key": "pastoral",
-    "title": "\u4EBA\u8207\u95DC\u61F7",
-    "note": "\u6703\u53CB\u3001\u65B0\u670B\u53CB\u3001\u5C0F\u7D44\u8207\u95DC\u61F7",
+    "title": "人與關懷",
+    "note": "會友、新朋友、小組與關懷",
     "keys": [
       "members",
       "newcomer_care",
@@ -2118,8 +2118,8 @@ var FUNCTION_GROUPS2 = freezeTree2([
   },
   {
     "key": "service",
-    "title": "\u805A\u6703\u8207\u670D\u4E8B",
-    "note": "\u51FA\u5E2D\u3001\u610F\u9858\u767B\u8A18\u3001\u6392\u73ED\u8207\u5834\u5730",
+    "title": "聚會與服事",
+    "note": "出席、意願登記、排班與場地",
     "keys": [
       "attendance",
       "schedules",
@@ -2131,14 +2131,14 @@ var FUNCTION_GROUPS2 = freezeTree2([
   },
   {
     "key": "finance",
-    "title": "\u6559\u6703\u8CA1\u52D9",
-    "note": "M\uFF0B\u5949\u737B\u6536\u5165\u3001\u652F\u51FA\u8A18\u5E33\u8207\u6838\u5C0D",
+    "title": "教會財務",
+    "note": "M＋奉獻收入、支出記帳與核對",
     "keys": ["church_giving_preview", "association_donation_preview", "admin_workbench", "thanksgiving_offering_admin", "finance_projects", "finance_cash", "finance_expenses", "finance_receipts", "finance_permission_settings", "finance_accounting_reports", "school_staff_scheduling", "school_payroll"]
   },
   {
     "key": "media",
-    "title": "\u5167\u5BB9\u8207\u767C\u5E03",
-    "note": "\u9748\u4FEE\u3001\u9031\u5831\u3001\u6559\u6750\u8207\u793E\u7FA4\u5167\u5BB9",
+    "title": "內容與發布",
+    "note": "靈修、週報、教材與社群內容",
     "keys": [
       "testimony_review",
       "tree_reading_admin",
@@ -2158,8 +2158,8 @@ var FUNCTION_GROUPS2 = freezeTree2([
   },
   {
     "key": "school",
-    "title": "\u8AB2\u8F14",
-    "note": "\u5B78\u751F\u3001\u51FA\u5E2D\u3001\u8F14\u5C0E\u8207\u5831\u8868",
+    "title": "課輔",
+    "note": "學生、出席、輔導與報表",
     "keys": [
       "school",
       "school_checkin",
@@ -2172,8 +2172,8 @@ var FUNCTION_GROUPS2 = freezeTree2([
   },
   {
     "key": "basketball",
-    "title": "\u7C43\u7403\u4E8B\u5DE5",
-    "note": "\u7C43\u7403\u968A\u3001\u8A13\u7DF4\u8207\u71B1\u706B\u7C43\u7403\u71DF",
+    "title": "籃球事工",
+    "note": "籃球隊、訓練與熱火籃球營",
     "keys": [
       "heat_camp",
       "basketball",
@@ -2186,8 +2186,8 @@ var FUNCTION_GROUPS2 = freezeTree2([
   },
   {
     "key": "system",
-    "title": "\u8A2D\u5B9A\u8207\u5DE5\u5177",
-    "note": "\u5E33\u865F\u3001\u8EAB\u5206\u3001\u5BE9\u6838\u8207\u901A\u77E5",
+    "title": "設定與工具",
+    "note": "帳號、身分、審核與通知",
     "keys": [
       "binding_review",
       "review_workflows",
@@ -2204,8 +2204,8 @@ var FUNCTION_GROUPS2 = freezeTree2([
 var SETTINGS_GROUPS2 = freezeTree2([
   {
     "key": "people",
-    "title": "\u540C\u5DE5\u8207\u6B0A\u9650",
-    "note": "\u9080\u8ACB\u540C\u5DE5\u3001\u78BA\u8A8D LINE \u8EAB\u5206\u8207\u4F7F\u7528\u6B0A\u9650",
+    "title": "同工與權限",
+    "note": "邀請同工、確認 LINE 身分與使用權限",
     "keys": [
       "admin_accounts",
       "member_line_settings",
@@ -2215,8 +2215,8 @@ var SETTINGS_GROUPS2 = freezeTree2([
   },
   {
     "key": "review",
-    "title": "\u5BE9\u6838\u8207\u901A\u77E5",
-    "note": "\u8A2D\u5B9A\u521D\u5BE9\u3001\u8907\u5BE9\u8207\u901A\u77E5\u65B9\u5F0F",
+    "title": "審核與通知",
+    "note": "設定初審、複審與通知方式",
     "keys": [
       "review_workflows",
       "notification_settings"
@@ -2224,8 +2224,8 @@ var SETTINGS_GROUPS2 = freezeTree2([
   },
   {
     "key": "content",
-    "title": "\u5167\u5BB9\u8207\u767C\u5E03",
-    "note": "\u4E3B\u65E5\u3001\u9748\u4FEE\u3001\u8868\u55AE\u8207\u793E\u7FA4\u5167\u5BB9",
+    "title": "內容與發布",
+    "note": "主日、靈修、表單與社群內容",
     "keys": [
       "testimony_review",
       "website_weekly",
@@ -2246,8 +2246,8 @@ var SETTINGS_GROUPS2 = freezeTree2([
   },
   {
     "key": "church",
-    "title": "\u5802\u6703\u8207\u5834\u5730",
-    "note": "\u516C\u958B\u8CC7\u8A0A\u3001\u805A\u6703\u4F4D\u7F6E\u3001\u7A7A\u9593\u8207\u7269\u54C1",
+    "title": "堂會與場地",
+    "note": "公開資訊、聚會位置、空間與物品",
     "keys": [
       "finance_projects",
       "spaces",
@@ -2256,27 +2256,27 @@ var SETTINGS_GROUPS2 = freezeTree2([
   }
 ]);
 var PERMISSION_LABELS2 = freezeTree2({
-  association_content: "\u5354\u6703\u5167\u5BB9\uFF08\u7167\u7247\u8AAA\u6545\u4E8B\uFF0F\u7DB2\u7AD9\u6D88\u606F\uFF09",
-  church_albums: "\u76F8\u7C3F",
-  "members": "\u6703\u53CB",
-  "attendance": "\u51FA\u5E2D\u767B\u8A18",
-  "groups": "\u5C0F\u7D44\u8207\u5C0F\u5BB6",
-  "schedules": "\u670D\u4E8B\u5B89\u6392",
-  "private_prayers": "\u4EE3\u79B1\u8207\u95DC\u61F7",
-  "pastoral_chats": "\u95DC\u61F7\u8A0A\u606F\u8207\u5716\u5361",
-  "spaces": "\u5834\u5730\u8207\u8A2D\u5099",
-  "newcomer_care": "\u65B0\u670B\u53CB",
-  "tree_reading_admin": "\u751F\u547D\u6A39",
-  "binding_review": "LINE \u8EAB\u5206\u78BA\u8A8D",
-  "notification_settings": "\u901A\u77E5\u8A2D\u5B9A",
-  "website_weekly": "\u4E3B\u65E5\u9031\u5831",
-  "website_group_resources": "\u5C0F\u7D44\u6559\u6750",
-  "inventory": "\u7269\u54C1\u8207\u501F\u7528",
-  "heat_camp": "\u71B1\u706B\u7C43\u7403\u71DF"
+  association_content: "協會內容（照片說故事／網站消息）",
+  church_albums: "相簿",
+  "members": "會友",
+  "attendance": "出席登記",
+  "groups": "小組與小家",
+  "schedules": "服事安排",
+  "private_prayers": "代禱與關懷",
+  "pastoral_chats": "關懷訊息與圖卡",
+  "spaces": "場地與設備",
+  "newcomer_care": "新朋友",
+  "tree_reading_admin": "生命樹",
+  "binding_review": "LINE 身分確認",
+  "notification_settings": "通知設定",
+  "website_weekly": "主日週報",
+  "website_group_resources": "小組教材",
+  "inventory": "物品與借用",
+  "heat_camp": "熱火籃球營"
 });
 var ROLE_TEMPLATES2 = freezeTree2({
   "pastor": {
-    "label": "\u7267\u8005",
+    "label": "牧者",
     "permissions": [
       "members",
       "attendance",
@@ -2295,7 +2295,7 @@ var ROLE_TEMPLATES2 = freezeTree2({
     ]
   },
   "pastor_spouse": {
-    "label": "\u5E2B\u6BCD",
+    "label": "師母",
     "permissions": [
       "members",
       "attendance",
@@ -2314,7 +2314,7 @@ var ROLE_TEMPLATES2 = freezeTree2({
     ]
   },
   "administrator": {
-    "label": "\u884C\u653F\u7BA1\u7406",
+    "label": "行政管理",
     "permissions": [
       "members",
       "attendance",
@@ -2328,7 +2328,7 @@ var ROLE_TEMPLATES2 = freezeTree2({
     ]
   },
   "group_leader": {
-    "label": "\u5C0F\u7D44\uFF0F\u5C0F\u5BB6\u9577",
+    "label": "小組／小家長",
     "permissions": [
       "members",
       "attendance",
@@ -2336,7 +2336,7 @@ var ROLE_TEMPLATES2 = freezeTree2({
     ]
   },
   "care": {
-    "label": "\u95DC\u61F7\u540C\u5DE5",
+    "label": "關懷同工",
     "permissions": [
       "members",
       "private_prayers",
@@ -2345,14 +2345,14 @@ var ROLE_TEMPLATES2 = freezeTree2({
     ]
   },
   "facilities": {
-    "label": "\u7E3D\u52D9\u540C\u5DE5",
+    "label": "總務同工",
     "permissions": [
       "spaces",
       "inventory"
     ]
   },
   "custom": {
-    "label": "\u81EA\u8A02\u6B0A\u9650",
+    "label": "自訂權限",
     "permissions": []
   }
 });
@@ -2408,42 +2408,42 @@ var HOME_TEMPLATES2 = freezeTree2({
   ]
 });
 var FEATURE_ACTIONS2 = freezeTree2({
-  "view": "\u67E5\u770B",
-  "create": "\u65B0\u589E",
-  "edit": "\u4FEE\u6539",
-  "delete": "\u522A\u9664",
-  "export": "\u532F\u51FA",
-  "approve": "\u5BE9\u6838",
-  "manage": "\u7BA1\u7406\u8A2D\u5B9A"
+  "view": "查看",
+  "create": "新增",
+  "edit": "修改",
+  "delete": "刪除",
+  "export": "匯出",
+  "approve": "審核",
+  "manage": "管理設定"
 });
 var FRIENDLY_LABELS2 = freezeTree2({
-  "\u6703\u53CB\u540D\u518A": "\u6703\u53CB",
-  "\u65B0\u670B\u53CB\u95DC\u61F7": "\u65B0\u670B\u53CB",
-  "\u540C\u5DE5\u5354\u4F5C": "\u540C\u5DE5\u5DE5\u4F5C\u5340",
-  "\u4EE3\u79B1\u95DC\u61F7": "\u4EE3\u79B1\u8207\u95DC\u61F7",
-  "\u7267\u990A\u8A0A\u606F": "\u95DC\u61F7\u8A0A\u606F",
-  "\u805A\u6703\u9EDE\u540D": "\u51FA\u5E2D\u767B\u8A18",
-  "\u5C0F\u7D44\uFF0F\u5C0F\u5BB6": "\u5C0F\u7D44\u8207\u5C0F\u5BB6",
-  "\u670D\u4E8B\u6392\u73ED": "\u670D\u4E8B\u5B89\u6392",
-  "\u5834\u5730\u9810\u7D04": "\u5834\u5730\u8207\u8A2D\u5099",
-  "\u7269\u54C1\u6E05\u518A": "\u7269\u54C1\u8207\u501F\u7528",
-  "\u6559\u6703\u7DB2\u7AD9\u7DAD\u8B77": "\u4E3B\u65E5\u9031\u5831",
-  "\u5C0F\u7D44\u805A\u6703\u8CC7\u6E90": "\u5C0F\u7D44\u6559\u6750",
-  "\u6BCF\u65E5\u9748\u4FEE\u751F\u547D\u6A39": "\u751F\u547D\u6A39",
-  "\u8B80\u7D93\u751F\u547D\u6A39": "\u751F\u547D\u6A39",
-  "LINE \u7D81\u5B9A\u5BE9\u6838": "LINE \u8EAB\u5206\u78BA\u8A8D",
-  "LINE \u901A\u77E5\u8A2D\u5B9A": "\u901A\u77E5\u8A2D\u5B9A",
-  "\u901A\u77E5\u7BA1\u9053\u8A2D\u5B9A": "\u901A\u77E5\u8A2D\u5B9A",
-  "\u6559\u7267\u5167\u5BB9": "\u7267\u990A\u5716\u5361",
-  "\u7CFB\u7D71\u76E3\u63A7\u4E2D\u5FC3": "\u7CFB\u7D71\u72C0\u6CC1",
-  "\u7CFB\u7D71\u8A2D\u5B9A": "\u6559\u6703\u8A2D\u5B9A"
+  "會友名冊": "會友",
+  "新朋友關懷": "新朋友",
+  "同工協作": "同工工作區",
+  "代禱關懷": "代禱與關懷",
+  "牧養訊息": "關懷訊息",
+  "聚會點名": "出席登記",
+  "小組／小家": "小組與小家",
+  "服事排班": "服事安排",
+  "場地預約": "場地與設備",
+  "物品清冊": "物品與借用",
+  "教會網站維護": "主日週報",
+  "小組聚會資源": "小組教材",
+  "每日靈修生命樹": "生命樹",
+  "讀經生命樹": "生命樹",
+  "LINE 綁定審核": "LINE 身分確認",
+  "LINE 通知設定": "通知設定",
+  "通知管道設定": "通知設定",
+  "教牧內容": "牧養圖卡",
+  "系統監控中心": "系統狀況",
+  "系統設定": "教會設定"
 });
 var NAVIGATION_MODULES2 = freezeTree2([
   {
     "key": "dashboard",
     "file": "admin-dashboard.html",
-    "label": "\u9996\u9801",
-    "icon": "\u{1F3E0}"
+    "label": "首頁",
+    "icon": "🏠"
   },
   {
     "key": "members",
@@ -2567,7 +2567,7 @@ var LEGACY_FEATURE_FILES2 = Object.freeze(Object.fromEntries([
   "website_group_resources"
 ].map((key) => [key, FUNCTION_CATALOG2[canonicalFunctionKey2(key)].file])));
 
-// church-os-giving-pages-20261120/app-ui.mjs?v=20261116-admin1
+// church-os-giving-catalog-20261120/app-ui.mjs?v=20261116-admin1
 function setStatus(node, message, { tone = "neutral", busy = false } = {}) {
   node.textContent = message;
   node.dataset.tone = tone;
@@ -2575,15 +2575,16 @@ function setStatus(node, message, { tone = "neutral", busy = false } = {}) {
   node.hidden = !message;
 }
 
-// church-os-giving-pages-20261120/giving-pages.mjs
+// church-os-giving-catalog-20261120/giving-pages.mjs
 var $ = (selector) => document.querySelector(selector);
 var form = $("#giving-form");
 var association = document.body.dataset.organization === "association";
-var org = association ? "\u793E\u5718\u6CD5\u4EBA\u53F0\u7063\u57FA\u7763\u6559\u793E\u6703\u95DC\u61F7\u5354\u6703" : "M+ \u5927\u96C5\u6559\u6703";
-var noun = association ? "\u6350\u6B3E" : "\u5949\u737B";
-var purposes = association ? ["\u5152\u5C11\u966A\u4F34", "\u71DF\u990A\u665A\u9910", "\u5BB6\u5EAD\u95DC\u61F7", "\u5354\u6703\u6574\u9AD4\u670D\u52D9"] : ["\u5341\u4E00\u5949\u737B", "\u611F\u6069\u5949\u737B", "\u5BA3\u6559\u4E8B\u5DE5", "\u6559\u6703\u6574\u9AD4\u4E8B\u5DE5"];
-var payments = { credit: "\u4FE1\u7528\u5361", linepay: "LINE Pay", atm: "ATM \u865B\u64EC\u5E33\u865F", barcode: "\u8D85\u5546\u689D\u78BC" };
-var receipts = { single: "\u55AE\u7B46\u96FB\u5B50\u6536\u64DA", annual: "\u5E74\u5EA6\u5F59\u6574\u6536\u64DA", none: "\u4E0D\u7D22\u53D6\u6536\u64DA" };
+var org = association ? "社團法人台灣基督教社會關懷協會" : "M+ 大雅教會";
+var noun = association ? "捐款" : "奉獻";
+var purposeCatalog = [{ "project": "Ｍ＋大雅教會", "name": "十一奉獻", "externalItemNo": 38, "publicGroup": "church", "publicEnabled": true, "alias": null, "frequency": "once", "minimum": 1, "externalProject": "為M+大雅教會奉獻" }, { "project": "Ｍ＋大雅教會", "name": "青年教會", "externalItemNo": 150, "publicGroup": "church", "publicEnabled": true, "alias": "青少年事工奉獻", "frequency": "once", "minimum": 1, "externalProject": "為M+大雅教會奉獻" }, { "project": "Ｍ＋大雅教會", "name": "一般奉獻", "externalItemNo": 7, "publicGroup": "church", "publicEnabled": true, "alias": null, "frequency": "once", "minimum": 1, "externalProject": "為M+大雅教會奉獻" }, { "project": "Ｍ＋大雅教會", "name": "感恩奉獻", "externalItemNo": 9, "publicGroup": "church", "publicEnabled": true, "alias": null, "frequency": "once", "minimum": 1, "externalProject": "為M+大雅教會奉獻" }, { "project": "Ｍ＋大雅教會", "name": "宣教奉獻", "externalItemNo": 8, "publicGroup": "church", "publicEnabled": true, "alias": null, "frequency": "once", "minimum": 1, "externalProject": "為M+大雅教會奉獻" }, { "project": "Ｍ＋大雅教會", "name": "指定奉獻", "externalItemNo": 6, "publicGroup": "church", "publicEnabled": true, "alias": null, "frequency": "once", "minimum": 1, "externalProject": "為M+大雅教會奉獻" }, { "project": "夢想加油站課輔班", "name": "2026弱勢兒少公益課輔班-夢想加油站", "externalItemNo": 166, "publicGroup": "association", "publicEnabled": true, "alias": null, "frequency": "once", "minimum": 100, "externalProject": "弱勢兒少夢想加油站募款" }, { "project": "夢想加油站課輔班", "name": "2026弱勢兒少公益課輔班-夢想加油站（定期定額）", "externalItemNo": 167, "publicGroup": "association", "publicEnabled": true, "alias": null, "frequency": "monthly", "minimum": 100, "externalProject": "弱勢兒少夢想加油站募款" }, { "project": "夢想加油站課輔班", "name": "2027弱勢兒少公益課輔班-夢想加油站", "externalItemNo": 185, "publicGroup": "association", "publicEnabled": true, "alias": "2027弱勢兒少課後輔導班", "frequency": "once", "minimum": 100, "externalProject": "弱勢兒少夢想加油站募款" }, { "project": "夢想加油站課輔班", "name": "2027弱勢兒少公益課輔班-夢想加油站（定期定額）", "externalItemNo": 186, "publicGroup": "association", "publicEnabled": true, "alias": null, "frequency": "monthly", "minimum": 100, "externalProject": "弱勢兒少夢想加油站募款" }];
+var purposes = purposeCatalog.filter((x) => x.publicGroup === (association ? "association" : "church"));
+var payments = { credit: "信用卡", linepay: "LINE Pay", atm: "ATM 虛擬帳號", barcode: "超商條碼" };
+var receipts = { single: "單筆電子收據", annual: "年度彙整收據", none: "不索取收據" };
 var money = (value) => "NT$ " + Number(value || 0).toLocaleString("zh-TW");
 var monthly = () => form.elements.frequency.value === "monthly";
 var currentStep = 0;
@@ -2592,12 +2593,24 @@ var previousReceipt = "single";
 var lastFrequency = "once";
 var priorFocus = null;
 for (const node of document.querySelectorAll("[data-icon]")) node.append(createAppIcon(node.dataset.icon, "giving-shared-icon"));
-for (const name of purposes) {
-  const option = document.createElement("option");
-  option.value = name;
-  option.textContent = name;
-  form.elements.purpose.append(option);
+function updatePurposes() {
+  const previous = form.elements.purpose.selectedOptions[0]?.dataset.baseName;
+  const choices = purposes.filter((x) => !association || x.frequency === (monthly() ? "monthly" : "once"));
+  form.elements.purpose.replaceChildren();
+  for (const item of choices) {
+    const option = document.createElement("option");
+    option.value = item.name;
+    option.textContent = item.name;
+    option.dataset.itemNo = String(item.externalItemNo);
+    option.dataset.minimum = String(item.minimum);
+    option.dataset.baseName = item.name.replace("（定期定額）", "");
+    form.elements.purpose.append(option);
+  }
+  const keep = [...form.elements.purpose.options].find((o) => o.dataset.baseName === previous);
+  if (keep) form.elements.purpose.value = keep.value;
+  form.elements.amount.min = association ? "100" : "1";
 }
+updatePurposes();
 var presetAmounts = association ? [300, 500, 1e3, 2e3] : [500, 1e3, 2e3, 5e3];
 for (const value of presetAmounts) {
   const button = document.createElement("button");
@@ -2615,11 +2628,11 @@ function updateSummary() {
   const m = monthly(), amount = form.elements.amount.value;
   for (const button of document.querySelectorAll("[data-amount]")) button.setAttribute("aria-pressed", String(Number(button.dataset.amount) === Number(amount)));
   $("#summary-amount").textContent = money(amount);
-  $("#summary-frequency").textContent = m ? "\u6BCF\u6708\u5B9A\u671F\u5B9A\u984D" : "\u55AE\u6B21" + noun;
+  $("#summary-frequency").textContent = m ? "每月定期定額" : "單次" + noun;
   $("#summary-purpose").textContent = form.elements.purpose.value;
   $("#summary-payment").textContent = payments[form.elements.payment.value];
   $("#summary-recurring").hidden = !m;
-  $("#summary-recurring").textContent = `\u9810\u89BD\u8A2D\u5B9A\uFF1A\u6BCF\u6708 ${form.elements.charge_day.value} \u65E5\uFF0C\u5171 ${form.elements.periods.value} \u671F\u3002`;
+  $("#summary-recurring").textContent = `預覽設定：每月 ${form.elements.charge_day.value} 日，共 ${form.elements.periods.value} 期。`;
 }
 function updateOptions() {
   const m = monthly();
@@ -2634,16 +2647,17 @@ function updateOptions() {
       form.elements.receipt.value = previousReceipt;
     }
     lastFrequency = form.elements.frequency.value;
+    updatePurposes();
   }
   $("#recurring-settings").hidden = !m;
   for (const radio of form.querySelectorAll('input[name="payment"]')) radio.disabled = m && radio.value !== "credit";
-  $("#amount-legend").textContent = m ? "\u6BCF\u6708\u652F\u6301\u91D1\u984D" : "\u9078\u64C7\u91D1\u984D";
-  $("#linepay-note").textContent = m ? "\u5B9A\u671F\u6263\u6B3E\u5F85\u5C08\u7528\u6388\u6B0A\u6838\u51C6" : "\u4F7F\u7528 LINE Pay \u4ED8\u6B3E";
-  $("#payment-note").textContent = m ? "\u5B9A\u671F\u81EA\u52D5\u6263\u6B3E\u9810\u89BD\u63A1\u4FE1\u7528\u5361\u3002LINE Pay \u9808\u53E6\u7533\u8ACB\u9810\u5148\u6388\u6B0A\uFF1BATM\uFF0F\u8D85\u5546\u689D\u78BC\u9700\u8981\u81EA\u884C\u7E73\u6B3E\u3002" : "\u9019\u88E1\u53EF\u4EE5\u9810\u89BD\u4ED8\u6B3E\u9078\u64C7\uFF0C\u76EE\u524D\u4E0D\u6703\u5C0E\u5411\u4ED8\u6B3E\u6216\u5EFA\u7ACB\u7E73\u6B3E\u5E33\u865F\u3002";
+  $("#amount-legend").textContent = m ? "每月支持金額" : "選擇金額";
+  $("#linepay-note").textContent = m ? "定期扣款待專用授權核准" : "使用 LINE Pay 付款";
+  $("#payment-note").textContent = m ? "定期自動扣款預覽採信用卡。LINE Pay 須另申請預先授權；ATM／超商條碼需要自行繳款。" : "這裡可以預覽付款選擇，目前不會導向付款或建立繳款帳號。";
   $("#receipt-fields").hidden = form.elements.receipt.value === "none";
   form.elements.receipt_title.disabled = form.elements.receipt.value === "none";
   form.elements.email.required = form.elements.receipt.value !== "none";
-  $("#email-required").textContent = form.elements.email.required ? "\u5FC5\u586B" : "\u9078\u586B";
+  $("#email-required").textContent = form.elements.email.required ? "必填" : "選填";
   updateSummary();
 }
 function fail(message, input) {
@@ -2653,13 +2667,13 @@ function fail(message, input) {
 }
 function validAmount() {
   const field = form.elements.amount, value = Number(field.value);
-  if (!field.value || !Number.isSafeInteger(value) || value < 1 || value > 9999999) return fail("\u8ACB\u8F38\u5165 1 \u81F3 9,999,999 \u5143\u4E4B\u9593\u7684\u6574\u6578\u91D1\u984D\u3002", field);
+  if (!field.value || !Number.isSafeInteger(value) || value < Number(field.min) || value > 9999999) return fail(`請輸入 ${field.min} 至 9,999,999 元之間的整數金額。`, field);
   return true;
 }
 function validReceipt() {
   const name = form.elements.donor_name, email = form.elements.email;
-  if (!name.value.trim()) return fail("\u8ACB\u586B\u5BEB\u59D3\u540D\uFF0C\u65B9\u4FBF\u6838\u5C0D\u652F\u6301\u8207\u6536\u64DA\u8CC7\u6599\u3002", name);
-  if (!email.checkValidity()) return fail(email.validity.valueMissing ? "\u8ACB\u586B\u5BEB Email\uFF0C\u4EE5\u4FBF\u5BC4\u9001\u96FB\u5B50\u6536\u64DA\u3002" : "\u8ACB\u78BA\u8A8D Email \u683C\u5F0F\u662F\u5426\u6B63\u78BA\u3002", email);
+  if (!name.value.trim()) return fail("請填寫姓名，方便核對支持與收據資料。", name);
+  if (!email.checkValidity()) return fail(email.validity.valueMissing ? "請填寫 Email，以便寄送電子收據。" : "請確認 Email 格式是否正確。", email);
   return true;
 }
 function showStep(index) {
@@ -2677,11 +2691,11 @@ function showStep(index) {
   priorFocus = heading;
 }
 function renderReview() {
-  const data = [["\u652F\u6301\u55AE\u4F4D", org], ["\u652F\u6301\u7528\u9014", form.elements.purpose.value], ["\u652F\u6301\u65B9\u5F0F", monthly() ? "\u6BCF\u6708\u5B9A\u671F\u5B9A\u984D" : "\u55AE\u6B21" + noun], ["\u6BCF" + (monthly() ? "\u6708" : "\u7B46") + "\u91D1\u984D", money(form.elements.amount.value)], ["\u4ED8\u6B3E\u65B9\u5F0F", payments[form.elements.payment.value]]];
-  if (monthly()) data.push(["\u9810\u8A08\u6263\u6B3E\u65E5", `\u6BCF\u6708 ${form.elements.charge_day.value} \u65E5\uFF08\u5F85\u6B63\u5F0F\u6388\u6B0A\u78BA\u8A8D\uFF09`], ["\u652F\u6301\u671F\u6578", form.elements.periods.value + " \u671F"]);
-  data.push(["\u59D3\u540D", form.elements.donor_name.value.trim()], ["Email", form.elements.email.value.trim() || "\u672A\u586B\u5BEB"], ["\u6536\u64DA\u65B9\u5F0F", receipts[form.elements.receipt.value]]);
-  if (form.elements.receipt.value !== "none") data.push(["\u6536\u64DA\u62AC\u982D", form.elements.receipt_title.value.trim() || form.elements.donor_name.value.trim()]);
-  data.push(["\u516C\u958B\u59D3\u540D", form.elements.anonymous.checked ? "\u4E0D\u516C\u958B" : "\u4F9D\u6B63\u5F0F\u5FB5\u4FE1\u544A\u77E5\u8207\u540C\u610F\u8FA6\u7406"]);
+  const data = [["支持單位", org], ["支持用途", form.elements.purpose.value], ["既有捐款項目編號", form.elements.purpose.selectedOptions[0].dataset.itemNo], ["支持方式", monthly() ? "每月定期定額" : "單次" + noun], ["每" + (monthly() ? "月" : "筆") + "金額", money(form.elements.amount.value)], ["付款方式", payments[form.elements.payment.value]]];
+  if (monthly()) data.push(["預計扣款日", `每月 ${form.elements.charge_day.value} 日（待正式授權確認）`], ["支持期數", form.elements.periods.value + " 期"]);
+  data.push(["姓名", form.elements.donor_name.value.trim()], ["Email", form.elements.email.value.trim() || "未填寫"], ["收據方式", receipts[form.elements.receipt.value]]);
+  if (form.elements.receipt.value !== "none") data.push(["收據抬頭", form.elements.receipt_title.value.trim() || form.elements.donor_name.value.trim()]);
+  data.push(["公開姓名", form.elements.anonymous.checked ? "不公開" : "依正式徵信告知與同意辦理"]);
   const dl = $("#review-details");
   dl.replaceChildren();
   for (const [label, value] of data) {
