@@ -204,4 +204,4 @@
 }
 @media(prefers-reduced-motion:reduce) {html:has(.camp-campaign),.camp-campaign {scroll-behavior:auto}.camp-campaign * {scroll-behavior:auto;transition:none}}
 
-.camp-footer-logo.newhope{background:white;padding:12px;border-radius:12px;min-width:220px}.camp-footer-logo.newhope img{width:100%;height:72px;object-fit:contain}
+.camp-footer-logo.newhope{width:220px;min-width:0;flex:0 0 220px;height:70px;display:flex;align-items:center;justify-content:center;background:white;padding:8px 12px;border-radius:12px}.camp-footer-logo.newhope img{display:block;width:100%;height:100%;object-fit:contain;object-position:center center}
