@@ -243,3 +243,9 @@
   .camp-campaign footer .camp-footer-logo.newhope {--newhope-mark:calc(clamp(32px,11.3vw,70px) - 13px);width:66.667%;height:clamp(32px,11.3vw,70px);padding:0;gap:1px}
   .camp-campaign footer .camp-footer-caption {font-size:clamp(4.5px,1.3vw,6.5px)}
 }
+
+/* Project caption sits beside the vertical sponsor mark. */
+.camp-campaign footer .camp-footer-logo.newhope {flex-direction:row;align-items:center;gap:4%}
+.camp-campaign footer .camp-footer-logo.newhope img {width:56%;height:auto;aspect-ratio:1}
+.camp-campaign footer .camp-footer-caption {width:40%;max-width:40%;text-align:left}
+.camp-footer-caption>span {display:block;white-space:nowrap}
