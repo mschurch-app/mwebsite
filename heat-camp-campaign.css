@@ -204,56 +204,12 @@
 }
 @media(prefers-reduced-motion:reduce) {html:has(.camp-campaign),.camp-campaign {scroll-behavior:auto}.camp-campaign * {scroll-behavior:auto;transition:none}}
 
-.camp-footer-logo.newhope{width:220px;min-width:0;flex:0 0 220px;height:70px;display:flex;align-items:center;justify-content:center;background:white;padding:8px 12px;border-radius:12px}.camp-footer-logo.newhope img{display:block;width:100%;height:100%;object-fit:contain;object-position:center center}
-
-/* Scale the four partner marks together on narrow screens. */
+.camp-footer-logo.newhope {width:89.6px;min-width:0;flex:0 0 89.6px;height:70px;display:flex;align-items:center;justify-content:center;background:#fff;padding:6.4px;border-radius:12px}
+.camp-footer-logo.newhope img {display:block;width:100%;height:100%;object-fit:contain;object-position:center}
 @media(max-width:620px) {
-  .camp-campaign footer .camp-footer-logos {display:grid;grid-template-columns:minmax(0,112fr) minmax(0,70fr) minmax(0,220fr) minmax(0,112fr);width:100%;min-width:0;align-items:center;gap:8px}
+  .camp-campaign footer .camp-footer-logos {display:grid;grid-template-columns:minmax(0,112fr) minmax(0,70fr) minmax(0,112fr) minmax(0,112fr);width:100%;min-width:0;align-items:center;justify-items:center;gap:8px}
   .camp-campaign footer .camp-footer-logo {width:100%;min-width:0;height:clamp(32px,11.3vw,70px);padding:3px;border-radius:7px}
-  .camp-campaign footer .camp-footer-logo.mac {width:100%;height:auto;aspect-ratio:1;border-radius:50%;padding:0}
+  .camp-campaign footer .camp-footer-logo.mac {width:clamp(32px,11.3vw,70px);height:clamp(32px,11.3vw,70px);border-radius:50%;padding:0}
   .camp-campaign footer .camp-footer-logo.shine {padding:0}
-  .camp-campaign footer .camp-footer-logo.newhope {width:100%;min-width:0;height:clamp(32px,11.3vw,70px);padding:4px 6px;border-radius:7px}
-}
-
-/* A shared white surface ties the sponsor mark and project name together. */
-.camp-campaign footer .camp-footer-logo.newhope {flex-direction:column;gap:4px}
-.camp-campaign footer .camp-footer-logo.newhope img {flex:1 1 0;min-height:0;height:calc(100% - 17px)}
-.camp-footer-caption {display:block;flex:0 0 auto;color:#535d36;font-size:11px;font-weight:600;line-height:1.15;letter-spacing:.16em;text-align:center;white-space:nowrap}
-@media(max-width:620px) {
-  .camp-campaign footer .camp-footer-logo.newhope {gap:2px}
-  .camp-footer-caption {font-size:clamp(8px,2.4vw,11px);letter-spacing:.05em}
-}
-
-/* Official vertical mark, framed directly from the supplied brand sheet. */
-.camp-campaign footer .camp-footer-logo.newhope {width:112px;flex-basis:112px;height:auto;padding:8px;gap:4px}
-.camp-campaign footer .camp-footer-logo.newhope img {flex:none;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
-.camp-campaign footer .camp-footer-caption {width:90%;max-width:90%;font-size:10px;line-height:1.25;letter-spacing:0;white-space:normal;overflow-wrap:normal}
-.camp-footer-caption>span {display:inline-block}
-@media(max-width:620px) {
-  .camp-campaign footer .camp-footer-logos {grid-template-columns:minmax(0,112fr) minmax(0,70fr) minmax(0,112fr) minmax(0,112fr)}
-  .camp-campaign footer .camp-footer-logo.newhope {width:100%;height:auto;padding:6px;gap:3px}
-  .camp-campaign footer .camp-footer-caption {font-size:clamp(8px,2vw,10px)}
-}
-
-/* Restore the approved vertical card with a larger, close-set project label. */
-.camp-campaign footer .camp-footer-logo.newhope {gap:0}
-.camp-campaign footer .camp-footer-logo.newhope img {aspect-ratio:auto}
-.camp-campaign footer .camp-footer-caption {width:100%;max-width:100%;font-size:11.5px;line-height:1.1;letter-spacing:0}
-.camp-footer-caption>span {display:inline-block}
-@media(max-width:620px) {
-  .camp-campaign footer .camp-footer-logo.newhope {gap:0}
-  .camp-campaign footer .camp-footer-caption {font-size:clamp(7.5px,2.3vw,11.5px)}
-}
-
-/* Reduce the sponsor artwork by one fifth while keeping the project label legible. */
-.camp-campaign footer .camp-footer-logo.newhope {width:89.6px;flex-basis:89.6px;padding:6.4px}
-@media(max-width:620px) {
-  .camp-campaign footer .camp-footer-logo.newhope {width:80%;padding:4.8px}
-}
-
-/* Keep the full project name on one line within the reduced logo card. */
-.camp-campaign footer .camp-footer-caption {font-size:10px;white-space:nowrap}
-.camp-footer-caption>span {display:inline}
-@media(max-width:620px) {
-  .camp-campaign footer .camp-footer-caption {font-size:clamp(6px,1.98vw,10px)}
+  .camp-campaign footer .camp-footer-logo.newhope {width:80%;height:clamp(32px,11.3vw,70px);padding:4.8px;border-radius:7px}
 }
