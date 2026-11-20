@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="heat-camp-2027.css?v=20261014-onsite-launch2">
-  <script type="module" src="heat-camp-2027-test.mjs?v=20261014-onsite-launch1"></script>
+  <script type="module" src="heat-camp-2027-test.mjs?v=20261120-newhope1"></script>
 </head>
 <body>
   <header class="topbar">
@@ -79,6 +79,7 @@
       <div class="form-intro">
         <p class="section-kicker">REGISTRATION</p>
         <h2>開始報名</h2>
+        <a class="camp-service-link" href="?project=newhope#register">新希望專案報名 →</a>
         <p>約 5–8 分鐘。可先填資料，取得繳費帳號後再完成轉帳。</p>
         <a class="camp-service-link" href="#camp-contact">報名有疑問？前往客服資訊</a>
         <a class="camp-service-link" href="#refund-policy" data-wizard-refund>查看表單末段退款政策</a>
@@ -104,8 +105,10 @@
           <div class="choice-grid" id="pricing-choice">
             <label class="choice selected"><input type="radio" name="pricing_mode" value="standard" checked><b>一般報名</b><small>自動套用當期價格</small></label>
             <label class="choice"><input type="radio" name="pricing_mode" value="onsite"><b>2026 現場已登記</b><small>已繳費・只需補填資料</small></label>
+            <label class="choice"><input type="radio" name="pricing_mode" value="newhope"><b>新希望專案</b><small>折扣碼驗證通過後免繳費</small></label>
             <label class="choice"><input type="radio" name="pricing_mode" value="friend"><b>兩人同行</b><small>2027/1–6・每人 $8,000</small></label>
           </div>
+          <div class="conditional" id="newhope-fields" hidden><label>新希望專案折扣碼<input name="sponsorship_code" autocomplete="off" maxlength="32" placeholder="請輸入專案提供的折扣碼"></label><p>請完整填寫學員資料；折扣碼驗證通過後免繳費，不會建立付款單或開立繳費收據。</p></div>
           <div class="conditional" id="onsite-fields" hidden><label>現場登記驗證碼<input name="onsite_code" autocomplete="off" maxlength="20" placeholder="由工作人員提供"></label></div>
           <div class="conditional" id="friend-fields" hidden>
             <label>同行方式<select name="friend_action"><option value="create">我是第一位，建立同行代碼</option><option value="join">我已有同行代碼</option></select></label>
@@ -290,10 +293,11 @@
   <footer id="camp-contact">
     <span class="brand-mark">M+</span>
     <p>2027 熱火籃球營</p>
-    <small>主辦：社團法人台灣基督教社會關懷協會<br>協辦單位：M＋大雅教會、火樂教會<br>教練團隊：MAC 品格籃球團隊<br>客服諮詢：<a href="tel:+886425658977">04-2565-8977</a> · 邵姐妹</small>
+    <small>主辦：社團法人台灣基督教社會關懷協會<br>協辦單位：M＋大雅教會、火樂教會、新希望基金會<br>教練團隊：MAC 品格籃球團隊<br>客服諮詢：<a href="tel:+886425658977">04-2565-8977</a> · 邵姐妹</small>
     <div class="camp-footer-logos" role="group" aria-label="營會合作單位標誌">
       <span class="camp-footer-logo mplus"><img src="assets/brand/mplus-ministry-heat-camp.jpg" alt="M＋大雅教會" loading="lazy" decoding="async"></span>
       <span class="camp-footer-logo mac"><img src="assets/brand/mac-basketball-heat-camp.jpg" alt="MAC 品格籃球團隊" loading="lazy" decoding="async"></span>
+      <span class="camp-footer-logo newhope"><img src="assets/brand/new-hope-foundation.jpg" alt="協辦單位：新希望基金會" loading="lazy" decoding="async"></span>
       <span class="camp-footer-logo shine"><img src="assets/brand/shine-church-heat-camp.jpg" alt="火樂教會" loading="lazy" decoding="async"></span>
     </div>
   </footer>

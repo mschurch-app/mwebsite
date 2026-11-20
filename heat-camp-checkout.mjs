@@ -20,8 +20,11 @@ let retryResumeUrl='';
 let checkoutReady=false;
 let registrationReady=false;
 let wizard;
-const isOnsite=()=>form.elements.pricing_mode.value==='onsite';
-const canSubmit=()=>isOnsite()?registrationReady:checkoutReady;
+let receiptBeforeSponsorship=null;
+const isNewhope=()=>form.elements.pricing_mode.value==='newhope';
+const isNoPayment=()=>['onsite','newhope'].includes(form.elements.pricing_mode.value);
+if(new URLSearchParams(location.search).get('project')==='newhope')form.querySelector('[name=pricing_mode][value=newhope]').checked=true;
+const canSubmit=()=>isNoPayment()?registrationReady:checkoutReady;
 const expectedEnvironment=document.documentElement.dataset.paymentEnvironment;
 const requestStorageKey=`heat-camp-request-id-${expectedEnvironment}`;
 let activeRequestId=new URLSearchParams(location.search).has('payment')?(sessionStorage.getItem(requestStorageKey)||localStorage.getItem(requestStorageKey)):null;
@@ -41,6 +44,7 @@ friendOption.closest('.choice').hidden=friendOption.disabled;
 function currentPlan(){
   const {year,month,day}=taipeiDate(),today=`${year}-${month}-${day}`;
   const mode=form.elements.pricing_mode.value;
+  if(mode==='newhope')return {label:'新希望專案・免繳費',price:0,note:'折扣碼驗證通過後由專案補助，免繳費。'};
   if(mode==='onsite')return {label:'現場已繳費・補填資料',price:6000,note:'核對現場已繳費資格後完成補填，不會再次收費。'};
   if(mode==='friend')return {label:'兩人友情價',price:8000,note:'兩人皆完成資料後成立；未配對前不產生付款帳號。'};
   if(today<='2026-12-31')return {label:'跨年早鳥',price:7000,note:'適用 2026/10/01–12/31。'};
@@ -57,6 +61,8 @@ function renderPricing(){
   $$('.choice').forEach(label=>label.classList.toggle('selected',$('input',label).checked));
   const mode=form.elements.pricing_mode.value;
   onsiteFields.hidden=mode!=='onsite';
+  $('#newhope-fields').hidden=mode!=='newhope';
+  form.elements.sponsorship_code.required=mode==='newhope';
   friendFields.hidden=mode!=='friend';
   form.elements.onsite_code.required=mode==='onsite';
   form.elements.friend_code.required=mode==='friend'&&form.elements.friend_action.value==='join';
@@ -64,23 +70,26 @@ function renderPricing(){
 }
 
 function renderRegistrationFlow(){
-  const onsite=isOnsite();
+  const onsite=isNoPayment(),newhope=isNewhope();
+  if(newhope){if(receiptBeforeSponsorship===null)receiptBeforeSponsorship=form.elements.no_receipt.checked;form.elements.no_receipt.checked=true;form.elements.no_receipt.disabled=true;}else{if(receiptBeforeSponsorship!==null){form.elements.no_receipt.checked=receiptBeforeSponsorship;receiptBeforeSponsorship=null;}form.elements.no_receipt.disabled=false;}
+  renderReceipt();
   const lastStep=form.querySelector(`[data-wizard-step="${onsite?3:4}"]`);
   const final=$('#registration-final');
   if(final.parentElement!==lastStep)lastStep.append(final);
   $('#payment-section').hidden=onsite;
   $('#onsite-completion-note').hidden=!onsite;
-  $('.submit-note').textContent=onsite?'核對現場已繳費資格後完成補填，不會建立付款帳號。':form.elements.payment_method.value==='line_pay'?'確認頁不會顯示完整身分證字號。付款會在 LINE Pay 安全頁面完成。':'確認頁不會顯示完整身分證字號。付款帳號由藍新金流產生，每筆報名專用。';
-  $('#summary-price').textContent=onsite?'現場已繳 NT$ 6,000':`NT$ ${currentPlan().price.toLocaleString('zh-TW')}`;
+  $('#onsite-completion-note').textContent=newhope?'新希望專案折扣碼驗證通過後即完成報名，免繳費。':'現場已繳費者只需確認並送出資料，不會再次付款。';
+  $('.submit-note').textContent=newhope?'核對新希望專案折扣碼後完成報名，免繳費，不會建立付款帳號。':onsite?'核對現場已繳費資格後完成補填，不會建立付款帳號。':form.elements.payment_method.value==='line_pay'?'確認頁不會顯示完整身分證字號。付款會在 LINE Pay 安全頁面完成。':'確認頁不會顯示完整身分證字號。付款帳號由藍新金流產生，每筆報名專用。';
+  $('#summary-price').textContent=newhope?'免繳費 NT$ 0':onsite?'現場已繳 NT$ 6,000':`NT$ ${currentPlan().price.toLocaleString('zh-TW')}`;
   form.elements.payment_method.forEach(input=>{
     input.disabled=onsite||!checkoutReady||input.closest('.payment-choice').classList.contains('unavailable');
     input.required=!onsite&&input.value==='card';
   });
   const submit=$('.submit');
   submit.disabled=!canSubmit()||submit.classList.contains('completed');
-  $('span',submit).textContent=onsite?'確認並送出補填資料':'檢查資料並前往確認';
-  $('#confirmation-note').textContent=onsite?'確認後會核對現場已繳費資格並儲存資料，不會前往付款。':form.elements.payment_method.value==='line_pay'?'確認後會安全送出報名資料，並前往 LINE Pay 完成付款。':'確認後會安全送出報名資料，並前往藍新金流完成所選付款方式。';
-  $('.dialog-confirm').textContent=onsite?'確認送出補填資料':'確認並前往付款';
+  $('span',submit).textContent=newhope?'確認並送出專案報名':onsite?'確認並送出補填資料':'檢查資料並前往確認';
+  $('#confirmation-note').textContent=newhope?'確認後會驗證折扣碼並儲存完整學員資料，免繳費，不會前往付款。':onsite?'確認後會核對現場已繳費資格並儲存資料，不會前往付款。':form.elements.payment_method.value==='line_pay'?'確認後會安全送出報名資料，並前往 LINE Pay 完成付款。':'確認後會安全送出報名資料，並前往藍新金流完成所選付款方式。';
+  $('.dialog-confirm').textContent=newhope?'確認送出免繳費報名':onsite?'確認送出補填資料':'確認並前往付款';
   wizard?.setLastStep(onsite?3:4);
 }
 
@@ -431,16 +440,16 @@ async function createCheckout(){
   const confirm=$('.dialog-confirm'),submit=$('.submit');
   confirm.disabled=true;
   submit.disabled=true;
-  confirm.textContent=isOnsite()?'正在儲存補填資料…':'正在建立安全付款…';
+  confirm.textContent=isNewhope()?'正在驗證專案並儲存…':isNoPayment()?'正在儲存補填資料…':'正在建立安全付款…';
   try{
-    const response=await fetch(JERSEY_AVAILABILITY_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:isOnsite()?'complete_onsite_registration':'create_checkout',expected_environment:expectedEnvironment,request_id:requestId(),registration:registrationPayload()}),signal:AbortSignal.timeout(20000)});
+    const response=await fetch(JERSEY_AVAILABILITY_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:isNewhope()?'complete_sponsored_registration':isNoPayment()?'complete_onsite_registration':'create_checkout',expected_environment:expectedEnvironment,request_id:requestId(),registration:registrationPayload()}),signal:AbortSignal.timeout(20000)});
     const data=await response.json().catch(()=>({}));
     if(!response.ok||!data.ok)throw new Error(data.error||'registration_failed');
     await saveChurchAffiliation(data.registration_no);
-    if(isOnsite()){
-      if(data.status!=='onsite_complete')throw new Error('onsite_verification_failed');
+    if(isNoPayment()){
+      if(data.status!==(isNewhope()?'sponsored_complete':'onsite_complete'))throw new Error('onsite_verification_failed');
       clearRequestId();
-      location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(data.registration_no)}&source=onsite`);
+      location.replace(`heat-camp-2027-success.html?registration=${encodeURIComponent(data.registration_no)}&source=${isNewhope()?'newhope':'onsite'}`);
       return;
     }
     if(data.status==='exception_review'){
@@ -460,11 +469,11 @@ async function createCheckout(){
     continueToPayment(data);
   }catch(error){
     const labels={registration_closed:'目前不在報名期間。',pricing_mode_not_ready:'此優惠方案尚需人工核對，請先聯絡營會同工。',price_unavailable:'目前無法確認適用價格。',camp_full:'名額已滿。',jersey_or_order_unavailable:'剛才選擇的背號已被使用，請重新選擇。',invalid_national_id:'球員身分證字號格式不正確。',invalid_phone:'家長手機格式不正確。',invalid_email:'Email 格式不正確。',invalid_jersey:'請重新選擇球衣背號。',medical_status_required:'請勾選「本人確認沒有」；若有特殊狀況，請補充說明。',consent_required:'請完成所有必要同意項目。',receipt_preference_failed:'目前無法儲存收據選擇，請稍後再試。',payment_config_invalid:'付款服務設定尚未完成。',payment_method_unavailable:'此付款方式尚未啟用，請改選其他付款方式。'};
-    const extraLabels={church_affiliation_unavailable:'所屬教會資料暫時無法儲存，請稍後重試；已建立的報名資料仍保留。',onsite_verification_failed:'無法核對現場已繳費資格，請確認驗證碼或聯絡同工。已填資料會保留，不會再次收款。',onsite_code_used:'此現場驗證碼已完成補填，請聯絡同工查詢原報名。',request_registration_mismatch:'這次輸入與原報名不同，請重新開啟報名頁為另一位球員報名；原報名仍保留。',payment_environment_mismatch:'付款環境已更新，請重新連線確認後再付款。',production_checkout_preparing:'正式付款服務仍在準備中，請稍後再試。'};
+    const extraLabels={sponsorship_verification_failed:'無法驗證新希望專案折扣碼，請確認後重試或聯絡同工。已填資料會保留。',sponsorship_code_used:'此專案折扣碼已使用完畢，請聯絡同工。',church_affiliation_unavailable:'所屬教會資料暫時無法儲存，請稍後重試；已建立的報名資料仍保留。',onsite_verification_failed:'無法核對現場已繳費資格，請確認驗證碼或聯絡同工。已填資料會保留，不會再次收款。',onsite_code_used:'此現場驗證碼已完成補填，請聯絡同工查詢原報名。',request_registration_mismatch:'這次輸入與原報名不同，請重新開啟報名頁為另一位球員報名；原報名仍保留。',payment_environment_mismatch:'付款環境已更新，請重新連線確認後再付款。',production_checkout_preparing:'正式付款服務仍在準備中，請稍後再試。'};
     dialog.close();
-    showMessage(extraLabels[error.message]||labels[error.message]||(isOnsite()?'目前無法儲存補填資料，已填內容會保留，請稍後再試。':'目前無法建立付款，資料尚未重複送出，請稍後再試。'));
+    showMessage(extraLabels[error.message]||labels[error.message]||(isNoPayment()?'目前無法儲存補填資料，已填內容會保留，請稍後再試。':'目前無法建立付款，資料尚未重複送出，請稍後再試。'));
     if(error.message==='payment_environment_mismatch')await loadPaymentConfiguration();
-    if(!isOnsite()&&storedRequestId()){
+    if(!isNoPayment()&&storedRequestId()){
       try{
         const state=await paymentRequest('registration_status');
         if(state.status==='paid'){
@@ -487,7 +496,7 @@ async function createCheckout(){
     submitting=false;
     confirm.disabled=false;
     submit.disabled=!canSubmit();
-    confirm.textContent=isOnsite()?'確認送出補填資料':'確認並前往付款';
+    confirm.textContent=isNewhope()?'確認送出免繳費報名':isNoPayment()?'確認送出補填資料':'確認並前往付款';
   }
 }
 
@@ -511,7 +520,7 @@ form.addEventListener('submit',event=>{
   $('#confirm-player').textContent=form.elements.player_name.value;
   $('#confirm-guardian').textContent=form.elements.guardian_name.value;
   $('#confirm-plan').textContent=plan.label;
-  $('#confirm-price').textContent=isOnsite()?'現場已繳費，本次無需付款':`NT$ ${plan.price.toLocaleString('zh-TW')}`;
+  $('#confirm-price').textContent=isNewhope()?'專案補助，免繳費 NT$ 0':isNoPayment()?'現場已繳費，本次無需付款':`NT$ ${plan.price.toLocaleString('zh-TW')}`;
   dialog.showModal();
 });
 
