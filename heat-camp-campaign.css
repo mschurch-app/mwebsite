@@ -205,3 +205,12 @@
 @media(prefers-reduced-motion:reduce) {html:has(.camp-campaign),.camp-campaign {scroll-behavior:auto}.camp-campaign * {scroll-behavior:auto;transition:none}}
 
 .camp-footer-logo.newhope{width:220px;min-width:0;flex:0 0 220px;height:70px;display:flex;align-items:center;justify-content:center;background:white;padding:8px 12px;border-radius:12px}.camp-footer-logo.newhope img{display:block;width:100%;height:100%;object-fit:contain;object-position:center center}
+
+/* Scale the four partner marks together on narrow screens. */
+@media(max-width:620px) {
+  .camp-campaign footer .camp-footer-logos {display:grid;grid-template-columns:minmax(0,112fr) minmax(0,70fr) minmax(0,220fr) minmax(0,112fr);width:100%;min-width:0;align-items:center;gap:8px}
+  .camp-campaign footer .camp-footer-logo {width:100%;min-width:0;height:clamp(32px,11.3vw,70px);padding:3px;border-radius:7px}
+  .camp-campaign footer .camp-footer-logo.mac {width:100%;height:auto;aspect-ratio:1;border-radius:50%;padding:0}
+  .camp-campaign footer .camp-footer-logo.shine {padding:0}
+  .camp-campaign footer .camp-footer-logo.newhope {width:100%;min-width:0;height:clamp(32px,11.3vw,70px);padding:4px 6px;border-radius:7px}
+}
