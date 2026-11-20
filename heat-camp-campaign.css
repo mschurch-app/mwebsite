@@ -250,3 +250,10 @@
 @media(max-width:620px) {
   .camp-campaign footer .camp-footer-logo.newhope {width:80%;padding:4.8px}
 }
+
+/* Keep the full project name on one line within the reduced logo card. */
+.camp-campaign footer .camp-footer-caption {font-size:10px;white-space:nowrap}
+.camp-footer-caption>span {display:inline}
+@media(max-width:620px) {
+  .camp-campaign footer .camp-footer-caption {font-size:clamp(6px,1.98vw,10px)}
+}
