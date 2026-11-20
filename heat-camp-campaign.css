@@ -214,3 +214,12 @@
   .camp-campaign footer .camp-footer-logo.shine {padding:0}
   .camp-campaign footer .camp-footer-logo.newhope {width:100%;min-width:0;height:clamp(32px,11.3vw,70px);padding:4px 6px;border-radius:7px}
 }
+
+/* A shared white surface ties the sponsor mark and project name together. */
+.camp-campaign footer .camp-footer-logo.newhope {flex-direction:column;gap:4px}
+.camp-campaign footer .camp-footer-logo.newhope img {flex:1 1 0;min-height:0;height:calc(100% - 17px)}
+.camp-footer-caption {display:block;flex:0 0 auto;color:#535d36;font-size:11px;font-weight:600;line-height:1.15;letter-spacing:.16em;text-align:center;white-space:nowrap}
+@media(max-width:620px) {
+  .camp-campaign footer .camp-footer-logo.newhope {gap:2px}
+  .camp-footer-caption {font-size:clamp(8px,2.4vw,11px);letter-spacing:.05em}
+}
